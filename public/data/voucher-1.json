@@ -1,0 +1,1340 @@
+{
+ "source": "perscholas-voucher-1",
+ "title": "Per Scholas PQUIZ 607.5.1 Voucher Qualification Exam (attempt 1)",
+ "cards": [
+  {
+   "id": "voucher1-q01",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "What is true about change sets when moving data from one Salesforce environment to another? Select 2.",
+   "options": [
+    "Change sets can move data between a sandbox and the associated production org.",
+    "Change sets can move data from any Developer Edition org to any sandbox org.",
+    "Change sets can move data from any sandbox to any production org.",
+    "Change sets can move data between two sandboxes that belong to the same production org."
+   ],
+   "answer": [
+    "Change sets can move data between a sandbox and the associated production org.",
+    "Change sets can move data between two sandboxes that belong to the same production org."
+   ],
+   "why": "Change sets move metadata (configuration, not records) between orgs tied to the same production org: sandbox ↔ production or sandbox ↔ sandbox.",
+   "translate": {
+    "situation": "Move a finished build from a test org to the live org.",
+    "feature": "Change sets.",
+    "see": "An outbound change set uploaded from the sandbox, deployed in production.",
+    "notOther": "Orgs must belong to the same production org; Developer Edition orgs can't use change sets. (The question says 'data' but change sets move metadata.)"
+   },
+   "tags": [
+    "deployment",
+    "change sets"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q02",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Which mechanism can you use to see all converted leads in your Salesforce org?",
+   "options": [
+    "Leads With Converted Lead Information Report",
+    "Converted Lead List View",
+    "Custom Visualforce Page",
+    "You cannot view leads once they have been converted"
+   ],
+   "answer": [
+    "Leads With Converted Lead Information Report"
+   ],
+   "why": "Converted leads drop out of list views; reports (standard or custom report type) still show them.",
+   "tags": [
+    "leads",
+    "reports"
+   ]
+  },
+  {
+   "id": "voucher1-q03",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "When creating a Web-to-Lead form, what can be enabled to ensure no Lead records are created that contain Spam?",
+   "options": [
+    "Create a Restriction Rule on the Lead object.",
+    "Create an auto-response rule.",
+    "Create a validation rule.",
+    "Enable reCAPTCHA verification."
+   ],
+   "answer": [
+    "Enable reCAPTCHA verification."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "web-to-lead"
+   ]
+  },
+  {
+   "id": "voucher1-q04",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "At Project Solutions, at least 100 Opportunities are being created daily. To make sure nothing is missed by the Sales Reps, a reminder task should be created 10 days after the \"Created Date\" of the Opportunity. Which automation feature should be used to address the requirement while considering the risk of governor limits per transaction?",
+   "options": [
+    "Process Builder",
+    "Flow Builder",
+    "Big Deal Alert",
+    "Apex Trigger"
+   ],
+   "answer": [
+    "Flow Builder"
+   ],
+   "why": "Record-triggered flow with a scheduled path (and batch size). Same as K2U Exam 6 Q52.",
+   "translate": {
+    "situation": "Create a follow-up task 10 days after each new deal.",
+    "feature": "Record-triggered flow with a Scheduled Path.",
+    "see": "A task appears automatically on day 10.",
+    "notOther": "Process Builder is retired; Apex is code; Big Deal Alert only emails."
+   },
+   "tags": [
+    "flow",
+    "scheduled path"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q05",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Your company wishes to back up all of their Salesforce records on the first day of each month. Which built in service provided by Salesforce can accommodate this?",
+   "options": [
+    "Mass Export",
+    "Data Export",
+    "Scheduled Report",
+    "Schema Builder"
+   ],
+   "answer": [
+    "Data Export"
+   ],
+   "why": "Weekly or monthly schedule.",
+   "tags": [
+    "backup"
+   ]
+  },
+  {
+   "id": "voucher1-q06",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Sales Reps at your company are grouped by different regions. Sales Reps should only work with Leads that are in their region. What should an administrator implement to control what Leads Sales Reps can access?",
+   "options": [
+    "Set up a Flow to assign Leads to queues based on region.",
+    "Set up an assignment rule to assign Leads to individuals.",
+    "Set up Sharing Rule to share Lead records with other Users in the same region.",
+    "Set up assignment rules to assign Leads to queues based on region."
+   ],
+   "answer": [
+    "Set up assignment rules to assign Leads to queues based on region."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "assignment",
+    "queues"
+   ]
+  },
+  {
+   "id": "voucher1-q07",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "An organization needs to connect Salesforce with an external cloud-based HR system. What should the Salesforce Administrator do first when evaluating the level of effort required for integration?",
+   "options": [
+    "Search the Salesforce AppExchange for a pre-built connector or app.",
+    "Create custom objects and WSDL files immediately in Setup.",
+    "Estimate the developer hours required to build custom Apex REST callouts.",
+    "Hire a third-party API consultant to build custom middleware."
+   ],
+   "answer": [
+    "Search the Salesforce AppExchange for a pre-built connector or app."
+   ],
+   "why": "Check for an existing solution before building.",
+   "tags": [
+    "appexchange"
+   ]
+  },
+  {
+   "id": "voucher1-q08",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "A customer support organization wants to deploy an AI agent that can answer common customer questions, create and update Cases, and escalate issues to human agents when necessary. Which Agentforce agent type is best suited for this use case?",
+   "options": [
+    "Agentforce Sales Coach",
+    "Agentforce Employee Agent",
+    "Agentforce Service Agent",
+    "Agentforce SDR"
+   ],
+   "answer": [
+    "Agentforce Service Agent"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "agentforce"
+   ]
+  },
+  {
+   "id": "voucher1-q09",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "How can a Sales Rep view a visual summary of their Opportunities by Stage?",
+   "options": [
+    "Opportunity Manager",
+    "Opportunity Kanban",
+    "Opportunity Sales Path",
+    "Opportunities Workspace"
+   ],
+   "answer": [
+    "Opportunity Kanban"
+   ],
+   "why": "Same as K2U Exam 4 Q53.",
+   "translate": {
+    "situation": "See all my deals at a glance, grouped by stage.",
+    "feature": "Opportunity Kanban view.",
+    "see": "A board with a column per stage and a card per deal; drag to move stages.",
+    "notOther": "Sales Path is the stage bar on ONE opportunity, not a summary of many."
+   },
+   "tags": [
+    "kanban"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q10",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "A company wants to deploy an AI agent internally to help managers answer questions about company policies, performance review cycles, and internal procedures. Which Agentforce agent type is the best fit?",
+   "options": [
+    "Agentforce SDR",
+    "Agentforce Service Agent",
+    "Agentforce Employee Agent",
+    "Agentforce Sales Coach"
+   ],
+   "answer": [
+    "Agentforce Employee Agent"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "agentforce"
+   ]
+  },
+  {
+   "id": "voucher1-q11",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Which scenario is least appropriate for Agentforce and more appropriate for Flow?",
+   "options": [
+    "Summarizing a customer's issue from a long description field.",
+    "Automatically updating a Case field based on deterministic criteria at save time.",
+    "Providing agents with draft responses during a live interaction.",
+    "Generating a suggested troubleshooting checklist from symptoms."
+   ],
+   "answer": [
+    "Automatically updating a Case field based on deterministic criteria at save time."
+   ],
+   "why": "Rules → Flow; language → AI.",
+   "tags": [
+    "agentforce",
+    "flow"
+   ]
+  },
+  {
+   "id": "voucher1-q12",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "The Vice-President of Sales has asked you to create a report that returns only Accounts that have Opportunities. What type of Report Filter would you use to accomplish this?",
+   "options": [
+    "Row Limit",
+    "Field Filter",
+    "Cross Object Filter",
+    "Filter Logic"
+   ],
+   "answer": [
+    "Cross Object Filter"
+   ],
+   "why": "Cross filters: 'Accounts WITH (or WITHOUT) Opportunities'.",
+   "tags": [
+    "reports",
+    "filters"
+   ]
+  },
+  {
+   "id": "voucher1-q13",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Universal Containers has a Lead Assignment Rule containing 5 separate rule entries evaluated sequentially from Entry 1 to Entry 5. An incoming Web-to-Lead record matches the criteria for both Entry 2 and Entry 4. How does Salesforce process and assign this record?",
+   "options": [
+    "Salesforce creates two duplicate Lead records, assigning one via Entry 2 and one via Entry 4.",
+    "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries.",
+    "Salesforce triggers an execution fault and assigns the Lead to the Default Lead Owner.",
+    "Salesforce assigns the Lead using Entry 4 criteria because it is the most specific match."
+   ],
+   "answer": [
+    "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries."
+   ],
+   "why": "First match wins. Same as K2U Exam 5 Q35.",
+   "translate": {
+    "situation": "A lead matches two rule entries.",
+    "feature": "Rule entry order.",
+    "see": "It goes to Entry 2's assignee and evaluation stops.",
+    "notOther": "Salesforce doesn't pick the 'most specific' match; order decides."
+   },
+   "tags": [
+    "assignment"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q14",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "How should a Chatter user send a message to another Chatter user that cannot be viewed by anyone else?",
+   "options": [
+    "Use @mention to include the recipient within the message.",
+    "Post a Message to Record owner.",
+    "Post a Private Message to the recipient.",
+    "Use #secret to send the message to the recipient."
+   ],
+   "answer": [
+    "Post a Private Message to the recipient."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "chatter"
+   ]
+  },
+  {
+   "id": "voucher1-q15",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Your Support Manager has requested a change be made to the owner of cases when assignment rules fail to locate an owner. What should you do to fulfill this request?",
+   "options": [
+    "Create a Predefined Case Team and Add a Team Member with the Team Role of Default Case Owner",
+    "Create a Default Case Owner Case Team Role",
+    "Change the Automated Case User in Support Settings",
+    "Change the Default Case Owner in Support Settings"
+   ],
+   "answer": [
+    "Change the Default Case Owner in Support Settings"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "cases",
+    "support settings"
+   ]
+  },
+  {
+   "id": "voucher1-q16",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "If the Organization-Wide Default setting on Accounts is set to Private, which records will an Account report return?",
+   "options": [
+    "Accounts owned by the user and the users below them in the Role Hierarchy.",
+    "All accounts owned by the user running the report only.",
+    "None of the above.",
+    "All Accounts for the entire organization, regardless of which user that generated the report"
+   ],
+   "answer": [
+    "Accounts owned by the user and the users below them in the Role Hierarchy."
+   ],
+   "why": "Reports respect sharing; the role hierarchy lets managers see their subordinates' records (Grant Access Using Hierarchies).",
+   "translate": {
+    "situation": "Who sees what when a report runs under a Private model.",
+    "feature": "OWD Private + role hierarchy.",
+    "see": "Your own accounts plus your team's (people below you).",
+    "notOther": "Not 'only yours': the role hierarchy adds everyone below you."
+   },
+   "tags": [
+    "sharing",
+    "reports"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q17",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Cosmic Innovation wants to give non-sales internal employees (such as HR and Facilities staff) access to collaborate in Chatter groups, share files, and view company announcements, without granting them access to CRM records or requiring full Salesforce licenses. Which license type fulfills this requirement?",
+   "options": [
+    "Identity License",
+    "Platform User License",
+    "Chatter Free License",
+    "Chatter External License"
+   ],
+   "answer": [
+    "Chatter Free License"
+   ],
+   "why": "Same as K2U Exam 6 Q40.",
+   "translate": {
+    "situation": "Employees need Chatter only, no CRM data.",
+    "feature": "Chatter Free license.",
+    "see": "Groups, files, profiles, feeds; no records.",
+    "notOther": "Platform licenses include records (custom apps); Chatter External is for outsiders."
+   },
+   "tags": [
+    "licenses"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q18",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Patio Solutions sells patio furniture to wholesalers and restaurants for their outdoor dining areas. The sales process for wholesalers is different from the sales process for restaurants. What can the administrator implement to meet the requirement of managing these different processes? Select 2.",
+   "options": [
+    "Page Layouts",
+    "Workflows",
+    "Record Types",
+    "Profile"
+   ],
+   "answer": [
+    "Page Layouts",
+    "Record Types"
+   ],
+   "why": "Record types carry the sales process; page layouts show the right fields per type.",
+   "translate": {
+    "situation": "Two customer types, two different sales processes.",
+    "feature": "Record types + page layouts (with a sales process each).",
+    "see": "Picking 'Wholesaler' or 'Restaurant' gives different stages and fields.",
+    "notOther": "Workflows are retired automation; profiles don't define processes."
+   },
+   "tags": [
+    "record types",
+    "page layouts"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q19",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Universal Containers collaborates with external vendors using Chatter. The administrator enables the \"Allow Customers\" setting on a private group and invites external vendor users with Chatter External licenses. What constraint applies to customer-enabled Chatter groups?",
+   "options": [
+    "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups.",
+    "Customer users can create new sub-groups and invite other external users.",
+    "Customer-enabled groups automatically convert into Public Groups.",
+    "External users can view all Opportunity records owned by group members."
+   ],
+   "answer": [
+    "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups."
+   ],
+   "why": "Same as K2U Exam 2 Q35.",
+   "tags": [
+    "chatter"
+   ]
+  },
+  {
+   "id": "voucher1-q20",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "What users can approve or reject a record that has been submitted for approval?",
+   "options": [
+    "Approvers specified in the approval process and delegated approvers.",
+    "Approvers specified by their Role in the approval process.",
+    "Approvers specified in the approval process.",
+    "Delegated approvers only."
+   ],
+   "answer": [
+    "Approvers specified in the approval process and delegated approvers."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "approvals"
+   ]
+  },
+  {
+   "id": "voucher1-q21",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "The Support Team at your organization is frustrated that they have to enter information from the Account when opening a Case. They are having to go find information including Account Name, Account Owner, and Account Address. This process is tedious when handling 100's of cases in a single day. What should you create in order to automate the process of entering the Account information when opening a Case?",
+   "options": [
+    "Formula Fields.",
+    "Validation Rules.",
+    "Case Assignment Rule.",
+    "A Workflow rule."
+   ],
+   "answer": [
+    "Formula Fields."
+   ],
+   "why": "Same as K2U Exam 1 Q2.",
+   "translate": {
+    "situation": "Show the case's account details without retyping them.",
+    "feature": "Cross-object formula fields.",
+    "see": "Account Owner, Address, etc. appear on the case automatically.",
+    "notOther": "Workflow rules are retired and would copy values, not display them live."
+   },
+   "tags": [
+    "formulas"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q22",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "A Sales Manager is looking to create a list of Accounts for a mailing list. All Accounts, except those that are in Florida, should be included in the list. What report type would be appropriate to use?",
+   "options": [
+    "Tabular",
+    "Matrix",
+    "Joined",
+    "Summary"
+   ],
+   "answer": [
+    "Tabular"
+   ],
+   "why": "A plain list with a filter = Tabular.",
+   "translate": {
+    "situation": "A simple list of accounts, minus Florida.",
+    "feature": "Tabular report + filter (State not equal to Florida).",
+    "see": "Plain rows, like a spreadsheet.",
+    "notOther": "Matrix groups by rows and columns; a mailing list needs no grouping."
+   },
+   "tags": [
+    "reports"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q23",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "What feature can be used to avoid the creation of duplicate picklists across custom objects and fields?",
+   "options": [
+    "Standard Picklist",
+    "Global Value Set",
+    "Master Picklist",
+    "Global Picklist"
+   ],
+   "answer": [
+    "Global Value Set"
+   ],
+   "why": "Define values once, reuse across picklist fields.",
+   "translate": {
+    "situation": "Several fields need the same list of values.",
+    "feature": "Global Value Set.",
+    "see": "Edit the list once; every field using it updates.",
+    "notOther": "'Global Picklist' and 'Master Picklist' aren't the feature names."
+   },
+   "tags": [
+    "picklists"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q24",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "You have been tasked with creating a new profile for a new team that has been created that focuses strictly on Social Media Marketing. These users report that a Custom App they used to have access to no longer appears in their list of applications. What do you need to adjust on the Profile to get this Application to display for this new Profile's assigned users?",
+   "options": [
+    "Object Settings",
+    "Assigned Apps",
+    "Permission Sets",
+    "App Permissions"
+   ],
+   "answer": [
+    "Assigned Apps"
+   ],
+   "why": "App visibility is set in the profile's Assigned Apps.",
+   "translate": {
+    "situation": "A team can't see an app anymore.",
+    "feature": "Profile → Assigned Apps.",
+    "see": "The app shows up in their App Launcher again.",
+    "notOther": "Permission sets aren't edited from inside a profile; App Permissions covers standard features like Knowledge."
+   },
+   "tags": [
+    "profiles",
+    "apps"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q25",
+   "type": "question",
+   "objective": "service",
+   "prompt": "The management at Proactive Fix are concerned that some Support Agents are receiving too many Cases while others are not working on more than a few cases per week. Which feature could the Salesforce Administrator implement to make Case routing more efficient?",
+   "options": [
+    "Omni-Channel",
+    "Case Assignment Rules",
+    "Case Queues",
+    "Service Console"
+   ],
+   "answer": [
+    "Omni-Channel"
+   ],
+   "why": "Same as K2U Exam 4 Q14.",
+   "translate": {
+    "situation": "Spread the workload evenly across agents.",
+    "feature": "Omni-Channel.",
+    "see": "Cases get pushed to whoever has capacity and the right skills.",
+    "notOther": "Queues hold work but don't balance it; assignment rules ignore workload."
+   },
+   "tags": [
+    "omni-channel"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q26",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "What functionality is available when utilizing the Data Export feature under Data Management in the Setup menu? Select 2.",
+   "options": [
+    "Schedule a recurring export monthly",
+    "Send an email with the exported data attached.",
+    "Schedule a recurring export weekly",
+    "Schedule a recurring export daily"
+   ],
+   "answer": [
+    "Schedule a recurring export monthly",
+    "Schedule a recurring export weekly"
+   ],
+   "why": "Weekly or monthly only; you get an email with a download link, not an attachment.",
+   "translate": {
+    "situation": "Back up org data on a schedule.",
+    "feature": "Data Export (Setup → Data Management).",
+    "see": "A zip of CSVs to download, weekly or monthly.",
+    "notOther": "No daily option; the email carries a link, not the files."
+   },
+   "tags": [
+    "backup"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q27",
+   "type": "question",
+   "objective": "service",
+   "prompt": "You were previously asked by Users to add an additional selection to the Case Status picklist field. Your organization currently uses record types for Cases. Users are reporting that this new field is not available for selection. Where in Setup would you go to troubleshoot this issue?",
+   "options": [
+    "Support Processes",
+    "Sales Path",
+    "Sales Processes",
+    "Support Settings",
+    "Lead Processes"
+   ],
+   "answer": [
+    "Support Processes"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "support process"
+   ]
+  },
+  {
+   "id": "voucher1-q28",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "A support director wants the agent to refuse requests for sensitive customer data and to explain why. Where should the administrator implement this guidance?",
+   "options": [
+    "In the Case escalation rule criteria.",
+    "In Agent Builder instructions and prompts, including security/PII handling rules.",
+    "In the report folder sharing settings.",
+    "In the email-to-case routing address."
+   ],
+   "answer": [
+    "In Agent Builder instructions and prompts, including security/PII handling rules."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "agentforce"
+   ]
+  },
+  {
+   "id": "voucher1-q29",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "A Sales Representative clicks the \"Submit for Approval\" button on an Opportunity. What default system behavior occurs during the Initial Submission Actions phase?",
+   "options": [
+    "The record is automatically locked to prevent users from altering data while under review.",
+    "The record's Org-Wide Default (OWD) is changed to Public Read/Write.",
+    "The record is permanently archived in the database.",
+    "Record ownership is immediately transferred to the System Administrator."
+   ],
+   "answer": [
+    "The record is automatically locked to prevent users from altering data while under review."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "approvals"
+   ]
+  },
+  {
+   "id": "voucher1-q30",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "What actions can a User take after creating a Chatter Post? Select 2.",
+   "options": [
+    "Create an Account record from the post.",
+    "Create a Task related to the post.",
+    "Create an Event related to the post.",
+    "Edit the post."
+   ],
+   "answer": [
+    "Create a Task related to the post.",
+    "Edit the post."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "chatter"
+   ]
+  },
+  {
+   "id": "voucher1-q31",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "An administrator is configuring an Approval Process step for expense requests. Which option can be designated as an assigned approver within an Approval Step?",
+   "options": [
+    "The System Administrator Profile.",
+    "Any active Contact record associated with the Account.",
+    "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue.",
+    "The Public Group assigned to the record's OWD."
+   ],
+   "answer": [
+    "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue."
+   ],
+   "why": "Approvers: a user, a queue, the submitter's manager, or a related user field.",
+   "translate": {
+    "situation": "Decide who approves each step.",
+    "feature": "Approval step approvers.",
+    "see": "Requests go to the submitter's manager or a queue.",
+    "notOther": "Profiles and contacts can't approve; OWD has no group."
+   },
+   "tags": [
+    "approvals"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q32",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Which of the following are true about list views? Select 2.",
+   "options": [
+    "All list views can be printed.",
+    "Field-level security is applied to the fields that are visible in the list view.",
+    "Users can only see data that they can access.",
+    "All Users can share lists view with any User they wish."
+   ],
+   "answer": [
+    "Field-level security is applied to the fields that are visible in the list view.",
+    "Users can only see data that they can access."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "list views"
+   ]
+  },
+  {
+   "id": "voucher1-q33",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Where should an Administrator go in Salesforce to disable a group of Users to access an application in Salesforce?",
+   "options": [
+    "Profile",
+    "Roles",
+    "Sharing Rule",
+    "Object Manager"
+   ],
+   "answer": [
+    "Profile"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "profiles",
+    "apps"
+   ]
+  },
+  {
+   "id": "voucher1-q34",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "An administrator needs to prevent users from saving an Opportunity in the \"Closed Won\" stage if any related child Opportunity Line Item has a discount greater than 30%. Standard validation rules cannot evaluate child records. How can this check be enforced declaratively while blocking the record save with a custom error message?",
+   "options": [
+    "Use a Custom Error element inside a Record-Triggered Flow.",
+    "Enable Field History Tracking on Opportunity Line Items.",
+    "Create a Case Escalation Rule on the Opportunity object.",
+    "Add a Fault Path to a Get Records element in a Screen Flow."
+   ],
+   "answer": [
+    "Use a Custom Error element inside a Record-Triggered Flow."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "flow",
+    "custom error"
+   ]
+  },
+  {
+   "id": "voucher1-q35",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "What Salesforce feature is used to send an email notification automatically for opportunities with large amounts?",
+   "options": [
+    "Big Deal Alert",
+    "Apex",
+    "Entitlement",
+    "Screen Flow"
+   ],
+   "answer": [
+    "Big Deal Alert"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "big deal alert"
+   ]
+  },
+  {
+   "id": "voucher1-q36",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "How do you deactivate a user in Salesforce?",
+   "options": [
+    "Check the De-Activate button on their User Detail page.",
+    "Uncheck the Active checkbox on their User Detail page.",
+    "Set the user's Profile to Inactive.",
+    "Set the user's Role to Inactive."
+   ],
+   "answer": [
+    "Uncheck the Active checkbox on their User Detail page."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "translate": {
+    "situation": "Turn off a departing user's access.",
+    "feature": "The Active checkbox on the user record.",
+    "see": "Edit user → uncheck Active → save.",
+    "notOther": "There's no De-Activate button; profiles and roles don't have an inactive state."
+   },
+   "tags": [
+    "users"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q37",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "An Agentforce agent occasionally answers with outdated procedures after a policy change. Which ongoing maintenance action best addresses this?",
+   "options": [
+    "Rebuild all page layouts quarterly.",
+    "Regularly review and update agent instructions/prompts when policies change, and retest with preview scenarios.",
+    "Increase storage limits for Knowledge.",
+    "Disable Case validation rules."
+   ],
+   "answer": [
+    "Regularly review and update agent instructions/prompts when policies change, and retest with preview scenarios."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "agentforce"
+   ]
+  },
+  {
+   "id": "voucher1-q38",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "When creating a custom field on the Lead object, it can be mapped to appear on two types of fields. Select 2.",
+   "options": [
+    "Custom Account",
+    "Custom Contact",
+    "Standard Opportunity",
+    "Standard Account"
+   ],
+   "answer": [
+    "Custom Account",
+    "Custom Contact"
+   ],
+   "why": "Custom lead fields map only to custom fields. Same as K2U Exam 1 Q29.",
+   "translate": {
+    "situation": "Carry a custom lead field onto the records created at conversion.",
+    "feature": "Map Lead Fields (custom → custom).",
+    "see": "The value lands in a custom field on the new Account or Contact.",
+    "notOther": "Custom lead fields can't map to standard fields."
+   },
+   "tags": [
+    "lead conversion"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q39",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "The Sales Director has asked for a new field on Opportunities called Reminder Date. The Reminder Date field should display what the date would be 7 days prior to the date that is entered in the Close Date field on an opportunity. What type of field should you create to accomplish this request?",
+   "options": [
+    "Date Field",
+    "Formula Field with a Return Type of Date",
+    "Formula Field with a Return Type of Text.",
+    "Date/Time Field"
+   ],
+   "answer": [
+    "Formula Field with a Return Type of Date"
+   ],
+   "why": "Formula: CloseDate - 7, returning a Date.",
+   "translate": {
+    "situation": "Show a date that's always 7 days before Close Date.",
+    "feature": "Formula field, return type Date.",
+    "see": "A read-only field that recalculates when Close Date changes.",
+    "notOther": "A plain Date field must be typed by hand; a Text return loses date behavior."
+   },
+   "tags": [
+    "formulas"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q40",
+   "type": "question",
+   "objective": "service",
+   "prompt": "A support manager at Cosmic Freight Tools wants to be notified via email whenever a \"High Priority\" case remains open and unresolved for 4 hours. Additionally, the case must be automatically reassigned to a Tier 2 Support Queue. Which Service Cloud solution should the administrator configure?",
+   "options": [
+    "Case Assignment Rule",
+    "Omni-Channel Routing Rule",
+    "Case Escalation Rule",
+    "Case Auto-Response Rule"
+   ],
+   "answer": [
+    "Case Escalation Rule"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "escalation"
+   ]
+  },
+  {
+   "id": "voucher1-q41",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "A new approval process is being adopted by Pet Supplies Emporium. After an Opportunity has been approved, a contract is sent to the customer for signature as the final step in that process. How can the administrator implement this functionality?",
+   "options": [
+    "Install an app from the AppExchange.",
+    "Check the \"Send PDF\" box on the approval process setup.",
+    "Create an Email Template to send the contract.",
+    "Hire a consulting firm to develop a document signing workflow."
+   ],
+   "answer": [
+    "Install an app from the AppExchange."
+   ],
+   "why": "E-signature (DocuSign, Adobe Sign) comes from AppExchange apps.",
+   "translate": {
+    "situation": "Get a customer's signature after approval.",
+    "feature": "An e-signature app from AppExchange.",
+    "see": "The contract goes out for signature and the status syncs back.",
+    "notOther": "An email template can send a file but can't collect a signature."
+   },
+   "tags": [
+    "appexchange",
+    "approvals"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q42",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "At Ursa Major Solar, Salesforce users have a session timeout of 12 hours. Management wants the session timeout to be increased to 24 hours. Management also wants inactive users to be logged out at that time. What should the administrator do to fulfill this request?",
+   "options": [
+    "In user profiles, enter 24 hours in the timeout section, and check the box for force logout on session timeout.",
+    "In session settings, select 24 hours, and uncheck the box for force logout on session timeout.",
+    "In user profiles, type in 24 hours in the timeout section, and uncheck the box for force logout on session timeout.",
+    "In session settings, select 24 hours, and check the box for force logout on session timeout."
+   ],
+   "answer": [
+    "In session settings, select 24 hours, and check the box for force logout on session timeout."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "session settings"
+   ]
+  },
+  {
+   "id": "voucher1-q43",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "How can you restrict users from seeing certain fields in searches, reports and list views?",
+   "options": [
+    "Remove the field from all page layouts.",
+    "Remove the field from Search Layouts.",
+    "Set the field to Hidden at the Profile level.",
+    "Remove the field from Reports."
+   ],
+   "answer": [
+    "Set the field to Hidden at the Profile level."
+   ],
+   "why": "FLS hides everywhere; layouts only hide on the record page.",
+   "tags": [
+    "fls"
+   ]
+  },
+  {
+   "id": "voucher1-q44",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Ursa Major Solar is setting up case assignment rules. What are two places where the cases can be assigned? Select 2.",
+   "options": [
+    "Queue",
+    "Contact",
+    "User",
+    "Profile"
+   ],
+   "answer": [
+    "Queue",
+    "User"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "assignment"
+   ]
+  },
+  {
+   "id": "voucher1-q45",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "What is true regarding the creation of a custom field?",
+   "options": [
+    "Custom fields can be created on standard and custom objects, and can be deleted.",
+    "Only 20 custom fields can be created per standard object.",
+    "Custom fields cannot be deleted, once they are created.",
+    "Custom fields can only be created on custom objects."
+   ],
+   "answer": [
+    "Custom fields can be created on standard and custom objects, and can be deleted."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "fields"
+   ]
+  },
+  {
+   "id": "voucher1-q46",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Universal Containers converts qualified Leads into Accounts, Contacts, and Opportunities. The company uses several custom Lead fields that must carry over after conversion. Which two statements regarding Lead Conversion and custom field mapping are accurate? Choose 2 answers.",
+   "options": [
+    "Custom Lead fields can only be mapped to custom fields on the Account, Contact, or Opportunity objects.",
+    "Administrators can configure Lead Settings to hide the \"Create Opportunity\" section in the Convert Lead window.",
+    "Standard Lead fields can be re-mapped to custom fields on the Contact object.",
+    "Creating an Opportunity is mandatory during every Lead conversion operation."
+   ],
+   "answer": [
+    "Custom Lead fields can only be mapped to custom fields on the Account, Contact, or Opportunity objects.",
+    "Administrators can configure Lead Settings to hide the \"Create Opportunity\" section in the Convert Lead window."
+   ],
+   "why": "Standard lead fields map automatically and can't be re-mapped.",
+   "translate": {
+    "situation": "Plan how lead data carries over at conversion.",
+    "feature": "Lead field mapping + Lead Settings.",
+    "see": "Custom lead fields flow into custom fields; the opportunity section can be hidden.",
+    "notOther": "Standard mappings are fixed; opportunity creation is optional."
+   },
+   "tags": [
+    "lead conversion"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q47",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "The Account object has a one-to-many relationship with which of the following objects? Select 2.",
+   "options": [
+    "Case",
+    "Opportunity",
+    "Price Book Entry",
+    "Product"
+   ],
+   "answer": [
+    "Case",
+    "Opportunity"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "relationships"
+   ]
+  },
+  {
+   "id": "voucher1-q48",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "After a meeting with Sales Managers, it has been determined that the standard 'Annual Revenue' field is no longer needed to support Account management. What can the administrator do to remove the field? Select 2.",
+   "options": [
+    "Remove the field from the page layout.",
+    "Delete the field from the Account Object",
+    "Hide the field from Users using field-level security.",
+    "Use a restriction rule to hide the field."
+   ],
+   "answer": [
+    "Remove the field from the page layout.",
+    "Hide the field from Users using field-level security."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "fields",
+    "fls"
+   ]
+  },
+  {
+   "id": "voucher1-q49",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Which Dashboard Components can display multiple groupings? Select 3.",
+   "options": [
+    "Line Chart",
+    "Donut Chart",
+    "Bar Chart",
+    "Pie Chart",
+    "Funnel Chart"
+   ],
+   "answer": [
+    "Donut Chart",
+    "Pie Chart",
+    "Funnel Chart"
+   ],
+   "why": "Donut, pie, funnel show proportions across multiple groupings; bar and line suit one grouping (or a time series).",
+   "translate": {
+    "situation": "Show how a total splits across several groups.",
+    "feature": "Pie, donut, funnel components.",
+    "see": "Slices or funnel bands, one per group.",
+    "notOther": "Bar and line charts are for one grouping or change over time."
+   },
+   "tags": [
+    "dashboards"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q50",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Which Process Automation tool should you use in order to create a Chatter post on an Opportunity once it has closed?",
+   "options": [
+    "Approval Process",
+    "Flow",
+    "Apex Trigger",
+    "Auto-Response Rule"
+   ],
+   "answer": [
+    "Flow"
+   ],
+   "why": "Record-triggered flow with a Post to Chatter action (the old feedback mentions Process Builder, which is retired).",
+   "tags": [
+    "flow",
+    "chatter"
+   ]
+  },
+  {
+   "id": "voucher1-q51",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "You have been tasked with creating a report based on the relationships between a primary object and three other related objects. This type of report is not available with the standard reports that come automatically with Salesforce. What do you create in order to accommodate this requirement?",
+   "options": [
+    "Custom Report Type",
+    "Matrix Report",
+    "Summary Report",
+    "Custom Report Layout"
+   ],
+   "answer": [
+    "Custom Report Type"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "report types"
+   ]
+  },
+  {
+   "id": "voucher1-q52",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Which feature can be used to alert the Support Manager by email if a high-priority Case has not been closed within the allotted response time of 4 hours after Case creation?",
+   "options": [
+    "Case Queues",
+    "Case Settings",
+    "Case Escalation Rules",
+    "Case Assignment Rules"
+   ],
+   "answer": [
+    "Case Escalation Rules"
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "escalation"
+   ]
+  },
+  {
+   "id": "voucher1-q53",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "You have been asked to update your organization's password policies to heighten security by making them more complex. Which of the following Security settings in Salesforce would you adjust to update your organization's password policies?",
+   "options": [
+    "Permission Sets",
+    "Profiles",
+    "Permission Set Groups",
+    "Role"
+   ],
+   "answer": [
+    "Profiles"
+   ],
+   "why": "Profile password policies (or org-wide Password Policies); not permission sets.",
+   "tags": [
+    "passwords"
+   ]
+  },
+  {
+   "id": "voucher1-q54",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "What are two reasons a user cannot be deactivated? Choose 2 options.",
+   "options": [
+    "The user is an owner of multiple Account records.",
+    "The user is the Owner of open Opportunities.",
+    "The user is the Default Workflow User under Process Automation Settings.",
+    "The user is designated as the Default Case Owner."
+   ],
+   "answer": [
+    "The user is the Default Workflow User under Process Automation Settings.",
+    "The user is designated as the Default Case Owner."
+   ],
+   "why": "Users tied to system settings (default workflow user, default case owner, sole email alert recipient, custom hierarchy field) can't be deactivated; owning records doesn't block it.",
+   "translate": {
+    "situation": "Know what blocks deactivating someone.",
+    "feature": "User deactivation blockers.",
+    "see": "An error until you reassign the setting (or freeze the user meanwhile).",
+    "notOther": "Owning accounts or open opportunities doesn't block it; ownership can be transferred later."
+   },
+   "tags": [
+    "users",
+    "deactivation"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q55",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "An administrator created a custom field on the Lead object. The data captured in this field must appear on the Contact record upon conversion. What should the administrator do to complete this requirement?",
+   "options": [
+    "Create a flow to update the field on the Contact record.",
+    "Map the custom Lead field to a custom Contact field.",
+    "Create a task for the User to update the field on the Contact record when the Lead is converted.",
+    "Map the custom Lead field to a standard Contact field."
+   ],
+   "answer": [
+    "Map the custom Lead field to a custom Contact field."
+   ],
+   "why": "Custom → custom.",
+   "translate": {
+    "situation": "Bring a custom lead value onto the new contact.",
+    "feature": "Map Lead Fields.",
+    "see": "The value appears on the contact automatically after conversion.",
+    "notOther": "Custom lead fields can't map to standard fields; a flow or task is unnecessary."
+   },
+   "tags": [
+    "lead conversion"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q56",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "What is true about changing the default company locale?",
+   "options": [
+    "The company locale will be applied as the default locale for new Users, but only the Administrator can change the personal locale of a User.",
+    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting.",
+    "When changed, the company locale is applied to all Users.",
+    "The company locale will only be applied to as the default for new Users, and cannot be changed."
+   ],
+   "answer": [
+    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "company settings"
+   ]
+  },
+  {
+   "id": "voucher1-q57",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Party Suppliers and More need a form that can be used by Sales Reps to enter Party information, such as the party schedule, venue, event size, and other related event information. This form should be launched from a button on the record page. When the form is saved, a record is created and a follow-up Task is created. Which of the following tools can be used to meet this requirement?",
+   "options": [
+    "Screen Flow",
+    "Apex Triggered Flow",
+    "Schedule-Triggered Flow",
+    "Record-Triggered Flow"
+   ],
+   "answer": [
+    "Screen Flow"
+   ],
+   "why": "Same as K2U Exam 3 Q53.",
+   "translate": {
+    "situation": "Reps fill out a form from a button, then records get created.",
+    "feature": "Screen flow (launched by a quick action).",
+    "see": "A pop-up form; on Finish, the record and task are created.",
+    "notOther": "Record-triggered flows have no screens; they run on save."
+   },
+   "tags": [
+    "screen flow"
+   ],
+   "missed": true
+  },
+  {
+   "id": "voucher1-q58",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "A User reports they are locked out of Salesforce. You have confirmed they have had multiple failed login attempts by reviewing their User Detail record. How can you as a Salesforce Administrator help the User get back into Salesforce? Select 2.",
+   "options": [
+    "Create a new password for the User, and send them the new password in an email.",
+    "Select the Reset Password button on the User detail record page.",
+    "Select the Freeze button on the User Detail record page.",
+    "Edit the User Detail record, and select the checkbox \"Generate new password and notify user immediately\"."
+   ],
+   "answer": [
+    "Select the Reset Password button on the User detail record page.",
+    "Edit the User Detail record, and select the checkbox \"Generate new password and notify user immediately\"."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "users",
+    "passwords"
+   ]
+  },
+  {
+   "id": "voucher1-q59",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "How long is data stored in the Recycle Bin?",
+   "options": [
+    "Up to 30 days.",
+    "Up to 15 days.",
+    "Up to 7 days",
+    "Up to 60 days."
+   ],
+   "answer": [
+    "Up to 15 days."
+   ],
+   "why": "Per Scholas quiz; no explanation given.",
+   "tags": [
+    "recycle bin"
+   ]
+  },
+  {
+   "id": "voucher1-q60",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "What should a System Administrator configure to provide each Sales Rep a dashboard that shows their current Opportunity pipeline?",
+   "options": [
+    "Set a Dashboard filter to the current user.",
+    "Create a dashboard for each user.",
+    "Create a dashboard folder for each user.",
+    "Set the Dashboard Running User to the current user."
+   ],
+   "answer": [
+    "Set the Dashboard Running User to the current user."
+   ],
+   "why": "Dynamic dashboard: runs as the viewer.",
+   "tags": [
+    "dashboards"
+   ]
+  }
+ ]
+}

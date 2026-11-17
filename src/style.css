@@ -161,6 +161,13 @@ article.card.flipped { border-color: var(--accent); }
 .strip { background: var(--strip-bg); padding: 10px 12px; border-radius: 10px; }
 .strip.big { margin: 12px 0; }
 .src { font-size: .75rem; color: var(--muted); }
+.plain { border: 1px solid var(--line); padding: 10px 12px; border-radius: 10px; }
+.plain dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .93rem; }
+.plain dt { color: var(--muted); font-weight: 600; }
+.plain dd { margin: 0; }
+@media (max-width: 520px) { .plain dl { grid-template-columns: 1fr; } .plain dd { margin-bottom: 6px; } }
+.links { font-size: .88rem; }
+.links a { word-break: break-word; }
 
 .marks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .marks button { min-height: 52px; }

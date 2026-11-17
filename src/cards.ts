@@ -28,7 +28,16 @@ export interface Card {
   strip?: string;
   tags: string[];
   missed: boolean;
+  links?: string[];
+  translate?: Translate; // "plain English" breakdown, written for missed questions
   source: string; // which deck it came from
+}
+
+export interface Translate {
+  situation?: string;
+  feature?: string;
+  see?: string;
+  notOther?: string;
 }
 
 export interface Deck {
@@ -45,6 +54,14 @@ export function objectiveLabel(key: string): string {
 
 const isStr = (v: unknown): v is string => typeof v === 'string' && v.trim() !== '';
 const isStrArr = (v: unknown): v is string[] => Array.isArray(v) && v.every((x) => typeof x === 'string');
+
+function readTranslate(v: unknown): Translate | undefined {
+  if (!v || typeof v !== 'object') return undefined;
+  const t = v as Record<string, unknown>;
+  const out: Translate = {};
+  for (const k of ['situation', 'feature', 'see', 'notOther'] as const) if (isStr(t[k])) out[k] = t[k] as string;
+  return Object.keys(out).length ? out : undefined;
+}
 
 /** Validate one card. Returns the card or a reason it was rejected. */
 function validateCard(raw: unknown, source: string): Card | string {
@@ -82,6 +99,8 @@ function validateCard(raw: unknown, source: string): Card | string {
     strip: isStr(c.strip) ? c.strip : undefined,
     tags: isStrArr(c.tags) ? c.tags : [],
     missed: c.missed === true,
+    links: isStrArr(c.links) && c.links.length ? c.links : undefined,
+    translate: readTranslate(c.translate),
     source,
   };
 }
@@ -161,6 +180,8 @@ export function deckToJson(d: Deck): object {
       if (!out.strip) delete out.strip;
       if (!(out.tags as string[]).length) delete out.tags;
       if (!out.missed) delete out.missed;
+      if (!out.links) delete out.links;
+      if (!out.translate) delete out.translate;
       return out;
     }),
   };

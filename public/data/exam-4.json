@@ -1,0 +1,1640 @@
+{
+ "source": "exam-4",
+ "title": "K2U Platform Administrator Practice Exam 4",
+ "cards": [
+  {
+   "id": "exam4-q01",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Prevent further changes to a record once its Status is set to 'Archived'.",
+   "options": [
+    "Validation rule using PRIORVALUE",
+    "Validation rule using ISCHANGED",
+    "Custom Visualforce page overriding the layout",
+    "Sharing rule that changes access based on Status"
+   ],
+   "answer": [
+    "Validation rule using PRIORVALUE"
+   ],
+   "why": "PRIORVALUE(Status) = 'Archived' blocks every later save. ISCHANGED only catches the moment Status changes, so later edits slip through.",
+   "traps": "Sharing rules only grant access; Visualforce is code when a declarative option exists.",
+   "tags": [
+    "validation rules"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=000005286&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/11/priorvalue-validation.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/09/status.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q02",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "A new SMB line joins Enterprise; each account type records different information and reps work one or the other. (2)",
+   "options": [
+    "Use FLS on SMB fields to restrict access",
+    "Create an SMB record type and assign it to the right reps' profile",
+    "Add a picklist to distinguish SMB and Enterprise",
+    "Create an SMB page layout and assign it to the right reps' profile"
+   ],
+   "answer": [
+    "Create an SMB record type and assign it to the right reps' profile",
+    "Create an SMB page layout and assign it to the right reps' profile"
+   ],
+   "why": "Record type + page layout keep the two kinds of account separate. A picklist or FLS doesn't control which record type a user works with.",
+   "strip": "Two kinds of the same record → record type + page layout.",
+   "tags": [
+    "record types",
+    "page layouts"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=permissions_record_type_access.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.customize_layout.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/admin-standard-custom-objects-417.png"
+   ]
+  },
+  {
+   "id": "exam4-q03",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "A terminated rep is the sole recipient of an email alert. How do you stop them logging in?",
+   "options": [
+    "Deactivate the user",
+    "Freeze the user",
+    "Delete the user",
+    "Delete the user's contact"
+   ],
+   "answer": [
+    "Freeze the user"
+   ],
+   "why": "A user who is the sole recipient of an email alert can't be deactivated right away. Freezing blocks login immediately.",
+   "traps": "Users can never be deleted.",
+   "tags": [
+    "users",
+    "freeze"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.users_freeze.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.users_deactivate_considerations.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.deactivating_users.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/freeze-user.jpg"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q04",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Considerations when changing a custom field's type. (3)",
+   "options": [
+    "Data loss may occur depending on the new type",
+    "List views based on the field may be deleted",
+    "Custom field types can't be changed",
+    "Assignment and escalation rules may be affected",
+    "The type can change even if a roll-up summary references it"
+   ],
+   "answer": [
+    "Data loss may occur depending on the new type",
+    "List views based on the field may be deleted",
+    "Assignment and escalation rules may be affected"
+   ],
+   "why": "Type changes are allowed but can lose data, delete list views that use the field, and break rules that reference it.",
+   "traps": "A roll-up reference must be removed first.",
+   "tags": [
+    "fields"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/Changing-Field-Types.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-1-22.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q05",
+   "type": "question",
+   "objective": "service",
+   "prompt": "How do you create a relationship between two cases?",
+   "options": [
+    "Use the Related Case field",
+    "Set one case as the Parent Case of the other",
+    "Select cases in a list view and click Related",
+    "Add each case to a Case Relationships related list"
+   ],
+   "answer": [
+    "Set one case as the Parent Case of the other"
+   ],
+   "why": "The Parent Case lookup links them; 'View Case Hierarchy' shows the tree.",
+   "traps": "Related Case field, the list view button, and Case Relationships list don't exist.",
+   "tags": [
+    "cases"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=cases_parent.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/05/case-hieerarchy1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/05/case-hierarchy3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q06",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Key features of Einstein Search in Lightning. (3)",
+   "options": [
+    "Uses results indexed by other search engines",
+    "Natural language search",
+    "Personalized, most relevant results",
+    "Instant results show every record containing the value",
+    "Actions available by hovering over instant results"
+   ],
+   "answer": [
+    "Natural language search",
+    "Personalized, most relevant results",
+    "Actions available by hovering over instant results"
+   ],
+   "why": "Personalization, natural language, and actionable instant results.",
+   "traps": "Instant results only match record names (and searchable secondary fields), not every field.",
+   "tags": [
+    "search"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.search_map.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.search_ai_enduser_intro.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-151220210200100-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-151220210200100-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-151220210200100-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q07",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "What's required to model many-to-many between two custom objects? (2)",
+   "options": [
+    "Hierarchical relationship",
+    "Master-detail relationship",
+    "Lookup relationship",
+    "Junction object"
+   ],
+   "answer": [
+    "Master-detail relationship",
+    "Junction object"
+   ],
+   "why": "A junction object with two master-detail fields, one to each object.",
+   "traps": "Lookups don't have to be filled in; hierarchical is User-only.",
+   "tags": [
+    "relationships",
+    "junction"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.relationships_manytomany.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-979-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-979-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q08",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "True about campaign hierarchies. (3)",
+   "options": [
+    "Each campaign can have one parent",
+    "Each campaign can only have five siblings",
+    "A hierarchy groups campaigns within one marketing initiative",
+    "View it with the 'View Campaign Hierarchy' button",
+    "A campaign can have multiple parents"
+   ],
+   "answer": [
+    "Each campaign can have one parent",
+    "A hierarchy groups campaigns within one marketing initiative",
+    "View it with the 'View Campaign Hierarchy' button"
+   ],
+   "why": "One parent, unlimited siblings, up to 5 levels deep.",
+   "traps": "'Five' is the level limit, not siblings.",
+   "tags": [
+    "campaigns"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=campaigns_viewhierarchy.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/11/Sales-and-Marketing-Applications_166_01-compressor.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/11/Sales-and-Marketing-Applications_166_02-compressor.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q09",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Hardware vs. software repair cases need different record types and support processes. Which is correct?",
+   "options": [
+    "A Case record type must exist before a Support Process",
+    "Case Stages must be defined before a Support Process",
+    "A Support Process must exist before a Case record type",
+    "New Case Statuses can be created while creating a Support Process"
+   ],
+   "answer": [
+    "A Support Process must exist before a Case record type"
+   ],
+   "why": "Each Case record type is tied to an existing support process, so the process comes first.",
+   "tags": [
+    "support process",
+    "record types"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.customize_processes.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.creating_record_types.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-310320210230010-g2a81d6d7ac3_0_0.png"
+   ]
+  },
+  {
+   "id": "exam4-q10",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "A record-triggered flow won't save. What helps troubleshoot?",
+   "options": [
+    "Flow Trigger Explorer",
+    "Custom Error element",
+    "Errors and Warnings pane",
+    "Debug button"
+   ],
+   "answer": [
+    "Errors and Warnings pane"
+   ],
+   "why": "Lists what blocks saving or activation and jumps to the element.",
+   "traps": "Debug runs a flow that already saves; Trigger Explorer lists flows on an object.",
+   "tags": [
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_builder_systematically_troubleshoot_configuration_issues_with_the_errors_and_warning_pane.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-111120240733530-g31b3f2c8122_0_0.png"
+   ]
+  },
+  {
+   "id": "exam4-q11",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "The Account page loads slowly. What can the admin do?",
+   "options": [
+    "Enable separate loading of related lists",
+    "Enable quick load on the page layout",
+    "Enable inline editing",
+    "Enable enhanced lists"
+   ],
+   "answer": [
+    "Enable separate loading of related lists"
+   ],
+   "why": "Record details load first, related lists after.",
+   "tags": [
+    "ui",
+    "performance"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=customize_ui_settings.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-144-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q12",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Duplicate contacts exist under different accounts. Fix?",
+   "options": [
+    "Tell the Director there's no error: one contact per account",
+    "Update the contacts' accounts because people changed jobs",
+    "Enable Contacts to Multiple Accounts and set direct and indirect accounts",
+    "Create a validation rule to block duplicates"
+   ],
+   "answer": [
+    "Enable Contacts to Multiple Accounts and set direct and indirect accounts"
+   ],
+   "why": "One contact, related to several accounts.",
+   "tags": [
+    "contacts"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.shared_contacts_overview.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/Admin-Standard-and-Custom-Objects-400.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/contact-related-accounts.png"
+   ]
+  },
+  {
+   "id": "exam4-q13",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Features of Pipeline Inspection. (3)",
+   "options": [
+    "Only one record type's opportunities can be edited inline",
+    "A 'Pipeline' tab shows forecast category changes over time",
+    "Filters narrow the view or highlight concerns",
+    "KPI metrics at the top of the page",
+    "Tiered Einstein opportunity scores with key factors"
+   ],
+   "answer": [
+    "Filters narrow the view or highlight concerns",
+    "KPI metrics at the top of the page",
+    "Tiered Einstein opportunity scores with key factors"
+   ],
+   "why": "Metrics, filtered views, weekly changes, and Einstein insights.",
+   "traps": "Category changes over time are on the 'Flow' tab (with Revenue Intelligence), and inline editing now follows the page layout.",
+   "tags": [
+    "pipeline inspection"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.pipeline_inspection_drive_revenue_using_parent.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q14",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Route cases to skilled agents while respecting how many each can handle.",
+   "options": [
+    "Case Queues",
+    "Omni-Channel",
+    "Service Console",
+    "Case Assignment Rules"
+   ],
+   "answer": [
+    "Omni-Channel"
+   ],
+   "why": "Routes work by size and agent capacity (and skills).",
+   "traps": "Assignment rules ignore workload; queues hold work but don't push it.",
+   "tags": [
+    "omni-channel"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=omnichannel_routing.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/06/omni-channel-example.png"
+   ]
+  },
+  {
+   "id": "exam4-q15",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Logging in to Data Loader from an IP not in trusted ranges requires: (2)",
+   "options": [
+    "Username and password",
+    "Security token",
+    "Captcha verification",
+    "Web Server OAuth token"
+   ],
+   "answer": [
+    "Username and password",
+    "Security token"
+   ],
+   "why": "Password + security token when the IP isn't trusted.",
+   "traps": "OAuth is optional; no captcha.",
+   "tags": [
+    "data loader",
+    "security"
+   ],
+   "links": [
+    "https://developer.salesforce.com/docs/atlas.en-us.dataLoader.meta/dataLoader/installing_the_data_loader.htm"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-1-28.png"
+   ]
+  },
+  {
+   "id": "exam4-q16",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Only allow the account 'VIP' checkbox to be saved if the account has opportunities with premium bundle products.",
+   "options": [
+    "Validation rule on Account checking opportunities and products",
+    "Quick action that launches a checking flow",
+    "Fault path that shows an error",
+    "Custom Error element in a flow"
+   ],
+   "answer": [
+    "Custom Error element in a flow"
+   ],
+   "why": "Validation rules can't look at child records. A record-triggered flow can, and the Custom Error element blocks the save with a message.",
+   "traps": "Fault paths handle system errors; a quick action can't stop a save.",
+   "tags": [
+    "flow",
+    "custom error"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_ref_elements_custom_error.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_builder_create_custom_error_messages_in_record_triggered_flows.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-121220230722400-g32150458a6e_0_5.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-121220230722400-g32150458a6e_0_9.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-121220230722400-g32150458a6e_0_22.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q17",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Steps after enabling multi-currency. (3)",
+   "options": [
+    "Set validity dates for exchange rates",
+    "Set the corporate currency",
+    "Set exchange rates",
+    "Set currency per profile",
+    "Define currencies and activate them"
+   ],
+   "answer": [
+    "Set the corporate currency",
+    "Set exchange rates",
+    "Define currencies and activate them"
+   ],
+   "why": "Dated rates need Advanced Currency Management (optional). Currency is per user, not profile.",
+   "tags": [
+    "currency"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.admin_currency.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.editing_conversion_rates.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/admin-org-setup-question-12.png"
+   ]
+  },
+  {
+   "id": "exam4-q18",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Which object's record types don't need a business process first?",
+   "options": [
+    "Lead",
+    "Campaign",
+    "Case",
+    "Opportunity"
+   ],
+   "answer": [
+    "Campaign"
+   ],
+   "why": "Business processes exist only for Lead, Opportunity, Case, Solution; Campaign has none.",
+   "tags": [
+    "business processes"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=customize_processes.htm&type=5",
+    "https://resources.docs.salesforce.com/214/latest/en-us/sfdc/pdf/salesforce_busprocess_cheatsheet.pdf"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-330-image1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q19",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "A user can't find an email template. Why? (2)",
+   "options": [
+    "Template isn't active",
+    "User lacks read/write access to the template",
+    "Template isn't 'Available for Use'",
+    "User lacks access to the template folder"
+   ],
+   "answer": [
+    "Template isn't 'Available for Use'",
+    "User lacks access to the template folder"
+   ],
+   "why": "Templates need 'Available for Use' and folder access.",
+   "tags": [
+    "email templates"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=creating_html_email_templates.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=customize_folders.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/09/email-templates.png"
+   ]
+  },
+  {
+   "id": "exam4-q20",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Steps in setting up Web-to-Lead. (3)",
+   "options": [
+    "Create a custom object",
+    "Create a Web-to-Lead record type",
+    "Create an assignment rule",
+    "Map lead fields",
+    "Create an auto-response rule"
+   ],
+   "answer": [
+    "Create an assignment rule",
+    "Map lead fields",
+    "Create an auto-response rule"
+   ],
+   "why": "Route leads, map custom fields for conversion, and reply automatically.",
+   "traps": "Without an active assignment rule, web leads go to the default lead owner.",
+   "tags": [
+    "web-to-lead"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=customize_leadpreparation.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/03/web-to-lead.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/03/assignment-rule-leads.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q21",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Benefits of Open CTI. (3)",
+   "options": [
+    "Calls from the Salesforce UI with a customizable softphone",
+    "Cloud-based but softphone only in IE and Chrome",
+    "Screen pops with the matching record on incoming calls",
+    "Uses CTI adapters installed on user machines",
+    "Phone numbers become click-to-dial links"
+   ],
+   "answer": [
+    "Calls from the Salesforce UI with a customizable softphone",
+    "Screen pops with the matching record on incoming calls",
+    "Phone numbers become click-to-dial links"
+   ],
+   "why": "Click-to-dial, customizable softphone, screen pops; browser-based, no adapters.",
+   "tags": [
+    "cti"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=cloud_cti_api_overview.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q22",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Simplest way to send a report to all employees daily.",
+   "options": [
+    "Schedule it to all roles",
+    "Visualforce report plus a trigger",
+    "Schedule it to a public group containing all users",
+    "Schedule it and add every user"
+   ],
+   "answer": [
+    "Schedule it to a public group containing all users"
+   ],
+   "why": "The 'All Internal Users' group updates itself when users are added.",
+   "tags": [
+    "reports",
+    "scheduling"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.reports_schedule_overview.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/edit-recipient.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/edit-subscription.png"
+   ]
+  },
+  {
+   "id": "exam4-q23",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Valid consideration when debugging a record-triggered flow with Debug.",
+   "options": [
+    "Rollback can be disabled to save changes",
+    "Can run as a specified user for create, update, or delete",
+    "An existing record can be used only for update triggers",
+    "Only required fields can be set"
+   ],
+   "answer": [
+    "Can run as a specified user for create, update, or delete"
+   ],
+   "why": "'Run flow as another user' (enable it in Process Automation Settings; sandbox/dev only).",
+   "traps": "Rollback is always on; existing records work for update and delete; optional fields can be set too.",
+   "tags": [
+    "flow",
+    "debug"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_test_debug.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_debug_record_triggered_flows.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-10112018102559-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-10112018102559-image2.png"
+   ]
+  },
+  {
+   "id": "exam4-q24",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Help two divisions tell their Lightning apps apart and find their own products. (2)",
+   "options": [
+    "Sharing rules to hide the other division's products",
+    "Make apps accessible by role",
+    "Different brand images and colors per app",
+    "Pinned list views per division"
+   ],
+   "answer": [
+    "Different brand images and colors per app",
+    "Pinned list views per division"
+   ],
+   "why": "App branding makes them distinct; a pinned, role-shared list view becomes each division's default.",
+   "traps": "Sharing rules can't restrict; app access is by profile, not role.",
+   "tags": [
+    "apps",
+    "list views"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.apps_lightning_customize.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.basics_pinned_list_views_lex.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/02/app-branding1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-15112018074637-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q25",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Add or update Campaign Members from the Campaign record page.",
+   "options": [
+    "Add/Update Members button",
+    "Custom report",
+    "Campaign Update Wizard",
+    "Data Import Wizard"
+   ],
+   "answer": [
+    "Data Import Wizard"
+   ],
+   "why": "'Manage Campaign Members' and 'Import Leads and Contacts' open the Data Import Wizard (up to 50,000).",
+   "traps": "Campaign Update Wizard is retired; the button doesn't exist.",
+   "tags": [
+    "campaigns",
+    "import"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.campaign_update_wizard.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/import-members1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-181-image2.png"
+   ]
+  },
+  {
+   "id": "exam4-q26",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "True about managing tasks in Lightning. (2)",
+   "options": [
+    "Tasks can't be deleted from a list view",
+    "Drag tasks between status columns in Kanban",
+    "Split view shows two tasks side by side",
+    "Tasks can be shown in a table view"
+   ],
+   "answer": [
+    "Drag tasks between status columns in Kanban",
+    "Tasks can be shown in a table view"
+   ],
+   "why": "Views: Table, Kanban, Split. Split shows the list next to one task's details.",
+   "tags": [
+    "tasks"
+   ],
+   "links": [
+    "https://trailhead.salesforce.com/en/modules/lightning-experience-productivity/units/manage-your-tasks-events-and-email"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/09/le-task-view2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/kanban-view.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q27",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Update the owner of an opportunity owned by an inactive user.",
+   "options": [
+    "Contact Salesforce",
+    "Ask an admin each time",
+    "Only via the API",
+    "Grant 'Update Records with Inactive Owners'"
+   ],
+   "answer": [
+    "Grant 'Update Records with Inactive Owners'"
+   ],
+   "why": "Enable it in User Interface settings, then grant the permission.",
+   "tags": [
+    "ownership"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=000227663&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/update-records-with-inactive-owners.png"
+   ]
+  },
+  {
+   "id": "exam4-q28",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Automatically update Discount on opportunities when created or updated, based on Expected Revenue.",
+   "options": [
+    "Validation Rule",
+    "Assignment Rule",
+    "Approval Process",
+    "Flow"
+   ],
+   "answer": [
+    "Flow"
+   ],
+   "why": "Same-record field update = record-triggered flow (before-save is fastest).",
+   "tags": [
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_ref_elements_data_update.htm&type=5",
+    "https://developer.salesforce.com/developer-centers/flow"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-476-image1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q29",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Mass-transferring accounts moves which by default? (2)",
+   "options": [
+    "Open cases",
+    "Completed activities",
+    "Open opportunities",
+    "Open activities"
+   ],
+   "answer": [
+    "Open opportunities",
+    "Open activities"
+   ],
+   "why": "Contacts, open opportunities, draft contracts and orders, notes, attachments, and open activities move. Cases are optional; completed activities never move.",
+   "tags": [
+    "mass transfer"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=admin_transfer.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/05/mass-transfer-account.png"
+   ]
+  },
+  {
+   "id": "exam4-q30",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Give external users extra permissions for six months, removed automatically after.",
+   "options": [
+    "Create a custom permission",
+    "Permission set with an expiration date",
+    "Create a new profile",
+    "Use a permission set group"
+   ],
+   "answer": [
+    "Permission set with an expiration date"
+   ],
+   "why": "Permission set assignments can expire. One set covers everyone.",
+   "tags": [
+    "permission sets"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-290820220134270-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q31",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "What does AgentExchange offer?",
+   "options": [
+    "LWC, Aura, Visualforce",
+    "Prompts, Actions, Topics, Agent Templates",
+    "Custom objects, layouts, record types",
+    "Dashboards, reports, snapshots"
+   ],
+   "answer": [
+    "Prompts, Actions, Topics, Agent Templates"
+   ],
+   "why": "Agent building blocks.",
+   "tags": [
+    "agentexchange"
+   ],
+   "links": [
+    "https://appexchange.salesforce.com/learn/agentexchange-explained",
+    "https://agentexchange.salesforce.com/"
+   ]
+  },
+  {
+   "id": "exam4-q32",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "True about dashboard refresh. (3)",
+   "options": [
+    "After a scheduled refresh it can be emailed to a group",
+    "It refreshes every time it's displayed",
+    "Users can click Refresh",
+    "It can be scheduled daily, weekly, or monthly",
+    "The refresh is emailed to everyone by default"
+   ],
+   "answer": [
+    "After a scheduled refresh it can be emailed to a group",
+    "Users can click Refresh",
+    "It can be scheduled daily, weekly, or monthly"
+   ],
+   "why": "Manual or scheduled; emails go only to chosen recipients with access.",
+   "tags": [
+    "dashboards"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.dashboards_schedule_refresh.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/07/dashboard-refresh1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/07/dashboard-refresh2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q33",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "In a screen flow, automatically load an account's open cases into a data table when the account is picked, on the same screen.",
+   "options": [
+    "Screen Actions",
+    "Action Button",
+    "Get Records element",
+    "Subflow element"
+   ],
+   "answer": [
+    "Screen Actions"
+   ],
+   "why": "Screen Actions run an autolaunched flow when an input changes, with no click.",
+   "traps": "Action Button needs a click.",
+   "tags": [
+    "flow",
+    "screen flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=platform.flow_ref_elements_screen_flow_screen_actions.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270620250429360-g372438fcb17_0_0.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270620250429360-g372438fcb17_0_12.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270620250429360-g372438fcb17_0_15.png"
+   ]
+  },
+  {
+   "id": "exam4-q34",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Private sharing model: features that grant exceptions to Account access. (3)",
+   "options": [
+    "Sharing exception rules",
+    "Manual sharing",
+    "Sharing rules",
+    "Account teams",
+    "Field permissions"
+   ],
+   "answer": [
+    "Manual sharing",
+    "Sharing rules",
+    "Account teams"
+   ],
+   "why": "All three open record access.",
+   "traps": "'Sharing exception rules' don't exist; field permissions are field-level.",
+   "tags": [
+    "sharing"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=security_about_sharing_rules.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.accountteam_add.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-1-17.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q35",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Setting up a Chatter group customers can join.",
+   "options": [
+    "Any member can invite customers by email",
+    "Unlisted groups can't include customers",
+    "'Allow Customers' must be checked",
+    "Access type must be Public or Private"
+   ],
+   "answer": [
+    "'Allow Customers' must be checked"
+   ],
+   "why": "The setting is required. Only owners or managers can invite, and unlisted groups can include customers.",
+   "tags": [
+    "chatter"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.collab_external_overview.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.collab_external_adding.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.collab_group_creating.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/allow-customer-invitations.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/group-edit-members.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-7-g26c6893a9ea_0_0.png"
+   ]
+  },
+  {
+   "id": "exam4-q36",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "After adding a new Opportunity field, what's true about report types? (2)",
+   "options": [
+    "Auto-added to 'Opportunities with Products'",
+    "Auto-added to all custom report types",
+    "Auto-added to all standard Opportunity report types",
+    "Can't be added to 'Opportunities with Accounts'"
+   ],
+   "answer": [
+    "Auto-added to 'Opportunities with Products'",
+    "Auto-added to all standard Opportunity report types"
+   ],
+   "why": "New fields land in standard report types automatically. Custom report types need the field added (or the auto-add setting).",
+   "traps": "'Opportunities with Accounts' isn't standard, so it's custom: the field can be added manually.",
+   "tags": [
+    "report types"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=000321283&type=1",
+    "https://help.salesforce.com/s/articleView?id=sf.reports_report_type_layouts.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/custom-field-available.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q37",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Total a cross-object formula field (Product Cost) from Opportunity Products onto the Opportunity.",
+   "options": [
+    "Apex trigger",
+    "Schedule-triggered flow",
+    "Record-triggered flow to copy the cost + roll-up summary",
+    "Roll-up summary on the formula field"
+   ],
+   "answer": [
+    "Record-triggered flow to copy the cost + roll-up summary"
+   ],
+   "why": "Roll-ups can't summarize cross-object formulas, so copy the value into a currency field first.",
+   "tags": [
+    "roll-up",
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.fields_about_roll_up_summary_fields.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/03/opp-product-rollup.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-1331-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-901-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q38",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Where can an admin see a user's login attempts? (3)",
+   "options": [
+    "Login History related list on the user record",
+    "User Detail section of the user record",
+    "Login History page",
+    "Login Attempts page",
+    "Login Security page"
+   ],
+   "answer": [
+    "Login History related list on the user record",
+    "User Detail section of the user record",
+    "Login History page"
+   ],
+   "why": "Login History (page and related list) logs attempts; User Detail shows last login.",
+   "traps": "'Login Attempts' and 'Login Security' pages don't exist.",
+   "tags": [
+    "login history"
+   ],
+   "links": [
+    "https://developer.salesforce.com/docs/atlas.en-us.securityImplGuide.meta/securityImplGuide/users_login_history.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.users_login_history.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-399-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-399-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-399-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q39",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Report on feed activity on records.",
+   "options": [
+    "Standard feed report type",
+    "AppExchange app",
+    "Activities list view chart",
+    "Custom report type"
+   ],
+   "answer": [
+    "Custom report type"
+   ],
+   "why": "Custom report type with the object's Feed as a secondary object.",
+   "tags": [
+    "chatter",
+    "report types"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=000337647&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-34-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q40",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "When a quote is accepted, create a draft agreement and a follow-up task.",
+   "options": [
+    "Quote settings",
+    "Approval process",
+    "Flow Builder",
+    "Apex trigger"
+   ],
+   "answer": [
+    "Flow Builder"
+   ],
+   "why": "Record-triggered flow creating related records.",
+   "tags": [
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=platform.flow_considerations_trigger_record.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-653-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q41",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Action Type for an object-specific quick action that launches an LWC.",
+   "options": [
+    "Flow",
+    "Lightning Web Component",
+    "Lightning Component",
+    "Custom Component"
+   ],
+   "answer": [
+    "Lightning Web Component"
+   ],
+   "why": "'Lightning Component' is for Aura.",
+   "tags": [
+    "quick actions"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_lwc_quick_actions.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-190820210123360-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q42",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Valid Einstein Activity Capture metric fields for email reporting. (2)",
+   "options": [
+    "Last Email Received Date",
+    "Last Email Sent Date",
+    "Latest Email Received Date",
+    "Latest Email Sent Date"
+   ],
+   "answer": [
+    "Last Email Received Date",
+    "Last Email Sent Date"
+   ],
+   "why": "Activity metrics are being retired starting Summer '26.",
+   "tags": [
+    "EAC"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.aac_activity_metrics_fields.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q43",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Remind 30 minutes before a daily event stored in a Time field.",
+   "options": [
+    "Date field with formula logic",
+    "Hourly scheduled flow with text filters",
+    "Store it in a Time data type resource",
+    "Convert to text and compare strings"
+   ],
+   "answer": [
+    "Store it in a Time data type resource"
+   ],
+   "why": "Flow's Time data type compares times directly.",
+   "tags": [
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_builder_manage_time_specific_data_easily_with_the_time_data_type.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q44",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "True about Data Loader. (2)",
+   "options": [
+    "Windows only",
+    "Mac only",
+    "Runs on Windows and Mac",
+    "CLI is Windows-only"
+   ],
+   "answer": [
+    "Runs on Windows and Mac",
+    "CLI is Windows-only"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "data loader"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=data_loader.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/data-loader.png"
+   ]
+  },
+  {
+   "id": "exam4-q45",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Stop notifications from some Chatter posts in the mobile app.",
+   "options": [
+    "Mute Post",
+    "Hide Post",
+    "Turn off Chatter",
+    "Delete the post"
+   ],
+   "answer": [
+    "Mute Post"
+   ],
+   "why": "Muting stops notifications unless you're @mentioned again.",
+   "tags": [
+    "chatter",
+    "mobile"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=collab_feed_mute.htm&type=5",
+    "https://releasenotes.docs.salesforce.com/en-us/spring19/release-notes/rn_mobile_s1_newfeat_edit_mute_chatter.htm"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/mute-post1-1-1.png"
+   ]
+  },
+  {
+   "id": "exam4-q46",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Send approved leave details to an internal employee portal from an approval process.",
+   "options": [
+    "Email Alert",
+    "Outbound Message",
+    "Task",
+    "Field Update"
+   ],
+   "answer": [
+    "Outbound Message"
+   ],
+   "why": "Outbound messages post data to an external endpoint.",
+   "tags": [
+    "approvals"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.workflow_managing_outbound_messages.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-458-image1.png"
+   ]
+  },
+  {
+   "id": "exam4-q47",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "True about list views in Lightning. (2)",
+   "options": [
+    "All objects' list views can be printed",
+    "Users only see data they can access",
+    "Records owned by subordinates are excluded",
+    "FLS applies to visible fields"
+   ],
+   "answer": [
+    "Users only see data they can access",
+    "FLS applies to visible fields"
+   ],
+   "why": "List views follow sharing and FLS; subordinates' records are included.",
+   "tags": [
+    "list views"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=basics_understanding_list_views_lex.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=basics_faq_which_records_print_listviews.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/system-admin-view.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/standard-user-view.png"
+   ]
+  },
+  {
+   "id": "exam4-q48",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Get all accounts as CSV in Lightning. (3)",
+   "options": [
+    "Data Loader export",
+    "Report 'Save As'",
+    "Report 'Printable View'",
+    "Data Export",
+    "Report 'Export'"
+   ],
+   "answer": [
+    "Data Loader export",
+    "Data Export",
+    "Report 'Export'"
+   ],
+   "why": "Export 'details only' for CSV. Save As copies the report; Printable View is PDF.",
+   "tags": [
+    "export"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=reports_export.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=admin_exportdata.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Analytics-Reports-and-Dashboards_62_01.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Analytics-Reports-and-Dashboards_62_02.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/06/2017-05-05-14_06_13-Data-Export-Service-1.png"
+   ]
+  },
+  {
+   "id": "exam4-q49",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Add a filter to an existing public list view with 3 filters.",
+   "options": [
+    "Users with 'Manage Public List Views' can edit it and add filters",
+    "Admin must enable the permission, max 5 filters",
+    "Raise the object's filter limit",
+    "Raise the org's filter limit"
+   ],
+   "answer": [
+    "Users with 'Manage Public List Views' can edit it and add filters"
+   ],
+   "why": "Filter count isn't a permission or allocation.",
+   "tags": [
+    "list views"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=customviews_edit_filters_lex.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/add-filter1.png"
+   ]
+  },
+  {
+   "id": "exam4-q50",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "A new picklist value isn't visible on a particular record.",
+   "options": [
+    "Not added to that record's record type",
+    "Profile needs access to the value",
+    "Value isn't active",
+    "Not added to all record types"
+   ],
+   "answer": [
+    "Not added to that record's record type"
+   ],
+   "why": "Values are set per record type; they don't need to be on all of them. New values start active; profiles don't control values.",
+   "tags": [
+    "picklists",
+    "record types"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=customize_recordtype.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/09/3-16.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam4-q51",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Must be provisioned before turning on Einstein generative AI.",
+   "options": [
+    "Data Cloud",
+    "Service Cloud",
+    "A dedicated AI sandbox",
+    "Agentforce Specialist credential"
+   ],
+   "answer": [
+    "Data Cloud"
+   ],
+   "why": "Data Cloud underpins features including the Trust Layer.",
+   "tags": [
+    "agentforce"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_enable.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q52",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Quickly validate updated Topic instructions inside Agent Builder.",
+   "options": [
+    "Setup Audit Trail",
+    "Object Manager",
+    "Report Builder",
+    "Conversation Preview"
+   ],
+   "answer": [
+    "Conversation Preview"
+   ],
+   "why": "Light, interactive testing before publishing.",
+   "tags": [
+    "agentforce",
+    "testing"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.agent_parent_test.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q53",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Visual summary of a rep's opportunities by stage.",
+   "options": [
+    "Sales Path",
+    "Opportunity Manager",
+    "Opportunity Workspace",
+    "Opportunity Kanban"
+   ],
+   "answer": [
+    "Opportunity Kanban"
+   ],
+   "why": "Max 200 cards, 4 fields per card. Path is one record.",
+   "tags": [
+    "kanban"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.kanban.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.kanban_considerations.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/kanban-sales-opportunity.png"
+   ]
+  },
+  {
+   "id": "exam4-q54",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Route installation cases to level 3 reps, and notify the manager when a platinum case is unresolved after 3 hours. (2)",
+   "options": [
+    "Flow that moves unresolved platinum cases to managers",
+    "Escalation rule action notifying the manager",
+    "Assignment rule sending installation cases to level 3",
+    "Escalation rule action setting priority to platinum"
+   ],
+   "answer": [
+    "Escalation rule action notifying the manager",
+    "Assignment rule sending installation cases to level 3"
+   ],
+   "why": "Assignment = owner; escalation = time-based notify or reassign. Escalation can't update fields.",
+   "tags": [
+    "assignment",
+    "escalation"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=rules_escalation_create.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/assignment-rule1-1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/escalation-rule1.png"
+   ]
+  },
+  {
+   "id": "exam4-q55",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Keep sensitive data out of Web-to-Case failure notifications.",
+   "options": [
+    "Approval process for notifications",
+    "E-mail Signature setting",
+    "Password-protect notifications",
+    "Enable 'Hide Record Information'"
+   ],
+   "answer": [
+    "Enable 'Hide Record Information'"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "web-to-case"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.setting_up_web-to-case.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/web-to-case-settings.png"
+   ]
+  },
+  {
+   "id": "exam4-q56",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Where can a record ID be found? (3)",
+   "options": [
+    "Data Loader export",
+    "Record name",
+    "Setup",
+    "Record URL",
+    "Reports"
+   ],
+   "answer": [
+    "Data Loader export",
+    "Record URL",
+    "Reports"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "record id"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=000324087&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-84-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-84-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/data_loader_id.png"
+   ]
+  },
+  {
+   "id": "exam4-q57",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Report of opportunities grouped by stage.",
+   "options": [
+    "Two Column",
+    "Summary",
+    "Tabular",
+    "Matrix"
+   ],
+   "answer": [
+    "Summary"
+   ],
+   "why": "One grouping = Summary; Matrix is rows and columns.",
+   "tags": [
+    "reports"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=reports_changing_format.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/04/admin-report2.png"
+   ]
+  },
+  {
+   "id": "exam4-q58",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Is data in Agentforce conversations masked like other Einstein generative AI features?",
+   "options": [
+    "Masking only applies to Agentforce",
+    "Masking is a browser setting",
+    "Pattern- and field-based masking is disabled for agents",
+    "All agent conversations are masked the same way"
+   ],
+   "answer": [
+    "Pattern- and field-based masking is disabled for agents"
+   ],
+   "why": "Masking is off for agents for performance and accuracy.",
+   "tags": [
+    "trust layer"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_trust.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=ai.agent_trust_data_masking.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q59",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "An active agent is invisible to users. Likely cause?",
+   "options": [
+    "Missing permission set or group",
+    "Too many actions per Topic",
+    "Unsupported browsers",
+    "Flow-based actions instead of Apex"
+   ],
+   "answer": [
+    "Missing permission set or group"
+   ],
+   "why": "Access to an agent is granted by permission set.",
+   "tags": [
+    "agentforce",
+    "permissions"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_setup_user_access.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=ai.agent_user.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam4-q60",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Key difference between traditional bots and Agentforce Service Agent.",
+   "options": [
+    "Bots follow scripts with human help; Agentforce reasons and acts autonomously",
+    "Both are scripted; Agentforce needs more training data",
+    "Bots are autonomous; Agentforce only routes to humans"
+   ],
+   "answer": [
+    "Bots follow scripts with human help; Agentforce reasons and acts autonomously"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "agentforce"
+   ],
+   "links": [
+    "https://trailhead.salesforce.com/content/learn/modules/salesforce-messaging/enhance-a-basic-messaging-implementation"
+   ]
+  }
+ ]
+}

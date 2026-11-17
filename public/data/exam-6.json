@@ -1,0 +1,1825 @@
+{
+ "source": "exam-6",
+ "title": "K2U Platform Administrator Practice Exam 6",
+ "cards": [
+  {
+   "id": "exam6-q01",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Cosmic Shoes' admin is building a new agent in Agent Builder and needs to define what the agent is allowed to discuss and do within a specific area of the business, such as order status inquiries. Which agent building block should the admin configure first for this purpose?",
+   "options": [
+    "A permission set",
+    "A page layout",
+    "A Topic",
+    "A validation rule"
+   ],
+   "answer": [
+    "A Topic"
+   ],
+   "why": "A Topic (subagent) scopes a subject area: description, scope, instructions, and its actions.",
+   "translate": {
+    "situation": "Tell the agent what one area of the business covers, e.g., order status.",
+    "feature": "A Topic.",
+    "see": "A named topic with instructions and the actions it may use.",
+    "notOther": "Permission sets control who can use the agent, not what it talks about."
+   },
+   "tags": [
+    "agentforce"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_topics.htm&type=5"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q02",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "An administrator wants to ensure that when Agentforce generates email drafts, sensitive customer credit card numbers stored in the case description are never visible to an external Large Language Model (LLM) provider. Which Einstein Trust Layer capability directly prevents this sensitive data from being shared with the LLM?",
+   "options": [
+    "Prompt Defense",
+    "PII/Data Masking",
+    "Zero Data Retention",
+    "Toxic Language Detection"
+   ],
+   "answer": [
+    "PII/Data Masking"
+   ],
+   "why": "Masking swaps sensitive values for placeholders before the prompt leaves Salesforce. Zero data retention means the provider doesn't keep what it receives.",
+   "tags": [
+    "trust layer"
+   ],
+   "links": [
+    "https://www.salesforce.com/artificial-intelligence/trusted-ai/",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_layer.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q03",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "Global Containers has created a Performance Review App and would like to ensure that only the manager of a staff member and managers further up the chain in the same department have visibility to the review of a staff member. The role hierarchy does not follow the organization structure. How can this be configured?",
+   "options": [
+    "Ensure that the 'Grant Access Using Hierarchies' Checkbox is deselected",
+    "Ensure that the role hierarchy reflects the reporting hierarchy",
+    "Ensure that the 'Grant Access Using Hierarchies' Checkbox is selected",
+    "Ensure that the 'Manager Groups' setting is selected on the Sharing Settings page",
+    "Create a sharing rule to share Performance Reviews with the user's manager group"
+   ],
+   "answer": [
+    "Ensure that the 'Grant Access Using Hierarchies' Checkbox is deselected",
+    "Ensure that the 'Manager Groups' setting is selected on the Sharing Settings page",
+    "Create a sharing rule to share Performance Reviews with the user's manager group"
+   ],
+   "why": "Turn off role-hierarchy access for this custom object, enable Manager Groups, and share with each user's managers via a sharing rule.",
+   "translate": {
+    "situation": "Only someone's real managers (the 'Manager' field chain) should see their review, not whoever ranks higher in roles.",
+    "feature": "Manager Groups + a sharing rule, with 'Grant Access Using Hierarchies' turned off.",
+    "see": "Reviews are visible to the person's manager and that manager's manager, nobody else.",
+    "notOther": "Leaving hierarchy access on lets anyone above in the role tree see it; the role tree doesn't match real managers here."
+   },
+   "tags": [
+    "sharing",
+    "manager groups"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=users_managers_only.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=security_about_sharing_rules.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/07/admin-sharing-model-46.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/03/manager-group-sharing-1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q04",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Which of the following can be added to a custom page layout?",
+   "options": [
+    "List views",
+    "Custom fields",
+    "Validation rules",
+    "Record types"
+   ],
+   "answer": [
+    "Custom fields"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "page layouts"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.customize_layout.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/admin-standard-custom-objects-386.png"
+   ]
+  },
+  {
+   "id": "exam6-q05",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "An administrator is considering deleting a custom text field on the Account object that is thought to be no longer needed. What is true regarding a deleted field?",
+   "options": [
+    "It can never be recovered",
+    "It can be recovered at any time",
+    "It can be recovered within 30 days of deletion",
+    "It can be recovered within 15 days of deletion"
+   ],
+   "answer": [
+    "It can be recovered within 15 days of deletion"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "fields"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=fields_managing_deleted_fields.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/admin-standard-custom-objects-357.png"
+   ]
+  },
+  {
+   "id": "exam6-q06",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "An administrator is told to look through the login forensics to spot any suspicious attempts to gain access to the org. Which of the following can login forensics provide?",
+   "options": [
+    "The number of logins per profile.",
+    "The average number of logins per user per a specified time period",
+    "Who logged in more than the average number of times",
+    "Who logged in during non-business hours",
+    "The number of logins per role and profile"
+   ],
+   "answer": [
+    "The average number of logins per user per a specified time period",
+    "Who logged in more than the average number of times",
+    "Who logged in during non-business hours"
+   ],
+   "why": "Login Forensics (Event Monitoring) looks at per-user patterns, not per role or profile.",
+   "translate": {
+    "situation": "Spot unusual login behavior.",
+    "feature": "Login Forensics.",
+    "see": "Average logins per user, who's above average, who logged in after hours or from suspicious IPs.",
+    "notOther": "It doesn't break logins down by role or profile."
+   },
+   "tags": [
+    "security",
+    "login forensics"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=event_monitoring_faq.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=monitor_login_forensics_considerations.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-227-image1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q07",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "The Support Director of Cosmic Service Solutions has asked the Salesforce Administrator to add a filter to the 'Contact' field on case records. The field should only allow contacts to be selected if they are associated with the account in the 'Account Name' field. What is the best way to meet this requirement?",
+   "options": [
+    "Create a validation rule that checks whether the contact is related to the account on the case",
+    "It is not possible to restrict contacts in this way",
+    "Create a picklist for an account and one for contact and make them dependent",
+    "Create a dependent lookup on the contact field that references the account field"
+   ],
+   "answer": [
+    "Create a dependent lookup on the contact field that references the account field"
+   ],
+   "why": "A lookup filter can reference another field on the same record.",
+   "translate": {
+    "situation": "When picking a contact on a case, only show that account's contacts.",
+    "feature": "A lookup filter (dependent lookup).",
+    "see": "The Contact search only offers people from the chosen account.",
+    "notOther": "A validation rule only errors after you pick wrong; a picklist can't replace a lookup."
+   },
+   "tags": [
+    "lookup filters"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=fields_lookup_filters_dependent_lookups.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-2-15.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q08",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "The Salesforce org of Cosmic Sporting Goods has a Security Health Check score of 75%. Based on the Salesforce Baseline Standard, which grade does this score correspond to in Salesforce?",
+   "options": [
+    "Satisfactory",
+    "Good",
+    "Acceptable",
+    "Fair"
+   ],
+   "answer": [
+    "Good"
+   ],
+   "why": "90+ Excellent, 80–89 Very Good, 70–79 Good, 55–69 Poor, ≤54 Very Poor.",
+   "translate": {
+    "situation": "Rate how secure the org's settings are.",
+    "feature": "Health Check score grades.",
+    "see": "A 75% shows as 'Good'.",
+    "notOther": "'Satisfactory', 'Acceptable', 'Fair' aren't grades Salesforce uses."
+   },
+   "tags": [
+    "health check"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=security_health_check_score.htm&type=5",
+    "https://trailhead.salesforce.com/en/modules/security_basics/units/security_basics_healthcheck"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/10/admin-security-health.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q09",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "The Marketing department would like to have a visual representation for tracking the lifecycle stages of campaign records with guidance similar to what Sales utilizes for Opportunities in Lightning Experience. How can the Salesforce Administrator help accomplish this?",
+   "options": [
+    "Create a new picklist and a new path, then modify the Campaign page in Lightning Experience",
+    "Create a new picklist and modify the Campaign page in Lightning Experience",
+    "Create a new picklist, record type, and modify the Campaign page in Lightning Experience",
+    "It cannot be accomplished. Only opportunities can have this visual representation"
+   ],
+   "answer": [
+    "Create a new picklist and a new path, then modify the Campaign page in Lightning Experience"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "path"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=rss_sales_path.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=path_overview.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/admin-standard-custom-objects-420.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-2463-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q10",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "For any customer-centric organization, the opportunity or deal record data are sensitive. A sales manager has requested the Salesforce Administrator to monitor some of the important fields that are getting changed by multiple teams from time to time during the sales lifecycle. Which security option can the Salesforce Administrator choose to achieve this?",
+   "options": [
+    "Provide the 'View All' permission to the sales manager to allow seeing all changes.",
+    "Provide the 'View All Data' permission to the sales manager to allow seeing all changes",
+    "Enable field history tracking for the opportunity object and create a report",
+    "Enable organization-wide default sharing settings for the opportunity object to set it to the sales manager level"
+   ],
+   "answer": [
+    "Enable field history tracking for the opportunity object and create a report"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "field history"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.tracking_field_history_for_standard_objects.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.reports_opp_field_history.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/Enable-field-history.png"
+   ]
+  },
+  {
+   "id": "exam6-q11",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "A Salesforce Administrator has defined a new custom object and has identified that it needs to have a many-to-many relationship with 5 different standard objects. What considerations should the Salesforce Administrator keep in mind when designing the solution?",
+   "options": [
+    "It depends on the remaining custom object quota left in the org",
+    "Not feasible, since only up to three master-detail relationships are possible on a custom object",
+    "Not feasible, since only two many-to-many relationships are allowed per object",
+    "Not feasible, since only up to two master-detail relationships are possible on a custom object"
+   ],
+   "answer": [
+    "It depends on the remaining custom object quota left in the org"
+   ],
+   "why": "Each many-to-many needs its own junction object (with the two master-details). Five relationships = five junction objects, so the limit is how many custom objects the org can still create.",
+   "translate": {
+    "situation": "Connect one custom object many-to-many with five others.",
+    "feature": "Junction objects (one per pairing).",
+    "see": "Five new 'link' objects, each with two master-detail fields.",
+    "notOther": "The 2-master-detail limit sits on each junction, not on the main object, so it's allowed."
+   },
+   "tags": [
+    "relationships",
+    "junction"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.relationships_manytomany.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-622-image1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q12",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "A Salesforce Administrator often deals with record-level security. Which of the following are correct regarding record-level security?",
+   "options": [
+    "Roles are used to open up the record access among the user groups (i.e. horizontally).",
+    "Organization-wide sharing defaults are always used for opening record access to the user",
+    "Sharing rules can never be stricter than the organization-wide sharing defaults",
+    "Roles are used to create a sharing hierarchy among the users."
+   ],
+   "answer": [
+    "Sharing rules can never be stricter than the organization-wide sharing defaults",
+    "Roles are used to create a sharing hierarchy among the users."
+   ],
+   "why": "OWD restricts; roles open access vertically; sharing rules only open access.",
+   "translate": {
+    "situation": "Understand which tool restricts and which opens record access.",
+    "feature": "OWD (floor), roles (up the hierarchy), sharing rules (sideways).",
+    "see": "Managers see their team's records; sharing rules add access, never remove it.",
+    "notOther": "Roles open access UP, not sideways; OWD restricts, it doesn't open."
+   },
+   "tags": [
+    "sharing"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.sharing_model_fields.htm&type=5",
+    "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/09/3-22.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q13",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "What happens when a lead is converted?",
+   "options": [
+    "The owner of the records created can be selected right before conversion",
+    "The lead is visible in the Leads tab with a status of 'Converted' by default",
+    "Opportunities are always created for converted leads",
+    "A name is generated automatically for the opportunity during the lead conversion process"
+   ],
+   "answer": [
+    "The owner of the records created can be selected right before conversion",
+    "A name is generated automatically for the opportunity during the lead conversion process"
+   ],
+   "why": "Converted leads are hidden unless you have 'View and Edit Converted Leads'; creating the opportunity is optional.",
+   "translate": {
+    "situation": "Turn a qualified lead into an account, contact, and maybe a deal.",
+    "feature": "Lead conversion.",
+    "see": "A convert screen where you pick the record owner and see a pre-filled opportunity name.",
+    "notOther": "Converted leads disappear from the Leads tab by default; opportunity creation is optional."
+   },
+   "tags": [
+    "leads"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.faq_leads_what_happens_when.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=000314766&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/10/lead-2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-169-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-169-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q14",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "The Salesforce Administrator of Cosmic Solutions is worried about an upcoming release update that is critical and the changes it can cause to the customizations of the org. What are true about the release updates from Salesforce's seasonal releases?",
+   "options": [
+    "Release updates are applied only after an administrator reviews them in the Sandbox org.",
+    "Release updates are applied only after an administrator reviews them in the Production org.",
+    "Release updates have steps for an administrator to follow to understand their impact on the org and then choose to apply the update before the enforcement date.",
+    "Release updates are automatically applied to the Production org on the enforcement date announced."
+   ],
+   "answer": [
+    "Release updates have steps for an administrator to follow to understand their impact on the org and then choose to apply the update before the enforcement date.",
+    "Release updates are automatically applied to the Production org on the enforcement date announced."
+   ],
+   "why": "See reference links.",
+   "translate": {
+    "situation": "Salesforce is changing behavior in an upcoming release.",
+    "feature": "Release Updates (Setup).",
+    "see": "A page listing each update, its test steps, and its enforcement date.",
+    "notOther": "They don't wait for your review; they apply automatically on the date."
+   },
+   "tags": [
+    "release updates"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.release_updates.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.release_updates_manage.htm&type=5",
+    "https://trailhead.salesforce.com/content/learn/modules/sf_releases"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270220230440520-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270220230440520-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-270220230440520-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q15",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "What is a key capability of Quotes and Orders in the sales process in Salesforce?",
+   "options": [
+    "Tracking customer interactions and communications",
+    "Generating invoices and processing payments",
+    "Creating and managing leads",
+    "Managing price quotes and sales agreements"
+   ],
+   "answer": [
+    "Managing price quotes and sales agreements"
+   ],
+   "why": "See reference links.",
+   "translate": {
+    "situation": "Send a customer a price offer, then record what they agreed to buy.",
+    "feature": "Quotes and Orders.",
+    "see": "A quote PDF with products and prices; an order confirming the deal.",
+    "notOther": "Invoicing and payments need other products or integrations."
+   },
+   "tags": [
+    "quotes",
+    "orders"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.quotes_overview.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.order_overview.htm&type=5"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q16",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "A Salesforce Administrator would like to absolutely deny login access to the company's Salesforce org if users are logging in outside the specified login hours and IP range. What are the different options that can be used?",
+   "options": [
+    "Profile-based login hour restrictions",
+    "Organization-based login hour restrictions",
+    "Profile based IP restrictions",
+    "Organization-wide IP restrictions"
+   ],
+   "answer": [
+    "Profile-based login hour restrictions",
+    "Profile based IP restrictions"
+   ],
+   "why": "Blocking happens on profiles; org-wide trusted IPs only trigger verification.",
+   "translate": {
+    "situation": "Hard-block logins outside set hours or locations.",
+    "feature": "Profile Login Hours + Profile Login IP Ranges.",
+    "see": "Login denied outright.",
+    "notOther": "Org-wide trusted IPs just ask for a verification code; org-wide login hours don't exist."
+   },
+   "tags": [
+    "login"
+   ],
+   "links": [
+    "https://developer.salesforce.com/docs/atlas.en-us.securityImplGuide.meta/securityImplGuide/admin_loginrestrict.htm",
+    "https://trailhead.salesforce.com/content/learn/projects/protect-your-data-in-salesforce/restrict-login-hours-and-ip-ranges"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-247-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-247-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q17",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "For a new product launch, campaigns have been set up to track responses from the website, print advertisement, and direct marketing activities. How can the cumulative figures from various campaign strategies be made visible and tracked within the primary product launch campaign?",
+   "options": [
+    "Create a report that totals the opportunities related to each campaign",
+    "Create a campaign hierarchy linking the campaigns and view the campaign statistics on the parent campaign",
+    "Create a master-detail relationship between the campaigns and use roll-up summary fields to display the totals",
+    "Create a trigger that calculates the number and value of opportunities related to the campaigns and display on each campaign"
+   ],
+   "answer": [
+    "Create a campaign hierarchy linking the campaigns and view the campaign statistics on the parent campaign"
+   ],
+   "why": "Parent campaigns show hierarchy totals automatically.",
+   "translate": {
+    "situation": "See combined results of several campaigns under one umbrella campaign.",
+    "feature": "Campaign hierarchy.",
+    "see": "The parent campaign shows 'Total ... in Hierarchy' fields.",
+    "notOther": "No custom build needed; the totals are standard fields."
+   },
+   "tags": [
+    "campaigns"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=campaigns_hierarchy.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/01/campaign-hierarchy-list.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q18",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "What are the different ways that data can be backed up?",
+   "options": [
+    "Run a backup manually using Data Export",
+    "Schedule a daily data backup using Data Export",
+    "Send an email request to Salesforce to export a copy of all data",
+    "Export data using Data Loader"
+   ],
+   "answer": [
+    "Run a backup manually using Data Export",
+    "Export data using Data Loader"
+   ],
+   "why": "Data Export is weekly or monthly, not daily.",
+   "tags": [
+    "backup"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=admin_exportdata.htm&type=5",
+    "https://trailhead.salesforce.com/en/modules/lex_implementation_data_management/units/lex_implementation_data_export"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/data_export_service_2.png"
+   ]
+  },
+  {
+   "id": "exam6-q19",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "A Salesforce Administrator wishes to delegate the responsibility of resetting passwords and creating new users to her assistant. The Salesforce Administrator does not wish to give her assistant full administrative rights. What is the most appropriate solution in this case?",
+   "options": [
+    "Create a custom profile and give only limited access to create users and reset passwords",
+    "Assign the user to a delegated group that has selected user administration permissions",
+    "Open a case with Salesforce for this type of profile creation",
+    "Create a custom profile and give administrator permission to it"
+   ],
+   "answer": [
+    "Assign the user to a delegated group that has selected user administration permissions"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "delegated admin"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.admin_delegate.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.delegating_user_administration.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-274-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q20",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "Which of the following statements are true about accessing telephony features in Salesforce using Sales Dialer?",
+   "options": [
+    "It is only available in Lightning Experience",
+    "It supports incoming and outgoing calls",
+    "It requires a feature license in Lightning Experience and Salesforce Classic",
+    "Users can call by clicking on phone number fields",
+    "It supports recording calls using an additional plugin"
+   ],
+   "answer": [
+    "It is only available in Lightning Experience",
+    "It supports incoming and outgoing calls",
+    "Users can call by clicking on phone number fields"
+   ],
+   "why": "Formerly Lightning Dialer. Recording is built in.",
+   "translate": {
+    "situation": "Reps make and take calls inside Salesforce.",
+    "feature": "Sales Dialer.",
+    "see": "Click a phone number to dial; incoming calls pop up; notes and recordings logged.",
+    "notOther": "Lightning only (no Classic), and recording needs no plugin."
+   },
+   "tags": [
+    "dialer"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=voice_dialer.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-221-image1-v1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q21",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Adam wants to delete an account and the 15 contacts associated with the account. Which method should he choose to delete the records in the most efficient way?",
+   "options": [
+    "Delete the account record.",
+    "Ask a developer to write a query in the developer console to delete the records",
+    "Use Data Loader to mass delete the records",
+    "Select each contact record and delete one by one. Once all of the contact records have been deleted, the account record can be deleted manually."
+   ],
+   "answer": [
+    "Delete the account record."
+   ],
+   "why": "Account → Contact behaves like master-detail: deleting the account deletes its contacts (and opportunities, activities, etc.).",
+   "translate": {
+    "situation": "Remove a company and all its people.",
+    "feature": "Delete the Account (cascade delete).",
+    "see": "One click removes the account plus its contacts, opps, activities.",
+    "notOther": "No need for Data Loader or one-by-one deletes."
+   },
+   "tags": [
+    "accounts",
+    "delete"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=account_del.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/Admin-Standard-and-Custom-Objects-397.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q22",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "An administrator has created and activated an Employee Agent in Agentforce to assist the sales team with internal queries about accounts, opportunities, and company knowledge. However, the agent is not visible to the sales users, even though their profiles have standard object permissions. What is the correct step to make this Employee Agent available to the sales users?",
+   "options": [
+    "Assign the dedicated agent user (auto-generated for the Employee Agent) to a permission set with the \"View All Records\" and \"View All Fields\" permissions on relevant objects.",
+    "In the configuration page of a permission set assigned to the sales users, click Agent Access, Edit, and move the specific Employee Agent to the Enabled Agents list.",
+    "In the Agentforce Agents Setup page, open the agent details and add the sales users' profiles or permission sets directly to the Agent Access tab on the agent record.",
+    "Ensure the sales users have the \"Connect Agent to Lightning Experience\" permission enabled in their profiles, as this controls agent visibility in the internal UI."
+   ],
+   "answer": [
+    "In the configuration page of a permission set assigned to the sales users, click Agent Access, Edit, and move the specific Employee Agent to the Enabled Agents list."
+   ],
+   "why": "Employee Agents run as the logged-in user; Service Agents run as a dedicated agent user. Access is granted on the permission set's Agent Access page.",
+   "translate": {
+    "situation": "Let the sales team see an internal AI agent.",
+    "feature": "Agent Access on a permission set.",
+    "see": "The agent appears for users whose permission set lists it under Enabled Agents.",
+    "notOther": "The Agent Access tab lives on permission sets/profiles, not on the agent record; Employee Agents have no separate agent user."
+   },
+   "tags": [
+    "agentforce",
+    "permissions"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.agent_manage_aea_access.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=ai.agent_setup_explore_types.htm&type=5"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q23",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "As a Sales Manager, John is finding that he is adding the same people to his opportunity team and is looking for a more efficient way of managing his opportunities. What is true regarding Opportunity Teams?",
+   "options": [
+    "It is not required for every team member to have a role defined in the Opportunity Team",
+    "The default Opportunity Team cannot be added in the Salesforce mobile app",
+    "John can set up a default Opportunity Team in his personal settings",
+    "If defined, a default Opportunity Team can be added with two clicks"
+   ],
+   "answer": [
+    "John can set up a default Opportunity Team in his personal settings",
+    "If defined, a default Opportunity Team can be added with two clicks"
+   ],
+   "why": "Every member needs a role; 'Add Default Team' works on mobile too.",
+   "translate": {
+    "situation": "Stop re-adding the same teammates to every deal.",
+    "feature": "Default Opportunity Team (personal settings) + 'Add Default Team'.",
+    "see": "Two clicks on the Opportunity Team list adds your usual people.",
+    "notOther": "Each member must have a role, and it works in the mobile app too."
+   },
+   "tags": [
+    "opportunity teams"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.salesteam_default.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Sales-and-Marketing-Applications_217.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q24",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Which of the following can be done within an object's page layout editor?",
+   "options": [
+    "Add help text to fields",
+    "Make fields read-only",
+    "Change columns and sort order of related lists",
+    "Create new record types for the object",
+    "Make fields required"
+   ],
+   "answer": [
+    "Make fields read-only",
+    "Change columns and sort order of related lists",
+    "Make fields required"
+   ],
+   "why": "Help text is set on the field; record types are created elsewhere.",
+   "translate": {
+    "situation": "Know what the page layout editor can change.",
+    "feature": "Page layout editor.",
+    "see": "Field properties (read-only, required) and related list columns and sort.",
+    "notOther": "Help text belongs to the field definition; record types are their own section."
+   },
+   "tags": [
+    "page layouts"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.customize_layoutcustomize_pd.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-2-17.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q25",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "The Cosmic Computing call center manager has requested a new Case report to analyze how long individual call center staff take to accept cases. The 'Case Accepted Time Stamp' is a custom field populated when an agent accepts a case. How can this be achieved using only Lightning Report Builder, without modifying the Case object?",
+   "options": [
+    "Create a new Case custom formula field that calculates the difference between 'Date/Time Opened' and 'Case Accepted Time Stamp', and add it to the new report.",
+    "Add a row-level formula that calculates the difference between 'Date/Time Opened' and 'Case Accepted Time Stamp' in the new report.",
+    "Add a bucket column that calculates the difference between 'Date/Time Opened' and 'Case Accepted Time Stamp' in the new report.",
+    "Add the standard 'Case Age' field to the new report as this captures the difference between 'Date/Time Opened' and 'Case Accepted Time Stamp'."
+   ],
+   "answer": [
+    "Add a row-level formula that calculates the difference between 'Date/Time Opened' and 'Case Accepted Time Stamp' in the new report."
+   ],
+   "why": "Row-level formulas calculate per row inside the report only.",
+   "translate": {
+    "situation": "Measure time-to-accept per agent, without adding a field to Case.",
+    "feature": "Row-level formula in Report Builder.",
+    "see": "A new column in the report showing hours between opened and accepted.",
+    "notOther": "'Without modifying the object' rules out a custom formula field; buckets group values, they don't calculate."
+   },
+   "tags": [
+    "reports",
+    "formulas"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=reports_formulas_row_level_limits.htm&type=5",
+    "https://releasenotes.docs.salesforce.com/en-us/winter20/release-notes/rn_rd_reports_row_level_formulas.htm"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/12/row-level-column.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q26",
+   "type": "question",
+   "objective": "sales-marketing",
+   "prompt": "A sales representative at Solar Solutions wants to view opportunities as cards on a board that is divided into several columns where each column represents a different stage in the sales cycle. What Salesforce feature should be used to achieve this?",
+   "options": [
+    "Einstein Opportunity Scoring",
+    "Report Builder",
+    "Kanban View",
+    "Lightning Page Template"
+   ],
+   "answer": [
+    "Kanban View"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "kanban"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.kanban_use.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q27",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "Which of the following business data can be best represented by the Salesforce Case object?",
+   "options": [
+    "Detailed description of a customer issue and resolution of the issue",
+    "A marketing project that is tracked and managed in Salesforce",
+    "Description of a customer feedback, problem, or question",
+    "A sales deal that is tracked and managed in Salesforce"
+   ],
+   "answer": [
+    "Description of a customer feedback, problem, or question"
+   ],
+   "why": "Issue + resolution = Solution; deal = Opportunity; marketing project = Campaign.",
+   "translate": {
+    "situation": "Pick the right object for each kind of business data.",
+    "feature": "Case = a customer's feedback, problem, or question.",
+    "see": "A support ticket.",
+    "notOther": "'Issue and its resolution' describes a Solution (knowledge), not the case itself."
+   },
+   "tags": [
+    "objects"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=cases_def.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/06/case-detail1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q28",
+   "type": "question",
+   "objective": "service",
+   "prompt": "What situations can trigger an auto-response rule?",
+   "options": [
+    "Email-to-Case submission",
+    "Web-to-Case submission",
+    "SMS Case submission",
+    "Customer Portal Case submission",
+    "Case Escalation"
+   ],
+   "answer": [
+    "Email-to-Case submission",
+    "Web-to-Case submission",
+    "Customer Portal Case submission"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "auto-response"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.creating_auto-response_rules.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/09/2-36.png"
+   ]
+  },
+  {
+   "id": "exam6-q29",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "On each opportunity record, a Salesforce administrator needs to display the name of the parent account related to an account that is associated with the opportunity. How can this be accomplished?",
+   "options": [
+    "Create a custom field for the parent account name and use a flow to update it with the parent account name.",
+    "Add a custom field with an account lookup.",
+    "Create a cross-object formula field to reference the parent account name.",
+    "Create a custom field with a dependent lookup filter on the account."
+   ],
+   "answer": [
+    "Create a cross-object formula field to reference the parent account name."
+   ],
+   "why": "Formulas can reach up to 10 relationships: Opportunity → Account → Parent Account → Name.",
+   "translate": {
+    "situation": "Show the account's parent company on the deal.",
+    "feature": "Cross-object formula.",
+    "see": "A read-only field on the opportunity showing the parent account name, always current.",
+    "notOther": "A flow copy goes stale and adds work; the formula looks it up live."
+   },
+   "tags": [
+    "formulas"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.customize_cross_object.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/10/admin-2-16.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-353-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q30",
+   "type": "question",
+   "objective": "service",
+   "prompt": "How can support agents, who use the Case Feed, complete repetitive tasks quickly and consistently?",
+   "options": [
+    "Set up auto-response rules for cases in the Case Feed",
+    "Use macros in the Case Feed",
+    "Use the Task Scheduler in the Case Feed",
+    "Set up automatic email responses for cases in the Case Feed"
+   ],
+   "answer": [
+    "Use macros in the Case Feed"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "macros"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.macros_def.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/11/CaseFeed_320_01.png"
+   ]
+  },
+  {
+   "id": "exam6-q31",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "The users of Cosmic Marketing Solutions use Lightning Experience only. A Salesforce Administrator has created two custom objects, namely, Job Application and Applicant. There is a lookup relationship field on the Job Application object to the Applicant object. Users would like to be able to send an email to the applicant related to a particular job application easily. Which solutions can be utilized for this requirement?",
+   "options": [
+    "Add the 'Email Tracking' related list to the Job Application page layout.",
+    "Enable 'Email Notifications' on the Job Application object.",
+    "Enable activities on the Job Application object and use the 'Activity' tab to send the email.",
+    "Create a custom 'Send Email' action and add it to the Job Application page layout."
+   ],
+   "answer": [
+    "Enable activities on the Job Application object and use the 'Activity' tab to send the email.",
+    "Create a custom 'Send Email' action and add it to the Job Application page layout."
+   ],
+   "why": "See reference links.",
+   "translate": {
+    "situation": "Email someone straight from a custom object record.",
+    "feature": "Activities (Activity tab) or a 'Send Email' quick action.",
+    "see": "An Email composer right on the Job Application page.",
+    "notOther": "'Email Tracking' list and 'Email Notifications' setting don't exist."
+   },
+   "tags": [
+    "email",
+    "activities"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=send_email_directly_from_crm_record.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=creating_object_specific_actions.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Activity-Management-and-Collaboration_26_01.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Activity-Management-and-Collaboration_26_02.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Activity-Management-and-Collaboration_26_03.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q32",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "After an Account Plan is completed it goes to a Sales Manager for approval. A Sales Manager has reviewed the plan but would like to update one of the fields in the plan before approving it. What is true regarding editing records that have been submitted for approval?",
+   "options": [
+    "An administrator can edit a record that is locked by an approval process",
+    "The Sales Manager would need to reject the record to unlock and edit it",
+    "It is possible for a currently assigned approver to edit a record locked by an approval process",
+    "Once a record is submitted, it is locked and cannot be edited at all"
+   ],
+   "answer": [
+    "An administrator can edit a record that is locked by an approval process",
+    "It is possible for a currently assigned approver to edit a record locked by an approval process"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "approvals"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.approvals_creating_approval_processes.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.approvals_create_recordeditability.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2016/09/admin-exam-1-question-50.png"
+   ]
+  },
+  {
+   "id": "exam6-q33",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Which of the following features are available on the Salesforce mobile app with 'Lightning on tablet' enabled?",
+   "options": [
+    "Ability to view standard Salesforce apps",
+    "Support for Salesforce Console",
+    "Rotation between portrait and landscape modes",
+    "Better performance",
+    "Design time previews in the Lightning App Builder"
+   ],
+   "answer": [
+    "Rotation between portrait and landscape modes",
+    "Better performance",
+    "Design time previews in the Lightning App Builder"
+   ],
+   "why": "Standard apps and the Console aren't supported in the mobile app.",
+   "translate": {
+    "situation": "Use Salesforce on an iPad or Android tablet.",
+    "feature": "Lightning on tablet.",
+    "see": "Full-width tablet layout that rotates, runs faster, and can be previewed in App Builder.",
+    "notOther": "Standard apps and the Service Console don't run in the mobile app."
+   },
+   "tags": [
+    "mobile"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_mobile_lightning_on_tablet_GA.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.limits_mobile_sf1_data.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.salesforce_app_ipad_considerations.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-110420220256560-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q34",
+   "type": "question",
+   "objective": "service",
+   "prompt": "How can an administrator allow users to see more information with less scrolling in a feed-based page layout when working with Cases in the Service console?",
+   "options": [
+    "Enable record related list sorting in the console",
+    "Enable compact feed view in the console",
+    "Users must scroll to view records in the console",
+    "Enable and create related list search filters"
+   ],
+   "answer": [
+    "Enable compact feed view in the console"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "case feed"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=case_interaction_settings.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/feed-view-options.png"
+   ]
+  },
+  {
+   "id": "exam6-q35",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Which requirement must be met for a user to see a specific item within a Launchpad component?",
+   "options": [
+    "The user must have \"Read\" access to the Documents object.",
+    "The user must have \"Modify All Data\" permissions.",
+    "The item must be marked as \"Public\" in the Lightning App Builder.",
+    "The user must have permission to view the tab associated with that item."
+   ],
+   "answer": [
+    "The user must have permission to view the tab associated with that item."
+   ],
+   "why": "Launchpad follows normal tab visibility.",
+   "translate": {
+    "situation": "Decide who sees which shortcut on the mobile Launchpad.",
+    "feature": "Tab visibility (profile/permission set).",
+    "see": "Users only see shortcuts to tabs they're allowed to see.",
+    "notOther": "No 'Public' checkbox exists per item; Modify All Data is far too much."
+   },
+   "tags": [
+    "launchpad"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=xcloud.salesforce_app_launchpad.htm&type=5"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q36",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "An events company uses a screen flow in an Experience cloud site to capture event cancellation requests. It would like to add another step in the flow to allow site users to request a refund, which is an operation that other flows in the org may also need to implement for their own use cases. Which flow element is the most appropriate for this use case?",
+   "options": [
+    "Assignment",
+    "Loop",
+    "Subflow",
+    "Apex Action"
+   ],
+   "answer": [
+    "Subflow"
+   ],
+   "why": "Reusable flow called from other flows = subflow.",
+   "tags": [
+    "flow",
+    "subflow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=flow_ref_elements_subflow.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-100820200956480-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q37",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Where can tasks be created in Lightning Experience?",
+   "options": [
+    "'Tasks' Tab",
+    "Record Pages",
+    "'Global Actions' Menu",
+    "'Tasks' Related List",
+    "Global Search Results"
+   ],
+   "answer": [
+    "'Tasks' Tab",
+    "Record Pages",
+    "'Global Actions' Menu"
+   ],
+   "why": "Lightning uses the Activity timeline, not a Tasks related list.",
+   "translate": {
+    "situation": "Know every place you can start a new task.",
+    "feature": "Tasks tab, record page Activity tab, Global Actions (+) menu.",
+    "see": "A New Task form from any of those three.",
+    "notOther": "There's no Tasks related list in Lightning; search results don't create records."
+   },
+   "tags": [
+    "tasks"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=actions_in_lex.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=creating_tasks.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-19-image1-v1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-19-image2-v1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-19-image3-v1.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q38",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "A Sales Manager has created a presentation for a lead but would like feedback from his sales team before presenting. What is the best way to accomplish this?",
+   "options": [
+    "Share the Powerpoint presentation in a Chatter post by tagging his sales team group",
+    "Send the Powerpoint presentation to every sales person via email",
+    "Add the Powerpoint presentation to Documents",
+    "Enable Salesforce CRM content, store the presentation in a library, and invite the sales team to review"
+   ],
+   "answer": [
+    "Share the Powerpoint presentation in a Chatter post by tagging his sales team group"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "chatter",
+    "files"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=collab_files_differences.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q39",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Cosmic Telecom wants to understand what protects the org from a customer trying to manipulate the agent into ignoring its instructions or revealing internal system prompts. Which Salesforce feature is primarily responsible for this kind of protection?",
+   "options": [
+    "Organization-wide default sharing settings on the Case object",
+    "The page layout assigned to the agent's running user profile",
+    "Field-level security on the Contact object",
+    "The Einstein Trust Layer's prompt injection and toxicity detection"
+   ],
+   "answer": [
+    "The Einstein Trust Layer's prompt injection and toxicity detection"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "trust layer"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_trust.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q40",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "What Chatter License type can be used to provide internal users access to Chatter features only?",
+   "options": [
+    "Chatter Plus",
+    "Chatter Only",
+    "Chatter External",
+    "Chatter Free"
+   ],
+   "answer": [
+    "Chatter Free"
+   ],
+   "why": "Chatter Free = internal, Chatter only. Chatter External = outsiders in customer groups. Chatter Only/Plus adds some objects (legacy).",
+   "translate": {
+    "situation": "Give employees Chatter without full Salesforce.",
+    "feature": "Chatter Free license.",
+    "see": "People, profiles, groups, files; no records.",
+    "notOther": "Chatter Only/Plus includes some objects; Chatter External is for outsiders."
+   },
+   "tags": [
+    "licenses",
+    "chatter"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=users_license_types_chatter.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/07/admin-chatter-28-2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q41",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "Cosmic Solutions wants a basic understanding of what Agentforce actually does before rolling it out. Which statement best describes Agentforce's core capability compared to a traditional Salesforce automation tool like Flow?",
+   "options": [
+    "Agentforce can autonomously reason over a request, select the appropriate action, and execute it without a human predefining every branch of logic",
+    "Agentforce can only generate text responses and cannot take actions on Salesforce records",
+    "Agentforce requires a developer to write custom Apex for every customer request before the agent can respond to anything",
+    "Agentforce is a rules engine that only follows exact if/then branching logic defined in advance, identical to flow"
+   ],
+   "answer": [
+    "Agentforce can autonomously reason over a request, select the appropriate action, and execute it without a human predefining every branch of logic"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "agentforce"
+   ],
+   "links": [
+    "https://www.salesforce.com/agentforce/",
+    "https://www.salesforce.com/platform/agentforce-platform/"
+   ]
+  },
+  {
+   "id": "exam6-q42",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "A Salesforce Administrator needs to insert custom object records on a weekly basis. The number of records that need to be inserted often exceeds 60,000. There may also be the possibility of duplicate records, which the organization does not want. What is the best way for the Salesforce Administrator to load the records?",
+   "options": [
+    "Run a Batch Import class",
+    "Use the Data Import Wizard",
+    "Use a third-party data import tool",
+    "Use Duplicate Management and import the records via Data Loader"
+   ],
+   "answer": [
+    "Use Duplicate Management and import the records via Data Loader"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "data loader",
+    "duplicates"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.duplicate_prevention_map_of_tasks.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=000314351&type=1"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/duplicate-rules.png"
+   ]
+  },
+  {
+   "id": "exam6-q43",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "GN International Inc. uses Salesforce for managing their sales activities and they have created various custom objects. The Sales manager requested the Administrator to create a new report with certain information. When attempting to define the custom report type, the Administrator discovered that certain fields could not be added. Which of the following field types can NOT be added to a custom report?",
+   "options": [
+    "Product fields",
+    "History fields",
+    "Product schedule fields",
+    "Account Fields"
+   ],
+   "answer": [
+    "History fields",
+    "Product schedule fields"
+   ],
+   "why": "Also the Age field on cases and opportunities.",
+   "tags": [
+    "report types"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=reports_report_type_guidelines.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/schedule-field-object.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/product-schedule-field.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/field-history-report.png"
+   ]
+  },
+  {
+   "id": "exam6-q44",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "The ownership of a case needs to be transferred from one customer support user to another. The role hierarchy is set up with a customer support role and a support manager role above. Who can change the ownership of the case?",
+   "options": [
+    "The support manager",
+    "The current owner of the case",
+    "Any user with the customer support role",
+    "All users",
+    "The Salesforce Administrator"
+   ],
+   "answer": [
+    "The support manager",
+    "The current owner of the case",
+    "The Salesforce Administrator"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "ownership"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.data_about_transfer.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/admin-107.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/admin-107-1.png"
+   ]
+  },
+  {
+   "id": "exam6-q45",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Sam has created a matching rule on the Contact object to detect duplicates. What is true in this situation?",
+   "options": [
+    "Only one field can be used for matching in the matching rule",
+    "Duplicate contacts will be blocked or allowed based on the setting in the Duplicate Rule",
+    "Only one duplicate rule can be active at one time",
+    "Nothing will happen unless a duplicate rule is defined that uses the matching rule"
+   ],
+   "answer": [
+    "Duplicate contacts will be blocked or allowed based on the setting in the Duplicate Rule",
+    "Nothing will happen unless a duplicate rule is defined that uses the matching rule"
+   ],
+   "why": "See reference links.",
+   "translate": {
+    "situation": "Stop duplicate contacts.",
+    "feature": "Matching rule (what counts as a duplicate) + Duplicate rule (what to do about it).",
+    "see": "A warning or a block when saving a look-alike contact.",
+    "notOther": "A matching rule alone does nothing; multiple fields and multiple active duplicate rules are allowed."
+   },
+   "tags": [
+    "duplicate rules"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=matching_rules_overview.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2017/10/duplicate-rule-allow-or-block.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q46",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Super Computers Inc. stores purchase information in a custom object. The purchase manager wants to analyze the trend of purchases for which she needs historical data. The Salesforce Administrator decided to create a reporting snapshot. The Salesforce Administrator is considering which reports can be used as the source to build a snapshot. Which report formats can be used to create a reporting snapshot?",
+   "options": [
+    "Summary Report",
+    "Tabular Report",
+    "Joined Report",
+    "Matrix Report"
+   ],
+   "answer": [
+    "Summary Report",
+    "Tabular Report"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "reporting snapshots"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.data_about_analytic_snap.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.data_setting_up_analytic_snap.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/report-snaphot-source.png"
+   ]
+  },
+  {
+   "id": "exam6-q47",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "A data file containing contact records is automatically sent to a computer every day. The Salesforce Administrator needs to automatically load contact records from this file into Salesforce at 6 PM daily. Which tools are best suited for the requirement?",
+   "options": [
+    "Run a batch class to insert the records",
+    "Data Loader via user interface",
+    "Use an AppExchange tool such as Jitterbit Data Loader",
+    "Data Loader via command-line interface"
+   ],
+   "answer": [
+    "Use an AppExchange tool such as Jitterbit Data Loader",
+    "Data Loader via command-line interface"
+   ],
+   "why": "Scheduled, unattended loads need the CLI or a third-party scheduler.",
+   "translate": {
+    "situation": "Load a file into Salesforce every day at 6 PM with nobody clicking.",
+    "feature": "Data Loader command line, or Jitterbit.",
+    "see": "A scheduled job that imports automatically.",
+    "notOther": "The Data Loader UI needs someone to run it; a batch class is code."
+   },
+   "tags": [
+    "data loader",
+    "automation"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.using_the_command_line_interface.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/10/Data-Management_100.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-100-image2.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q48",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "An organization has multi-currency enabled. What can cause a record in an import file to fail?",
+   "options": [
+    "The record fails system validation rules",
+    "Currency in the file is an inactive Salesforce currency",
+    "The record fails custom validation rules",
+    "Currency field is left blank"
+   ],
+   "answer": [
+    "The record fails system validation rules",
+    "The record fails custom validation rules"
+   ],
+   "why": "Blank or inactive currency falls back to the user's personal currency.",
+   "translate": {
+    "situation": "Know why an imported row gets rejected.",
+    "feature": "System and custom validation.",
+    "see": "Rows missing required fields or breaking validation rules fail.",
+    "notOther": "Blank or inactive currencies don't fail; the user's currency is used."
+   },
+   "tags": [
+    "import",
+    "currency"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.notes_on_importing_data.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.import_currency.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-88-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-88-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-88-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q49",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Quotes that are discounted more than 20% need approval from the Sales Director. How can this requirement be met?",
+   "options": [
+    "Create a record-triggered flow to assign the quote to the Sales Director",
+    "Create an approval process on the quote with an entry criteria on the quote discount percentage",
+    "Create an approval process on the opportunity with an entry criteria on the opportunity discount percentage",
+    "Create a validation rule to check the discount percentage"
+   ],
+   "answer": [
+    "Create an approval process on the quote with an entry criteria on the quote discount percentage"
+   ],
+   "why": "See reference links.",
+   "translate": {
+    "situation": "Big discounts on quotes need the director's sign-off.",
+    "feature": "Approval process on the Quote object.",
+    "see": "Quotes over 20% off get routed to the director.",
+    "notOther": "The discount lives on the Quote, so the approval goes there, not on Opportunity."
+   },
+   "tags": [
+    "approvals"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.approvals_useful_approval_processes_oppty.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2018/06/Admin-Workflow-Process-Automation-467.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q50",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "An admin has been notified that some users can no longer execute screen flows from record pages. What should an admin do as part of troubleshooting permission-related issues?",
+   "options": [
+    "Reactivate the FlowSites permission.",
+    "Assign the Run Flows permission to users via a permission set or profile.",
+    "Enable the Flow User checkbox on the user detail page in Setup.",
+    "Grant the Manage Flow permission to all users."
+   ],
+   "answer": [
+    "Assign the Run Flows permission to users via a permission set or profile."
+   ],
+   "why": "Since Winter '26 users need explicit Run Flows access.",
+   "translate": {
+    "situation": "Users suddenly can't run a screen flow.",
+    "feature": "The 'Run Flows' permission.",
+    "see": "The flow button works again for those users.",
+    "notOther": "Flow User / Manage Flow give far more than needed; FlowSites is deprecated."
+   },
+   "tags": [
+    "flow",
+    "permissions"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_release_update_restrict_user_access.htm&type=5"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q51",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "The finance department at Universal Rentals would like the Salesforce Administrator to implement manager approvals for Paid Time Off requests. What is true regarding the approval process capabilities?",
+   "options": [
+    "Approval requests can be sent via Chatter for any standard or custom object that has been enabled for feed tracking",
+    "Records are always locked for all users during an approval process",
+    "If enabled, an approver can receive and reply to approval requests via email",
+    "Approval requests can only be assigned to users"
+   ],
+   "answer": [
+    "Approval requests can be sent via Chatter for any standard or custom object that has been enabled for feed tracking",
+    "If enabled, an approver can receive and reply to approval requests via email"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "approvals"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=approvals_processing_approval_requests_parent.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=approvals_create_recordeditability.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-433-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q52",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Cosmic Global wants to ensure that no opportunities are lost if a sales rep forgets to follow up. At least 200 records are being created a day. A reminder task should be created automatically 15 days after the 'Created Date' of the opportunity. Which automation feature can be used to address the requirement declaratively considering the risk of exceeding governor limits per transaction?",
+   "options": [
+    "Flow Builder",
+    "Big Deal Alert",
+    "Apex Trigger",
+    "Approval Process"
+   ],
+   "answer": [
+    "Flow Builder"
+   ],
+   "why": "A record-triggered flow with a scheduled path (and a batch size) handles it declaratively.",
+   "translate": {
+    "situation": "Create a follow-up task 15 days after each new deal.",
+    "feature": "Record-triggered flow with a Scheduled Path.",
+    "see": "A task appears automatically on day 15.",
+    "notOther": "Apex isn't needed; Big Deal Alert only emails; approvals are sign-offs."
+   },
+   "tags": [
+    "flow",
+    "scheduled path"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.process_limits_scheduled.htm&type=5",
+    "https://developer.salesforce.com/blogs/2021/03/schedule-your-path-in-salesforce-flow.html"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-899-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-899-image3.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q53",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "A sales rep asked an Admin to look for soft-deleted Invoice records. How long does a deleted record stay in the Recycle Bin?",
+   "options": [
+    "30 days",
+    "15 days",
+    "Until the Recycle Bin is emptied using the user interface",
+    "Until the Recycle Bin reaches a certain size",
+    "Forever"
+   ],
+   "answer": [
+    "15 days",
+    "Until the Recycle Bin is emptied using the user interface",
+    "Until the Recycle Bin reaches a certain size"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "recycle bin"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=home_delete.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-115-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q54",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "A Salesforce Admin is building a screen flow to power a dynamic partner onboarding experience. The admin is using a Data Graph to retrieve consolidated partner data from multiple objects and sources. The next step is to transform that unified data into a format that can be easily displayed on a screen component and later updated in Salesforce. Which Flow feature supports this requirement?",
+   "options": [
+    "Use an External Services registration to convert Data Graph values into JSON",
+    "Use a Custom Metadata Type to map the data graph to a screen component",
+    "Use a Data Transform element to reshape the Data Graph output in Flow Builder",
+    "Use the Assignment element to split the Data Graph fields into individual variables"
+   ],
+   "answer": [
+    "Use a Data Transform element to reshape the Data Graph output in Flow Builder"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "flow"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=release-notes.rn_automate_flow_builder_transform_data_graphs.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q55",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "The Sales manager of Cosmic Solutions has been assigned a task to create an automated system for processing discounts on Opportunities. Discount rates of up to 40% require the Sales Manager's approval. If the discount rate is more than 40%, it requires the CEO's approval. Which Salesforce automation solution is appropriate for this scenario?",
+   "options": [
+    "Schema Builder",
+    "Flow Builder",
+    "Apex Trigger",
+    "Approval Process"
+   ],
+   "answer": [
+    "Approval Process"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "approvals"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=what_are_approvals.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=approvals_useful_approval_processes.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/08/Workflow-and-Process-Automation_434_01.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/08/Workflow-and-Process-Automation_434_02.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2019/08/Workflow-and-Process-Automation_434_03.png"
+   ]
+  },
+  {
+   "id": "exam6-q56",
+   "type": "question",
+   "objective": "automation",
+   "prompt": "Cosmic Solutions has a custom object called Weekly Employee Summary, which stores a summary of employee data that is tracked in Salesforce, such as hours worked and wage totals. An autolaunched flow has been built to calculate this information and create a new Weekly Employee Summary record for each employee every time it is run. Currently, a Salesforce Administrator needs to run this flow manually once a week. They would like this type of operation to be run automatically in the future. Which solutions would meet this requirement?",
+   "options": [
+    "Invoke the flow from an Apex job that runs weekly.",
+    "Use a TimeSync Automation Rule to run the flow weekly.",
+    "Invoke the flow from a schedule-triggered flow.",
+    "Configure the flow on the 'Scheduled Jobs' page in Setup."
+   ],
+   "answer": [
+    "Invoke the flow from an Apex job that runs weekly.",
+    "Invoke the flow from a schedule-triggered flow."
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "flow",
+    "scheduling"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_concepts_trigger_schedule.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.flow_ref_elements_subflow.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-91220190204050-image1.png"
+   ]
+  },
+  {
+   "id": "exam6-q57",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "CosmicTech Solutions is implementing custom agent actions to enhance its customer service processes. The development team needs to ensure that each action is correctly configured and functions as expected. Which core component of a custom agent action should the development team review during configuration?",
+   "options": [
+    "Action Instructions",
+    "Context Variables",
+    "Classification Descriptions",
+    "Language Settings"
+   ],
+   "answer": [
+    "Action Instructions"
+   ],
+   "why": "See reference links.",
+   "tags": [
+    "agentforce"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_actions_instructions.htm&type=5"
+   ]
+  },
+  {
+   "id": "exam6-q58",
+   "type": "question",
+   "objective": "service",
+   "prompt": "What is true regarding the addition of a report chart to the Service Console in Classic?",
+   "options": [
+    "The source report of the chart must be a Summary or Matrix report",
+    "The source report must contain a chart",
+    "The report must be added to the service console page layout",
+    "The report chart must be added to the page layout of the object from which to display the chart",
+    "The source report of the chart must always be a Joined report"
+   ],
+   "answer": [
+    "The source report of the chart must be a Summary or Matrix report",
+    "The source report must contain a chart",
+    "The report chart must be added to the page layout of the object from which to display the chart"
+   ],
+   "why": "Console components don't support joined reports.",
+   "translate": {
+    "situation": "Show a chart in the console sidebar while agents work.",
+    "feature": "Report chart as a console component.",
+    "see": "A chart beside the record, from a grouped report that already has a chart.",
+    "notOther": "Joined reports aren't supported; the chart goes on the object's layout, not a 'console layout'."
+   },
+   "tags": [
+    "console",
+    "reports"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.console2_components_create_page_layouts.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.console2_about.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/reports-source-grouping.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/source-report-chart.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/2020/02/source-console-component.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q59",
+   "type": "question",
+   "objective": "service",
+   "prompt": "The support supervisors of a call center that uses Service Cloud Omni-Channel would like to see which of their support reps have been accepting cases recently and whether they are online, offline, or busy. They should be able to filter reps by status and see reps with a particular status only each time they log in. Which of the following is the best place to do so in the Omni-Channel Supervisor?",
+   "options": [
+    "Service Reps Tab",
+    "Work Tab",
+    "In Progress Work Tab",
+    "Users Tab"
+   ],
+   "answer": [
+    "Service Reps Tab"
+   ],
+   "why": "Its column filters persist across sessions.",
+   "translate": {
+    "situation": "Supervisors watch who's online and taking work.",
+    "feature": "Omni-Channel Supervisor → Service Reps tab.",
+    "see": "Each rep's status, current work, capacity, last accept time; filters stick.",
+    "notOther": "In Progress Work is by queue; 'Work' and 'Users' tabs don't exist."
+   },
+   "tags": [
+    "omni-channel"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=omnichannel_supervisor_agents_tab.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=omnichannel_supervisor_work_tab.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-70220200512580-g7ba6628912_0_34.png"
+   ],
+   "missed": true
+  },
+  {
+   "id": "exam6-q60",
+   "type": "question",
+   "objective": "service",
+   "prompt": "Which of the following are true about configuring Web-to-Case?",
+   "options": [
+    "A default response template may be selected",
+    "A maximum number of cases that can be created daily must be set",
+    "HTML code must be generated and can be added to multiple websites",
+    "A default case owner must be selected",
+    "Only Standard case object fields can be captured on the webform"
+   ],
+   "answer": [
+    "A default response template may be selected",
+    "HTML code must be generated and can be added to multiple websites",
+    "A default case owner must be selected"
+   ],
+   "why": "The 5,000/day limit is fixed by Salesforce; custom fields work too.",
+   "tags": [
+    "web-to-case"
+   ],
+   "links": [
+    "https://help.salesforce.com/s/articleView?id=sf.setting_up_web-to-case_prereqs.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.web_to_case_html.htm&type=5",
+    "https://help.salesforce.com/s/articleView?id=sf.customizesupport_web_to_case_notes.htm&type=5"
+   ],
+   "screenshots": [
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-2102-image1.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-2102-image2.png",
+    "https://cdn.focusonforce.com/wp-content/uploads/question-screenshots/qms-2102-image3.png"
+   ]
+  }
+ ]
+}

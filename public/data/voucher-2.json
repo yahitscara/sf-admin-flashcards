@@ -1,0 +1,180 @@
+{
+ "source": "perscholas-voucher-2",
+ "title": "Per Scholas Voucher Qualification Exam (attempt 2, misses only)",
+ "cards": [
+  {
+   "id": "voucher2-q12",
+   "type": "question",
+   "objective": "service",
+   "prompt": "An administrator is configuring Case Assignment Rules to route incoming support cases to regional queues. Which two statements accurately describe Case Assignment Rule behaviors and fallback handling? Choose 2 answers",
+   "options": [
+    "Only one Case Assignment Rule can be active in an organization at any given time.",
+    "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings.",
+    "Multiple Case Assignment Rules can run simultaneously on the same incoming record.",
+    "Case Assignment Rules can assign cases directly to User Roles or Public Groups."
+   ],
+   "answer": [
+    "Only one Case Assignment Rule can be active in an organization at any given time.",
+    "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings."
+   ],
+   "why": "One active rule; no match → Default Case Owner; targets are users or queues only.",
+   "translate": {
+    "situation": "Route cases and know what happens to the leftovers.",
+    "feature": "Case Assignment Rules + Default Case Owner.",
+    "see": "Matched cases go to the entry's user or queue; unmatched ones go to the Default Case Owner.",
+    "notOther": "Only one rule is active; rules assign to users or queues, not roles or groups."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q34",
+   "type": "question",
+   "objective": "config-setup",
+   "prompt": "What is true about changing the default company locale?",
+   "options": [
+    "When changed, the company locale is applied to all Users.",
+    "The company locale will be applied as the default locale for new Users, but only the Administrator can change the personal locale of a User.",
+    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting.",
+    "The company locale will only be applied to as the default for new Users, and cannot be changed."
+   ],
+   "answer": [
+    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting."
+   ],
+   "why": "Default for new users; each user can change their own.",
+   "translate": {
+    "situation": "Set date/number formats for the company.",
+    "feature": "Company locale (Company Information) vs. personal locale (user settings).",
+    "see": "New users start with the company locale; anyone can switch theirs.",
+    "notOther": "It doesn't change existing users, and users don't need an admin to change their own."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q42",
+   "type": "question",
+   "objective": "service",
+   "prompt": "You were previously asked by Users to add an additional selection to the Case Status picklist field. Your organization currently uses record types for Cases. Users are reporting that this new field is not available for selection. Where in Setup would you go to troubleshoot this issue?",
+   "options": [
+    "Support Processes",
+    "Support Settings",
+    "Sales Path",
+    "Lead Processes",
+    "Sales Processes"
+   ],
+   "answer": [
+    "Support Processes"
+   ],
+   "why": "With record types, Case Status values shown come from the support process.",
+   "translate": {
+    "situation": "A new Case Status value doesn't show up.",
+    "feature": "Support Process (the business process for Case Status).",
+    "see": "Add the value to the support process used by that record type.",
+    "notOther": "Support Settings holds defaults like Default Case Owner, not status values."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q43",
+   "type": "question",
+   "objective": "object-manager",
+   "prompt": "What can be implemented in a Salesforce Org to help reduce the time Sales Reps need to enter information and increase productivity? Select 2.",
+   "options": [
+    "Create lookup relationship fields to other objects.",
+    "Formula Fields to auto-populate information from related objects.",
+    "Enable field history tracking.",
+    "Create custom visualforce pages,"
+   ],
+   "answer": [
+    "Create lookup relationship fields to other objects.",
+    "Formula Fields to auto-populate information from related objects."
+   ],
+   "why": "Lookups link records; formulas pull related data in automatically.",
+   "translate": {
+    "situation": "Cut down on typing for reps.",
+    "feature": "Lookup fields + formula fields.",
+    "see": "Pick a related record once; formulas show its details automatically.",
+    "notOther": "Field history tracking audits changes; it doesn't save typing."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q49",
+   "type": "question",
+   "objective": "agentforce",
+   "prompt": "A marketing-driven sales organization wants an AI agent that can engage prospects outside of business hours, answer product questions, and convert interest into scheduled demos. Which Agentforce agent type is most appropriate?",
+   "options": [
+    "Agentforce Sales Coach",
+    "Agentforce SDR",
+    "Agentforce Employee Agent",
+    "Agentforce Service Agent"
+   ],
+   "answer": [
+    "Agentforce SDR"
+   ],
+   "why": "Prospects + booking meetings = SDR.",
+   "translate": {
+    "situation": "Engage prospects 24/7 and book demos.",
+    "feature": "Agentforce SDR.",
+    "see": "The agent chats with prospects and puts demos on reps' calendars.",
+    "notOther": "Service Agent is for existing customers with issues, not prospects."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q51",
+   "type": "question",
+   "objective": "data-analytics",
+   "prompt": "Where can the Salesforce ID of a record be found? Select 3.",
+   "options": [
+    "The record URL in the internet browser.",
+    "Record Name",
+    "Export file from Data Loader",
+    "Record Profiles",
+    "Reports."
+   ],
+   "answer": [
+    "The record URL in the internet browser.",
+    "Export file from Data Loader",
+    "Reports."
+   ],
+   "why": "Same as K2U Exam 4 Q56.",
+   "translate": {
+    "situation": "Find a record's unique ID.",
+    "feature": "Record ID (15 or 18 characters).",
+    "see": "In the URL, a Data Loader export, or a report column.",
+    "notOther": "'Record Profiles' isn't a thing; the name isn't the ID."
+   },
+   "tags": [],
+   "missed": true
+  },
+  {
+   "id": "voucher2-q57",
+   "type": "question",
+   "objective": "productivity",
+   "prompt": "Your Salesforce organization uses Chatter extensively. A common complaint among your users is that they find it difficult to keep up to date with all of the Chatter posts and they are requesting a way to organize and categorize Chatter feed posts across records they follow, people, groups and various other combinations. What can be created in Chatter to facilitate this functionality?",
+   "options": [
+    "Company Highlights",
+    "Streams",
+    "Bookmarks",
+    "Chatter Groups"
+   ],
+   "answer": [
+    "Streams"
+   ],
+   "why": "Streams combine feeds (up to 25 each, up to 100 streams).",
+   "translate": {
+    "situation": "Too many posts; users want custom feeds.",
+    "feature": "Chatter Streams.",
+    "see": "A custom feed mixing chosen people, groups, and records.",
+    "notOther": "Groups are for collaborating, not for combining feeds you follow."
+   },
+   "tags": [],
+   "missed": true
+  }
+ ]
+}

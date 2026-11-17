@@ -43,6 +43,10 @@ function cardMeta(c: Card): string {
   </div>`;
 }
 
+function linkHost(u: string): string {
+  try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; }
+}
+
 function cardBack(c: Card): string {
   return `<div class="back">
     <div class="answer"><h4>Answer</h4>
@@ -51,6 +55,11 @@ function cardBack(c: Card): string {
     <div class="why"><h4>Why</h4><p>${esc(c.why)}</p></div>
     ${c.traps ? `<div class="traps"><h4>Trap</h4><p>${esc(c.traps)}</p></div>` : ''}
     ${c.strip ? `<div class="strip"><h4>Strip</h4><p>${esc(c.strip)}</p></div>` : ''}
+    ${c.translate ? `<div class="plain"><h4>In plain English</h4><dl>${([
+      ['Situation', c.translate.situation], ['Salesforce calls it', c.translate.feature],
+      ["What you'd see", c.translate.see], ['Not the other one', c.translate.notOther],
+    ] as const).filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v!)}</dd>`).join('')}</dl></div>` : ''}
+    ${c.links ? `<div class="links"><h4>Sources</h4>${c.links.map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(linkHost(u))}</a>`).join(' · ')}</div>` : ''}
     <div class="src">${esc(c.source)} · ${esc(c.id)}${c.tags.length ? ' · ' + c.tags.map(esc).join(', ') : ''}</div>
   </div>`;
 }
