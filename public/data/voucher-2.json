@@ -1,1399 +1,1911 @@
 {
- "source": "perscholas-voucher-2",
- "title": "Per Scholas Voucher Qualification Exam (attempt 2)",
- "note": "53/60. All 60 questions; the 7 scored misses are marked missed.",
- "cards": [
-  {
-   "id": "voucher2-q01",
-   "type": "question",
-   "objective": "agentforce",
-   "prompt": "A customer-facing AI agent is needed to resolve common service issues, log Cases, and hand off complex problems to human agents. Which Agentforce agent type supports this scenario?",
-   "options": [
-    "Agentforce Employee Agent",
-    "Agentforce Service Agent",
-    "Agentforce SDR",
-    "Agentforce Sales Coach"
-   ],
-   "answer": [
-    "Agentforce Service Agent"
-   ],
-   "why": "Service Agent is the customer-facing support agent: it answers common questions, creates and updates Cases, and hands off to a human through Omni-Channel.",
-   "traps": "Employee Agent helps internal staff; SDR qualifies leads and books meetings; Sales Coach role-plays deals with reps.",
-   "strip": "Customer + Cases + hand off to a human → Service Agent.",
-   "tags": [
-    "agent types"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q02",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "An administrator needs to display the SIC Code located on the Account object on the associated Opportunity record. What should the administrator create to meet this requirement?",
-   "options": [
-    "Customize Lead Conversion mapping.",
-    "Create a cross-object formula field.",
-    "A custom Workflow.",
-    "A custom Account Lookup field."
-   ],
-   "answer": [
-    "Create a cross-object formula field."
-   ],
-   "why": "A cross-object formula on Opportunity (Account.Sic) displays the parent Account value, always current, with no automation.",
-   "traps": "Lead mapping copies once at conversion; Workflow is retired and a copied value goes stale; Opportunity already has an Account lookup.",
-   "strip": "Show a parent field on the child → cross-object formula. Frozen copy → Flow. Summarize children → roll-up.",
-   "tags": [
-    "formulas"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q03",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "A User reports they are locked out of Salesforce. You have confirmed they have had multiple failed login attempts by reviewing their User Detail record. How can you as a Salesforce Administrator help the User get back into Salesforce? Select 2.",
-   "options": [
-    "Edit the User Detail record, and select the checkbox \"Geneate new password and notify user immediately\".",
-    "Create a new password for the User, and send them the new password in an email.",
-    "Select the Freeze button on the User Detail record page.",
-    "Select the Reset Password button on the User detail record page."
-   ],
-   "answer": [
-    "Edit the User Detail record, and select the checkbox \"Geneate new password and notify user immediately\".",
-    "Select the Reset Password button on the User detail record page."
-   ],
-   "why": "Resetting a locked-out user's password also unlocks them; the Reset Password button and the 'generate new password' checkbox both do it. (The Unlock button is the fastest fix but isn't offered.)",
-   "traps": "Admins never set or email passwords; Freeze blocks logins instead of restoring them.",
-   "strip": "Locked out → Unlock or Reset Password. Stop logins now → Freeze. Gone for good → Deactivate (never delete).",
-   "tags": [
-    "users",
-    "security"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q04",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "On which object is a Master-Detail Relationship established?",
-   "options": [
-    "Master Object",
-    "Junction Object",
-    "Detail Object",
-    "None of the above."
-   ],
-   "answer": [
-    "Detail Object"
-   ],
-   "why": "Relationship fields live on the child: the detail object gets the field pointing to its master.",
-   "traps": "The master only gets a related list and roll-ups; a junction object (two master-details) is a special case, not the general rule.",
-   "strip": "Relationship fields go on the child. The parent gets the related list and roll-ups.",
-   "tags": [
-    "relationships"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q05",
-   "type": "question",
-   "objective": "service",
-   "prompt": "Universal Containers plans to deploy a Web-to-Case form on its public website. Which two statements regarding Web-to-Case capabilities, limits, and validation rules are accurate? Choose 2 answers.",
-   "options": [
-    "Web-to-Case supports a maximum limit of 5,000 cases generated daily; additional requests beyond this limit are queued and processed the following day.",
-    "Web-to-Case automatically assigns incoming cases to a Case Team if no assignment rules match.",
-    "Validation rules are evaluated before a Web-to-Case record is created; if a submission fails validation, the case is not created.",
-    "Only standard Case fields can be captured on a Web-to-Case web form."
-   ],
-   "answer": [
-    "Web-to-Case supports a maximum limit of 5,000 cases generated daily; additional requests beyond this limit are queued and processed the following day.",
-    "Validation rules are evaluated before a Web-to-Case record is created; if a submission fails validation, the case is not created."
-   ],
-   "why": "5,000 cases per day; extra requests wait in a pending queue and go through when the limit resets. Validation rules run like any save; failures aren't saved and the admin is emailed.",
-   "traps": "Unmatched cases go to the Default Case Owner, not a Case Team; custom fields can go on the form.",
-   "strip": "Web-to-Case: 5,000/day (queued, not lost), validation rules apply, no match → default owner, custom fields OK.",
-   "tags": [
-    "web-to-case"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q06",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "At Project Solutions Inc., Opportunities that have a discount greater than 20% need to be approved by the three Sales Managers. What should the Salesforce Administrator implement to meet this requirement?",
-   "options": [
-    "Approval Process (Unanimous Decision)",
-    "Record-Triggered Flow",
-    "Approval Process (Based on First Response)",
-    "Autolaunched Flow"
-   ],
-   "answer": [
-    "Approval Process (Unanimous Decision)"
-   ],
-   "why": "'Needs approval' → Approval Process; 'the three Sales Managers' means all must approve → unanimous. Discount > 20% goes in the entry criteria.",
-   "traps": "First Response lets any one manager decide; Flow can submit a record for approval but doesn't run the approval (locking, approve/reject, history).",
-   "strip": "All of them → Unanimous. Any one of → First Response.",
-   "tags": [
-    "approvals"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q07",
-   "type": "question",
-   "objective": "service",
-   "prompt": "A System Administrator just completed a meeting with the Support Team at Pat’s Electrical Warehouse. Products are separated into two product lines, hardware and software. Support Agents need to be able to capture different information about the Case depending on if the inquiry is related to a hardware or software product. In addition, to resolve a Case related to software, the team often has to take additional steps in comparison to hardware issues. What three features should the Administrator implement to meet the Support Team’s requirements? Select 3.",
-   "options": [
-    "Permission Sets",
-    "Field Level Security",
-    "Support Processes",
-    "Record Types",
-    "Page Layouts"
-   ],
-   "answer": [
-    "Support Processes",
-    "Record Types",
-    "Page Layouts"
-   ],
-   "why": "Record types split hardware vs. software; page layouts capture different fields for each; support processes give each its own Status values (steps).",
-   "traps": "Permission sets grant user abilities; FLS hides fields by user, not by kind of Case.",
-   "strip": "Two kinds of the same record with different fields and steps → Record Type + Page Layout + Process.",
-   "tags": [
-    "record types"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q08",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "Which statement is true, as it relates to Checkbox fields and field dependency?",
-   "options": [
-    "Checkbox fields can be dependent fields, but not controlling fields.",
-    "Checkbox fields can be the controlling fields, but not dependent fields.",
-    "Checkbox fields can be either controlling fields or dependent fields.",
-    "Checkbox fields can be neither controlling fields or dependent fields."
-   ],
-   "answer": [
-    "Checkbox fields can be the controlling fields, but not dependent fields."
-   ],
-   "why": "A checkbox's two values can drive another field's choices, but it has no list of values to filter, so it can't be dependent.",
-   "traps": "Dependent fields must be custom picklists or multi-select picklists; standard picklists can control but never depend.",
-   "strip": "Dependent = something you pick from a list. A checkbox can only be in charge.",
-   "tags": [
-    "field dependencies"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q09",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "The Password Policy shows that the length of time until passwords expire is 90 days. However, some users find that their passwords expire every 30 days. Where should the System Administrator change the password expiration period for these users?",
-   "options": [
-    "Permission Sets assigned to the Users",
-    "Roles assigned to the Users",
-    "Profiles assigned to the Users",
-    "Individual User records"
-   ],
-   "answer": [
-    "Profiles assigned to the Users"
-   ],
-   "why": "Profile password policies override the org-wide policy for everyone on that profile.",
-   "traps": "Permission sets don't carry login rules; roles control record visibility; there's no per-user expiration setting.",
-   "strip": "A login rule that differs for some users (password policy, login hours, login IPs) → profile.",
-   "tags": [
-    "security",
-    "profiles"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q10",
-   "type": "question",
-   "objective": "service",
-   "prompt": "Ursa Major Solar is setting up case assignment rules. What are two places where the cases can be assigned? Select 2.",
-   "options": [
-    "Profile",
-    "Queue",
-    "Contact",
-    "User"
-   ],
-   "answer": [
-    "Queue",
-    "User"
-   ],
-   "why": "Assignment rules set the owner, and only a User or a Queue can own a record.",
-   "traps": "Profiles are permission sets for users; Contacts are customers, not users.",
-   "strip": "Who can own a record → User or Queue.",
-   "tags": [
-    "assignment rules"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q11",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "After a meeting with Sales Managers, it has been determined that the standard ‘Annual Revenue’ field is no longer needed to support Account management. What can the administrator do to remove the field? Select 2.",
-   "options": [
-    "Hide the field from Users using field-level security.",
-    "Use a restriction rule to hide the field.",
-    "Delete the field from the Account Object",
-    "Remove the field from the page layout."
-   ],
-   "answer": [
-    "Hide the field from Users using field-level security.",
-    "Remove the field from the page layout."
-   ],
-   "why": "Standard fields can't be deleted, so hide it: take it off the page layout and/or use FLS to hide it everywhere.",
-   "traps": "Only custom fields can be deleted; restriction rules limit records, not fields.",
-   "strip": "Get rid of a standard field → hide it (layout + FLS).",
-   "tags": [
-    "fields"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q12",
-   "type": "question",
-   "objective": "service",
-   "prompt": "An administrator is configuring Case Assignment Rules to route incoming support cases to regional queues. Which two statements accurately describe Case Assignment Rule behaviors and fallback handling? Choose 2 answers",
-   "options": [
-    "Only one Case Assignment Rule can be active in an organization at any given time.",
-    "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings.",
-    "Multiple Case Assignment Rules can run simultaneously on the same incoming record.",
-    "Case Assignment Rules can assign cases directly to User Roles or Public Groups."
-   ],
-   "answer": [
-    "Only one Case Assignment Rule can be active in an organization at any given time.",
-    "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings."
-   ],
-   "why": "One active rule; no match → Default Case Owner; targets are users or queues only.",
-   "translate": {
-    "situation": "Route cases and know what happens to the leftovers.",
-    "feature": "Case Assignment Rules + Default Case Owner.",
-    "see": "Matched cases go to the entry's user or queue; unmatched ones go to the Default Case Owner.",
-    "notOther": "Only one rule is active; rules assign to users or queues, not roles or groups."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Only one rule runs; roles and public groups can never own records.",
-   "strip": "One active rule; first match wins; User or Queue; no match → default owner."
-  },
-  {
-   "id": "voucher2-q13",
-   "type": "question",
-   "objective": "agentforce",
-   "prompt": "The administrator wants to make a small instruction tweak and quickly verify it improves responses for three common scenarios. What is the most efficient approach?",
-   "options": [
-    "Edit the instructions, run Conversation Preview for the three scenarios, and compare outputs against expected responses.",
-    "Export all cases and test in Excel.",
-    "Deploy to production and wait for user feedback.",
-    "Disable the agent, then re-enable after 24 hours."
-   ],
-   "answer": [
-    "Edit the instructions, run Conversation Preview for the three scenarios, and compare outputs against expected responses."
-   ],
-   "why": "Conversation Preview in Agentforce Builder shows the reply, the topic chosen and the actions run, immediately and without touching production.",
-   "traps": "Excel can't run an agent; deploying makes customers the testers; disabling the agent tests nothing.",
-   "strip": "A few scenarios now → Conversation Preview. Many, repeatable → Testing Center.",
-   "tags": [
-    "testing"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q14",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "Universal Containers has a Lead Assignment Rule containing 5 separate rule entries evaluated sequentially from Entry 1 to Entry 5. An incoming Web-to-Lead record matches the criteria for both Entry 2 and Entry 4. How does Salesforce process and assign this record?",
-   "options": [
-    "Salesforce assigns the Lead using Entry 4 criteria because it is the most specific match.",
-    "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries.",
-    "Salesforce creates two duplicate Lead records, assigning one via Entry 2 and one via Entry 4.",
-    "Salesforce triggers an execution fault and assigns the Lead to the Default Lead Owner."
-   ],
-   "answer": [
-    "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries."
-   ],
-   "why": "Entries are checked in order; the first match wins and the rest are skipped.",
-   "traps": "Specificity isn't compared; rules never create records; the default owner is only for no match.",
-   "strip": "First match wins → put specific entries first, broad ones last.",
-   "tags": [
-    "assignment rules"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q15",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "What is a benefit of entering Trusted IP Ranges in the Network Access section?",
-   "options": [
-    "Users are unable to log in through the API on networks not marked as trusted.",
-    "All attempts to log in from outside the network will be denied.",
-    "AppExchange packages can communicate with an external site.",
-    "Users who log in to the Trusted IP network will not be required to complete additional identity verification."
-   ],
-   "answer": [
-    "Users who log in to the Trusted IP network will not be required to complete additional identity verification."
-   ],
-   "why": "Inside a trusted range Salesforce skips identity verification; outside it, users can still log in after verifying.",
-   "traps": "Blocking logins is Login IP Ranges on the profile; calling external sites is Remote Site Settings.",
-   "strip": "Network Access trusted IPs → skip verification. Profile login IP ranges → block.",
-   "tags": [
-    "security"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q16",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "When creating a new Sharing Rule, which of the following are valid selections you can make when you select the users to share with? Select 3.",
-   "options": [
-    "Public Groups",
-    "Queues",
-    "Users",
-    "Roles and Subordinates",
-    "Roles"
-   ],
-   "answer": [
-    "Public Groups",
-    "Roles and Subordinates",
-    "Roles"
-   ],
-   "why": "Sharing rules share with groups: public groups, roles, roles and subordinates (and territories).",
-   "traps": "A single user needs manual sharing or a public group; queues own records, they aren't share targets.",
-   "strip": "Own a record → User or Queue. Sharing rule target → Public Group, Role, Role & Subordinates.",
-   "tags": [
-    "sharing"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q17",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "What are two Initial Submission Actions in an Approval Process? Select 2.",
-   "options": [
-    "The record is locked for everyone except the Owner.",
-    "An outbound message can be sent to another application.",
-    "The value of a field on the record can be updated.",
-    "An event can be assigned to users in a specific Profile."
-   ],
-   "answer": [
-    "An outbound message can be sent to another application.",
-    "The value of a field on the record can be updated."
-   ],
-   "why": "Approval actions are Field Update, Email Alert, Task and Outbound Message, plus the default record lock.",
-   "traps": "The lock includes the owner (only admins and the approver can edit); approvals create Tasks, not Events, and never assign to a profile.",
-   "strip": "Approval actions → Field Update, Email Alert, Task, Outbound Message.",
-   "tags": [
-    "approvals"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q18",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "An administrator is setting up scheduled flows and background process automation. When a background flow encounters an unhandled system fault or executes without an active interactive user session, Salesforce sends system fault emails and attributes system logs to a designated user context. Where is this user configured?",
-   "options": [
-    "Default Lead Owner in Lead Settings",
-    "Default Case Owner in Support Settings",
-    "Primary System Administrator Profile",
-    "Default Workflow User in Process Automation Settings"
-   ],
-   "answer": [
-    "Default Workflow User in Process Automation Settings"
-   ],
-   "why": "The Default Workflow User in Process Automation Settings stands in when automation runs without a user.",
-   "traps": "Default Lead and Case Owner are assignment fallbacks; a profile isn't a user.",
-   "strip": "Automation with no user → Default Workflow User (Process Automation Settings).",
-   "tags": [
-    "flow"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q19",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "What is true regarding dashboards in Lightning Experience? Select 2.",
-   "options": [
-    "The person selected under “View Dashboard As” determines that the data is shown.",
-    "Dashboard viewers cannot choose whom they view the dashboard as.",
-    "Dashboards can only have the same view as the person who created it.",
-    "When given the “View All Data” permission, a User can view a dashboard as any User."
-   ],
-   "answer": [
-    "The person selected under “View Dashboard As” determines that the data is shown.",
-    "When given the “View All Data” permission, a User can view a dashboard as any User."
-   ],
-   "why": "The running user ('View Dashboard As') decides the data. If viewers may choose, View All Data lets them view as anyone; View My Team's Dashboards lets them view as people below them.",
-   "traps": "Viewers can choose when the creator allows it; the running user can be me, another person, or the viewer (dynamic).",
-   "strip": "Running user decides the data. Dashboard viewer = dynamic dashboard.",
-   "tags": [
-    "dashboards"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q20",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "If the Organization-Wide Default setting on Accounts is set to Private, which records will an Account report return?",
-   "options": [
-    "All Accounts for the entire organization, regardless of which user that generated the report",
-    "None of the above.",
-    "All accounts owned by the user running the report only.",
-    "Accounts owned by the user and the users below them in the Role Hierarchy."
-   ],
-   "answer": [
-    "Accounts owned by the user and the users below them in the Role Hierarchy."
-   ],
-   "why": "A report shows only what the running user can see: their own records plus those owned by people below them in the role hierarchy (plus any sharing).",
-   "traps": "Reports don't bypass sharing; 'own records only' forgets the role hierarchy.",
-   "strip": "A report shows what the running user can see.",
-   "tags": [
-    "reports",
-    "sharing"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q21",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "When creating a Custom Report Type, which are valid relationship options to choose between objects A and B? (select 2)",
-   "options": [
-    "All \"A\" and \"B\" records must be related.",
-    "Each \"A\" record must have at least one related \"B\" record.",
-    "All \"A\" and \"B\" records must be unrelated.",
-    "A records may or may not have related \"B\" records."
-   ],
-   "answer": [
-    "Each \"A\" record must have at least one related \"B\" record.",
-    "A records may or may not have related \"B\" records."
-   ],
-   "why": "The two choices are 'each A must have at least one B' (only A's with B's) and 'A may or may not have B' (all A's).",
-   "traps": "There's no 'unrelated' option; A's without B's come from a cross filter in the report.",
-   "strip": "Report type → must have / may or may not have. A's without B's → cross filter.",
-   "tags": [
-    "report types"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q22",
-   "type": "question",
-   "objective": "service",
-   "prompt": "The Operations Manager has requested that a form be added to the Company website, so that customers can fill out support requests. These requests need to create a new case in Salesforce upon submission from the website. What Salesforce feature would you utilize to fulfill this request?",
-   "options": [
-    "Web-to-Case",
-    "Escalation Rule",
-    "Assignment Rules",
-    "Web-to-Lead"
-   ],
-   "answer": [
-    "Web-to-Case"
-   ],
-   "why": "Web-to-Case generates an HTML form for your site; each submission creates a Case.",
-   "traps": "Escalation rules act on cases left open too long; assignment rules set the owner after creation; Web-to-Lead creates Leads.",
-   "strip": "Website form → Web-to-[the object it creates].",
-   "tags": [
-    "web-to-case"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q23",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "What type of object facilitates a many-to-many relationship in Salesforce?",
-   "options": [
-    "Standard Object",
-    "External Object",
-    "Custom Object",
-    "Junction Object"
-   ],
-   "answer": [
-    "Junction Object"
-   ],
-   "why": "A junction object is a custom object with two master-detail fields, linking each A to each B.",
-   "traps": "External objects show data stored outside Salesforce; 'custom object' is too general.",
-   "strip": "Many-to-many → junction object (two master-details; the first one is primary).",
-   "tags": [
-    "relationships"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q24",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "An organization enables Einstein for Sales features to boost sales productivity. Which two features automatically assist reps by assigning predictive closure likelihood scores to deals and logging emails without manual data entry? Choose 2 answers",
-   "options": [
-    "Einstein Activity Capture",
-    "Einstein Auto-Response Rules",
-    "Einstein Opportunity Scoring",
-    "Einstein Lead Escalation"
-   ],
-   "answer": [
-    "Einstein Activity Capture",
-    "Einstein Opportunity Scoring"
-   ],
-   "why": "Opportunity Scoring scores how likely deals are to close; Activity Capture logs email and calendar activity automatically.",
-   "traps": "Auto-response and escalation rules exist but aren't Einstein features; 'Einstein' glued onto a feature name is a trap.",
-   "strip": "Close likelihood → Opportunity Scoring. Auto-log email → Activity Capture.",
-   "tags": [
-    "einstein"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q25",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "What can be used to launch a Flow? Select 2",
-   "options": [
-    "Updated Record",
-    "Global Action",
-    "Picklist",
-    "Custom Button"
-   ],
-   "answer": [
-    "Updated Record",
-    "Custom Button"
-   ],
-   "why": "Record-triggered flows run when a record is created or updated; a custom button or link can open a flow URL.",
-   "traps": "Global actions can't use the Flow action type (object-specific actions can); a picklist is a field, not a launcher.",
-   "strip": "Flow from a quick action → object-specific only, never global.",
-   "tags": [
-    "flow"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q26",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "Ursa Major Solar is adding objects to a custom report type. How many objects, maximum, can be added to this report type?",
-   "options": [
-    "Two as long as the objects have associations",
-    "One as long as the object has a master-child relationship",
-    "Unlimited as long as the objects have associations",
-    "Four as long as the objects have associations"
-   ],
-   "answer": [
-    "Four as long as the objects have associations"
-   ],
-   "why": "Up to 4 objects (A → B → C → D), each related to the one before.",
-   "traps": "Two is only the basic case; there's a hard cap of 4.",
-   "strip": "Custom report type → max 4 objects; Add Fields via Lookup without using a slot.",
-   "tags": [
-    "report types"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q27",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "When creating a Lead Assignment Rule, where can the Lead be routed to? Select 2.",
-   "options": [
-    "Queues",
-    "Teams",
-    "Roles",
-    "Users"
-   ],
-   "answer": [
-    "Queues",
-    "Users"
-   ],
-   "why": "Assignment rules set the owner: a User or a Queue.",
-   "traps": "Teams add collaborators and roles control visibility; neither can own a record.",
-   "strip": "Owner → User or Queue.",
-   "tags": [
-    "assignment rules"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q28",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "Ursa Major Solar needs to fulfill the following requirements: A custom object must be created to capture account survey data. Users need the ability to select an account from the survey record and view related surveys on the account record.Which two actions can an administrator configure to meet these requirements? Select 2.",
-   "options": [
-    "Put the survey related list on the account page layout.",
-    "Put the account related list on the survey page layout.",
-    "Create a lookup relationship field on the account object.",
-    "Create a lookup relationship field on the survey object."
-   ],
-   "answer": [
-    "Put the survey related list on the account page layout.",
-    "Create a lookup relationship field on the survey object."
-   ],
-   "why": "Survey is the child: a lookup on Survey picks the account, and the Surveys related list on the Account layout shows them.",
-   "traps": "A lookup on Account points the wrong way; a survey has one account, so it doesn't need a related list.",
-   "strip": "Field on the child, related list on the parent.",
-   "tags": [
-    "relationships"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q29",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "Universal Containers collaborates with external vendors using Chatter. The administrator enables the \"Allow Customers\" setting on a private group and invites external vendor users with Chatter External licenses. What constraint applies to customer-enabled Chatter groups?",
-   "options": [
-    "External users can view all Opportunity records owned by group members.",
-    "Customer users can create new sub-groups and invite other external users.",
-    "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups.",
-    "Customer-enabled groups automatically convert into Public Groups."
-   ],
-   "answer": [
-    "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups."
-   ],
-   "why": "Customer-enabled groups can't have records added, so outsiders never see your data; external users see only their groups and those groups' members.",
-   "traps": "Group membership never grants record access; external users can't invite anyone; 'Public Group' is a sharing feature.",
-   "strip": "Customer group → private, no records, external users see only their groups.",
-   "tags": [
-    "chatter"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q30",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "A call center requires a step-by-step guided wizard for agents processing warranty returns. The wizard must collect customer input across multiple screens, display dynamic diagnostic questions based on previous answers, and create a child Case record upon completion. Which flow type must be used?",
-   "options": [
-    "Record-Triggered Flow",
-    "Autolaunched Flow (No Trigger)",
-    "Screen Flow",
-    "Schedule-Triggered Flow"
-   ],
-   "answer": [
-    "Screen Flow"
-   ],
-   "why": "Only Screen Flows show screens; Decision elements handle the dynamic questions and Create Records makes the Case.",
-   "traps": "Record-triggered, autolaunched and scheduled flows run in the background with no screens.",
-   "strip": "Wizard / guided / user input → Screen Flow.",
-   "tags": [
-    "flow"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q31",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "What should a System Administrator configure to provide each Sales Rep a dashboard that shows their current Opportunity pipeline?",
-   "options": [
-    "Create a dashboard for each user.",
-    "Set a Dashboard filter to the current user.",
-    "Set the Dashboard Running User to the current user.",
-    "Create a dashboard folder for each user."
-   ],
-   "answer": [
-    "Set the Dashboard Running User to the current user."
-   ],
-   "why": "Running user = the dashboard viewer makes a dynamic dashboard: one dashboard, and each rep sees their own data.",
-   "traps": "Per-user dashboards don't scale; filters and folders don't change whose data is shown.",
-   "strip": "Each person sees their own data → dynamic dashboard.",
-   "tags": [
-    "dashboards"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q32",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "Your org has set the organization-wide default for Opportunities to Public Read/Write. Your Sales Reps are complaining that the reports they see contain all opportunities for the entire company. They would like these reports to only display opportunities that they actually own.",
-   "options": [
-    "Tell them to click the Owner column header in the Report to sort the list by owner and then scroll to their name.",
-    "Customize the Report and change the Filter setting to include on My Opportunities'.",
-    "Change the organization-wide default for Opportunities to Private.",
-    "Create a Visualforce page that is set to only display opportunities they own."
-   ],
-   "answer": [
-    "Customize the Report and change the Filter setting to include on My Opportunities'."
-   ],
-   "why": "The report's Show Me filter (My Opportunities) narrows what's displayed without changing anyone's access.",
-   "traps": "Changing the OWD cuts real access org-wide; sorting is a workaround; Visualforce is code.",
-   "strip": "Show only mine → report filter. Shouldn't be allowed to see → sharing.",
-   "tags": [
-    "reports"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q33",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "Sales Reps at your company are grouped by different regions. Sales Reps should only work with Leads that are in their region. What should an administrator implement to control what Leads Sales Reps can access?",
-   "options": [
-    "Set up an assignment rule to assign Leads to individuals.",
-    "Set up assignment rules to assign Leads to queues based on region.",
-    "Set up Sharing Rule to share Lead records with other Users in the same region.",
-    "Set up a Flow to assign Leads to queues based on region."
-   ],
-   "answer": [
-    "Set up assignment rules to assign Leads to queues based on region."
-   ],
-   "why": "One queue per region holding that region's reps; assignment rule entries route each lead to its region's queue.",
-   "traps": "Assigning to individuals is brittle; sharing rules only add access; Flow rebuilds a built-in feature.",
-   "strip": "Route Leads/Cases to a group by criteria → assignment rule → queue.",
-   "tags": [
-    "assignment rules",
-    "queues"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q34",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "What is true about changing the default company locale?",
-   "options": [
-    "When changed, the company locale is applied to all Users.",
-    "The company locale will be applied as the default locale for new Users, but only the Administrator can change the personal locale of a User.",
-    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting.",
-    "The company locale will only be applied to as the default for new Users, and cannot be changed."
-   ],
-   "answer": [
-    "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting."
-   ],
-   "why": "Default for new users; each user can change their own.",
-   "translate": {
-    "situation": "Set date/number formats for the company.",
-    "feature": "Company locale (Company Information) vs. personal locale (user settings).",
-    "see": "New users start with the company locale; anyone can switch theirs.",
-    "notOther": "It doesn't change existing users, and users don't need an admin to change their own."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Existing users aren't changed; users don't need an admin to change their own.",
-   "strip": "Company settings = defaults for new users; each user can override their own."
-  },
-  {
-   "id": "voucher2-q35",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "What is true about Private Events?",
-   "options": [
-    "Only the User and a System Administrator can view the Event.",
-    "Only the User and Users above in the role hierarchy can see the Event.",
-    "Only the User that created the Event and Users with the “View All Data” permission can view the Event.",
-    "Only the User that created the event can see it."
-   ],
-   "answer": [
-    "Only the User that created the Event and Users with the “View All Data” permission can view the Event."
-   ],
-   "why": "Private events are hidden from everyone except the owner and users with View All Data; others just see 'busy'.",
-   "traps": "The deciding factor is the View All Data permission, not the admin profile; the role hierarchy doesn't apply.",
-   "strip": "Private Event → owner + View All Data only.",
-   "tags": [
-    "activities"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q36",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "What file type is used when importing data into Salesforce using tools such as Data Import Wizard and Data Loader?",
-   "options": [
-    "HTML",
-    "CSV",
-    "DOC",
-    "PDF"
-   ],
-   "answer": [
-    "CSV"
-   ],
-   "why": "Both the Data Import Wizard and Data Loader read and write CSV files.",
-   "traps": "HTML, DOC and PDF are documents for people, not data files a tool can map.",
-   "strip": "Import/export → CSV. Over 50,000 records, delete, or export → Data Loader.",
-   "tags": [
-    "data import"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q37",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "Which Activity Management feature is used to schedule a work assignment activity for a user? These items pop-up as reminders, at the previously set time and can be marked as complete by the user.",
-   "options": [
-    "Cloud Scheduler",
-    "Task",
-    "Event",
-    "Activity"
-   ],
-   "answer": [
-    "Task"
-   ],
-   "why": "A Task is a to-do with a due date, an optional reminder, and a status you can mark Completed.",
-   "traps": "Events have start and end times and aren't marked complete; Activity is the umbrella term; Cloud Scheduler is retired.",
-   "strip": "To-do + mark complete → Task. Calendar time → Event.",
-   "tags": [
-    "activities"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q38",
-   "type": "question",
-   "objective": "agentforce",
-   "prompt": "A user can open Agentforce but receives an error when the agent tries to reference Knowledge. What should the admin check?",
-   "options": [
-    "That the user has Knowledge object permissions and access to the relevant articles.",
-    "That the user has a personal email signature configured.",
-    "That the user has a custom report type for Knowledge.",
-    "That the user is assigned to a queue."
-   ],
-   "answer": [
-    "That the user has Knowledge object permissions and access to the relevant articles."
-   ],
-   "why": "Agents work within the user's access, so the user needs Knowledge object permission and visibility to the articles.",
-   "traps": "Email signatures, report types and queues don't affect reading Knowledge.",
-   "strip": "Agent fails on one kind of data → check the user's access to that data.",
-   "tags": [
-    "knowledge",
-    "permissions"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q39",
-   "type": "question",
-   "objective": "agentforce",
-   "prompt": "An organization wants an AI agent that can engage website visitors, qualify inbound Leads, answer basic product questions, and book meetings on sales reps’ calendars. Which Agentforce agent type best meets this requirement?",
-   "options": [
-    "Agentforce SDR",
-    "Agentforce Sales Coach",
-    "Agentforce Employee Agent",
-    "Agentforce Service Agent"
-   ],
-   "answer": [
-    "Agentforce SDR"
-   ],
-   "why": "Agentforce SDR qualifies inbound leads, answers product questions and books meetings with reps.",
-   "traps": "Sales Coach trains reps; Employee Agent is internal; Service Agent handles support Cases.",
-   "strip": "Prospects + qualify + meetings → SDR.",
-   "tags": [
-    "agent types"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q40",
-   "type": "question",
-   "objective": "service",
-   "prompt": "An administrator is configuring Support Settings in Setup prior to activating new Case Assignment Rules. What is the primary function of the Default Case Owner setting?",
-   "options": [
-    "It automatically transfers case ownership to the running user who created the Web-to-Case form.",
-    "It overrides Case Team permissions when a case is escalated.",
-    "It designates the running user for Omni-Channel routing.",
-    "It serves as the fallback owner (a designated User or Queue) for incoming cases that do not match any criteria in the active Case Assignment Rule."
-   ],
-   "answer": [
-    "It serves as the fallback owner (a designated User or Queue) for incoming cases that do not match any criteria in the active Case Assignment Rule."
-   ],
-   "why": "Cases that match no assignment rule entry go to the Default Case Owner (a User or Queue) set in Support Settings.",
-   "traps": "Escalation is Escalation Rules; Omni-Channel has no running user; background automation uses the Default Workflow User.",
-   "strip": "No matching entry → default owner.",
-   "tags": [
-    "assignment rules"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q41",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "The Human Resources Director needs the Heads of each Department to be able to edit Time Off Requests, which is a Custom Object in your Salesforce organization. The Heads of these Departments each belong to different Profiles in Salesforce, and yet they need the ability to edit Time Off Requests to be extended to them. What is the best option for accomplishing this requirement?",
-   "options": [
-    "Create a new Permission Set and enable Edit permission on the Time Off Request object, then assign the Department Head users to the new Permission Set.",
-    "Set the field level security to all fields on the Time Off Request object to Read-Only, and then open up access to be able to edit the Time Off Request records by creating a Sharing Rule for the Department Heads.",
-    "Create a new profile called Department Heads and assign each of the Department Head users to this new profile.",
-    "Set the organization-wide default for Time Off Requests to Private and create a Sharing Rule to allow access to the requests to the Department Heads."
-   ],
-   "answer": [
-    "Create a new Permission Set and enable Edit permission on the Time Off Request object, then assign the Department Head users to the new Permission Set."
-   ],
-   "why": "A permission set adds object Edit on top of each user's existing profile.",
-   "traps": "Sharing can't grant object permissions; a new profile would strip their current ones; read-only FLS blocks edits.",
-   "strip": "Extra ability for some users across profiles → Permission Set.",
-   "tags": [
-    "permission sets"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q42",
-   "type": "question",
-   "objective": "service",
-   "prompt": "You were previously asked by Users to add an additional selection to the Case Status picklist field. Your organization currently uses record types for Cases. Users are reporting that this new field is not available for selection. Where in Setup would you go to troubleshoot this issue?",
-   "options": [
-    "Support Processes",
-    "Support Settings",
-    "Sales Path",
-    "Lead Processes",
-    "Sales Processes"
-   ],
-   "answer": [
-    "Support Processes"
-   ],
-   "why": "With record types, Case Status values shown come from the support process.",
-   "translate": {
-    "situation": "A new Case Status value doesn't show up.",
-    "feature": "Support Process (the business process for Case Status).",
-    "see": "Add the value to the support process used by that record type.",
-    "notOther": "Support Settings holds defaults like Default Case Owner, not status values."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Support Settings holds defaults like Default Case Owner; Lead and Sales Processes are for other objects.",
-   "strip": "New value missing from Case Status → Support Process."
-  },
-  {
-   "id": "voucher2-q43",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "What can be implemented in a Salesforce Org to help reduce the time Sales Reps need to enter information and increase productivity? Select 2.",
-   "options": [
-    "Create lookup relationship fields to other objects.",
-    "Formula Fields to auto-populate information from related objects.",
-    "Enable field history tracking.",
-    "Create custom visualforce pages,"
-   ],
-   "answer": [
-    "Create lookup relationship fields to other objects.",
-    "Formula Fields to auto-populate information from related objects."
-   ],
-   "why": "Lookups link records; formulas pull related data in automatically.",
-   "translate": {
-    "situation": "Cut down on typing for reps.",
-    "feature": "Lookup fields + formula fields.",
-    "see": "Pick a related record once; formulas show its details automatically.",
-    "notOther": "Field history tracking audits changes; it doesn't save typing."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Field history tracking audits changes; Visualforce is code.",
-   "strip": "Cut typing → lookup (pick, don't retype) + formula (show automatically)."
-  },
-  {
-   "id": "voucher2-q44",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "Which of the following are valid ways in which a Task can be created in Salesforce? Select 3.",
-   "options": [
-    "Creating from a report.",
-    "Created from a list view.",
-    "Manual creation",
-    "Create from a Dashboard.",
-    "Created from an Approval Process"
-   ],
-   "answer": [
-    "Created from a list view.",
-    "Manual creation",
-    "Created from an Approval Process"
-   ],
-   "why": "Tasks can be created manually, from list views, and as approval process actions (also by Flow and logged email).",
-   "traps": "Reports and dashboards are read-only views of data.",
-   "strip": "Reports and dashboards never create records.",
-   "tags": [
-    "activities"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q45",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "As an Administrator, you have added the “Attendee” field to the Event page layout to allow for Sales Reps to track who is attending an Event. Who can be added as an attendee in the “Attendee” field? Select 3.",
-   "options": [
-    "Users",
-    "Accounts",
-    "Contacts",
-    "Leads",
-    "Campaign Members"
-   ],
-   "answer": [
-    "Users",
-    "Contacts",
-    "Leads"
-   ],
-   "why": "Attendees must be people: Users, Contacts and Leads.",
-   "traps": "Accounts are companies (use Related To); campaign members are links to Leads or Contacts.",
-   "strip": "Attendees → User, Contact, Lead.",
-   "tags": [
-    "activities"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q46",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "What are visual components that can be added to a Dashboard? Select 3.",
-   "options": [
-    "Charts",
-    "Tables",
-    "List Views",
-    "Gauges",
-    "Report Types"
-   ],
-   "answer": [
-    "Charts",
-    "Tables",
-    "Gauges"
-   ],
-   "why": "Dashboard components are charts, tables, gauges and metrics, each fed by one source report.",
-   "traps": "List views live on object tabs; report types are templates for reports.",
-   "strip": "Report type → report → dashboard component.",
-   "tags": [
-    "dashboards"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q47",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "Sales Reps often work with one another on Opportunities. Some colleagues should be able to edit the Opportunity record, but some only need to view it. What can be implemented in order to give Users the required access to the Opportunity?",
-   "options": [
-    "The Salesforce Administrator should set up a Role Hierarchy to open access to the Opportunity records.",
-    "The User should manually share the Opportunity with each User that needs access.",
-    "The Salesforce Administrator should create a sharing rule to provide Users access.",
-    "The Salesforce Administrator should enable Opportunity Teams. The appropriate Users can be added to an Opportunity Team and set access for each User."
-   ],
-   "answer": [
-    "The Salesforce Administrator should enable Opportunity Teams. The appropriate Users can be added to an Opportunity Team and set access for each User."
-   ],
-   "why": "Opportunity Teams add collaborators per deal, each with a role and Read Only or Read/Write access.",
-   "traps": "The role hierarchy only opens access upward; manual sharing is one-off; sharing rules work on groups by criteria.",
-   "strip": "Per-deal collaborators with different access → Opportunity Team.",
-   "tags": [
-    "teams",
-    "sharing"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q48",
-   "type": "question",
-   "objective": "object-manager",
-   "prompt": "Universal Containers wants to create a field to store credit card numbers and needs to make sure the information is protected. Which two actions allow the System Administrator to provide enhanced security for this field? Select 2.",
-   "options": [
-    "Create an Encrypted Text field.",
-    "Use different Record Types for users.",
-    "Update Field-Level Security settings.",
-    "Configure different Page Layouts for users."
-   ],
-   "answer": [
-    "Create an Encrypted Text field.",
-    "Update Field-Level Security settings."
-   ],
-   "why": "Encrypted Text masks the value (View Encrypted Data shows it); FLS hides the field everywhere for users who shouldn't see it.",
-   "traps": "Record types and page layouts only change the screen, not security.",
-   "strip": "Field security → FLS + encryption, never layouts.",
-   "tags": [
-    "security"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q49",
-   "type": "question",
-   "objective": "agentforce",
-   "prompt": "A marketing-driven sales organization wants an AI agent that can engage prospects outside of business hours, answer product questions, and convert interest into scheduled demos. Which Agentforce agent type is most appropriate?",
-   "options": [
-    "Agentforce Sales Coach",
-    "Agentforce SDR",
-    "Agentforce Employee Agent",
-    "Agentforce Service Agent"
-   ],
-   "answer": [
-    "Agentforce SDR"
-   ],
-   "why": "Prospects + booking meetings = SDR.",
-   "translate": {
-    "situation": "Engage prospects 24/7 and book demos.",
-    "feature": "Agentforce SDR.",
-    "see": "The agent chats with prospects and puts demos on reps' calendars.",
-    "notOther": "Service Agent is for existing customers with issues, not prospects."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Sales Coach trains reps; Service Agent handles existing customers' issues.",
-   "strip": "Prospects + demos → SDR."
-  },
-  {
-   "id": "voucher2-q50",
-   "type": "question",
-   "objective": "service",
-   "prompt": "Cloud Kicks (CK) has a service console that is used by agents who take calls from customers and stores with questions about products.The CK case process is complex and agents often make mistakes. To help the administrator has created a screen flow that guides agents through the process. How should the administrator deploy the screen flow?",
-   "options": [
-    "Launch the flow from the utility bar in the console",
-    "Create a link that launches the screen flow",
-    "Use a custom action that launches the screen flow",
-    "Use code to launch the screen flow in a modal"
-   ],
-   "answer": [
-    "Launch the flow from the utility bar in the console"
-   ],
-   "why": "The console utility bar keeps the flow one click away from every tab while agents are on calls.",
-   "traps": "A link is clumsy; a custom action only works on the record page it sits on; code is never the best answer.",
-   "strip": "Console + needed constantly → utility bar.",
-   "tags": [
-    "console",
-    "flow"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q51",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "Where can the Salesforce ID of a record be found? Select 3.",
-   "options": [
-    "The record URL in the internet browser.",
-    "Record Name",
-    "Export file from Data Loader",
-    "Record Profiles",
-    "Reports."
-   ],
-   "answer": [
-    "The record URL in the internet browser.",
-    "Export file from Data Loader",
-    "Reports."
-   ],
-   "why": "Same as K2U Exam 4 Q56.",
-   "translate": {
-    "situation": "Find a record's unique ID.",
-    "feature": "Record ID (15 or 18 characters).",
-    "see": "In the URL, a Data Loader export, or a report column.",
-    "notOther": "'Record Profiles' isn't a thing; the name isn't the ID."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "The name isn't the ID; records don't have profiles.",
-   "strip": "Record ID → URL, Data Loader export, report column."
-  },
-  {
-   "id": "voucher2-q52",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "You have specified Login IP Ranges across all Profiles in your Salesforce org. What happens when a user tries to log in from an undesignated IP address that is outside of the allowed Login IP Ranges that you have set?",
-   "options": [
-    "The login request is denied.",
-    "The user receives a login challenge for verification of their identity, such as a code sent to their mobile phone.",
-    "The user is allowed to log in, but remains in Read-Only mode until the Login IP Range is updated to include their IP Address.",
-    "An email alert is sent to the System Administrator and the user is allowed to log in."
-   ],
-   "answer": [
-    "The login request is denied."
-   ],
-   "why": "Profile Login IP Ranges are a hard block: logins from outside the range are refused.",
-   "traps": "The identity challenge is how org-wide Trusted IP Ranges behave; there's no read-only mode.",
-   "strip": "Profile IP range → denied. Network Access trusted range → verify.",
-   "tags": [
-    "security"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q53",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "Where should an Administrator go in Salesforce to disable a group of Users to access an application in Salesforce?",
-   "options": [
-    "Object Manager",
-    "Profile",
-    "Roles",
-    "Sharing Rule"
-   ],
-   "answer": [
-    "Profile"
-   ],
-   "why": "App visibility (Assigned Apps) is set on the profile, or added with a permission set.",
-   "traps": "Object Manager builds objects; roles and sharing rules control records.",
-   "strip": "What you can do or see in the UI → profile / permission set.",
-   "tags": [
-    "profiles"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q54",
-   "type": "question",
-   "objective": "automation",
-   "prompt": "An administrator is configuring an Approval Process step for expense requests. Which option can be designated as an assigned approver within an Approval Step?",
-   "options": [
-    "Any active Contact record associated with the Account.",
-    "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue.",
-    "The System Administrator Profile.",
-    "The Public Group assigned to the record's OWD."
-   ],
-   "answer": [
-    "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue."
-   ],
-   "why": "Approvers are Users: a specific user, the Manager field, a related user field, or a queue.",
-   "traps": "Contacts can't log in; a profile isn't a person; OWDs aren't assigned to groups.",
-   "strip": "Approvers → Users (Manager field, specific user, related user) or a Queue.",
-   "tags": [
-    "approvals"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q55",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "When mapping fields for the Lead conversion process, which other objects can you map fields to in Salesforce? Select 3.",
-   "options": [
-    "Contact",
-    "Lead",
-    "Report",
-    "Account",
-    "Opportunity"
-   ],
-   "answer": [
-    "Contact",
-    "Account",
-    "Opportunity"
-   ],
-   "why": "Conversion creates an Account, a Contact and an optional Opportunity; custom lead fields map to custom fields on those.",
-   "traps": "Lead is the source, not a target; reports aren't records.",
-   "strip": "Lead convert → Account + Contact + (optional) Opportunity.",
-   "tags": [
-    "leads"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q56",
-   "type": "question",
-   "objective": "data-analytics",
-   "prompt": "What type of rule does Salesforce make available that helps improve data quality?",
-   "options": [
-    "Workflow Rule",
-    "Escalation Rule",
-    "Validation Rule",
-    "Auto-response Rule"
-   ],
-   "answer": [
-    "Validation Rule"
-   ],
-   "why": "Validation rules block saves that break a condition, keeping bad data out.",
-   "traps": "Workflow is retired automation; escalation bumps old cases; auto-response emails form submitters.",
-   "strip": "Block bad values on save → validation rule. Stop duplicates → matching + duplicate rules.",
-   "tags": [
-    "data quality"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q57",
-   "type": "question",
-   "objective": "productivity",
-   "prompt": "Your Salesforce organization uses Chatter extensively. A common complaint among your users is that they find it difficult to keep up to date with all of the Chatter posts and they are requesting a way to organize and categorize Chatter feed posts across records they follow, people, groups and various other combinations. What can be created in Chatter to facilitate this functionality?",
-   "options": [
-    "Company Highlights",
-    "Streams",
-    "Bookmarks",
-    "Chatter Groups"
-   ],
-   "answer": [
-    "Streams"
-   ],
-   "why": "Streams combine feeds (up to 25 each, up to 100 streams).",
-   "translate": {
-    "situation": "Too many posts; users want custom feeds.",
-    "feature": "Chatter Streams.",
-    "see": "A custom feed mixing chosen people, groups, and records.",
-    "notOther": "Groups are for collaborating, not for combining feeds you follow."
-   },
-   "tags": [],
-   "missed": true,
-   "traps": "Company Highlights is a popular-posts filter; bookmarks save one post; groups are for collaborating.",
-   "strip": "Combine feeds you follow → Streams."
-  },
-  {
-   "id": "voucher2-q58",
-   "type": "question",
-   "objective": "config-setup",
-   "prompt": "Where does an administrator control field-level security for users?",
-   "options": [
-    "User",
-    "Profile",
-    "Sharing rule",
-    "Role"
-   ],
-   "answer": [
-    "Profile"
-   ],
-   "why": "Field-level security is set on the profile (and can be added with permission sets).",
-   "traps": "Nothing is set on a single user; sharing rules and roles control records, not fields.",
-   "strip": "Fields → profile / permission set. Records → OWD, roles, sharing.",
-   "tags": [
-    "security"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q59",
-   "type": "question",
-   "objective": "service",
-   "prompt": "Planetary Solar Inc. wants to implement automatic and dynamic chat routing that assigns chat requests to the correct agent based on the customers’ language: English, Japanese, or Spanish. Once a Support Agent accepts the request, the related Contact and Case records should open in new tabs. What can the Salesforce Administrator implement to meet this requirement?",
-   "options": [
-    "Auto-Response Rule",
-    "Case Assignment Rules",
-    "Omni-Channel",
-    "Data Import Wizard"
-   ],
-   "answer": [
-    "Omni-Channel"
-   ],
-   "why": "Omni-Channel routes work in real time to available agents with the right skills (language); accepting it opens the related records in tabs.",
-   "traps": "Assignment rules set an owner once at creation; auto-response sends emails; the import wizard loads data.",
-   "strip": "Real-time + available agent + skills + accept → Omni-Channel.",
-   "tags": [
-    "omni-channel"
-   ],
-   "missed": false
-  },
-  {
-   "id": "voucher2-q60",
-   "type": "question",
-   "objective": "sales-marketing",
-   "prompt": "Which two objects can be related to Campaign Members? Select 2.",
-   "options": [
-    "Contact Roles",
-    "Contacts",
-    "Leads",
-    "Partners"
-   ],
-   "answer": [
-    "Contacts",
-    "Leads"
-   ],
-   "why": "A campaign member links a Campaign to a Lead or a Contact, with a member status.",
-   "traps": "Contact roles describe a part in a deal or account; partners link accounts.",
-   "strip": "Campaign member → Lead or Contact.",
-   "tags": [
-    "campaigns"
-   ],
-   "missed": false
-  }
- ]
+  "source": "perscholas-voucher-2",
+  "title": "Per Scholas Voucher Qualification Exam (attempt 2)",
+  "note": "53/60. All 60 questions; the 7 scored misses are marked missed.",
+  "cards": [
+    {
+      "id": "voucher2-q01",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "A customer-facing AI agent is needed to resolve common service issues, log Cases, and hand off complex problems to human agents. Which Agentforce agent type supports this scenario?",
+      "options": [
+        "Agentforce Employee Agent",
+        "Agentforce Service Agent",
+        "Agentforce SDR",
+        "Agentforce Sales Coach"
+      ],
+      "answer": [
+        "Agentforce Service Agent"
+      ],
+      "why": "This tests matching the Agentforce agent type to its audience. Agentforce Service Agent is the customer-facing support agent: it answers common questions (usually grounded in Knowledge), creates and updates Cases, and hands off to a human agent through Omni-Channel when a problem is too complex. 'Customer-facing', 'log Cases' and 'hand off to human agents' are the signals. Rule of thumb: customers + Cases → Service Agent.",
+      "traps": "Employee Agent helps internal staff; SDR qualifies leads and books meetings; Sales Coach role-plays deals with reps.",
+      "strip": "Customer + Cases + hand off to a human → Service Agent.",
+      "tags": [
+        "agent types"
+      ],
+      "missed": false,
+      "wrong": {
+        "Agentforce Employee Agent": "Employee Agent serves your own staff with internal questions and tasks, not customers.",
+        "Agentforce SDR": "SDR agent works with prospects: qualifying leads and booking meetings, not resolving service issues.",
+        "Agentforce Sales Coach": "Sales Coach helps sales reps rehearse and prepare for deals; it doesn't talk to customers."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "voucher2-q02",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "An administrator needs to display the SIC Code located on the Account object on the associated Opportunity record. What should the administrator create to meet this requirement?",
+      "options": [
+        "Customize Lead Conversion mapping.",
+        "Create a cross-object formula field.",
+        "A custom Workflow.",
+        "A custom Account Lookup field."
+      ],
+      "answer": [
+        "Create a cross-object formula field."
+      ],
+      "why": "This tests displaying a parent record's field on a child record. Opportunity already has a lookup to Account, so a cross-object formula field on Opportunity (formula Account.Sic) shows the Account's SIC Code on every Opportunity. Because it's a formula, it always shows the current value and needs no automation or data entry. Rule of thumb: show a parent's field on the child → cross-object formula.",
+      "traps": "Lead mapping copies once at conversion; Workflow is retired and a copied value goes stale; Opportunity already has an Account lookup.",
+      "strip": "Show a parent field on the child → cross-object formula. Frozen copy → Flow. Summarize children → roll-up.",
+      "tags": [
+        "formulas"
+      ],
+      "missed": false,
+      "wrong": {
+        "Customize Lead Conversion mapping.": "Lead conversion mapping copies values only once when a lead is converted; it doesn't link existing Accounts and Opportunities.",
+        "A custom Workflow.": "Workflow Rules are retired, and copying the value would go stale when the Account's SIC Code changes.",
+        "A custom Account Lookup field.": "Opportunity already has a standard Account lookup; another lookup wouldn't display the SIC Code by itself."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields"
+      ]
+    },
+    {
+      "id": "voucher2-q03",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A User reports they are locked out of Salesforce. You have confirmed they have had multiple failed login attempts by reviewing their User Detail record. How can you as a Salesforce Administrator help the User get back into Salesforce? Select 2.",
+      "options": [
+        "Edit the User Detail record, and select the checkbox \"Geneate new password and notify user immediately\".",
+        "Create a new password for the User, and send them the new password in an email.",
+        "Select the Freeze button on the User Detail record page.",
+        "Select the Reset Password button on the User detail record page."
+      ],
+      "answer": [
+        "Edit the User Detail record, and select the checkbox \"Geneate new password and notify user immediately\".",
+        "Select the Reset Password button on the User detail record page."
+      ],
+      "why": "This tests unlocking a user who failed too many logins. Resetting a password also unlocks the account, and there are two ways to do it: the Reset Password button on the user record, or editing the user and checking 'Generate new password and notify user immediately'. Either way, Salesforce emails the user a secure link to set a new password. The Unlock button (shown on locked users) is the fastest fix but isn't offered here. Rule of thumb: locked out → Unlock or Reset Password.",
+      "traps": "Admins never set or email passwords; Freeze blocks logins instead of restoring them.",
+      "strip": "Locked out → Unlock or Reset Password. Stop logins now → Freeze. Gone for good → Deactivate (never delete).",
+      "tags": [
+        "users",
+        "security"
+      ],
+      "missed": false,
+      "wrong": {
+        "Create a new password for the User, and send them the new password in an email.": "Admins can't set and email a password themselves; Salesforce sends a secure reset link so no one else knows the password.",
+        "Select the Freeze button on the User Detail record page.": "Freeze stops a user from logging in (used before deactivation); it makes the problem worse, not better."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q04",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "On which object is a Master-Detail Relationship established?",
+      "options": [
+        "Master Object",
+        "Junction Object",
+        "Detail Object",
+        "None of the above."
+      ],
+      "answer": [
+        "Detail Object"
+      ],
+      "why": "This tests where relationship fields live. A master-detail field is created on the detail (child) object and points to the master (parent), just like a lookup. The master gets a related list of its details and can have roll-up summary fields; the detail inherits the master's sharing and is deleted when the master is deleted. Rule of thumb: relationship fields go on the child.",
+      "traps": "The master only gets a related list and roll-ups; a junction object (two master-details) is a special case, not the general rule.",
+      "strip": "Relationship fields go on the child. The parent gets the related list and roll-ups.",
+      "tags": [
+        "relationships"
+      ],
+      "missed": false,
+      "wrong": {
+        "Master Object": "The master object gets a related list and roll-up summaries, but the relationship field itself is created on the detail.",
+        "Junction Object": "A junction object is a special case (a child with two master-details for many-to-many), not the general answer.",
+        "None of the above.": "A correct option exists (Detail Object), so 'None of the above' is wrong."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+        "https://help.salesforce.com/s/articleView?id=overview_of_custom_object_relationships.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q05",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Universal Containers plans to deploy a Web-to-Case form on its public website. Which two statements regarding Web-to-Case capabilities, limits, and validation rules are accurate? Choose 2 answers.",
+      "options": [
+        "Web-to-Case supports a maximum limit of 5,000 cases generated daily; additional requests beyond this limit are queued and processed the following day.",
+        "Web-to-Case automatically assigns incoming cases to a Case Team if no assignment rules match.",
+        "Validation rules are evaluated before a Web-to-Case record is created; if a submission fails validation, the case is not created.",
+        "Only standard Case fields can be captured on a Web-to-Case web form."
+      ],
+      "answer": [
+        "Web-to-Case supports a maximum limit of 5,000 cases generated daily; additional requests beyond this limit are queued and processed the following day.",
+        "Validation rules are evaluated before a Web-to-Case record is created; if a submission fails validation, the case is not created."
+      ],
+      "why": "This tests Web-to-Case limits and behavior. Web-to-Case (a generated HTML form that creates Cases from your website) accepts up to 5,000 cases a day; requests above that go into a pending queue and are created when the daily limit resets, so they aren't lost. Validation rules run on Web-to-Case submissions just like any other save, so a submission that fails validation doesn't create a case (the admin gets an email with the details). Rule of thumb: Web-to-Case = 5,000/day (queued) and validation rules still apply.",
+      "traps": "Unmatched cases go to the Default Case Owner, not a Case Team; custom fields can go on the form.",
+      "strip": "Web-to-Case: 5,000/day (queued, not lost), validation rules apply, no match → default owner, custom fields OK.",
+      "tags": [
+        "web-to-case"
+      ],
+      "missed": false,
+      "wrong": {
+        "Web-to-Case automatically assigns incoming cases to a Case Team if no assignment rules match.": "Cases that match no assignment rule entry go to the Default Case Owner set in Support Settings, not to a Case Team.",
+        "Only standard Case fields can be captured on a Web-to-Case web form.": "Custom Case fields can be added to a Web-to-Case form when you generate it."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_channels",
+        "https://help.salesforce.com/s/articleView?id=sf.setting_up_web-to-case.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q06",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "At Project Solutions Inc., Opportunities that have a discount greater than 20% need to be approved by the three Sales Managers. What should the Salesforce Administrator implement to meet this requirement?",
+      "options": [
+        "Approval Process (Unanimous Decision)",
+        "Record-Triggered Flow",
+        "Approval Process (Based on First Response)",
+        "Autolaunched Flow"
+      ],
+      "answer": [
+        "Approval Process (Unanimous Decision)"
+      ],
+      "why": "This tests the difference between approval types. An Approval Process is the tool for formal approvals: entry criteria (Discount > 20%) decide which Opportunities need approval, and a step can name multiple approvers. When all three managers must approve, set the step to 'Require UNANIMOUS approval from all selected approvers'. The process also locks the record and keeps approval history. Rule of thumb: all must approve → unanimous; any one → first response.",
+      "traps": "First Response lets any one manager decide; Flow can submit a record for approval but doesn't run the approval (locking, approve/reject, history).",
+      "strip": "All of them → Unanimous. Any one of → First Response.",
+      "tags": [
+        "approvals"
+      ],
+      "missed": false,
+      "wrong": {
+        "Record-Triggered Flow": "A record-triggered flow can submit a record for approval, but it doesn't run the approval itself (approver routing, approve/reject, lock, history).",
+        "Approval Process (Based on First Response)": "'First response' lets the first manager who responds decide for everyone; the requirement is all three.",
+        "Autolaunched Flow": "An autolaunched flow runs in the background and has no built-in approve/reject routing."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/approvals",
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/build-an-approval-process"
+      ]
+    },
+    {
+      "id": "voucher2-q07",
+      "type": "question",
+      "objective": "service",
+      "prompt": "A System Administrator just completed a meeting with the Support Team at Pat’s Electrical Warehouse. Products are separated into two product lines, hardware and software. Support Agents need to be able to capture different information about the Case depending on if the inquiry is related to a hardware or software product. In addition, to resolve a Case related to software, the team often has to take additional steps in comparison to hardware issues. What three features should the Administrator implement to meet the Support Team’s requirements? Select 3.",
+      "options": [
+        "Permission Sets",
+        "Field Level Security",
+        "Support Processes",
+        "Record Types",
+        "Page Layouts"
+      ],
+      "answer": [
+        "Support Processes",
+        "Record Types",
+        "Page Layouts"
+      ],
+      "why": "This tests supporting two kinds of the same record with different data and steps. Record Types split Cases into Hardware and Software. Page Layouts, assigned per record type, show different fields to capture the right information for each. Support Processes control which Case Status values each record type can use, so Software cases can have extra steps. Rule of thumb: different fields + different steps for different kinds of records → record type + page layout + process.",
+      "traps": "Permission sets grant user abilities; FLS hides fields by user, not by kind of Case.",
+      "strip": "Two kinds of the same record with different fields and steps → Record Type + Page Layout + Process.",
+      "tags": [
+        "record types"
+      ],
+      "missed": false,
+      "wrong": {
+        "Permission Sets": "Permission sets give users extra permissions; they don't change fields or steps per kind of Case.",
+        "Field Level Security": "Field-level security controls which users can see a field, not which fields appear for hardware vs. software Cases."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-support-processes",
+        "https://help.salesforce.com/s/articleView?id=sf.customize_processes.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q08",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Which statement is true, as it relates to Checkbox fields and field dependency?",
+      "options": [
+        "Checkbox fields can be dependent fields, but not controlling fields.",
+        "Checkbox fields can be the controlling fields, but not dependent fields.",
+        "Checkbox fields can be either controlling fields or dependent fields.",
+        "Checkbox fields can be neither controlling fields or dependent fields."
+      ],
+      "answer": [
+        "Checkbox fields can be the controlling fields, but not dependent fields."
+      ],
+      "why": "This tests dependent picklist rules. A controlling field determines which values are available in a dependent field. A checkbox has two values (checked/unchecked), so it can control another field, but it has no list of values that could be filtered, so it can't be dependent. Dependent fields must be custom picklists or multi-select picklists; standard picklists can only control. Rule of thumb: a checkbox can only be in charge.",
+      "traps": "Dependent fields must be custom picklists or multi-select picklists; standard picklists can control but never depend.",
+      "strip": "Dependent = something you pick from a list. A checkbox can only be in charge.",
+      "tags": [
+        "field dependencies"
+      ],
+      "missed": false,
+      "wrong": {
+        "Checkbox fields can be dependent fields, but not controlling fields.": "Backwards: a checkbox has no list of values to filter, so it can't be dependent; it can only control.",
+        "Checkbox fields can be either controlling fields or dependent fields.": "Checkboxes can control but can never be dependent.",
+        "Checkbox fields can be neither controlling fields or dependent fields.": "Checkboxes can be controlling fields, so 'neither' is wrong."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_global"
+      ]
+    },
+    {
+      "id": "voucher2-q09",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "The Password Policy shows that the length of time until passwords expire is 90 days. However, some users find that their passwords expire every 30 days. Where should the System Administrator change the password expiration period for these users?",
+      "options": [
+        "Permission Sets assigned to the Users",
+        "Roles assigned to the Users",
+        "Profiles assigned to the Users",
+        "Individual User records"
+      ],
+      "answer": [
+        "Profiles assigned to the Users"
+      ],
+      "why": "This tests where password rules can differ between users. Setup > Password Policies sets the org-wide default (here, 90 days), but a profile can have its own password policy that overrides the org default for everyone assigned to that profile. If some users expire every 30 days, their profile's password policy is set to 30 days, so that's where you change it. Rule of thumb: login rules that differ for some users (password policy, login hours, IP ranges) → profile.",
+      "traps": "Permission sets don't carry login rules; roles control record visibility; there's no per-user expiration setting.",
+      "strip": "A login rule that differs for some users (password policy, login hours, login IPs) → profile.",
+      "tags": [
+        "security",
+        "profiles"
+      ],
+      "missed": false,
+      "wrong": {
+        "Permission Sets assigned to the Users": "Permission sets add permissions but carry no password or login rules.",
+        "Roles assigned to the Users": "Roles control record visibility in the hierarchy, not password expiration.",
+        "Individual User records": "There's no per-user password expiration setting on the user record."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q10",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Ursa Major Solar is setting up case assignment rules. What are two places where the cases can be assigned? Select 2.",
+      "options": [
+        "Profile",
+        "Queue",
+        "Contact",
+        "User"
+      ],
+      "answer": [
+        "Queue",
+        "User"
+      ],
+      "why": "This tests who can own a record. Case assignment rules set the case owner, and only a User or a Queue can own a record in Salesforce. Assigning to a queue lets a team share incoming cases; assigning to a user hands it to one person. Rule of thumb: assignment targets = User or Queue.",
+      "traps": "Profiles are permission sets for users; Contacts are customers, not users.",
+      "strip": "Who can own a record → User or Queue.",
+      "tags": [
+        "assignment rules"
+      ],
+      "missed": false,
+      "wrong": {
+        "Profile": "A profile is a set of permissions, not something that can own a case.",
+        "Contact": "Contacts are customer records, not Salesforce users, so they can't own cases."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q11",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "After a meeting with Sales Managers, it has been determined that the standard ‘Annual Revenue’ field is no longer needed to support Account management. What can the administrator do to remove the field? Select 2.",
+      "options": [
+        "Hide the field from Users using field-level security.",
+        "Use a restriction rule to hide the field.",
+        "Delete the field from the Account Object",
+        "Remove the field from the page layout."
+      ],
+      "answer": [
+        "Hide the field from Users using field-level security.",
+        "Remove the field from the page layout."
+      ],
+      "why": "This tests what you can do with standard fields. Standard fields like Annual Revenue can't be deleted, so you hide them instead. Removing it from the page layout takes it off the record page, and setting field-level security to hidden removes it everywhere (reports, list views, search, API) for those profiles. Rule of thumb: get rid of a standard field → page layout + FLS.",
+      "traps": "Only custom fields can be deleted; restriction rules limit records, not fields.",
+      "strip": "Get rid of a standard field → hide it (layout + FLS).",
+      "tags": [
+        "fields"
+      ],
+      "missed": false,
+      "wrong": {
+        "Use a restriction rule to hide the field.": "Restriction rules limit which records users can see, not which fields.",
+        "Delete the field from the Account Object": "Only custom fields can be deleted; standard fields can only be hidden."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q12",
+      "type": "question",
+      "objective": "service",
+      "prompt": "An administrator is configuring Case Assignment Rules to route incoming support cases to regional queues. Which two statements accurately describe Case Assignment Rule behaviors and fallback handling? Choose 2 answers",
+      "options": [
+        "Only one Case Assignment Rule can be active in an organization at any given time.",
+        "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings.",
+        "Multiple Case Assignment Rules can run simultaneously on the same incoming record.",
+        "Case Assignment Rules can assign cases directly to User Roles or Public Groups."
+      ],
+      "answer": [
+        "Only one Case Assignment Rule can be active in an organization at any given time.",
+        "If an incoming case does not match any entry criteria in the active assignment rule, it is automatically assigned to the Default Case Owner defined in Support Settings."
+      ],
+      "why": "This tests how case assignment rules work. Only one case assignment rule can be active at a time, though it can contain many entries that are evaluated in order. If an incoming case matches no entry, it goes to the Default Case Owner set in Setup > Support Settings. Rule of thumb: one active rule, first match wins, no match → default owner.",
+      "translate": {
+        "situation": "Route cases and know what happens to the leftovers.",
+        "feature": "Case Assignment Rules + Default Case Owner.",
+        "see": "Matched cases go to the entry's user or queue; unmatched ones go to the Default Case Owner.",
+        "notOther": "Only one rule is active; rules assign to users or queues, not roles or groups."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Only one rule runs; roles and public groups can never own records.",
+      "strip": "One active rule; first match wins; User or Queue; no match → default owner.",
+      "wrong": {
+        "Multiple Case Assignment Rules can run simultaneously on the same incoming record.": "Only one assignment rule can be active per object, so multiple rules never run on the same record.",
+        "Case Assignment Rules can assign cases directly to User Roles or Public Groups.": "Assignment rules can only assign to Users or Queues; roles and public groups can't own records."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q13",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "The administrator wants to make a small instruction tweak and quickly verify it improves responses for three common scenarios. What is the most efficient approach?",
+      "options": [
+        "Edit the instructions, run Conversation Preview for the three scenarios, and compare outputs against expected responses.",
+        "Export all cases and test in Excel.",
+        "Deploy to production and wait for user feedback.",
+        "Disable the agent, then re-enable after 24 hours."
+      ],
+      "answer": [
+        "Edit the instructions, run Conversation Preview for the three scenarios, and compare outputs against expected responses."
+      ],
+      "why": "This tests the fastest way to test an Agentforce change. Conversation Preview in Agentforce Builder lets you type test messages and see the agent's reply, which topic it chose and which actions it ran, right after you edit instructions. For three scenarios, that's quick and doesn't affect real users. For large or repeatable test sets, use Agentforce Testing Center. Rule of thumb: quick test of a few scenarios → Conversation Preview.",
+      "traps": "Excel can't run an agent; deploying makes customers the testers; disabling the agent tests nothing.",
+      "strip": "A few scenarios now → Conversation Preview. Many, repeatable → Testing Center.",
+      "tags": [
+        "testing"
+      ],
+      "missed": false,
+      "wrong": {
+        "Export all cases and test in Excel.": "Exporting cases to Excel can't run the agent, so it tests nothing.",
+        "Deploy to production and wait for user feedback.": "Deploying untested changes makes customers the testers and risks bad responses in production.",
+        "Disable the agent, then re-enable after 24 hours.": "Disabling and re-enabling the agent doesn't test the instruction change at all."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder",
+        "https://help.salesforce.com/s/articleView?id=ai.agent_testing_center.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q14",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Universal Containers has a Lead Assignment Rule containing 5 separate rule entries evaluated sequentially from Entry 1 to Entry 5. An incoming Web-to-Lead record matches the criteria for both Entry 2 and Entry 4. How does Salesforce process and assign this record?",
+      "options": [
+        "Salesforce assigns the Lead using Entry 4 criteria because it is the most specific match.",
+        "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries.",
+        "Salesforce creates two duplicate Lead records, assigning one via Entry 2 and one via Entry 4.",
+        "Salesforce triggers an execution fault and assigns the Lead to the Default Lead Owner."
+      ],
+      "answer": [
+        "Salesforce assigns the Lead using Entry 2 criteria and immediately stops evaluating remaining entries."
+      ],
+      "why": "This tests how assignment rule entries are evaluated. Entries in an assignment rule are checked in order by sort number, and the first entry whose criteria match assigns the record; Salesforce then stops. So Entry 2 wins and Entry 4 is never reached. That's why specific entries go first and broad ones last. Rule of thumb: first match wins.",
+      "traps": "Specificity isn't compared; rules never create records; the default owner is only for no match.",
+      "strip": "First match wins → put specific entries first, broad ones last.",
+      "tags": [
+        "assignment rules"
+      ],
+      "missed": false,
+      "wrong": {
+        "Salesforce assigns the Lead using Entry 4 criteria because it is the most specific match.": "Salesforce doesn't judge which entry is 'most specific'; order alone decides.",
+        "Salesforce creates two duplicate Lead records, assigning one via Entry 2 and one via Entry 4.": "Assignment rules only set the owner; they never create extra records.",
+        "Salesforce triggers an execution fault and assigns the Lead to the Default Lead Owner.": "Matching more than one entry isn't an error; the default owner is used only when nothing matches."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q15",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "What is a benefit of entering Trusted IP Ranges in the Network Access section?",
+      "options": [
+        "Users are unable to log in through the API on networks not marked as trusted.",
+        "All attempts to log in from outside the network will be denied.",
+        "AppExchange packages can communicate with an external site.",
+        "Users who log in to the Trusted IP network will not be required to complete additional identity verification."
+      ],
+      "answer": [
+        "Users who log in to the Trusted IP network will not be required to complete additional identity verification."
+      ],
+      "why": "This tests the org-wide Trusted IP Ranges in Setup > Network Access. When users log in from an IP address in a trusted range, Salesforce skips the identity verification challenge (like an emailed code). Users outside the range can still log in; they just must verify their identity first. Rule of thumb: Network Access = skip verification; profile Login IP Ranges = block.",
+      "traps": "Blocking logins is Login IP Ranges on the profile; calling external sites is Remote Site Settings.",
+      "strip": "Network Access trusted IPs → skip verification. Profile login IP ranges → block.",
+      "tags": [
+        "security"
+      ],
+      "missed": false,
+      "wrong": {
+        "Users are unable to log in through the API on networks not marked as trusted.": "Network Access trusted ranges don't block logins, through the API or otherwise; logins outside the range just require verification (API logins need a security token).",
+        "All attempts to log in from outside the network will be denied.": "Denying logins outside a range is what profile Login IP Ranges do, not Network Access.",
+        "AppExchange packages can communicate with an external site.": "Allowing calls to external sites is done with Remote Site Settings, not trusted IP ranges."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q16",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "When creating a new Sharing Rule, which of the following are valid selections you can make when you select the users to share with? Select 3.",
+      "options": [
+        "Public Groups",
+        "Queues",
+        "Users",
+        "Roles and Subordinates",
+        "Roles"
+      ],
+      "answer": [
+        "Public Groups",
+        "Roles and Subordinates",
+        "Roles"
+      ],
+      "why": "This tests sharing rule targets. A sharing rule opens up access to records for a group of users, and the 'share with' choices are Public Groups, Roles, Roles and Subordinates (and Territories if enabled). It can't target a single user or a queue. Rule of thumb: sharing rules share with groups (public groups and roles).",
+      "traps": "A single user needs manual sharing or a public group; queues own records, they aren't share targets.",
+      "strip": "Own a record → User or Queue. Sharing rule target → Public Group, Role, Role & Subordinates.",
+      "tags": [
+        "sharing"
+      ],
+      "missed": false,
+      "wrong": {
+        "Queues": "Queues own records waiting to be worked; they aren't a 'share with' option in sharing rules.",
+        "Users": "Sharing rules can't target an individual user; use a public group containing that user or manual sharing."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_sharing_rules",
+        "https://help.salesforce.com/s/articleView?id=security_about_sharing_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q17",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "What are two Initial Submission Actions in an Approval Process? Select 2.",
+      "options": [
+        "The record is locked for everyone except the Owner.",
+        "An outbound message can be sent to another application.",
+        "The value of a field on the record can be updated.",
+        "An event can be assigned to users in a specific Profile."
+      ],
+      "answer": [
+        "An outbound message can be sent to another application.",
+        "The value of a field on the record can be updated."
+      ],
+      "why": "This tests approval process actions. The available action types for initial submission, approval, rejection and recall are Field Update, Email Alert, Task and Outbound Message (which sends data to an external system). By default, initial submission also locks the record. So 'update a field' and 'send an outbound message' are both valid. Rule of thumb: approval actions = Field Update, Email Alert, Task, Outbound Message.",
+      "traps": "The lock includes the owner (only admins and the approver can edit); approvals create Tasks, not Events, and never assign to a profile.",
+      "strip": "Approval actions → Field Update, Email Alert, Task, Outbound Message.",
+      "tags": [
+        "approvals"
+      ],
+      "missed": false,
+      "wrong": {
+        "The record is locked for everyone except the Owner.": "The approval lock applies to the owner too; only admins (and the approver, if allowed) can edit a locked record.",
+        "An event can be assigned to users in a specific Profile.": "Approval actions can create Tasks, not Events, and they're assigned to users or related user fields, not to a profile."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/approvals",
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/build-an-approval-process"
+      ]
+    },
+    {
+      "id": "voucher2-q18",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "An administrator is setting up scheduled flows and background process automation. When a background flow encounters an unhandled system fault or executes without an active interactive user session, Salesforce sends system fault emails and attributes system logs to a designated user context. Where is this user configured?",
+      "options": [
+        "Default Lead Owner in Lead Settings",
+        "Default Case Owner in Support Settings",
+        "Primary System Administrator Profile",
+        "Default Workflow User in Process Automation Settings"
+      ],
+      "answer": [
+        "Default Workflow User in Process Automation Settings"
+      ],
+      "why": "This tests the Default Workflow User. In Setup > Process Automation Settings, the Default Workflow User is the user Salesforce runs automation as when there's no active user, such as scheduled flows and time-based actions, and it can receive fault emails. If it's missing, some background automation can fail. Rule of thumb: automation with no user → Default Workflow User.",
+      "traps": "Default Lead and Case Owner are assignment fallbacks; a profile isn't a user.",
+      "strip": "Automation with no user → Default Workflow User (Process Automation Settings).",
+      "tags": [
+        "flow"
+      ],
+      "missed": false,
+      "wrong": {
+        "Default Lead Owner in Lead Settings": "Default Lead Owner receives web leads that match no lead assignment rule; it has nothing to do with automation.",
+        "Default Case Owner in Support Settings": "Default Case Owner receives cases that match no case assignment rule; it isn't the automation user.",
+        "Primary System Administrator Profile": "A profile is a permission set for users, not a specific user that automation can run as."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/autolaunched-scheduled-flows/schedule-a-flow"
+      ]
+    },
+    {
+      "id": "voucher2-q19",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What is true regarding dashboards in Lightning Experience? Select 2.",
+      "options": [
+        "The person selected under “View Dashboard As” determines that the data is shown.",
+        "Dashboard viewers cannot choose whom they view the dashboard as.",
+        "Dashboards can only have the same view as the person who created it.",
+        "When given the “View All Data” permission, a User can view a dashboard as any User."
+      ],
+      "answer": [
+        "The person selected under “View Dashboard As” determines that the data is shown.",
+        "When given the “View All Data” permission, a User can view a dashboard as any User."
+      ],
+      "why": "This tests the dashboard running user. Every dashboard shows data as one user's access, chosen in 'View Dashboard As': a specific person, or the dashboard viewer (a dynamic dashboard). If the creator allows viewers to change it, users with View All Data can view it as anyone, and users with 'View My Team's Dashboards' can view it as people below them in the role hierarchy. Rule of thumb: the running user decides what data appears.",
+      "traps": "Viewers can choose when the creator allows it; the running user can be me, another person, or the viewer (dynamic).",
+      "strip": "Running user decides the data. Dashboard viewer = dynamic dashboard.",
+      "tags": [
+        "dashboards"
+      ],
+      "missed": false,
+      "wrong": {
+        "Dashboard viewers cannot choose whom they view the dashboard as.": "Viewers can choose whom to view as when 'Let authorized users change running user' is enabled and they have the right permission.",
+        "Dashboards can only have the same view as the person who created it.": "The running user can be anyone, including the viewer; it doesn't have to be the creator."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q20",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "If the Organization-Wide Default setting on Accounts is set to Private, which records will an Account report return?",
+      "options": [
+        "All Accounts for the entire organization, regardless of which user that generated the report",
+        "None of the above.",
+        "All accounts owned by the user running the report only.",
+        "Accounts owned by the user and the users below them in the Role Hierarchy."
+      ],
+      "answer": [
+        "Accounts owned by the user and the users below them in the Role Hierarchy."
+      ],
+      "why": "This tests that reports respect record access. Reports return only records the running user can see. With the Account OWD set to Private, users see their own Accounts, and the role hierarchy lets managers see records owned by users below them (always on for standard objects). Sharing rules or manual shares would add more. Rule of thumb: a report shows what the running user can access.",
+      "traps": "Reports don't bypass sharing; 'own records only' forgets the role hierarchy.",
+      "strip": "A report shows what the running user can see.",
+      "tags": [
+        "reports",
+        "sharing"
+      ],
+      "missed": false,
+      "wrong": {
+        "All Accounts for the entire organization, regardless of which user that generated the report": "Reports never bypass sharing; with a Private OWD users don't see every Account unless they have View All or Modify All.",
+        "None of the above.": "A correct option exists, so 'None of the above' is wrong.",
+        "All accounts owned by the user running the report only.": "This forgets the role hierarchy: managers also see records owned by their subordinates."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+        "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q21",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "When creating a Custom Report Type, which are valid relationship options to choose between objects A and B? (select 2)",
+      "options": [
+        "All \"A\" and \"B\" records must be related.",
+        "Each \"A\" record must have at least one related \"B\" record.",
+        "All \"A\" and \"B\" records must be unrelated.",
+        "A records may or may not have related \"B\" records."
+      ],
+      "answer": [
+        "Each \"A\" record must have at least one related \"B\" record.",
+        "A records may or may not have related \"B\" records."
+      ],
+      "why": "This tests the relationship options when building a custom report type. When you add object B to primary object A, you choose either 'Each A record must have at least one related B record' (like an inner join, only A's with B's) or 'A records may or may not have related B records' (like an outer join, all A's). To find A's without B's, you use a cross filter in the report. Rule of thumb: report type = must have / may or may not have.",
+      "traps": "There's no 'unrelated' option; A's without B's come from a cross filter in the report.",
+      "strip": "Report type → must have / may or may not have. A's without B's → cross filter.",
+      "tags": [
+        "report types"
+      ],
+      "missed": false,
+      "wrong": {
+        "All \"A\" and \"B\" records must be related.": "There's no option requiring all A and B records to be related; the choice is only about A's that have or may not have B's.",
+        "All \"A\" and \"B\" records must be unrelated.": "There's no 'unrelated' option in a report type; finding A's without B's is done with a cross filter in the report."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder",
+        "https://help.salesforce.com/s/articleView?id=sf.reports_report_type_layouts.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q22",
+      "type": "question",
+      "objective": "service",
+      "prompt": "The Operations Manager has requested that a form be added to the Company website, so that customers can fill out support requests. These requests need to create a new case in Salesforce upon submission from the website. What Salesforce feature would you utilize to fulfill this request?",
+      "options": [
+        "Web-to-Case",
+        "Escalation Rule",
+        "Assignment Rules",
+        "Web-to-Lead"
+      ],
+      "answer": [
+        "Web-to-Case"
+      ],
+      "why": "This tests capturing website submissions as Cases. Web-to-Case (Setup > Web-to-Case) generates HTML you paste into your website; each submission creates a Case in Salesforce (up to 5,000 a day). Assignment and auto-response rules can then route and acknowledge it. Rule of thumb: website form → Web-to-[the object it creates].",
+      "traps": "Escalation rules act on cases left open too long; assignment rules set the owner after creation; Web-to-Lead creates Leads.",
+      "strip": "Website form → Web-to-[the object it creates].",
+      "tags": [
+        "web-to-case"
+      ],
+      "missed": false,
+      "wrong": {
+        "Escalation Rule": "Escalation rules act on cases that stay open too long; they don't create cases.",
+        "Assignment Rules": "Assignment rules set the owner after a case is created; they don't capture the form.",
+        "Web-to-Lead": "Web-to-Lead creates Leads, not Cases."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_channels",
+        "https://help.salesforce.com/s/articleView?id=sf.setting_up_web-to-case.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q23",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "What type of object facilitates a many-to-many relationship in Salesforce?",
+      "options": [
+        "Standard Object",
+        "External Object",
+        "Custom Object",
+        "Junction Object"
+      ],
+      "answer": [
+        "Junction Object"
+      ],
+      "why": "This tests many-to-many relationships. A junction object is a custom object with two master-detail relationships, one to each object you want to link (for example, Job Application linking Candidate and Position). Each junction record connects one A to one B, so each A can relate to many B's and vice versa. The first master-detail you create becomes the primary and controls look and feel. Rule of thumb: many-to-many → junction object.",
+      "traps": "External objects show data stored outside Salesforce; 'custom object' is too general.",
+      "strip": "Many-to-many → junction object (two master-details; the first one is primary).",
+      "tags": [
+        "relationships"
+      ],
+      "missed": false,
+      "wrong": {
+        "Standard Object": "Standard objects come with Salesforce; a standard object isn't by itself a many-to-many link.",
+        "External Object": "External objects display data stored outside Salesforce through Salesforce Connect.",
+        "Custom Object": "A junction object is a custom object, but 'custom object' is too general; it's the two master-details that make it a junction."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+        "https://help.salesforce.com/s/articleView?id=sf.relationships_manytomany.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q24",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "An organization enables Einstein for Sales features to boost sales productivity. Which two features automatically assist reps by assigning predictive closure likelihood scores to deals and logging emails without manual data entry? Choose 2 answers",
+      "options": [
+        "Einstein Activity Capture",
+        "Einstein Auto-Response Rules",
+        "Einstein Opportunity Scoring",
+        "Einstein Lead Escalation"
+      ],
+      "answer": [
+        "Einstein Activity Capture",
+        "Einstein Opportunity Scoring"
+      ],
+      "why": "This tests two Einstein for Sales features. Einstein Opportunity Scoring gives each opportunity a score from 1 to 99 showing how likely it is to close, with the factors behind it. Einstein Activity Capture connects reps' email and calendar and automatically logs emails and events to related Salesforce records. Rule of thumb: likelihood to close → Opportunity Scoring; automatic email logging → Activity Capture.",
+      "traps": "Auto-response and escalation rules exist but aren't Einstein features; 'Einstein' glued onto a feature name is a trap.",
+      "strip": "Close likelihood → Opportunity Scoring. Auto-log email → Activity Capture.",
+      "tags": [
+        "einstein"
+      ],
+      "missed": false,
+      "wrong": {
+        "Einstein Auto-Response Rules": "Auto-response rules are a Web-to-Lead/Case feature that emails submitters; they aren't an Einstein feature.",
+        "Einstein Lead Escalation": "'Einstein Lead Escalation' doesn't exist; escalation rules are a Case feature."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "voucher2-q25",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "What can be used to launch a Flow? Select 2",
+      "options": [
+        "Updated Record",
+        "Global Action",
+        "Picklist",
+        "Custom Button"
+      ],
+      "answer": [
+        "Updated Record",
+        "Custom Button"
+      ],
+      "why": "This tests ways to start a flow. A record-triggered flow runs automatically when a record is created or updated, so an updated record launches it. A custom button or link can open a flow by its URL (/flow/FlowApiName), launching a screen flow from a record page. Rule of thumb: flows start from record changes, schedules, buttons/actions, or other automation.",
+      "traps": "Global actions can't use the Flow action type (object-specific actions can); a picklist is a field, not a launcher.",
+      "strip": "Flow from a quick action → object-specific only, never global.",
+      "tags": [
+        "flow"
+      ],
+      "missed": false,
+      "wrong": {
+        "Global Action": "Global actions can't use the Flow action type; only object-specific actions can launch a flow.",
+        "Picklist": "A picklist is a field type; it can't launch anything by itself (though a change to it can trigger a record-triggered flow)."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "voucher2-q26",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Ursa Major Solar is adding objects to a custom report type. How many objects, maximum, can be added to this report type?",
+      "options": [
+        "Two as long as the objects have associations",
+        "One as long as the object has a master-child relationship",
+        "Unlimited as long as the objects have associations",
+        "Four as long as the objects have associations"
+      ],
+      "answer": [
+        "Four as long as the objects have associations"
+      ],
+      "why": "This tests the custom report type limit. A custom report type can include up to four objects in a chain (A → B → C → D), each related to the one before it. You can also add fields from related objects via lookup (Add fields related via lookup) without using one of the four slots. Rule of thumb: custom report types max 4 objects.",
+      "traps": "Two is only the basic case; there's a hard cap of 4.",
+      "strip": "Custom report type → max 4 objects; Add Fields via Lookup without using a slot.",
+      "tags": [
+        "report types"
+      ],
+      "missed": false,
+      "wrong": {
+        "Two as long as the objects have associations": "Two is just the simplest case; the limit is four.",
+        "One as long as the object has a master-child relationship": "A report type starts with one primary object but can include up to four; 'master-child' isn't a requirement.",
+        "Unlimited as long as the objects have associations": "There's a hard limit of four objects, not unlimited."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder",
+        "https://help.salesforce.com/s/articleView?id=sf.reports_report_type_layouts.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q27",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "When creating a Lead Assignment Rule, where can the Lead be routed to? Select 2.",
+      "options": [
+        "Queues",
+        "Teams",
+        "Roles",
+        "Users"
+      ],
+      "answer": [
+        "Queues",
+        "Users"
+      ],
+      "why": "This tests who can own a Lead. Lead assignment rules set the lead owner, and only a User or a Queue can own a record. Queues let a team share incoming leads; users get them directly. Rule of thumb: assignment targets = User or Queue.",
+      "traps": "Teams add collaborators and roles control visibility; neither can own a record.",
+      "strip": "Owner → User or Queue.",
+      "tags": [
+        "assignment rules"
+      ],
+      "missed": false,
+      "wrong": {
+        "Teams": "Teams (like Account or Opportunity Teams) add collaborators; they can't own a lead.",
+        "Roles": "Roles position users in the visibility hierarchy; a role can't own a record."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q28",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Ursa Major Solar needs to fulfill the following requirements: A custom object must be created to capture account survey data. Users need the ability to select an account from the survey record and view related surveys on the account record.Which two actions can an administrator configure to meet these requirements? Select 2.",
+      "options": [
+        "Put the survey related list on the account page layout.",
+        "Put the account related list on the survey page layout.",
+        "Create a lookup relationship field on the account object.",
+        "Create a lookup relationship field on the survey object."
+      ],
+      "answer": [
+        "Put the survey related list on the account page layout.",
+        "Create a lookup relationship field on the survey object."
+      ],
+      "why": "This tests building a one-to-many relationship. Each survey belongs to one account, so Survey is the child: create a lookup field on the Survey object pointing to Account so users can pick the account. Then add the Surveys related list to the Account page layout so users see all surveys for that account. Rule of thumb: field on the child, related list on the parent.",
+      "traps": "A lookup on Account points the wrong way; a survey has one account, so it doesn't need a related list.",
+      "strip": "Field on the child, related list on the parent.",
+      "tags": [
+        "relationships"
+      ],
+      "missed": false,
+      "wrong": {
+        "Put the account related list on the survey page layout.": "A survey has only one account, so it doesn't need an Accounts related list; the lookup field shows the account.",
+        "Create a lookup relationship field on the account object.": "A lookup on Account would let each account point to one survey, which is backwards."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+        "https://help.salesforce.com/s/articleView?id=overview_of_custom_object_relationships.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q29",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Universal Containers collaborates with external vendors using Chatter. The administrator enables the \"Allow Customers\" setting on a private group and invites external vendor users with Chatter External licenses. What constraint applies to customer-enabled Chatter groups?",
+      "options": [
+        "External users can view all Opportunity records owned by group members.",
+        "Customer users can create new sub-groups and invite other external users.",
+        "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups.",
+        "Customer-enabled groups automatically convert into Public Groups."
+      ],
+      "answer": [
+        "Salesforce records (such as Opportunities or Cases) cannot be added or attached to customer-enabled groups."
+      ],
+      "why": "This tests limits of customer-enabled Chatter groups. When 'Allow Customers' is on, people from outside your company (Chatter External users) can join, so Salesforce doesn't let records like Opportunities or Cases be added to the group, protecting internal data. External users see only the groups they're invited to and those groups' members. Rule of thumb: customer group = no records.",
+      "traps": "Group membership never grants record access; external users can't invite anyone; 'Public Group' is a sharing feature.",
+      "strip": "Customer group → private, no records, external users see only their groups.",
+      "tags": [
+        "chatter"
+      ],
+      "missed": false,
+      "wrong": {
+        "External users can view all Opportunity records owned by group members.": "Group membership never grants record access; external users can't see your Opportunities.",
+        "Customer users can create new sub-groups and invite other external users.": "External users can't create groups or invite other people.",
+        "Customer-enabled groups automatically convert into Public Groups.": "Chatter groups don't turn into Public Groups; Public Groups are a sharing feature (sets of users), unrelated to Chatter."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "voucher2-q30",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "A call center requires a step-by-step guided wizard for agents processing warranty returns. The wizard must collect customer input across multiple screens, display dynamic diagnostic questions based on previous answers, and create a child Case record upon completion. Which flow type must be used?",
+      "options": [
+        "Record-Triggered Flow",
+        "Autolaunched Flow (No Trigger)",
+        "Screen Flow",
+        "Schedule-Triggered Flow"
+      ],
+      "answer": [
+        "Screen Flow"
+      ],
+      "why": "This tests which flow type can interact with a user. A Screen Flow is the only flow type with screens, so it can collect input across multiple pages. Decision elements branch to show different questions based on earlier answers, and a Create Records element creates the child Case at the end. Rule of thumb: guided wizard or user input → Screen Flow.",
+      "traps": "Record-triggered, autolaunched and scheduled flows run in the background with no screens.",
+      "strip": "Wizard / guided / user input → Screen Flow.",
+      "tags": [
+        "flow"
+      ],
+      "missed": false,
+      "wrong": {
+        "Record-Triggered Flow": "Record-triggered flows run in the background when a record changes; they can't show screens.",
+        "Autolaunched Flow (No Trigger)": "Autolaunched flows run in the background when called by something else; they have no screens.",
+        "Schedule-Triggered Flow": "Schedule-triggered flows run in the background at set times and can't collect user input."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/screen-flows/build-a-screen-flow",
+        "https://trailhead.salesforce.com/content/learn/modules/screen-flows"
+      ]
+    },
+    {
+      "id": "voucher2-q31",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What should a System Administrator configure to provide each Sales Rep a dashboard that shows their current Opportunity pipeline?",
+      "options": [
+        "Create a dashboard for each user.",
+        "Set a Dashboard filter to the current user.",
+        "Set the Dashboard Running User to the current user.",
+        "Create a dashboard folder for each user."
+      ],
+      "answer": [
+        "Set the Dashboard Running User to the current user."
+      ],
+      "why": "This tests dynamic dashboards. The running user ('View Dashboard As') decides whose data access a dashboard uses. Set it to 'The dashboard viewer' and one dashboard shows each rep only the opportunities they can see. This avoids building one dashboard per person. Rule of thumb: each person sees their own data → dynamic dashboard.",
+      "traps": "Per-user dashboards don't scale; filters and folders don't change whose data is shown.",
+      "strip": "Each person sees their own data → dynamic dashboard.",
+      "tags": [
+        "dashboards"
+      ],
+      "missed": false,
+      "wrong": {
+        "Create a dashboard for each user.": "One dashboard per user doesn't scale and is a maintenance burden.",
+        "Set a Dashboard filter to the current user.": "Dashboard filters let viewers narrow by field values, but they don't automatically restrict each rep to their own data.",
+        "Create a dashboard folder for each user.": "Folders control who can open a dashboard, not whose data it displays."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q32",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Your org has set the organization-wide default for Opportunities to Public Read/Write. Your Sales Reps are complaining that the reports they see contain all opportunities for the entire company. They would like these reports to only display opportunities that they actually own.",
+      "options": [
+        "Tell them to click the Owner column header in the Report to sort the list by owner and then scroll to their name.",
+        "Customize the Report and change the Filter setting to include on My Opportunities'.",
+        "Change the organization-wide default for Opportunities to Private.",
+        "Create a Visualforce page that is set to only display opportunities they own."
+      ],
+      "answer": [
+        "Customize the Report and change the Filter setting to include on My Opportunities'."
+      ],
+      "why": "This tests the difference between filtering and security. With a Public Read/Write OWD, reps are supposed to see all opportunities; they just want their reports focused. In the report, change the 'Show Me' filter (Opportunity scope) to My Opportunities, which narrows the results to records they own without changing anyone's access. Rule of thumb: show only mine → report filter; shouldn't be allowed to see → sharing.",
+      "traps": "Changing the OWD cuts real access org-wide; sorting is a workaround; Visualforce is code.",
+      "strip": "Show only mine → report filter. Shouldn't be allowed to see → sharing.",
+      "tags": [
+        "reports"
+      ],
+      "missed": false,
+      "wrong": {
+        "Tell them to click the Owner column header in the Report to sort the list by owner and then scroll to their name.": "Sorting and scrolling is a manual workaround; it doesn't limit the report.",
+        "Change the organization-wide default for Opportunities to Private.": "Changing the OWD to Private removes real access across the company just to tidy a report.",
+        "Create a Visualforce page that is set to only display opportunities they own.": "A Visualforce page is custom code; a report filter already does this."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+        "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q33",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Sales Reps at your company are grouped by different regions. Sales Reps should only work with Leads that are in their region. What should an administrator implement to control what Leads Sales Reps can access?",
+      "options": [
+        "Set up an assignment rule to assign Leads to individuals.",
+        "Set up assignment rules to assign Leads to queues based on region.",
+        "Set up Sharing Rule to share Lead records with other Users in the same region.",
+        "Set up a Flow to assign Leads to queues based on region."
+      ],
+      "answer": [
+        "Set up assignment rules to assign Leads to queues based on region."
+      ],
+      "why": "This tests routing Leads to regional teams. Create one queue per region with that region's reps as members, then a lead assignment rule whose entries route each lead to its region's queue based on fields like State or Country. With a Private lead OWD, owning the lead through the queue is what gives each region access. Rule of thumb: route records to a team by criteria → assignment rule → queue.",
+      "traps": "Assigning to individuals is brittle; sharing rules only add access; Flow rebuilds a built-in feature.",
+      "strip": "Route Leads/Cases to a group by criteria → assignment rule → queue.",
+      "tags": [
+        "assignment rules",
+        "queues"
+      ],
+      "missed": false,
+      "wrong": {
+        "Set up an assignment rule to assign Leads to individuals.": "Assigning to individual reps is brittle and doesn't let a regional team share the work.",
+        "Set up Sharing Rule to share Lead records with other Users in the same region.": "Sharing rules only open up access; they can't restrict reps or route leads.",
+        "Set up a Flow to assign Leads to queues based on region.": "A Flow could do it, but assignment rules plus queues are the built-in feature for this."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q34",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "What is true about changing the default company locale?",
+      "options": [
+        "When changed, the company locale is applied to all Users.",
+        "The company locale will be applied as the default locale for new Users, but only the Administrator can change the personal locale of a User.",
+        "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting.",
+        "The company locale will only be applied to as the default for new Users, and cannot be changed."
+      ],
+      "answer": [
+        "The company locale will be applied as the default locale for new Users, but any User can change their personal locale setting."
+      ],
+      "why": "This tests company vs. personal settings. The default locale in Company Information (which sets date, time, number and name formats) is given to new users; existing users keep their current setting. Each user can change their own locale in their personal settings without an admin. Rule of thumb: company settings are defaults for new users; users override their own.",
+      "translate": {
+        "situation": "Set date/number formats for the company.",
+        "feature": "Company locale (Company Information) vs. personal locale (user settings).",
+        "see": "New users start with the company locale; anyone can switch theirs.",
+        "notOther": "It doesn't change existing users, and users don't need an admin to change their own."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Existing users aren't changed; users don't need an admin to change their own.",
+      "strip": "Company settings = defaults for new users; each user can override their own.",
+      "wrong": {
+        "When changed, the company locale is applied to all Users.": "Changing the company locale doesn't change existing users' settings.",
+        "The company locale will be applied as the default locale for new Users, but only the Administrator can change the personal locale of a User.": "Users can change their own locale; they don't need an admin.",
+        "The company locale will only be applied to as the default for new Users, and cannot be changed.": "The company locale can be changed by an admin at any time."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/company_wide_org_settings/org_settings_regional"
+      ]
+    },
+    {
+      "id": "voucher2-q35",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "What is true about Private Events?",
+      "options": [
+        "Only the User and a System Administrator can view the Event.",
+        "Only the User and Users above in the role hierarchy can see the Event.",
+        "Only the User that created the Event and Users with the “View All Data” permission can view the Event.",
+        "Only the User that created the event can see it."
+      ],
+      "answer": [
+        "Only the User that created the Event and Users with the “View All Data” permission can view the Event."
+      ],
+      "why": "This tests private events. When an event is marked Private, only the event owner and users with the 'View All Data' permission can see its details; others see the time blocked as busy on the calendar. Private events also can't be related to other records or have invitees. The role hierarchy doesn't open them up. Rule of thumb: private event → owner + View All Data.",
+      "traps": "The deciding factor is the View All Data permission, not the admin profile; the role hierarchy doesn't apply.",
+      "strip": "Private Event → owner + View All Data only.",
+      "tags": [
+        "activities"
+      ],
+      "missed": false,
+      "wrong": {
+        "Only the User and a System Administrator can view the Event.": "The deciding factor is the View All Data permission, not the admin profile specifically.",
+        "Only the User and Users above in the role hierarchy can see the Event.": "The role hierarchy doesn't give managers access to private events.",
+        "Only the User that created the event can see it.": "Users with View All Data can also see private events, not just the creator."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q36",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What file type is used when importing data into Salesforce using tools such as Data Import Wizard and Data Loader?",
+      "options": [
+        "HTML",
+        "CSV",
+        "DOC",
+        "PDF"
+      ],
+      "answer": [
+        "CSV"
+      ],
+      "why": "This tests the file format for importing data. Both the Data Import Wizard (in Setup, up to 50,000 records) and Data Loader (a desktop app for larger volumes, deletes and exports) use CSV (comma-separated values) files, where each row is a record and each column maps to a field. Rule of thumb: Salesforce data in or out → CSV.",
+      "traps": "HTML, DOC and PDF are documents for people, not data files a tool can map.",
+      "strip": "Import/export → CSV. Over 50,000 records, delete, or export → Data Loader.",
+      "tags": [
+        "data import"
+      ],
+      "missed": false,
+      "wrong": {
+        "HTML": "HTML is a web page format, not a data file the import tools can map.",
+        "DOC": "DOC is a Word document format; import tools can't read it.",
+        "PDF": "PDF is a document for people to read, not a data file."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management/lex_implementation_data_import",
+        "https://help.salesforce.com/s/articleView?id=sf.data_import_wizard.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q37",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Which Activity Management feature is used to schedule a work assignment activity for a user? These items pop-up as reminders, at the previously set time and can be marked as complete by the user.",
+      "options": [
+        "Cloud Scheduler",
+        "Task",
+        "Event",
+        "Activity"
+      ],
+      "answer": [
+        "Task"
+      ],
+      "why": "This tests the difference between Tasks and Events. A Task is a to-do item assigned to a user with a due date, an optional reminder pop-up, and a Status that can be set to Completed. An Event is a calendar entry with a start and end time and isn't marked complete. Rule of thumb: to-do you check off → Task; scheduled time on a calendar → Event.",
+      "traps": "Events have start and end times and aren't marked complete; Activity is the umbrella term; Cloud Scheduler is retired.",
+      "strip": "To-do + mark complete → Task. Calendar time → Event.",
+      "tags": [
+        "activities"
+      ],
+      "missed": false,
+      "wrong": {
+        "Cloud Scheduler": "Cloud Scheduler was an old meeting-scheduling feature and is retired.",
+        "Event": "Events have start and end times on a calendar and aren't 'marked complete'.",
+        "Activity": "'Activity' is the umbrella term for Tasks and Events, not a specific record you schedule."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q38",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "A user can open Agentforce but receives an error when the agent tries to reference Knowledge. What should the admin check?",
+      "options": [
+        "That the user has Knowledge object permissions and access to the relevant articles.",
+        "That the user has a personal email signature configured.",
+        "That the user has a custom report type for Knowledge.",
+        "That the user is assigned to a queue."
+      ],
+      "answer": [
+        "That the user has Knowledge object permissions and access to the relevant articles."
+      ],
+      "why": "This tests that Agentforce respects user access. When an agent works on a user's behalf, it can only use data and objects that user can access. If it errors when reading Knowledge, check the user's Knowledge permissions (object access and a Knowledge user license or permission) and their visibility to the relevant articles, via data categories or sharing. Rule of thumb: agent fails on one kind of data → check the user's access to that data.",
+      "traps": "Email signatures, report types and queues don't affect reading Knowledge.",
+      "strip": "Agent fails on one kind of data → check the user's access to that data.",
+      "tags": [
+        "knowledge",
+        "permissions"
+      ],
+      "missed": false,
+      "wrong": {
+        "That the user has a personal email signature configured.": "An email signature has nothing to do with reading Knowledge articles.",
+        "That the user has a custom report type for Knowledge.": "Report types control reporting, not whether an agent can read Knowledge.",
+        "That the user is assigned to a queue.": "Queue membership affects which records a user can claim, not access to Knowledge."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lightning-knowledge-basics"
+      ]
+    },
+    {
+      "id": "voucher2-q39",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "An organization wants an AI agent that can engage website visitors, qualify inbound Leads, answer basic product questions, and book meetings on sales reps’ calendars. Which Agentforce agent type best meets this requirement?",
+      "options": [
+        "Agentforce SDR",
+        "Agentforce Sales Coach",
+        "Agentforce Employee Agent",
+        "Agentforce Service Agent"
+      ],
+      "answer": [
+        "Agentforce SDR"
+      ],
+      "why": "This tests the agent type for prospects. Agentforce SDR (sales development representative) engages inbound prospects, answers product questions, qualifies leads and books meetings on reps' calendars. 'Website visitors', 'qualify inbound Leads' and 'book meetings' all point to SDR. Rule of thumb: prospects + qualify + meetings → SDR.",
+      "traps": "Sales Coach trains reps; Employee Agent is internal; Service Agent handles support Cases.",
+      "strip": "Prospects + qualify + meetings → SDR.",
+      "tags": [
+        "agent types"
+      ],
+      "missed": false,
+      "wrong": {
+        "Agentforce Sales Coach": "Sales Coach helps reps practice and prepare for deals; it doesn't talk to prospects.",
+        "Agentforce Employee Agent": "Employee Agent helps your own staff internally, not website visitors.",
+        "Agentforce Service Agent": "Service Agent supports existing customers with service issues and Cases, not lead qualification."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "voucher2-q40",
+      "type": "question",
+      "objective": "service",
+      "prompt": "An administrator is configuring Support Settings in Setup prior to activating new Case Assignment Rules. What is the primary function of the Default Case Owner setting?",
+      "options": [
+        "It automatically transfers case ownership to the running user who created the Web-to-Case form.",
+        "It overrides Case Team permissions when a case is escalated.",
+        "It designates the running user for Omni-Channel routing.",
+        "It serves as the fallback owner (a designated User or Queue) for incoming cases that do not match any criteria in the active Case Assignment Rule."
+      ],
+      "answer": [
+        "It serves as the fallback owner (a designated User or Queue) for incoming cases that do not match any criteria in the active Case Assignment Rule."
+      ],
+      "why": "This tests the Default Case Owner setting. In Setup > Support Settings, the Default Case Owner (a user or a queue) receives any case that doesn't match an entry in the active case assignment rule, so no case is left without an owner. It's set before activating rules so the fallback is ready. Rule of thumb: no matching entry → Default Case Owner.",
+      "traps": "Escalation is Escalation Rules; Omni-Channel has no running user; background automation uses the Default Workflow User.",
+      "strip": "No matching entry → default owner.",
+      "tags": [
+        "assignment rules"
+      ],
+      "missed": false,
+      "wrong": {
+        "It automatically transfers case ownership to the running user who created the Web-to-Case form.": "Web-to-Case cases are owned according to assignment rules or the default owner, not by a 'running user' of the form.",
+        "It overrides Case Team permissions when a case is escalated.": "Default Case Owner has nothing to do with case teams or escalation; escalation is handled by Escalation Rules.",
+        "It designates the running user for Omni-Channel routing.": "Omni-Channel routes work to available agents using routing configurations; it has no 'running user'."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q41",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "The Human Resources Director needs the Heads of each Department to be able to edit Time Off Requests, which is a Custom Object in your Salesforce organization. The Heads of these Departments each belong to different Profiles in Salesforce, and yet they need the ability to edit Time Off Requests to be extended to them. What is the best option for accomplishing this requirement?",
+      "options": [
+        "Create a new Permission Set and enable Edit permission on the Time Off Request object, then assign the Department Head users to the new Permission Set.",
+        "Set the field level security to all fields on the Time Off Request object to Read-Only, and then open up access to be able to edit the Time Off Request records by creating a Sharing Rule for the Department Heads.",
+        "Create a new profile called Department Heads and assign each of the Department Head users to this new profile.",
+        "Set the organization-wide default for Time Off Requests to Private and create a Sharing Rule to allow access to the requests to the Department Heads."
+      ],
+      "answer": [
+        "Create a new Permission Set and enable Edit permission on the Time Off Request object, then assign the Department Head users to the new Permission Set."
+      ],
+      "why": "This tests adding a permission to users on different profiles. A permission set grants extra permissions on top of a user's profile, so create one with Edit on Time Off Request (Read is required too) and assign it to the department heads, whatever their profiles. Their existing access is unchanged. Rule of thumb: extra ability for some users across profiles → permission set.",
+      "traps": "Sharing can't grant object permissions; a new profile would strip their current ones; read-only FLS blocks edits.",
+      "strip": "Extra ability for some users across profiles → Permission Set.",
+      "tags": [
+        "permission sets"
+      ],
+      "missed": false,
+      "wrong": {
+        "Set the field level security to all fields on the Time Off Request object to Read-Only, and then open up access to be able to edit the Time Off Request records by creating a Sharing Rule for the Department Heads.": "Read-only FLS blocks edits, and sharing rules can't grant object permissions like Edit; they only open record access.",
+        "Create a new profile called Department Heads and assign each of the Department Head users to this new profile.": "Moving everyone to a new profile would remove the department-specific permissions from their current profiles.",
+        "Set the organization-wide default for Time Off Requests to Private and create a Sharing Rule to allow access to the requests to the Department Heads.": "OWDs and sharing rules control which records users can reach, not whether they have object Edit permission."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q42",
+      "type": "question",
+      "objective": "service",
+      "prompt": "You were previously asked by Users to add an additional selection to the Case Status picklist field. Your organization currently uses record types for Cases. Users are reporting that this new field is not available for selection. Where in Setup would you go to troubleshoot this issue?",
+      "options": [
+        "Support Processes",
+        "Support Settings",
+        "Sales Path",
+        "Lead Processes",
+        "Sales Processes"
+      ],
+      "answer": [
+        "Support Processes"
+      ],
+      "why": "This tests how record types filter Case Status. When Cases use record types, each record type is tied to a Support Process that lists which Status values users can pick. A new Status value isn't automatically added to existing support processes, so users don't see it. Fix it in Setup > Support Processes by adding the value. Rule of thumb: new Case Status value missing → Support Process.",
+      "translate": {
+        "situation": "A new Case Status value doesn't show up.",
+        "feature": "Support Process (the business process for Case Status).",
+        "see": "Add the value to the support process used by that record type.",
+        "notOther": "Support Settings holds defaults like Default Case Owner, not status values."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Support Settings holds defaults like Default Case Owner; Lead and Sales Processes are for other objects.",
+      "strip": "New value missing from Case Status → Support Process.",
+      "wrong": {
+        "Support Settings": "Support Settings hold defaults like Default Case Owner and Automated Case User, not Status values.",
+        "Sales Path": "Path shows guidance along a record's stages; it doesn't control picklist values.",
+        "Lead Processes": "Lead Processes filter Lead Status values, not Case Status.",
+        "Sales Processes": "Sales Processes filter Opportunity Stage values, not Case Status."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-support-processes",
+        "https://help.salesforce.com/s/articleView?id=sf.customize_processes.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q43",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "What can be implemented in a Salesforce Org to help reduce the time Sales Reps need to enter information and increase productivity? Select 2.",
+      "options": [
+        "Create lookup relationship fields to other objects.",
+        "Formula Fields to auto-populate information from related objects.",
+        "Enable field history tracking.",
+        "Create custom visualforce pages,"
+      ],
+      "answer": [
+        "Create lookup relationship fields to other objects.",
+        "Formula Fields to auto-populate information from related objects."
+      ],
+      "why": "This tests reducing data entry. Lookup relationship fields let reps pick a related record instead of retyping information, and formula fields automatically show values from related records (like the Account's phone on an Opportunity). Together they cut typing and errors. Rule of thumb: less typing → link records (lookups) and display related data (formulas).",
+      "translate": {
+        "situation": "Cut down on typing for reps.",
+        "feature": "Lookup fields + formula fields.",
+        "see": "Pick a related record once; formulas show its details automatically.",
+        "notOther": "Field history tracking audits changes; it doesn't save typing."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Field history tracking audits changes; Visualforce is code.",
+      "strip": "Cut typing → lookup (pick, don't retype) + formula (show automatically).",
+      "wrong": {
+        "Enable field history tracking.": "Field history tracking records changes for auditing; it doesn't reduce data entry.",
+        "Create custom visualforce pages,": "Custom Visualforce pages are code and not the simple, declarative way to save reps time."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields"
+      ]
+    },
+    {
+      "id": "voucher2-q44",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Which of the following are valid ways in which a Task can be created in Salesforce? Select 3.",
+      "options": [
+        "Creating from a report.",
+        "Created from a list view.",
+        "Manual creation",
+        "Create from a Dashboard.",
+        "Created from an Approval Process"
+      ],
+      "answer": [
+        "Created from a list view.",
+        "Manual creation",
+        "Created from an Approval Process"
+      ],
+      "why": "This tests how Tasks get created. Users can create Tasks manually (from the Activity tab or a record's activity timeline), from list views (for example, a quick action on a list view), and automatically as an approval process action. Flows and logged emails can also create Tasks. Rule of thumb: reports and dashboards only display data; they don't create records.",
+      "traps": "Reports and dashboards are read-only views of data.",
+      "strip": "Reports and dashboards never create records.",
+      "tags": [
+        "activities"
+      ],
+      "missed": false,
+      "wrong": {
+        "Creating from a report.": "Reports display data; you can't create a Task directly from a report.",
+        "Create from a Dashboard.": "Dashboards display charts and tables from reports; they can't create Tasks."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q45",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "As an Administrator, you have added the “Attendee” field to the Event page layout to allow for Sales Reps to track who is attending an Event. Who can be added as an attendee in the “Attendee” field? Select 3.",
+      "options": [
+        "Users",
+        "Accounts",
+        "Contacts",
+        "Leads",
+        "Campaign Members"
+      ],
+      "answer": [
+        "Users",
+        "Contacts",
+        "Leads"
+      ],
+      "why": "This tests who can attend an Event. Invitees (attendees) must be people: Users inside your org, and Contacts or Leads outside it. Accounts are companies, so they're linked through the Related To field instead. Rule of thumb: Event attendees → Users, Contacts, Leads.",
+      "traps": "Accounts are companies (use Related To); campaign members are links to Leads or Contacts.",
+      "strip": "Attendees → User, Contact, Lead.",
+      "tags": [
+        "activities"
+      ],
+      "missed": false,
+      "wrong": {
+        "Accounts": "Accounts are companies, not people; relate an Event to an Account with the Related To field instead.",
+        "Campaign Members": "Campaign members are links between a Campaign and a Lead or Contact; you invite the Lead or Contact directly."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q46",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What are visual components that can be added to a Dashboard? Select 3.",
+      "options": [
+        "Charts",
+        "Tables",
+        "List Views",
+        "Gauges",
+        "Report Types"
+      ],
+      "answer": [
+        "Charts",
+        "Tables",
+        "Gauges"
+      ],
+      "why": "This tests dashboard components. A dashboard component displays data from one source report as a chart, table, gauge or metric. Charts show comparisons and proportions, tables show rows of report data, gauges show progress toward a goal, and metrics show a single number. Rule of thumb: report type → report → dashboard component (chart, table, gauge, metric).",
+      "traps": "List views live on object tabs; report types are templates for reports.",
+      "strip": "Report type → report → dashboard component.",
+      "tags": [
+        "dashboards"
+      ],
+      "missed": false,
+      "wrong": {
+        "List Views": "List views live on object tabs and in the list view component on pages, not as dashboard components.",
+        "Report Types": "Report types are templates that define what a report can include; they aren't displayed on dashboards."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q47",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Sales Reps often work with one another on Opportunities. Some colleagues should be able to edit the Opportunity record, but some only need to view it. What can be implemented in order to give Users the required access to the Opportunity?",
+      "options": [
+        "The Salesforce Administrator should set up a Role Hierarchy to open access to the Opportunity records.",
+        "The User should manually share the Opportunity with each User that needs access.",
+        "The Salesforce Administrator should create a sharing rule to provide Users access.",
+        "The Salesforce Administrator should enable Opportunity Teams. The appropriate Users can be added to an Opportunity Team and set access for each User."
+      ],
+      "answer": [
+        "The Salesforce Administrator should enable Opportunity Teams. The appropriate Users can be added to an Opportunity Team and set access for each User."
+      ],
+      "why": "This tests per-record collaboration. Opportunity Teams (enabled in Setup > Opportunity Team Settings) let the owner add teammates to a specific opportunity, each with a team role and either Read Only or Read/Write access. That handles 'some can edit, some can only view' deal by deal. Rule of thumb: per-deal collaborators with different access → Opportunity Team.",
+      "traps": "The role hierarchy only opens access upward; manual sharing is one-off; sharing rules work on groups by criteria.",
+      "strip": "Per-deal collaborators with different access → Opportunity Team.",
+      "tags": [
+        "teams",
+        "sharing"
+      ],
+      "missed": false,
+      "wrong": {
+        "The Salesforce Administrator should set up a Role Hierarchy to open access to the Opportunity records.": "The role hierarchy only opens access upward to managers, not sideways to colleagues on a deal.",
+        "The User should manually share the Opportunity with each User that needs access.": "Manual sharing works but is one-off and tedious; Opportunity Teams are the built-in collaboration feature.",
+        "The Salesforce Administrator should create a sharing rule to provide Users access.": "Sharing rules open access to groups based on owner or criteria; they can't tailor access per deal and per person."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/sell-as-a-team-and-split-the-credit",
+        "https://help.salesforce.com/s/articleView?id=opp_team_setup.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q48",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Universal Containers wants to create a field to store credit card numbers and needs to make sure the information is protected. Which two actions allow the System Administrator to provide enhanced security for this field? Select 2.",
+      "options": [
+        "Create an Encrypted Text field.",
+        "Use different Record Types for users.",
+        "Update Field-Level Security settings.",
+        "Configure different Page Layouts for users."
+      ],
+      "answer": [
+        "Create an Encrypted Text field.",
+        "Update Field-Level Security settings."
+      ],
+      "why": "This tests protecting sensitive field data. An Encrypted Text field (Classic encryption) stores the value encrypted and shows it masked (e.g., ****1234) except to users with the 'View Encrypted Data' permission. Field-level security hides the field entirely from users who shouldn't see it, everywhere in Salesforce. Rule of thumb: secure a field → encryption + FLS; layouts and record types aren't security.",
+      "traps": "Record types and page layouts only change the screen, not security.",
+      "strip": "Field security → FLS + encryption, never layouts.",
+      "tags": [
+        "security"
+      ],
+      "missed": false,
+      "wrong": {
+        "Use different Record Types for users.": "Record types change which picklist values and layouts users get; they don't secure a field.",
+        "Configure different Page Layouts for users.": "Page layouts only change the screen; the field is still visible in reports, list views and the API."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields"
+      ]
+    },
+    {
+      "id": "voucher2-q49",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "A marketing-driven sales organization wants an AI agent that can engage prospects outside of business hours, answer product questions, and convert interest into scheduled demos. Which Agentforce agent type is most appropriate?",
+      "options": [
+        "Agentforce Sales Coach",
+        "Agentforce SDR",
+        "Agentforce Employee Agent",
+        "Agentforce Service Agent"
+      ],
+      "answer": [
+        "Agentforce SDR"
+      ],
+      "why": "This tests the agent type for prospects. Agentforce SDR engages prospects any time, answers product questions, qualifies interest and books meetings or demos with reps. 'Prospects', 'outside of business hours' and 'scheduled demos' point to SDR. Rule of thumb: prospects + demos → SDR.",
+      "translate": {
+        "situation": "Engage prospects 24/7 and book demos.",
+        "feature": "Agentforce SDR.",
+        "see": "The agent chats with prospects and puts demos on reps' calendars.",
+        "notOther": "Service Agent is for existing customers with issues, not prospects."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Sales Coach trains reps; Service Agent handles existing customers' issues.",
+      "strip": "Prospects + demos → SDR.",
+      "wrong": {
+        "Agentforce Sales Coach": "Sales Coach helps reps practice and prepare; it doesn't engage prospects.",
+        "Agentforce Employee Agent": "Employee Agent serves internal staff, not prospects.",
+        "Agentforce Service Agent": "Service Agent handles existing customers' support issues and Cases."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "voucher2-q50",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Cloud Kicks (CK) has a service console that is used by agents who take calls from customers and stores with questions about products.The CK case process is complex and agents often make mistakes. To help the administrator has created a screen flow that guides agents through the process. How should the administrator deploy the screen flow?",
+      "options": [
+        "Launch the flow from the utility bar in the console",
+        "Create a link that launches the screen flow",
+        "Use a custom action that launches the screen flow",
+        "Use code to launch the screen flow in a modal"
+      ],
+      "answer": [
+        "Launch the flow from the utility bar in the console"
+      ],
+      "why": "This tests where to put a flow agents need constantly in a console app. The utility bar is a fixed footer in Lightning console apps (App Manager > the app > Utility Items) where you can add a Flow component. Agents can open the guided flow from any tab, in a panel, while staying on the call and record. Rule of thumb: console + needed all the time → utility bar.",
+      "traps": "A link is clumsy; a custom action only works on the record page it sits on; code is never the best answer.",
+      "strip": "Console + needed constantly → utility bar.",
+      "tags": [
+        "console",
+        "flow"
+      ],
+      "missed": false,
+      "wrong": {
+        "Create a link that launches the screen flow": "A link works but takes agents away from their tabs and isn't the best experience in a console.",
+        "Use a custom action that launches the screen flow": "A custom action only appears on the record pages where it's added, not everywhere in the console.",
+        "Use code to launch the screen flow in a modal": "Code is unnecessary when a declarative option (utility bar) exists."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service-cloud-essentials-features/learn-about-macros-service-console-and-case-feed",
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-the-service-console"
+      ]
+    },
+    {
+      "id": "voucher2-q51",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Where can the Salesforce ID of a record be found? Select 3.",
+      "options": [
+        "The record URL in the internet browser.",
+        "Record Name",
+        "Export file from Data Loader",
+        "Record Profiles",
+        "Reports."
+      ],
+      "answer": [
+        "The record URL in the internet browser.",
+        "Export file from Data Loader",
+        "Reports."
+      ],
+      "why": "This tests where to find a record's ID, the unique 15- or 18-character identifier Salesforce gives each record. It appears in the record's URL in the browser, in the Id column of a Data Loader export, and as the Record ID column you can add to reports. Rule of thumb: record ID → URL, Data Loader export, report column.",
+      "translate": {
+        "situation": "Find a record's unique ID.",
+        "feature": "Record ID (15 or 18 characters).",
+        "see": "In the URL, a Data Loader export, or a report column.",
+        "notOther": "'Record Profiles' isn't a thing; the name isn't the ID."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "The name isn't the ID; records don't have profiles.",
+      "strip": "Record ID → URL, Data Loader export, report column.",
+      "wrong": {
+        "Record Name": "The record name is a human-readable label (like 'Acme Corp'), not the ID.",
+        "Record Profiles": "Records don't have profiles; profiles belong to users."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q52",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "You have specified Login IP Ranges across all Profiles in your Salesforce org. What happens when a user tries to log in from an undesignated IP address that is outside of the allowed Login IP Ranges that you have set?",
+      "options": [
+        "The login request is denied.",
+        "The user receives a login challenge for verification of their identity, such as a code sent to their mobile phone.",
+        "The user is allowed to log in, but remains in Read-Only mode until the Login IP Range is updated to include their IP Address.",
+        "An email alert is sent to the System Administrator and the user is allowed to log in."
+      ],
+      "answer": [
+        "The login request is denied."
+      ],
+      "why": "This tests profile Login IP Ranges. When Login IP Ranges are set on a profile, users on that profile can only log in from those IP addresses; attempts from anywhere else are denied. This is a hard block, unlike the org-wide Trusted IP Ranges in Network Access, which only trigger identity verification. Rule of thumb: profile IP range → denied; Network Access trusted range → verify.",
+      "traps": "The identity challenge is how org-wide Trusted IP Ranges behave; there's no read-only mode.",
+      "strip": "Profile IP range → denied. Network Access trusted range → verify.",
+      "tags": [
+        "security"
+      ],
+      "missed": false,
+      "wrong": {
+        "The user receives a login challenge for verification of their identity, such as a code sent to their mobile phone.": "An identity verification challenge is what happens outside org-wide Trusted IP Ranges, not profile Login IP Ranges.",
+        "The user is allowed to log in, but remains in Read-Only mode until the Login IP Range is updated to include their IP Address.": "There's no read-only login mode tied to IP ranges.",
+        "An email alert is sent to the System Administrator and the user is allowed to log in.": "Login IP Ranges don't email admins and let users in; they block the login."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q53",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Where should an Administrator go in Salesforce to disable a group of Users to access an application in Salesforce?",
+      "options": [
+        "Object Manager",
+        "Profile",
+        "Roles",
+        "Sharing Rule"
+      ],
+      "answer": [
+        "Profile"
+      ],
+      "why": "This tests where app access is controlled. Which apps a group of users can see is set on the profile (Assigned Apps / Custom App Settings), and many users share a profile, so removing the app there disables it for that group. Permission sets can add app access but can't remove it. Rule of thumb: what users can see or do in the UI → profile (and permission sets to add).",
+      "traps": "Object Manager builds objects; roles and sharing rules control records.",
+      "strip": "What you can do or see in the UI → profile / permission set.",
+      "tags": [
+        "profiles"
+      ],
+      "missed": false,
+      "wrong": {
+        "Object Manager": "Object Manager is for building objects and fields, not controlling app access.",
+        "Roles": "Roles control which records users see via the hierarchy, not apps.",
+        "Sharing Rule": "Sharing rules open record access; they can't remove app access."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_user_setup_mgmt/lex_implementation_user_setup_mgmt_adding_users-hoc",
+        "https://help.salesforce.com/s/articleView?id=sf.users_freeze.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q54",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "An administrator is configuring an Approval Process step for expense requests. Which option can be designated as an assigned approver within an Approval Step?",
+      "options": [
+        "Any active Contact record associated with the Account.",
+        "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue.",
+        "The System Administrator Profile.",
+        "The Public Group assigned to the record's OWD."
+      ],
+      "answer": [
+        "The submitter's Manager (via the standard Manager lookup field on the User record) or a designated Queue."
+      ],
+      "why": "This tests valid approvers in an approval step. Approvers must be users: a specific user, the submitter's manager via the Manager field on the User record, a user from a related user field, or a queue whose members can approve. Rule of thumb: approvers are users or queues, never profiles, contacts or groups tied to OWDs.",
+      "traps": "Contacts can't log in; a profile isn't a person; OWDs aren't assigned to groups.",
+      "strip": "Approvers → Users (Manager field, specific user, related user) or a Queue.",
+      "tags": [
+        "approvals"
+      ],
+      "missed": false,
+      "wrong": {
+        "Any active Contact record associated with the Account.": "Contacts are customer records and can't log in to approve.",
+        "The System Administrator Profile.": "A profile is a set of permissions, not a person, so it can't be an approver.",
+        "The Public Group assigned to the record's OWD.": "OWDs aren't assigned to Public Groups, and approval steps don't use that kind of setting."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/approvals",
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/build-an-approval-process"
+      ]
+    },
+    {
+      "id": "voucher2-q55",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "When mapping fields for the Lead conversion process, which other objects can you map fields to in Salesforce? Select 3.",
+      "options": [
+        "Contact",
+        "Lead",
+        "Report",
+        "Account",
+        "Opportunity"
+      ],
+      "answer": [
+        "Contact",
+        "Account",
+        "Opportunity"
+      ],
+      "why": "This tests the lead conversion targets. Converting a lead creates (or matches) an Account, a Contact and, optionally, an Opportunity. Custom Lead fields can be mapped to custom fields on any of those three objects in Map Lead Fields. Rule of thumb: lead converts to Account + Contact + optional Opportunity.",
+      "traps": "Lead is the source, not a target; reports aren't records.",
+      "strip": "Lead convert → Account + Contact + (optional) Opportunity.",
+      "tags": [
+        "leads"
+      ],
+      "missed": false,
+      "wrong": {
+        "Lead": "Lead is the source being converted, not a target of the mapping.",
+        "Report": "Reports are not records; you can't map fields to a report."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/create-and-convert-leads-lightning",
+        "https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look"
+      ]
+    },
+    {
+      "id": "voucher2-q56",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What type of rule does Salesforce make available that helps improve data quality?",
+      "options": [
+        "Workflow Rule",
+        "Escalation Rule",
+        "Validation Rule",
+        "Auto-response Rule"
+      ],
+      "answer": [
+        "Validation Rule"
+      ],
+      "why": "This tests the data quality rule. A validation rule is a formula that returns true when data is bad; if it does, Salesforce blocks the save and shows your error message. This keeps incorrect or incomplete data out at entry. Duplicate and matching rules are the related feature for stopping duplicates. Rule of thumb: block bad values on save → validation rule.",
+      "traps": "Workflow is retired automation; escalation bumps old cases; auto-response emails form submitters.",
+      "strip": "Block bad values on save → validation rule. Stop duplicates → matching + duplicate rules.",
+      "tags": [
+        "data quality"
+      ],
+      "missed": false,
+      "wrong": {
+        "Workflow Rule": "Workflow Rules were automation (now retired); they didn't block bad data.",
+        "Escalation Rule": "Escalation rules reassign and alert on cases that stay open too long.",
+        "Auto-response Rule": "Auto-response rules email people who submitted web or email leads/cases."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_2",
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_1"
+      ]
+    },
+    {
+      "id": "voucher2-q57",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Your Salesforce organization uses Chatter extensively. A common complaint among your users is that they find it difficult to keep up to date with all of the Chatter posts and they are requesting a way to organize and categorize Chatter feed posts across records they follow, people, groups and various other combinations. What can be created in Chatter to facilitate this functionality?",
+      "options": [
+        "Company Highlights",
+        "Streams",
+        "Bookmarks",
+        "Chatter Groups"
+      ],
+      "answer": [
+        "Streams"
+      ],
+      "why": "This tests Chatter Streams. A stream combines feeds from records, people and groups you choose into one custom feed, so users can organize what they follow by topic or project. Each stream can include up to 25 feeds and a user can have up to 100 streams. Rule of thumb: combine and organize feeds → Streams.",
+      "translate": {
+        "situation": "Too many posts; users want custom feeds.",
+        "feature": "Chatter Streams.",
+        "see": "A custom feed mixing chosen people, groups, and records.",
+        "notOther": "Groups are for collaborating, not for combining feeds you follow."
+      },
+      "tags": [],
+      "missed": true,
+      "traps": "Company Highlights is a popular-posts filter; bookmarks save one post; groups are for collaborating.",
+      "strip": "Combine feeds you follow → Streams.",
+      "wrong": {
+        "Company Highlights": "Company Highlights is a feed filter showing popular posts across the company; you can't customize what it includes.",
+        "Bookmarks": "Bookmarks save individual posts for later, not whole feeds.",
+        "Chatter Groups": "Chatter groups are places to collaborate on a topic; they don't combine feeds from records and people."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "voucher2-q58",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Where does an administrator control field-level security for users?",
+      "options": [
+        "User",
+        "Profile",
+        "Sharing rule",
+        "Role"
+      ],
+      "answer": [
+        "Profile"
+      ],
+      "why": "This tests where field-level security is set. FLS (Visible / Read-Only per field) is configured on the profile and can be added through permission sets, either from the profile or from the field's 'Set Field-Level Security' button in Object Manager. It applies to everyone on that profile. Rule of thumb: fields → profile/permission set; records → OWD, roles, sharing.",
+      "traps": "Nothing is set on a single user; sharing rules and roles control records, not fields.",
+      "strip": "Fields → profile / permission set. Records → OWD, roles, sharing.",
+      "tags": [
+        "security"
+      ],
+      "missed": false,
+      "wrong": {
+        "User": "There's no field-level security setting on an individual user record.",
+        "Sharing rule": "Sharing rules control which records users can access, not fields.",
+        "Role": "Roles control record visibility via the hierarchy, not fields."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields"
+      ]
+    },
+    {
+      "id": "voucher2-q59",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Planetary Solar Inc. wants to implement automatic and dynamic chat routing that assigns chat requests to the correct agent based on the customers’ language: English, Japanese, or Spanish. Once a Support Agent accepts the request, the related Contact and Case records should open in new tabs. What can the Salesforce Administrator implement to meet this requirement?",
+      "options": [
+        "Auto-Response Rule",
+        "Case Assignment Rules",
+        "Omni-Channel",
+        "Data Import Wizard"
+      ],
+      "answer": [
+        "Omni-Channel"
+      ],
+      "why": "This tests real-time, skills-based routing. Omni-Channel routes chats and other work items to agents who are online, have capacity and have the right skills (here, language) using skills-based routing. When the agent accepts, Omni-Channel opens the work item and related records like the Contact and Case in console tabs. Rule of thumb: real-time + available agent + skills → Omni-Channel.",
+      "traps": "Assignment rules set an owner once at creation; auto-response sends emails; the import wizard loads data.",
+      "strip": "Real-time + available agent + skills + accept → Omni-Channel.",
+      "tags": [
+        "omni-channel"
+      ],
+      "missed": false,
+      "wrong": {
+        "Auto-Response Rule": "Auto-response rules send acknowledgment emails; they don't route chats.",
+        "Case Assignment Rules": "Case assignment rules set an owner from field criteria at creation; they don't check availability or route chats in real time.",
+        "Data Import Wizard": "The Data Import Wizard loads records from CSV files; it has nothing to do with routing."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/enhanced-omni-channel/improve-work-distribution-with-enhanced-omni-channel",
+        "https://help.salesforce.com/s/articleView?id=omnichannel_routing.htm&type=5"
+      ]
+    },
+    {
+      "id": "voucher2-q60",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Which two objects can be related to Campaign Members? Select 2.",
+      "options": [
+        "Contact Roles",
+        "Contacts",
+        "Leads",
+        "Partners"
+      ],
+      "answer": [
+        "Contacts",
+        "Leads"
+      ],
+      "why": "This tests the Campaign Member object. A campaign member links a Campaign to a specific person, either a Lead or a Contact, and stores their member status (like Sent or Responded). That's how you track who you targeted and how they responded. Rule of thumb: campaign members → Leads or Contacts.",
+      "traps": "Contact roles describe a part in a deal or account; partners link accounts.",
+      "strip": "Campaign member → Lead or Contact.",
+      "tags": [
+        "campaigns"
+      ],
+      "missed": false,
+      "wrong": {
+        "Contact Roles": "Contact roles describe a contact's part in an opportunity or account; they aren't campaign members.",
+        "Partners": "Partners link accounts to each other; they aren't campaign members."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_1",
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_3"
+      ]
+    }
+  ]
 }

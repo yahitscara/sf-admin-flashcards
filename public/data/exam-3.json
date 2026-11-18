@@ -2,65 +2,1750 @@
   "source": "exam-3",
   "title": "K2U Platform Administrator Practice Exam 3",
   "cards": [
-    {"id": "exam3-q01", "type": "question", "objective": "config-setup", "prompt": "The VP of Corporate Communications gives the admin the company branding guide and files to incorporate into the UI. What should the admin do?", "options": ["Go to Themes and Branding in the User Interface settings to create a new theme", "Send a request to Salesforce to change custom logos and colors", "Upload a new logo, but the color can only be Salesforce Lightning Blue", "Themes and colors can't be changed in Lightning Experience"], "answer": ["Go to Themes and Branding in the User Interface settings to create a new theme"], "why": "Create a theme with the org's images and colors in Themes and Branding. It applies org-wide; only one theme is active at a time.", "traps": "'Ask Salesforce' and 'can't be changed' answers are admin-limitation traps.", "tags": ["branding", "ui"], "missed": true},
-    {"id": "exam3-q02", "type": "question", "objective": "data-analytics", "prompt": "Users running the same report should only see data they have access to. What should the admin do?", "options": ["This is not possible with Salesforce", "Define the sharing model as Public Read/Write for the object", "Define the sharing model as Private for the object", "Create the same report with a different name for every user"], "answer": ["Define the sharing model as Private for the object"], "why": "Reports respect sharing. With Private OWD, each user sees only records they own or can access (plus subordinates via the role hierarchy).", "strip": "'Only see' = restrict = OWD.", "tags": ["reports", "sharing"]},
-    {"id": "exam3-q03", "type": "question", "objective": "config-setup", "prompt": "Opportunity OWD is Read Only; territories are Japan, US, France, Argentina. Japan and France reps need read/write on US-owned opportunities. Most efficient?", "options": ["Create two sharing rules based on users assigned to territories", "Create one sharing rule sharing US reps' opportunities with a public group containing the Japan and France territories", "Change the opportunity OWD to Public Read/Write", "Ask US reps to manually share their opportunities"], "answer": ["Create one sharing rule sharing US reps' opportunities with a public group containing the Japan and France territories"], "why": "A public group bundles both territories so one rule covers them. Two rules work but are less efficient.", "traps": "OWD change opens records to everyone; manual sharing doesn't scale.", "strip": "'Most efficiently' = fewest pieces.", "tags": ["sharing", "public groups", "territories"]},
-    {"id": "exam3-q04", "type": "question", "objective": "data-analytics", "prompt": "What is true about dashboards in Lightning Experience? (2)", "options": ["The person under 'View Dashboard As' determines what data is displayed", "You can only view the dashboard as its creator", "'View All Data' allows choosing any user as the running user", "Dashboard viewers can't choose whom they view the dashboard as"], "answer": ["The person under 'View Dashboard As' determines what data is displayed", "'View All Data' allows choosing any user as the running user"], "why": "The running user decides the data. There is an option to let viewers choose, and the 'dashboard viewer' option makes it dynamic.", "tags": ["dashboards"]},
-    {"id": "exam3-q05", "type": "question", "objective": "config-setup", "prompt": "A user left the phone they use for MFA at home. What should the admin do?", "options": ["Generate a temporary username", "Remove multi-factor authentication", "Generate a temporary verification code", "Reset the user's password"], "answer": ["Generate a temporary verification code"], "why": "Generated from the user record; valid for 1–24 hours in place of the authenticator code.", "strip": "Replace exactly the missing piece (the second factor) without lowering security.", "tags": ["mfa", "security"]},
-    {"id": "exam3-q06", "type": "question", "objective": "config-setup", "prompt": "A user can't see the Contacts tab. What should the admin check first?", "options": ["The profile assigned to the user", "The user record", "Account settings", "The role assigned to the user"], "answer": ["The profile assigned to the user"], "why": "Tab settings live on profiles and permission sets.", "strip": "Can't see a tab/app/field/object → profile. Can't see a record → sharing.", "tags": ["profiles", "tabs"]},
-    {"id": "exam3-q07", "type": "question", "objective": "config-setup", "prompt": "Branded internal URL, SSO, and custom Lightning components all require what?", "options": ["Public Sites", "Custom Sites Domain", "Custom URL", "My Domain"], "answer": ["My Domain"], "why": "My Domain sets the org subdomain and is required for SSO and some Lightning components. On by default for newer orgs.", "traps": "Sites and Custom Sites Domain are for public sites; 'Custom URL' isn't a feature.", "strip": "Count the requirements; only one feature covers all three.", "tags": ["my domain", "sso"]},
-    {"id": "exam3-q08", "type": "question", "objective": "data-analytics", "prompt": "Show a joined report's data on a Lightning dashboard. How?", "options": ["Rebuild it as a tabular report and use that as the source", "Rebuild it as a summary report and use that as the source", "Rebuild it as a matrix report and use that as the source", "Add a chart to the joined report, then use it as the dashboard source"], "answer": ["Add a chart to the joined report, then use it as the dashboard source"], "why": "Joined reports can be a dashboard source if they contain a chart.", "strip": "Three answers with the same pattern → the odd one out is usually right.", "tags": ["dashboards", "joined reports"]},
-    {"id": "exam3-q09", "type": "question", "objective": "config-setup", "prompt": "Login hours are 8 AM–4 PM. A user logs in at 3:45 and keeps working until 4:01. What happens?", "options": ["The user can keep working without issues", "The user is automatically logged out", "A popup asks if they want to extend the session", "The user is logged out on navigating to a new page or doing a data update"], "answer": ["The user is logged out on navigating to a new page or doing a data update"], "why": "They can keep viewing the current page, but their next action logs them out.", "traps": "The popup is session timeout, not login hours.", "tags": ["login hours"]},
-    {"id": "exam3-q10", "type": "question", "objective": "data-analytics", "prompt": "A user subscribes to a dashboard and wants to add two coworkers as subscribers. What should be considered? (3)", "options": ["Any user with access to the dashboard can add other subscribers", "Only users with access to the dashboard can be added as subscribers", "Dashboard filters aren't applied to the emailed dashboard", "Subscriptions can be by user, group, or role", "Only one other user can be added"], "answer": ["Only users with access to the dashboard can be added as subscribers", "Dashboard filters aren't applied to the emailed dashboard", "Subscriptions can be by user, group, or role"], "why": "Adding recipients needs the 'Subscribe to Dashboards: Add Recipients' permission. Emails are unfiltered.", "strip": "Absolutes are red flags, not verdicts: a security-backed 'only' is real.", "tags": ["dashboards", "subscriptions"]},
-    {"id": "exam3-q11", "type": "question", "objective": "config-setup", "prompt": "External users need read-only access to the major standard objects; everyone else's profile has full CRUD. Best way?", "options": ["Clone Standard User and remove delete", "Clone Minimum Access, add read-only access to needed objects, assign it", "Assign Minimum Access and use a permission set to remove delete", "Assign Standard User and deselect 'Delete All' on user records"], "answer": ["Clone Minimum Access, add read-only access to needed objects, assign it"], "why": "Start from least access and add. Permission sets can't remove access; there's no 'Delete All' user permission.", "traps": "Removing delete still leaves create and edit.", "tags": ["profiles", "least privilege"]},
-    {"id": "exam3-q12", "type": "question", "objective": "config-setup", "prompt": "My Domain blocks login from the Salesforce URL. A user can't log in and Login History shows no entry. Why?", "options": ["Incorrect password", "Didn't use the My Domain URL", "Incorrect username", "Locked out after invalid attempts"], "answer": ["Didn't use the My Domain URL"], "why": "Wrong passwords and lockouts are logged. No entry means the attempt never reached the org.", "strip": "A specific setup detail in the question is usually the answer.", "tags": ["my domain", "login"]},
-    {"id": "exam3-q13", "type": "question", "objective": "config-setup", "prompt": "Which are record-level sharing? (3)", "options": ["Profiles", "Organization-Wide Defaults", "Roles", "Permission Sets", "Sharing Rules"], "answer": ["Organization-Wide Defaults", "Roles", "Sharing Rules"], "why": "Profiles and permission sets set object-level permissions, not record access.", "tags": ["sharing"]},
-    {"id": "exam3-q14", "type": "question", "objective": "agentforce", "prompt": "Agentforce can't retrieve a confidential Opportunity for one sales manager, but works for other managers. Primary mechanism?", "options": ["The agent lacks 'View All Data'", "The Trust Layer redacted sensitive financial fields", "A separate permission set limits the agent to non-confidential record types", "The agent inherits the requesting user's permissions, sharing, and FLS"], "answer": ["The agent inherits the requesting user's permissions, sharing, and FLS"], "why": "Agentforce mirrors the user's access. Works for others → the difference is this user.", "traps": "A restriction on the agent would fail for everyone; permission sets can't restrict.", "tags": ["agentforce", "sharing"]},
-    {"id": "exam3-q15", "type": "question", "objective": "object-manager", "prompt": "Can a business process be set up for a custom 'Purchase Order' object?", "options": ["Yes, by requesting it from Salesforce support", "Business processes are available for Lead only", "Business processes are only available for Lead, Solution, Opportunity, and Case", "Business processes are available for all objects"], "answer": ["Business processes are only available for Lead, Solution, Opportunity, and Case"], "why": "Sales (Opportunity), Lead, Solution, Support (Case). Use Path for custom objects.", "tags": ["business processes"]},
-    {"id": "exam3-q16", "type": "question", "objective": "object-manager", "prompt": "Track a contact's relationships with multiple companies. (2)", "options": ["Cross-object formula on Contact listing related accounts", "Add Related Accounts to the Contact layout, add Related Contacts to the Account layout, remove the old Contacts list", "Add Related Accounts to Contact and update the existing Contacts list on Account", "Enable Contacts to Multiple Accounts"], "answer": ["Add Related Accounts to the Contact layout, add Related Contacts to the Account layout, remove the old Contacts list", "Enable Contacts to Multiple Accounts"], "why": "Turn it on, then make it visible. Related Contacts shows direct and indirect contacts.", "strip": "'Enable X' with choose 2 → turn it on + add it to the layout.", "tags": ["contacts"]},
-    {"id": "exam3-q17", "type": "question", "objective": "object-manager", "prompt": "What can a record type define? (3)", "options": ["Approval processes", "Paths", "Page layouts", "Picklist values", "Profiles"], "answer": ["Paths", "Page layouts", "Picklist values"], "why": "Record types are assigned to profiles; they don't control profiles or approval processes.", "strip": "'Define' = which way does ownership run?", "tags": ["record types"]},
-    {"id": "exam3-q18", "type": "question", "objective": "object-manager", "prompt": "Stop users accessing the standard 'Account Site' field on account records. (3)", "options": ["Use the Field Accessibility page to restrict visibility", "Remove the field from the page layout", "Delete the field", "Use FLS to hide it for all profiles", "Change the field type"], "answer": ["Use the Field Accessibility page to restrict visibility", "Remove the field from the page layout", "Use FLS to hide it for all profiles"], "why": "FLS can hide fields. Standard fields can't be deleted or have their type changed.", "tags": ["fields", "fls"]},
-    {"id": "exam3-q19", "type": "question", "objective": "object-manager", "prompt": "Report on case close reasons: 2–3 word categories to spot trends. Best way?", "options": ["New record type and layout for closed cases with the field", "Picklist 'Case Close Reason' + validation rule requiring it when closed or rejected", "Text field filled in at close", "Record-triggered flow that sets the reason on close"], "answer": ["Picklist 'Case Close Reason' + validation rule requiring it when closed or rejected"], "why": "Picklist = consistent categories; validation rule = required when closed.", "strip": "Categories/trends → picklist. Required IF → validation rule.", "tags": ["picklists", "validation"]},
-    {"id": "exam3-q20", "type": "question", "objective": "object-manager", "prompt": "Show total expected revenue of all open opportunities on the account page.", "options": ["Custom field with trigger", "Lookup field", "Roll-up summary field", "Formula field"], "answer": ["Roll-up summary field"], "why": "Roll-up SUM of Expected Revenue, filtered to open opportunities. Formulas only reach one related record.", "strip": "Formula looks up; roll-up looks down.", "tags": ["roll-up", "formulas"]},
-    {"id": "exam3-q21", "type": "question", "objective": "object-manager", "prompt": "Remove access to the standard 'Annual Revenue' field. (2)", "options": ["Hide it using FLS", "Use a validation rule to hide it", "Delete the field", "Remove it from page layouts"], "answer": ["Hide it using FLS", "Remove it from page layouts"], "why": "Standard fields can't be deleted; validation rules can't hide fields.", "tags": ["fields", "fls"]},
-    {"id": "exam3-q22", "type": "question", "objective": "object-manager", "prompt": "What is true about deleting custom fields? (2)", "options": ["Can't be deleted while referenced", "Field and data can be restored, but not field history", "Field, data, and field history can be restored within a limited time", "Can't be deleted, only deactivated"], "answer": ["Can't be deleted while referenced", "Field, data, and field history can be restored within a limited time"], "why": "References in formulas, validation rules, flows, or Apex block deletion. Restore window is 15 days, and history comes back too.", "strip": "Two near-identical answers → the question tests that one detail.", "tags": ["fields"]},
-    {"id": "exam3-q23", "type": "question", "objective": "object-manager", "prompt": "Track the user and date/time when a case's Status changes.", "options": ["Enable Field Value Tracking and user tracking", "Enable Field History Tracking on Status and add the History related list", "Record-triggered flow storing user and timestamp", "Enable Field Value Recording on Case"], "answer": ["Enable Field History Tracking on Status and add the History related list"], "why": "Records old value, new value, user, and time. Up to 20 fields per object.", "traps": "'Field Value Tracking' and 'Field Value Recording' aren't features.", "tags": ["field history"]},
-    {"id": "exam3-q24", "type": "question", "objective": "sales-marketing", "prompt": "Valid consideration for Kanban view with leads and opportunities?", "options": ["A lead can't be converted in a kanban view", "Only up to 100 opportunities can be displayed", "Opportunities from any stage can be displayed", "Converted leads can be displayed"], "answer": ["A lead can't be converted in a kanban view"], "why": "Kanban shows up to 200 records; converted leads and Closed Lost opportunities don't appear.", "traps": "'Any stage' fails because Closed Lost is excluded.", "tags": ["kanban"], "missed": true},
-    {"id": "exam3-q25", "type": "question", "objective": "sales-marketing", "prompt": "Which objects are Sales objects?", "options": ["Accounts, Contacts, Opportunities, Knowledge", "Leads, Opportunities, Forecasts, Service Contract", "Leads, Contacts, Quotes, Entitlements", "Leads, Campaigns, Opportunities, Orders"], "answer": ["Leads, Campaigns, Opportunities, Orders"], "why": "Knowledge, Service Contracts, Entitlements, and Cases are service objects.", "strip": "One impostor ruins the whole group.", "tags": ["objects"]},
-    {"id": "exam3-q26", "type": "question", "objective": "sales-marketing", "prompt": "Prevent spam leads from Web-to-Lead.", "options": ["Validation rules on Lead", "Email restriction rule", "Lead auto-response rule", "Require reCAPTCHA verification"], "answer": ["Require reCAPTCHA verification"], "why": "Rejects submissions without reCAPTCHA before a lead is created.", "tags": ["web-to-lead"]},
-    {"id": "exam3-q27", "type": "question", "objective": "sales-marketing", "prompt": "Purpose of Web-to-Lead auto-response rules?", "options": ["Let the lead choose whether to get a confirmation", "Ensure an email goes to every lead created", "Send different auto-response emails based on lead attributes", "Ensure an email goes to every lead from a campaign"], "answer": ["Send different auto-response emails based on lead attributes"], "why": "Ordered entries with criteria; first match picks the template.", "strip": "Two answers share the same absolute ('ensure every') → both out.", "tags": ["auto-response"]},
-    {"id": "exam3-q28", "type": "question", "objective": "sales-marketing", "prompt": "True about sharing notes in Lightning Experience? (3)", "options": ["'Collaborator' access can be granted", "A note can be shared with users or groups", "Recipients can edit simultaneously", "The 'Notes' related list can be used to share a note", "Recipients can be prevented from sharing or unsharing"], "answer": ["A note can be shared with users or groups", "The 'Notes' related list can be used to share a note", "Recipients can be prevented from sharing or unsharing"], "why": "Notes in Lightning only offer Viewer access (Collaborator is from Notes & Attachments). No simultaneous editing.", "tags": ["notes"], "missed": true},
-    {"id": "exam3-q29", "type": "question", "objective": "sales-marketing", "prompt": "Send a list email to SOME campaign members in Lightning. Where?", "options": ["Campaign Members related list detailed view", "Accounts tab", "List Emails tab", "Campaign Members related list"], "answer": ["Campaign Members related list detailed view"], "why": "'View All' on the related list lets you select specific members.", "tags": ["campaigns", "list email"]},
-    {"id": "exam3-q30", "type": "question", "objective": "service", "prompt": "Service Console agents can't find case updates of a specific type (emails, text posts). (2)", "options": ["Assign the record page to the Service Console app and profile", "Add the Chatter Feed component to the Case record page", "Configure the feed filter to show in the right column", "Ensure the feed filter is enabled"], "answer": ["Assign the record page to the Service Console app and profile", "Add the Chatter Feed component to the Case record page"], "why": "Custom case feed filters aren't supported in Lightning. The Chatter Feed component auto-sorts into tabs (All Updates, Emails, Call Logs, Text Posts, Status Changes).", "tags": ["service console", "chatter"], "missed": true},
-    {"id": "exam3-q31", "type": "question", "objective": "service", "prompt": "True about bulk macros? (2)", "options": ["Run on multiple objects at once", "Run on list views of two objects at once", "Update field values on multiple records", "Send emails to contacts on selected records"], "answer": ["Update field values on multiple records", "Send emails to contacts on selected records"], "why": "One object list view at a time (Account, Case, Contact, Lead). Needs Enhanced Lists.", "tags": ["macros"]},
-    {"id": "exam3-q32", "type": "question", "objective": "service", "prompt": "Typical flow use cases for case management in a contact center? (2)", "options": ["Escalate a case if an SLA is missed", "Series of prompts for troubleshooting", "Notify the owner if a milestone isn't completed", "Create follow-up tasks"], "answer": ["Series of prompts for troubleshooting", "Create follow-up tasks"], "why": "Screen flows guide agents. SLAs and milestones have built-in tools (escalation rules, entitlements).", "tags": ["flow", "cases"]},
-    {"id": "exam3-q33", "type": "question", "objective": "service", "prompt": "Web-to-Case best practices. (3)", "options": ["Create a case assignment rule", "Configure macros", "Disable reCAPTCHA", "Create queues", "Create custom case fields"], "answer": ["Create a case assignment rule", "Create queues", "Create custom case fields"], "why": "Capture the right data and route it. Require reCAPTCHA, don't disable it.", "tags": ["web-to-case"]},
-    {"id": "exam3-q34", "type": "question", "objective": "service", "prompt": "Impact of deleting cases?", "options": ["Related events, tasks, comments, files, contacts, and accounts are deleted", "Cases can never be deleted", "Related events, tasks, case comments, and attachments are deleted", "Events, tasks, comments deleted, attachments retained"], "answer": ["Related events, tasks, case comments, and attachments are deleted"], "why": "Children go with the case; contacts, accounts, and solutions (parents) stay.", "tags": ["cases"]},
-    {"id": "exam3-q35", "type": "question", "objective": "service", "prompt": "Email the support manager if a gold, high-priority case isn't closed 2 hours after creation.", "options": ["Case Queues", "Case Escalation Rules", "Case Assignment Rules", "Case Settings"], "answer": ["Case Escalation Rules"], "why": "Time-based notify/reassign.", "tags": ["escalation"]},
-    {"id": "exam3-q36", "type": "question", "objective": "productivity", "prompt": "True about creating tasks in bulk in Lightning? (2)", "options": ["Assigned to multiple users → a copy per user", "Assigned to multiple users → only one task", "Can be assigned to multiple users but not groups", "Can be assigned to multiple users and groups"], "answer": ["Assigned to multiple users → a copy per user", "Can be assigned to multiple users and groups"], "why": "Each assignee gets their own copy with their name in Assigned To.", "tags": ["tasks"], "missed": true},
-    {"id": "exam3-q37", "type": "question", "objective": "productivity", "prompt": "Prevent automated replies and sensitive emails captured by Einstein Activity Capture from being shared.", "options": ["Ensure the options are enabled in Einstein Activity Capture settings", "Contact Salesforce support", "Ask reps to disable 'Sensitive Email Sharing'", "Enable the options on the Email Settings page"], "answer": ["Ensure the options are enabled in Einstein Activity Capture settings"], "why": "Both options are on by default in EAC settings.", "tags": ["EAC"]},
-    {"id": "exam3-q38", "type": "question", "objective": "productivity", "prompt": "True about sharing files in Lightning? (3)", "options": ["File owners and collaborators can change file permissions", "Sharing can be accessed from Files home", "Permission can be Viewer, Collaborator, or Administrator", "A file can be shared privately with specific people", "A file is shared with the company only when posted to a feed all users can see"], "answer": ["File owners and collaborators can change file permissions", "Sharing can be accessed from Files home", "A file can be shared privately with specific people"], "why": "Permissions: Viewer, Collaborator, Set by Record (no Administrator). Company sharing also happens via profile, record, or public group posts, so 'only' is false.", "tags": ["files"], "missed": true},
-    {"id": "exam3-q39", "type": "question", "objective": "productivity", "prompt": "What can users do with the default 'To Do List' utility bar item? (3)", "options": ["Create tasks", "Reorder tasks", "Log a call", "Create Salesforce meetings", "Create labels"], "answer": ["Create tasks", "Reorder tasks", "Create labels"], "why": "View, sort, label, and act on tasks; drag to reorder.", "tags": ["utility bar", "tasks"]},
-    {"id": "exam3-q40", "type": "question", "objective": "productivity", "prompt": "True about editing feed posts and comments? (2)", "options": ["Edit isn't available on posts with file attachments", "Salesforce admins can edit any post", "Record owners can always edit any post on their records by default", "Users editing their own posts is enabled by default"], "answer": ["Salesforce admins can edit any post", "Users editing their own posts is enabled by default"], "why": "'Edit Posts on Records I Own' is off by default, so 'always' is false.", "tags": ["chatter"]},
-    {"id": "exam3-q41", "type": "question", "objective": "data-analytics", "prompt": "When are dashboards refreshed? (2)", "options": ["Every home page visit", "Refresh frequency can be set per dashboard", "Every day", "When a user clicks Refresh"], "answer": ["Refresh frequency can be set per dashboard", "When a user clicks Refresh"], "why": "Scheduled daily/weekly/monthly or manual.", "tags": ["dashboards"]},
-    {"id": "exam3-q42", "type": "question", "objective": "productivity", "prompt": "Improve engagement with Chatter Questions.", "options": ["Only admins get Chatter Questions", "Add the Question action to the global publisher layout", "Increase the Question action's visibility in the publisher layout", "Enable Chatter Questions per profile"], "answer": ["Increase the Question action's visibility in the publisher layout"], "why": "Make it easy to find. Restricting it to admins reduces engagement.", "tags": ["chatter"]},
-    {"id": "exam3-q43", "type": "question", "objective": "data-analytics", "prompt": "What is true about the Data Export Service?", "options": ["Must request Salesforce to enable it", "Can run daily", "Data is exported in .csv format", "Exports all records but not attachments"], "answer": ["Data is exported in .csv format"], "why": "Weekly or monthly, CSV files in a zip; attachments can be included.", "tags": ["data export"]},
-    {"id": "exam3-q44", "type": "question", "objective": "data-analytics", "prompt": "Which report format can't use field groupings?", "options": ["Joined", "Summary", "Matrix", "Tabular"], "answer": ["Tabular"], "why": "Tabular is plain rows.", "tags": ["reports"]},
-    {"id": "exam3-q45", "type": "question", "objective": "data-analytics", "prompt": "Most efficient way to transfer 10 custom object records shown in an existing list view to a new owner?", "options": ["Data Loader", "Mass Transfer tool", "Change owner on each record", "Select records in the list view and change owner"], "answer": ["Select records in the list view and change owner"], "why": "Small number, already in a list view.", "tags": ["ownership"]},
-    {"id": "exam3-q46", "type": "question", "objective": "data-analytics", "prompt": "Blank out a picklist status of 'New' on many records.", "options": ["Export, blank the value, import with Data Loader", "Export, blank the value, upload with Data Loader using 'Insert Null Values'", "Import Wizard with 'Insert Blanks'", "Data Loader with External IDs"], "answer": ["Export, blank the value, upload with Data Loader using 'Insert Null Values'"], "why": "Without that setting, Data Loader ignores blank cells.", "tags": ["data loader"]},
-    {"id": "exam3-q47", "type": "question", "objective": "data-analytics", "prompt": "Weekly automatic backup of Accounts, Contacts, Opportunities to a local Windows server.", "options": ["Data Loader command-line interface with a weekly scheduled job", "Data Export Service", "Custom program using the API", "Data Export Wizard scheduled weekly"], "answer": ["Data Loader command-line interface with a weekly scheduled job"], "why": "Data Export Service only produces a download link; CLI runs locally on a schedule.", "tags": ["backup", "data loader"]},
-    {"id": "exam3-q48", "type": "question", "objective": "automation", "prompt": "True about the Flow 'Variable' resource? (2)", "options": ["Holds only a single field value for a single record", "Holds multiple values of multiple data types", "Can hold multiple field values for multiple records if configured", "Values can change at any point in the flow"], "answer": ["Can hold multiple field values for multiple records if configured", "Values can change at any point in the flow"], "why": "A record collection variable holds many records; variables are changeable.", "tags": ["flow"]},
-    {"id": "exam3-q49", "type": "question", "objective": "automation", "prompt": "Count related Survey Results on Account (lookup relationship) when they're created or deleted.", "options": ["Apex Trigger", "Flow Builder", "Roll-Up Summary Field", "Report Subscription"], "answer": ["Flow Builder"], "why": "Roll-ups need master-detail; with a lookup, use a record-triggered flow.", "tags": ["flow", "roll-up"]},
-    {"id": "exam3-q50", "type": "question", "objective": "automation", "prompt": "Processing order of validation, escalation, assignment, and workflow rules?", "options": ["Escalation, Validation, Workflow, Assignment", "Assignment, Workflow, Validation, Escalation", "Validation, Assignment, Workflow, Escalation", "Escalation, Assignment, Workflow, Validation"], "answer": ["Validation, Assignment, Workflow, Escalation"], "why": "Order of execution.", "tags": ["order of execution"]},
-    {"id": "exam3-q51", "type": "question", "objective": "automation", "prompt": "Notify users to perform a credit check by a date for loan opportunities over $10,000.", "options": ["Prebuilt 'Create a Task' flow", "Apex trigger creating a task", "Approval process with the credit user as approver", "Flow Builder creating a task for the credit check user"], "answer": ["Flow Builder creating a task for the credit check user"], "why": "A task with a due date is the notification. Approval is sign-off; Apex is code.", "tags": ["flow", "tasks"]},
-    {"id": "exam3-q52", "type": "question", "objective": "automation", "prompt": "What can launch a Flow Builder flow? (2)", "options": ["Validation Rule", "Custom Button", "A created or updated record", "Report Builder"], "answer": ["Custom Button", "A created or updated record"], "why": "Screen flows launch from buttons; record-triggered flows from saves.", "tags": ["flow"]},
-    {"id": "exam3-q53", "type": "question", "objective": "automation", "prompt": "Form launched from a record button to enter event details, then create a record and tasks.", "options": ["Record-Triggered Flow", "Schedule-Triggered Flow", "Screen Flow", "Platform Event-Triggered Flow"], "answer": ["Screen Flow"], "why": "User input on screens.", "tags": ["flow"]},
-    {"id": "exam3-q54", "type": "question", "objective": "automation", "prompt": "In a flow, how do you relate new Order Products to the Order you just created?", "options": ["Copy and paste the Order ID", "Use the automatically generated Order ID variable from the Create Records element", "Manually assign an output variable", "Connect the two Create Records elements"], "answer": ["Use the automatically generated Order ID variable from the Create Records element"], "why": "Create Records stores the new ID automatically for later elements.", "traps": "Connectors set step order; they don't pass data.", "tags": ["flow"]},
-    {"id": "exam3-q55", "type": "question", "objective": "automation", "prompt": "John's edit triggers a flow that updates the same record. Who is Last Modified By?", "options": ["System Administrator", "John", "The flow's creator", "The previous modifier"], "answer": ["John"], "why": "Triggered automation runs as the user who made the change.", "tags": ["flow"]},
-    {"id": "exam3-q56", "type": "question", "objective": "agentforce", "prompt": "Agent to engage inbound leads 24/7, answer product questions, and book meetings.", "options": ["Agentforce Sales Coach", "Agentforce SDR", "Agentforce Employee Agent", "Agentforce Service Agent"], "answer": ["Agentforce SDR"], "why": "Sales Development Rep = lead engagement and meeting booking.", "tags": ["agentforce"]},
-    {"id": "exam3-q57", "type": "question", "objective": "automation", "prompt": "How does Flow Trigger Explorer help when building a 'closed won' automation?", "options": ["Shows which record-triggered flows run for an object's create, update, or delete", "Combines flows for different objects into one", "Finds slow flows", "Calculates commissions automatically"], "answer": ["Shows which record-triggered flows run for an object's create, update, or delete"], "why": "A viewer: see what already fires on the object (and set run order) before adding more.", "tags": ["flow"]},
-    {"id": "exam3-q58", "type": "question", "objective": "agentforce", "prompt": "Internal agent for benefits questions, time-off balances, and IT tickets.", "options": ["Agentforce Service Agent", "Agentforce Employee Agent", "Agentforce Sales Coach", "Agentforce SDR"], "answer": ["Agentforce Employee Agent"], "why": "Internal staff productivity.", "tags": ["agentforce"]},
-    {"id": "exam3-q59", "type": "question", "objective": "agentforce", "prompt": "Test a large volume of utterances efficiently before production.", "options": ["Test in the LLM's own UI", "Conversation Preview in Agent Builder", "UAT after deploying to production", "Agentforce Testing Center with an uploaded CSV"], "answer": ["Agentforce Testing Center with an uploaded CSV"], "why": "Batch testing. Conversation Preview is for light testing.", "tags": ["agentforce", "testing"]},
-    {"id": "exam3-q60", "type": "question", "objective": "agentforce", "prompt": "Assurance that the external LLM provider won't keep prompts/responses or train on them.", "options": ["Zero-data retention policy", "Toxicity scoring", "Audit trail", "Data masking"], "answer": ["Zero-data retention policy"], "why": "A Trust Layer guarantee.", "tags": ["agentforce", "trust layer"]}
+    {
+      "id": "exam3-q01",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "The VP of Corporate Communications gives the admin the company branding guide and files to incorporate into the UI. What should the admin do?",
+      "options": [
+        "Go to Themes and Branding in the User Interface settings to create a new theme",
+        "Send a request to Salesforce to change custom logos and colors",
+        "Upload a new logo, but the color can only be Salesforce Lightning Blue",
+        "Themes and colors can't be changed in Lightning Experience"
+      ],
+      "answer": [
+        "Go to Themes and Branding in the User Interface settings to create a new theme"
+      ],
+      "why": "This tests whether you know branding is self-service for the admin. In Lightning Experience, go to Setup > User Interface > Themes and Branding, click New Theme, and set the brand image, logo, brand color, and page background. Activate the theme and it applies to the whole org. Only one theme can be active at a time. Rule of thumb: logos and colors are a Themes and Branding job the admin does in Setup, with no help from Salesforce needed.",
+      "traps": "'Ask Salesforce' and 'can't be changed' answers are admin-limitation traps.",
+      "tags": [
+        "branding",
+        "ui"
+      ],
+      "missed": true,
+      "wrong": {
+        "Send a request to Salesforce to change custom logos and colors": "Salesforce support doesn't do branding for you. Admins set logos and colors themselves in Themes and Branding.",
+        "Upload a new logo, but the color can only be Salesforce Lightning Blue": "Custom themes let you set your own brand color, not just the default blue.",
+        "Themes and colors can't be changed in Lightning Experience": "They can. Themes and Branding exists specifically for Lightning Experience."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_customization/lex_customization_apps",
+        "https://help.salesforce.com/s/articleView?id=sf.apps_lightning_customize.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q02",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Users running the same report should only see data they have access to. What should the admin do?",
+      "options": [
+        "This is not possible with Salesforce",
+        "Define the sharing model as Public Read/Write for the object",
+        "Define the sharing model as Private for the object",
+        "Create the same report with a different name for every user"
+      ],
+      "answer": [
+        "Define the sharing model as Private for the object"
+      ],
+      "why": "This tests that reports respect record-level security. A report only shows rows the running user can see, so the way to limit what people see is to tighten record access. Organization-Wide Defaults (OWD, the baseline access to records you don't own) set to Private means each user sees only records they own, plus records of people below them in the role hierarchy and anything shared to them. You set this in Setup > Sharing Settings. Rule of thumb: you never build per-user reports to hide data; you fix sharing and one report serves everyone.",
+      "strip": "'Only see' = restrict = OWD.",
+      "tags": [
+        "reports",
+        "sharing"
+      ],
+      "wrong": {
+        "This is not possible with Salesforce": "It's built in: reports automatically filter to what each user can access.",
+        "Define the sharing model as Public Read/Write for the object": "That's the opposite: everyone could see and edit every record, so the report would show everything.",
+        "Create the same report with a different name for every user": "Unscalable and unnecessary; one report already respects each user's sharing."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+        "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q03",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Opportunity OWD is Read Only; territories are Japan, US, France, Argentina. Japan and France reps need read/write on US-owned opportunities. Most efficient?",
+      "options": [
+        "Create two sharing rules based on users assigned to territories",
+        "Create one sharing rule sharing US reps' opportunities with a public group containing the Japan and France territories",
+        "Change the opportunity OWD to Public Read/Write",
+        "Ask US reps to manually share their opportunities"
+      ],
+      "answer": [
+        "Create one sharing rule sharing US reps' opportunities with a public group containing the Japan and France territories"
+      ],
+      "why": "This tests sharing rules plus public groups. Because the OWD is Read Only, Japan and France reps can see US opportunities but not edit them, so you need a sharing rule to grant Read/Write. A public group (a named bundle of users, roles, or territories) can contain both the Japan and France territories, so a single owner-based sharing rule shares US reps' opportunities to that group with Read/Write. Set it up in Setup > Public Groups, then Setup > Sharing Settings > Opportunity Sharing Rules. Rule of thumb: when several audiences need the same access, put them in a public group and write one rule.",
+      "traps": "OWD change opens records to everyone; manual sharing doesn't scale.",
+      "strip": "'Most efficiently' = fewest pieces.",
+      "tags": [
+        "sharing",
+        "public groups",
+        "territories"
+      ],
+      "wrong": {
+        "Create two sharing rules based on users assigned to territories": "This works, but it's two rules to maintain instead of one, so it isn't the most efficient option.",
+        "Change the opportunity OWD to Public Read/Write": "That opens every opportunity to every user for editing, far beyond what was asked.",
+        "Ask US reps to manually share their opportunities": "Manual sharing is record by record, depends on reps remembering, and doesn't scale."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_roles",
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_overview"
+      ]
+    },
+    {
+      "id": "exam3-q04",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What is true about dashboards in Lightning Experience? (2)",
+      "options": [
+        "The person under 'View Dashboard As' determines what data is displayed",
+        "You can only view the dashboard as its creator",
+        "'View All Data' allows choosing any user as the running user",
+        "Dashboard viewers can't choose whom they view the dashboard as"
+      ],
+      "answer": [
+        "The person under 'View Dashboard As' determines what data is displayed",
+        "'View All Data' allows choosing any user as the running user"
+      ],
+      "why": "This tests the dashboard running user. A Lightning dashboard shows data as whoever is set in 'View Dashboard As' (the running user), so that person's access decides what everyone sees. Users with 'View All Data' can pick any user as the running user when editing the dashboard, while users with 'View My Team's Dashboards' can pick people below them in the role hierarchy. You can also let viewers change the running user, or make it a dynamic dashboard where each viewer sees their own data. Rule of thumb: dashboard data = the running user's access, not the viewer's, unless it's dynamic.",
+      "tags": [
+        "dashboards"
+      ],
+      "wrong": {
+        "You can only view the dashboard as its creator": "The running user can be set to any appropriate user, or to 'the dashboard viewer'.",
+        "Dashboard viewers can't choose whom they view the dashboard as": "There's an option ('Let authorized users change running user') that lets permitted viewers switch the running user."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q05",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A user left the phone they use for MFA at home. What should the admin do?",
+      "options": [
+        "Generate a temporary username",
+        "Remove multi-factor authentication",
+        "Generate a temporary verification code",
+        "Reset the user's password"
+      ],
+      "answer": [
+        "Generate a temporary verification code"
+      ],
+      "why": "This tests MFA (multi-factor authentication: a password plus a second proof, like an authenticator app) recovery. When a user is missing their verification device, the admin opens the user's record in Setup > Users and, under Advanced User Details, clicks Generate next to Temporary Verification Code. The code expires after 1 to 24 hours (the admin chooses) and stands in for the missing second factor. Rule of thumb: replace only the missing piece and keep MFA on.",
+      "strip": "Replace exactly the missing piece (the second factor) without lowering security.",
+      "tags": [
+        "mfa",
+        "security"
+      ],
+      "wrong": {
+        "Generate a temporary username": "There's no such feature, and the username isn't the problem; the second factor is.",
+        "Remove multi-factor authentication": "MFA is required for Salesforce logins, and turning it off lowers security for a temporary problem.",
+        "Reset the user's password": "The user still knows their password. A reset doesn't help with the missing verification device."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/identity_login/identity_login_2fa"
+      ]
+    },
+    {
+      "id": "exam3-q06",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A user can't see the Contacts tab. What should the admin check first?",
+      "options": [
+        "The profile assigned to the user",
+        "The user record",
+        "Account settings",
+        "The role assigned to the user"
+      ],
+      "answer": [
+        "The profile assigned to the user"
+      ],
+      "why": "This tests where tab visibility lives. Tab settings (Default On, Default Off, Hidden) are set on the user's profile and can be added through permission sets; the user also needs Read access to the object. So the first place to check is the profile assigned to the user (Setup > Profiles > Object Settings or Tab Settings). Rule of thumb: can't see a tab, app, object, or field means profile or permission set; can't see a specific record means sharing.",
+      "strip": "Can't see a tab/app/field/object → profile. Can't see a record → sharing.",
+      "tags": [
+        "profiles",
+        "tabs"
+      ],
+      "wrong": {
+        "The user record": "The user record holds details like name, email, and license, but tab visibility is controlled by the profile.",
+        "Account settings": "Account settings control account features, not whether the Contacts tab appears.",
+        "The role assigned to the user": "Roles control record visibility through the role hierarchy, not tabs or object access."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q07",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Branded internal URL, SSO, and custom Lightning components all require what?",
+      "options": [
+        "Public Sites",
+        "Custom Sites Domain",
+        "Custom URL",
+        "My Domain"
+      ],
+      "answer": [
+        "My Domain"
+      ],
+      "why": "This tests My Domain, which gives your org its own subdomain such as yourcompany.my.salesforce.com. It's required for single sign-on (SSO: logging in with another identity provider's credentials), for custom Lightning components in Lightning pages, and it gives a branded login URL. It lives in Setup > My Domain and is on by default in all orgs created since Winter '21 and enforced for all orgs now. Rule of thumb: if the question lists SSO, Lightning components, and a branded URL together, the answer is My Domain.",
+      "traps": "Sites and Custom Sites Domain are for public sites; 'Custom URL' isn't a feature.",
+      "strip": "Count the requirements; only one feature covers all three.",
+      "tags": [
+        "my domain",
+        "sso"
+      ],
+      "wrong": {
+        "Public Sites": "Salesforce Sites are for building public-facing websites, not the org's internal login URL or SSO.",
+        "Custom Sites Domain": "This is for serving Sites or Experience Cloud sites on your own domain, not for SSO or Lightning components.",
+        "Custom URL": "This isn't the name of the feature; the org-specific URL setting is My Domain."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/identity_login/identity_login_my_domain",
+        "https://trailhead.salesforce.com/content/learn/modules/identity_login/identity_login_sso"
+      ]
+    },
+    {
+      "id": "exam3-q08",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Show a joined report's data on a Lightning dashboard. How?",
+      "options": [
+        "Rebuild it as a tabular report and use that as the source",
+        "Rebuild it as a summary report and use that as the source",
+        "Rebuild it as a matrix report and use that as the source",
+        "Add a chart to the joined report, then use it as the dashboard source"
+      ],
+      "answer": [
+        "Add a chart to the joined report, then use it as the dashboard source"
+      ],
+      "why": "This tests joined reports (reports with multiple blocks, each from its own report type) as dashboard sources. A joined report can feed a Lightning dashboard component as long as the report itself has a chart. So you open the joined report, add a chart, save, and then select it as the source in the dashboard component. Rule of thumb: you don't need to rebuild a joined report; give it a chart.",
+      "strip": "Three answers with the same pattern → the odd one out is usually right.",
+      "tags": [
+        "dashboards",
+        "joined reports"
+      ],
+      "wrong": {
+        "Rebuild it as a tabular report and use that as the source": "Unnecessary rework, and a tabular report can't hold the multiple blocks the joined report has.",
+        "Rebuild it as a summary report and use that as the source": "Summary reports are valid sources, but rebuilding loses the joined blocks and isn't needed.",
+        "Rebuild it as a matrix report and use that as the source": "Same problem: needless rebuild that can't reproduce the joined report's blocks."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q09",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Login hours are 8 AM–4 PM. A user logs in at 3:45 and keeps working until 4:01. What happens?",
+      "options": [
+        "The user can keep working without issues",
+        "The user is automatically logged out",
+        "A popup asks if they want to extend the session",
+        "The user is logged out on navigating to a new page or doing a data update"
+      ],
+      "answer": [
+        "The user is logged out on navigating to a new page or doing a data update"
+      ],
+      "why": "This tests login hours, which are set on a profile (Setup > Profiles > Login Hours). Login hours block logging in outside the window, and if a user is already logged in when the window ends, they can keep viewing the page they're on but are logged out the next time they try to do anything, like navigate to another page or save data. Rule of thumb: login hours end on the user's next action, not instantly and not with a warning.",
+      "traps": "The popup is session timeout, not login hours.",
+      "tags": [
+        "login hours"
+      ],
+      "wrong": {
+        "The user can keep working without issues": "Login hours are enforced after the window ends; the next action logs the user out.",
+        "The user is automatically logged out": "Salesforce doesn't kick them off the current page at 4:00; the logout happens on their next action.",
+        "A popup asks if they want to extend the session": "That popup belongs to session timeout settings, not login hours."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q10",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "A user subscribes to a dashboard and wants to add two coworkers as subscribers. What should be considered? (3)",
+      "options": [
+        "Any user with access to the dashboard can add other subscribers",
+        "Only users with access to the dashboard can be added as subscribers",
+        "Dashboard filters aren't applied to the emailed dashboard",
+        "Subscriptions can be by user, group, or role",
+        "Only one other user can be added"
+      ],
+      "answer": [
+        "Only users with access to the dashboard can be added as subscribers",
+        "Dashboard filters aren't applied to the emailed dashboard",
+        "Subscriptions can be by user, group, or role"
+      ],
+      "why": "This tests dashboard subscriptions (scheduled emails of a refreshed dashboard). Recipients must already have access to the dashboard, because the email shows the dashboard's data. Recipients can be users, groups, or roles (with role and subordinates options). The emailed dashboard is unfiltered, so dashboard filters aren't applied. Adding other people needs the 'Subscribe to Dashboards: Add Recipients' permission. Rule of thumb: subscriptions go only to people who can already see the dashboard, and the email ignores filters.",
+      "strip": "Absolutes are red flags, not verdicts: a security-backed 'only' is real.",
+      "tags": [
+        "dashboards",
+        "subscriptions"
+      ],
+      "wrong": {
+        "Any user with access to the dashboard can add other subscribers": "Adding recipients requires the 'Subscribe to Dashboards: Add Recipients' permission; access alone isn't enough.",
+        "Only one other user can be added": "You can add many recipients, including groups and roles, not just one person."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q11",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "External users need read-only access to the major standard objects; everyone else's profile has full CRUD. Best way?",
+      "options": [
+        "Clone Standard User and remove delete",
+        "Clone Minimum Access, add read-only access to needed objects, assign it",
+        "Assign Minimum Access and use a permission set to remove delete",
+        "Assign Standard User and deselect 'Delete All' on user records"
+      ],
+      "answer": [
+        "Clone Minimum Access, add read-only access to needed objects, assign it"
+      ],
+      "why": "This tests least privilege. The Minimum Access profile starts with almost no object access, so you clone it (you can't edit standard profiles), grant Read on just the needed standard objects, and assign it to the external users. Permission sets only add access; they can never take it away. Rule of thumb: build restricted users up from Minimum Access, then add; don't start broad and try to carve away.",
+      "traps": "Removing delete still leaves create and edit.",
+      "tags": [
+        "profiles",
+        "least privilege"
+      ],
+      "wrong": {
+        "Clone Standard User and remove delete": "Removing delete still leaves create and edit, so the users wouldn't be read-only.",
+        "Assign Minimum Access and use a permission set to remove delete": "Permission sets can only grant access, never remove it.",
+        "Assign Standard User and deselect 'Delete All' on user records": "There's no 'Delete All' user permission, and Standard User has full create and edit access."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q12",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "My Domain blocks login from the Salesforce URL. A user can't log in and Login History shows no entry. Why?",
+      "options": [
+        "Incorrect password",
+        "Didn't use the My Domain URL",
+        "Incorrect username",
+        "Locked out after invalid attempts"
+      ],
+      "answer": [
+        "Didn't use the My Domain URL"
+      ],
+      "why": "This tests the My Domain setting 'Prevent login from https://login.salesforce.com', found in Setup > My Domain > Routing and Policies. With it on, users must sign in through the My Domain URL. A wrong password, wrong username, or a lockout would still reach your org and leave an entry in Login History (Setup > Login History). No entry at all means the attempt never reached the org, which fits someone using the generic Salesforce login page. Rule of thumb: no Login History entry means look at how they reached the login page.",
+      "strip": "A specific setup detail in the question is usually the answer.",
+      "tags": [
+        "my domain",
+        "login"
+      ],
+      "wrong": {
+        "Incorrect password": "Failed password attempts are recorded in Login History, so there would be an entry.",
+        "Incorrect username": "A username that doesn't exist in the org also leaves no entry, but nothing points to a typo; the question gives you the My Domain login restriction as the cause.",
+        "Locked out after invalid attempts": "Lockouts come from failed attempts, which are logged in Login History."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/identity_login/identity_login_my_domain",
+        "https://trailhead.salesforce.com/content/learn/modules/identity_login/identity_login_sso"
+      ]
+    },
+    {
+      "id": "exam3-q13",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Which are record-level sharing? (3)",
+      "options": [
+        "Profiles",
+        "Organization-Wide Defaults",
+        "Roles",
+        "Permission Sets",
+        "Sharing Rules"
+      ],
+      "answer": [
+        "Organization-Wide Defaults",
+        "Roles",
+        "Sharing Rules"
+      ],
+      "why": "This tests the difference between what you can do (object and field permissions) and which records you can see (record-level sharing). Record-level access is built in layers: Organization-Wide Defaults set the baseline, the role hierarchy opens records owned by people below you, and sharing rules open records to groups of users by owner or criteria. Manual sharing and teams are other record-level tools. Rule of thumb: OWD, roles, sharing rules = which records; profiles and permission sets = which objects and fields.",
+      "tags": [
+        "sharing"
+      ],
+      "wrong": {
+        "Profiles": "Profiles grant object, field, tab, and system permissions, not access to specific records.",
+        "Permission Sets": "Permission sets add object and system permissions on top of a profile; they don't share records."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_sharing_rules",
+        "https://help.salesforce.com/s/articleView?id=security_about_sharing_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q14",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "Agentforce can't retrieve a confidential Opportunity for one sales manager, but works for other managers. Primary mechanism?",
+      "options": [
+        "The agent lacks 'View All Data'",
+        "The Trust Layer redacted sensitive financial fields",
+        "A separate permission set limits the agent to non-confidential record types",
+        "The agent inherits the requesting user's permissions, sharing, and FLS"
+      ],
+      "answer": [
+        "The agent inherits the requesting user's permissions, sharing, and FLS"
+      ],
+      "why": "This tests Agentforce security. An Agentforce agent working for an employee runs with that user's access, so it respects their object permissions, field-level security (FLS: which fields a user can see or edit), and sharing. If the agent works for other managers but not this one, the difference is this manager's access to that confidential opportunity. Rule of thumb: if the agent fails for one user only, check that user's sharing and permissions, not the agent.",
+      "traps": "A restriction on the agent would fail for everyone; permission sets can't restrict.",
+      "tags": [
+        "agentforce",
+        "sharing"
+      ],
+      "wrong": {
+        "The agent lacks 'View All Data'": "If the agent itself lacked access it would fail for every manager, not just one.",
+        "The Trust Layer redacted sensitive financial fields": "The Einstein Trust Layer masks sensitive data sent to the LLM; it doesn't stop a record from being retrieved for one specific user.",
+        "A separate permission set limits the agent to non-confidential record types": "Permission sets only grant access, and a limit on the agent would affect everyone."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "exam3-q15",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Can a business process be set up for a custom 'Purchase Order' object?",
+      "options": [
+        "Yes, by requesting it from Salesforce support",
+        "Business processes are available for Lead only",
+        "Business processes are only available for Lead, Solution, Opportunity, and Case",
+        "Business processes are available for all objects"
+      ],
+      "answer": [
+        "Business processes are only available for Lead, Solution, Opportunity, and Case"
+      ],
+      "why": "This tests business processes, which control which picklist stage or status values are available per record type. They exist only for four objects: Sales Processes (Opportunity Stage), Lead Processes (Lead Status), Support Processes (Case Status), and Solution Processes (Solution Status). You create them in Setup under each feature, then attach them to record types. For a custom object like Purchase Order, you'd use record types with picklist values and a Path to guide users. Rule of thumb: business processes = Opportunity, Lead, Case, Solution only.",
+      "tags": [
+        "business processes"
+      ],
+      "wrong": {
+        "Yes, by requesting it from Salesforce support": "Support can't enable business processes on custom objects; the feature is limited to four standard objects.",
+        "Business processes are available for Lead only": "Too narrow. Opportunity, Case, and Solution have them too.",
+        "Business processes are available for all objects": "Too broad. Only Lead, Opportunity, Case, and Solution support them."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/create-a-process-for-managing-support-cases/create-support-processes",
+        "https://help.salesforce.com/s/articleView?id=sf.customize_processes.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q16",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Track a contact's relationships with multiple companies. (2)",
+      "options": [
+        "Cross-object formula on Contact listing related accounts",
+        "Add Related Accounts to the Contact layout, add Related Contacts to the Account layout, remove the old Contacts list",
+        "Add Related Accounts to Contact and update the existing Contacts list on Account",
+        "Enable Contacts to Multiple Accounts"
+      ],
+      "answer": [
+        "Add Related Accounts to the Contact layout, add Related Contacts to the Account layout, remove the old Contacts list",
+        "Enable Contacts to Multiple Accounts"
+      ],
+      "why": "This tests Contacts to Multiple Accounts. First enable it in Setup > Account Settings ('Allow users to relate a contact to multiple accounts'). That creates Account Contact Relationships: a contact keeps one primary (direct) account and can be indirectly related to others. Then make it usable by adding the Related Accounts list to the Contact page layout and the Related Contacts list to the Account layout. Related Contacts shows both direct and indirect contacts, so it replaces the old Contacts list. Rule of thumb: turn the feature on, then put it on the layouts.",
+      "strip": "'Enable X' with choose 2 → turn it on + add it to the layout.",
+      "tags": [
+        "contacts"
+      ],
+      "wrong": {
+        "Cross-object formula on Contact listing related accounts": "A formula can only reach one parent record; it can't list many related accounts.",
+        "Add Related Accounts to Contact and update the existing Contacts list on Account": "The old Contacts list only shows direct contacts; you need Related Contacts to see indirect ones."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/accounts_contacts_lightning_experience/accounts-and-contacts-lightning",
+        "https://trailhead.salesforce.com/content/learn/modules/accounts_contacts_lightning_experience/understand-account-and-contact-relationships-lightning"
+      ]
+    },
+    {
+      "id": "exam3-q17",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "What can a record type define? (3)",
+      "options": [
+        "Approval processes",
+        "Paths",
+        "Page layouts",
+        "Picklist values",
+        "Profiles"
+      ],
+      "answer": [
+        "Paths",
+        "Page layouts",
+        "Picklist values"
+      ],
+      "why": "This tests what hangs off a record type (a way to offer different processes, picklist values, and layouts for the same object). Each record type controls which picklist values are available, and page layouts are assigned per record type and profile combination. A Path (the guided stage bar) is also created for a specific record type. Record types are themselves assigned to profiles, so they don't define profiles, and approval processes are configured separately with their own entry criteria. Rule of thumb: record types decide picklists, layouts, paths, and business processes.",
+      "strip": "'Define' = which way does ownership run?",
+      "tags": [
+        "record types"
+      ],
+      "wrong": {
+        "Approval processes": "Approval processes are separate automation with their own entry criteria; a record type can be a criterion but doesn't define the process.",
+        "Profiles": "The relationship runs the other way: profiles are given access to record types."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/customize-a-salesforce-object/create-record-types",
+        "https://help.salesforce.com/s/articleView?id=sf.creating_record_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q18",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Stop users accessing the standard 'Account Site' field on account records. (3)",
+      "options": [
+        "Use the Field Accessibility page to restrict visibility",
+        "Remove the field from the page layout",
+        "Delete the field",
+        "Use FLS to hide it for all profiles",
+        "Change the field type"
+      ],
+      "answer": [
+        "Use the Field Accessibility page to restrict visibility",
+        "Remove the field from the page layout",
+        "Use FLS to hide it for all profiles"
+      ],
+      "why": "This tests hiding a standard field. Field-level security (FLS) hides a field from profiles or permission sets everywhere: layouts, reports, list views, and the API. The Field Accessibility page (Setup > Field Accessibility) is a grid view that lets you edit that same FLS and visibility for a field across profiles. Removing the field from the page layout hides it on the record page. Standard fields can't be deleted and their data type can't be changed. Rule of thumb: FLS is the real security; layouts are just presentation.",
+      "tags": [
+        "fields",
+        "fls"
+      ],
+      "wrong": {
+        "Delete the field": "Standard fields can't be deleted; only custom fields can.",
+        "Change the field type": "You can't change the data type of most standard fields, and doing so wouldn't hide it anyway."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields"
+      ]
+    },
+    {
+      "id": "exam3-q19",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Report on case close reasons: 2–3 word categories to spot trends. Best way?",
+      "options": [
+        "New record type and layout for closed cases with the field",
+        "Picklist 'Case Close Reason' + validation rule requiring it when closed or rejected",
+        "Text field filled in at close",
+        "Record-triggered flow that sets the reason on close"
+      ],
+      "answer": [
+        "Picklist 'Case Close Reason' + validation rule requiring it when closed or rejected"
+      ],
+      "why": "This tests choosing the right field type plus enforcing it. Reporting on trends needs consistent categories, so a picklist (a fixed list of choices) is right; free text would produce misspellings and variations. A validation rule (a formula that blocks the save when it's true) makes the picklist required only when the case is Closed or Rejected, for example: AND(ISPICKVAL(Status, 'Closed'), ISBLANK(TEXT(Case_Close_Reason__c))). Rule of thumb: categories for reporting = picklist; required only under a condition = validation rule.",
+      "strip": "Categories/trends → picklist. Required IF → validation rule.",
+      "tags": [
+        "picklists",
+        "validation"
+      ],
+      "wrong": {
+        "New record type and layout for closed cases with the field": "Record types don't change automatically on close and don't make the field required; it's extra complexity.",
+        "Text field filled in at close": "Free text gives inconsistent values that are hard to group or report on.",
+        "Record-triggered flow that sets the reason on close": "Automation can't know why the case closed; the reason must come from the person closing it."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_global"
+      ]
+    },
+    {
+      "id": "exam3-q20",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Show total expected revenue of all open opportunities on the account page.",
+      "options": [
+        "Custom field with trigger",
+        "Lookup field",
+        "Roll-up summary field",
+        "Formula field"
+      ],
+      "answer": [
+        "Roll-up summary field"
+      ],
+      "why": "This tests roll-up summary fields, which calculate COUNT, SUM, MIN, or MAX from child records onto the parent in a master-detail relationship. Account to Opportunity is a special standard relationship that supports roll-ups, so you create a roll-up summary field on Account that sums Expected Revenue with a filter of Closed equals False (open opportunities). Build it in Object Manager > Account > Fields & Relationships. Rule of thumb: formulas look up to a parent; roll-ups look down to many children.",
+      "strip": "Formula looks up; roll-up looks down.",
+      "tags": [
+        "roll-up",
+        "formulas"
+      ],
+      "wrong": {
+        "Custom field with trigger": "Apex code works but isn't needed when a declarative roll-up does the job.",
+        "Lookup field": "A lookup links to one record; it doesn't total values from many records.",
+        "Formula field": "Formulas can read fields from parent records but can't add up many child records."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/roll_up_summary_fields",
+        "https://help.salesforce.com/s/articleView?id=sf.fields_about_roll_up_summary_fields.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q21",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Remove access to the standard 'Annual Revenue' field. (2)",
+      "options": [
+        "Hide it using FLS",
+        "Use a validation rule to hide it",
+        "Delete the field",
+        "Remove it from page layouts"
+      ],
+      "answer": [
+        "Hide it using FLS",
+        "Remove it from page layouts"
+      ],
+      "why": "This tests hiding a standard field again. Field-level security set to hidden removes the field for those profiles everywhere, including reports and the API. Removing it from page layouts takes it off the record page. Together they remove access and clutter. Standard fields can't be deleted, and validation rules only block saves, they can't hide anything. Rule of thumb: hide with FLS and layouts.",
+      "tags": [
+        "fields",
+        "fls"
+      ],
+      "wrong": {
+        "Use a validation rule to hide it": "Validation rules stop records from saving when data is bad; they have no effect on visibility.",
+        "Delete the field": "Standard fields can't be deleted."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields"
+      ]
+    },
+    {
+      "id": "exam3-q22",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "What is true about deleting custom fields? (2)",
+      "options": [
+        "Can't be deleted while referenced",
+        "Field and data can be restored, but not field history",
+        "Field, data, and field history can be restored within a limited time",
+        "Can't be deleted, only deactivated"
+      ],
+      "answer": [
+        "Can't be deleted while referenced",
+        "Field, data, and field history can be restored within a limited time"
+      ],
+      "why": "This tests custom field deletion. Salesforce won't let you delete a custom field that's referenced elsewhere, such as in formulas, validation rules, flows, Apex, or layouts in certain uses; you must remove the references first. A deleted custom field goes to the Deleted Fields list (in Object Manager under the object's Fields & Relationships) and can be undeleted for 15 days, bringing back the field, its data, and its field history. Rule of thumb: references block deletion; there's a 15-day undelete window that restores everything.",
+      "strip": "Two near-identical answers → the question tests that one detail.",
+      "tags": [
+        "fields"
+      ],
+      "wrong": {
+        "Field and data can be restored, but not field history": "Undeleting within the window restores field history too, which is the detail being tested.",
+        "Can't be deleted, only deactivated": "Custom fields can be deleted. Deactivating applies to things like picklist values, not fields."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q23",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Track the user and date/time when a case's Status changes.",
+      "options": [
+        "Enable Field Value Tracking and user tracking",
+        "Enable Field History Tracking on Status and add the History related list",
+        "Record-triggered flow storing user and timestamp",
+        "Enable Field Value Recording on Case"
+      ],
+      "answer": [
+        "Enable Field History Tracking on Status and add the History related list"
+      ],
+      "why": "This tests Field History Tracking. In Object Manager > Case > Fields & Relationships > Set History Tracking, turn on tracking for Status. Salesforce then records the old value, new value, who made the change, and when. Add the Case History related list to the page layout so users can see it. You can track up to 20 fields per object by default. Rule of thumb: who changed what and when = Field History Tracking.",
+      "traps": "'Field Value Tracking' and 'Field Value Recording' aren't features.",
+      "tags": [
+        "field history"
+      ],
+      "wrong": {
+        "Enable Field Value Tracking and user tracking": "These aren't real Salesforce features; the feature is Field History Tracking.",
+        "Record-triggered flow storing user and timestamp": "Possible, but custom work duplicating a built-in feature.",
+        "Enable Field Value Recording on Case": "Not a real Salesforce feature."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/field-audit-trail-basics/investigate-with-field-history-explorer"
+      ]
+    },
+    {
+      "id": "exam3-q24",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Valid consideration for Kanban view with leads and opportunities?",
+      "options": [
+        "A lead can't be converted in a kanban view",
+        "Only up to 100 opportunities can be displayed",
+        "Opportunities from any stage can be displayed",
+        "Converted leads can be displayed"
+      ],
+      "answer": [
+        "A lead can't be converted in a kanban view"
+      ],
+      "why": "This tests Kanban view (list view shown as cards in columns you can drag between). You can't convert a lead from Kanban; you open the lead and click Convert. Kanban shows up to 200 records, converted leads don't appear, and Closed Lost opportunities aren't shown as cards. Rule of thumb: Kanban is for moving records between stages, not for converting leads or seeing every record.",
+      "traps": "'Any stage' fails because Closed Lost is excluded.",
+      "tags": [
+        "kanban"
+      ],
+      "missed": true,
+      "wrong": {
+        "Only up to 100 opportunities can be displayed": "The limit is 200 records, not 100.",
+        "Opportunities from any stage can be displayed": "Closed Lost opportunities don't show in Kanban, so 'any stage' is false.",
+        "Converted leads can be displayed": "Converted leads don't appear in lead list views or Kanban."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/visualize-success-with-path-and-kanban",
+        "https://help.salesforce.com/s/articleView?id=sf.kanban.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q25",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Which objects are Sales objects?",
+      "options": [
+        "Accounts, Contacts, Opportunities, Knowledge",
+        "Leads, Opportunities, Forecasts, Service Contract",
+        "Leads, Contacts, Quotes, Entitlements",
+        "Leads, Campaigns, Opportunities, Orders"
+      ],
+      "answer": [
+        "Leads, Campaigns, Opportunities, Orders"
+      ],
+      "why": "This tests which objects belong to Sales Cloud versus Service Cloud. Leads, Campaigns, Opportunities, and Orders all support selling: finding prospects, marketing to them, tracking deals, and recording what was ordered. Knowledge, Service Contracts, Entitlements, and Cases are service objects. Rule of thumb: one service object in a group makes the whole option wrong.",
+      "strip": "One impostor ruins the whole group.",
+      "tags": [
+        "objects"
+      ],
+      "wrong": {
+        "Accounts, Contacts, Opportunities, Knowledge": "Knowledge is a Service Cloud object for help articles.",
+        "Leads, Opportunities, Forecasts, Service Contract": "Service Contracts are a Service Cloud object.",
+        "Leads, Contacts, Quotes, Entitlements": "Entitlements define support levels and are a Service Cloud object."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_customization/lex_customization_custom_objects"
+      ]
+    },
+    {
+      "id": "exam3-q26",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Prevent spam leads from Web-to-Lead.",
+      "options": [
+        "Validation rules on Lead",
+        "Email restriction rule",
+        "Lead auto-response rule",
+        "Require reCAPTCHA verification"
+      ],
+      "answer": [
+        "Require reCAPTCHA verification"
+      ],
+      "why": "This tests stopping spam on Web-to-Lead (a generated HTML form on your website that creates leads). In Setup > Web-to-Lead, select 'Require reCAPTCHA Verification' when generating the form. Submissions without a valid reCAPTCHA response are rejected before a lead is created, blocking bots. Rule of thumb: bots on web forms = reCAPTCHA.",
+      "tags": [
+        "web-to-lead"
+      ],
+      "wrong": {
+        "Validation rules on Lead": "They check data quality but can't tell a bot from a person who fills fields correctly.",
+        "Email restriction rule": "Restriction rules limit which records users can see; they don't filter form submissions.",
+        "Lead auto-response rule": "This sends an email reply after a lead is created; it doesn't block spam."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/create-and-convert-leads-lightning",
+        "https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look"
+      ]
+    },
+    {
+      "id": "exam3-q27",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Purpose of Web-to-Lead auto-response rules?",
+      "options": [
+        "Let the lead choose whether to get a confirmation",
+        "Ensure an email goes to every lead created",
+        "Send different auto-response emails based on lead attributes",
+        "Ensure an email goes to every lead from a campaign"
+      ],
+      "answer": [
+        "Send different auto-response emails based on lead attributes"
+      ],
+      "why": "This tests auto-response rules (Setup > Lead Auto-Response Rules). A rule contains ordered entries, each with criteria and an email template. When a Web-to-Lead submission comes in, Salesforce checks the entries in order and sends the template from the first match, so different leads get different emails based on their field values. Only one rule can be active at a time. Rule of thumb: auto-response = choose which email to send based on criteria.",
+      "strip": "Two answers share the same absolute ('ensure every') → both out.",
+      "tags": [
+        "auto-response"
+      ],
+      "wrong": {
+        "Let the lead choose whether to get a confirmation": "The lead has no choice; the rule decides based on criteria.",
+        "Ensure an email goes to every lead created": "Leads that match no entry get no email (unless a default template is set), so 'ensure every' is false.",
+        "Ensure an email goes to every lead from a campaign": "Same absolute problem; it's criteria based, not a guarantee for every campaign lead."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_channels"
+      ]
+    },
+    {
+      "id": "exam3-q28",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "True about sharing notes in Lightning Experience? (3)",
+      "options": [
+        "'Collaborator' access can be granted",
+        "A note can be shared with users or groups",
+        "Recipients can edit simultaneously",
+        "The 'Notes' related list can be used to share a note",
+        "Recipients can be prevented from sharing or unsharing"
+      ],
+      "answer": [
+        "A note can be shared with users or groups",
+        "The 'Notes' related list can be used to share a note",
+        "Recipients can be prevented from sharing or unsharing"
+      ],
+      "why": "This tests sharing Notes (the Lightning notes tool) in Lightning Experience. You can share a note with specific users or groups, including from the Notes related list on a record, and there's an option to prevent others from sharing and unsharing it. Recipients get Viewer access only, because Notes doesn't support simultaneous editing. Rule of thumb: Lightning notes share as Viewer only, no co-editing.",
+      "tags": [
+        "notes"
+      ],
+      "missed": true,
+      "wrong": {
+        "'Collaborator' access can be granted": "Notes in Lightning only grant Viewer access; Collaborator belongs to Files sharing.",
+        "Recipients can edit simultaneously": "Salesforce states that Notes doesn't support simultaneous editing, which is why sharing is Viewer only."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q29",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Send a list email to SOME campaign members in Lightning. Where?",
+      "options": [
+        "Campaign Members related list detailed view",
+        "Accounts tab",
+        "List Emails tab",
+        "Campaign Members related list"
+      ],
+      "answer": [
+        "Campaign Members related list detailed view"
+      ],
+      "why": "This tests list emails (one email sent individually to many recipients) from a campaign. On the campaign, click View All on the Campaign Members related list to open the full list view, select only the members you want, and click Send List Email. The short related list on the record page doesn't give you the selection checkboxes. Rule of thumb: to pick specific records, open the full list via View All.",
+      "tags": [
+        "campaigns",
+        "list email"
+      ],
+      "wrong": {
+        "Accounts tab": "Accounts aren't campaign members; you'd be emailing the wrong records.",
+        "List Emails tab": "That tab tracks sent list emails; it isn't where you select campaign members.",
+        "Campaign Members related list": "The compact related list on the record page doesn't let you select members; you need its View All list."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_1",
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_3"
+      ]
+    },
+    {
+      "id": "exam3-q30",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Service Console agents can't find case updates of a specific type (emails, text posts). (2)",
+      "options": [
+        "Assign the record page to the Service Console app and profile",
+        "Add the Chatter Feed component to the Case record page",
+        "Configure the feed filter to show in the right column",
+        "Ensure the feed filter is enabled"
+      ],
+      "answer": [
+        "Assign the record page to the Service Console app and profile",
+        "Add the Chatter Feed component to the Case record page"
+      ],
+      "why": "This tests the Case feed in the Service Console. In Lightning, the Chatter Feed component on the Case record page groups updates into tabs such as All Updates, Emails, Call Logs, Text Posts, and Status Changes, so agents can filter by type. Add it in Lightning App Builder, then activate that record page and assign it to the Service Console app and the agents' profile so they actually see it. Custom case feed filters from Classic aren't supported in Lightning. Rule of thumb: add the component, then assign the page.",
+      "tags": [
+        "service console",
+        "chatter"
+      ],
+      "missed": true,
+      "wrong": {
+        "Configure the feed filter to show in the right column": "This is a Classic feed-based layout setting; it doesn't apply to Lightning record pages.",
+        "Ensure the feed filter is enabled": "Custom feed filters aren't a Lightning setting; the Chatter Feed component provides the type tabs."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service-cloud-essentials-features/learn-about-macros-service-console-and-case-feed",
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-the-service-console"
+      ]
+    },
+    {
+      "id": "exam3-q31",
+      "type": "question",
+      "objective": "service",
+      "prompt": "True about bulk macros? (2)",
+      "options": [
+        "Run on multiple objects at once",
+        "Run on list views of two objects at once",
+        "Update field values on multiple records",
+        "Send emails to contacts on selected records"
+      ],
+      "answer": [
+        "Update field values on multiple records",
+        "Send emails to contacts on selected records"
+      ],
+      "why": "This tests bulk macros (a macro is a saved set of steps an agent runs with one click; a bulk macro runs on many records at once). From a list view you can select multiple records and run a bulk macro to update fields or send emails to contacts on those records. It works on one object's list view at a time, needs Enhanced Lists, and supports objects like Case, Contact, Lead, and Account. Rule of thumb: bulk macros = many records, one object.",
+      "tags": [
+        "macros"
+      ],
+      "wrong": {
+        "Run on multiple objects at once": "A bulk macro runs on records from one object's list view at a time.",
+        "Run on list views of two objects at once": "Same limitation: one object list view at a time."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service-cloud-essentials-features/learn-about-macros-service-console-and-case-feed",
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-the-service-console"
+      ]
+    },
+    {
+      "id": "exam3-q32",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Typical flow use cases for case management in a contact center? (2)",
+      "options": [
+        "Escalate a case if an SLA is missed",
+        "Series of prompts for troubleshooting",
+        "Notify the owner if a milestone isn't completed",
+        "Create follow-up tasks"
+      ],
+      "answer": [
+        "Series of prompts for troubleshooting",
+        "Create follow-up tasks"
+      ],
+      "why": "This tests when to use Flow for case management. A screen flow can walk an agent through a series of troubleshooting prompts, and flows can create follow-up tasks automatically. SLA (service level agreement) escalations and milestone warnings already have built-in tools: case escalation rules and entitlement milestones with warning and violation actions. Rule of thumb: guided steps and task creation = Flow; SLA timing = escalation rules or entitlements.",
+      "tags": [
+        "flow",
+        "cases"
+      ],
+      "wrong": {
+        "Escalate a case if an SLA is missed": "Case escalation rules and entitlement processes are the built-in tools for SLA escalation.",
+        "Notify the owner if a milestone isn't completed": "Entitlement milestone warning and violation actions handle this natively."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q33",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Web-to-Case best practices. (3)",
+      "options": [
+        "Create a case assignment rule",
+        "Configure macros",
+        "Disable reCAPTCHA",
+        "Create queues",
+        "Create custom case fields"
+      ],
+      "answer": [
+        "Create a case assignment rule",
+        "Create queues",
+        "Create custom case fields"
+      ],
+      "why": "This tests setting up Web-to-Case (a website form that creates cases) well. Create custom case fields so the form captures the details you need, create queues to hold incoming cases by team, and create a case assignment rule so new cases route to the right queue or person automatically. Rule of thumb: capture the right data, then route it.",
+      "tags": [
+        "web-to-case"
+      ],
+      "wrong": {
+        "Configure macros": "Macros help agents work cases after creation; they're not part of Web-to-Case setup.",
+        "Disable reCAPTCHA": "Best practice is to require reCAPTCHA to block spam, not to turn it off."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_channels",
+        "https://help.salesforce.com/s/articleView?id=sf.setting_up_web-to-case.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q34",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Impact of deleting cases?",
+      "options": [
+        "Related events, tasks, comments, files, contacts, and accounts are deleted",
+        "Cases can never be deleted",
+        "Related events, tasks, case comments, and attachments are deleted",
+        "Events, tasks, comments deleted, attachments retained"
+      ],
+      "answer": [
+        "Related events, tasks, case comments, and attachments are deleted"
+      ],
+      "why": "This tests what's deleted along with a case. Deleting a case also deletes its children: related events, tasks, case comments, and attachments. Parent and related records like the contact, account, and solutions stay, since they exist independently. Deleted records go to the Recycle Bin for 15 days. Rule of thumb: children go with the case; parents stay.",
+      "tags": [
+        "cases"
+      ],
+      "wrong": {
+        "Related events, tasks, comments, files, contacts, and accounts are deleted": "Contacts and accounts are parents of the case and are never deleted with it.",
+        "Cases can never be deleted": "Users with Delete permission on Case can delete cases.",
+        "Events, tasks, comments deleted, attachments retained": "Attachments are children of the case and are deleted too."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex"
+      ]
+    },
+    {
+      "id": "exam3-q35",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Email the support manager if a gold, high-priority case isn't closed 2 hours after creation.",
+      "options": [
+        "Case Queues",
+        "Case Escalation Rules",
+        "Case Assignment Rules",
+        "Case Settings"
+      ],
+      "answer": [
+        "Case Escalation Rules"
+      ],
+      "why": "This tests case escalation rules (Setup > Escalation Rules). A rule entry matches cases by criteria (for example, Gold customer and High priority) and sets time-based actions, such as 'if not closed 2 hours after creation, notify the support manager' or reassign. Rule of thumb: 'not done within X hours' on a case = escalation rule.",
+      "tags": [
+        "escalation"
+      ],
+      "wrong": {
+        "Case Queues": "Queues hold cases waiting for someone to work them; they don't watch time limits.",
+        "Case Assignment Rules": "Assignment rules route a case when it's created or edited; they don't act after time passes.",
+        "Case Settings": "General case configuration, not time-based notifications."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-escalation-rule",
+        "https://help.salesforce.com/s/articleView?id=rules_escalation_create.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q36",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "True about creating tasks in bulk in Lightning? (2)",
+      "options": [
+        "Assigned to multiple users → a copy per user",
+        "Assigned to multiple users → only one task",
+        "Can be assigned to multiple users but not groups",
+        "Can be assigned to multiple users and groups"
+      ],
+      "answer": [
+        "Assigned to multiple users → a copy per user",
+        "Can be assigned to multiple users and groups"
+      ],
+      "why": "This tests creating tasks for many people in Lightning. When you assign a new task to multiple users, Salesforce creates a separate copy for each assignee with their own name in Assigned To, so each person can complete theirs independently. You can choose individual users and public groups as assignees. Rule of thumb: multiple assignees = one copy each.",
+      "tags": [
+        "tasks"
+      ],
+      "missed": true,
+      "wrong": {
+        "Assigned to multiple users → only one task": "Salesforce makes one task per assignee, not one shared task.",
+        "Can be assigned to multiple users but not groups": "Public groups can also be chosen as assignees."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q37",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Prevent automated replies and sensitive emails captured by Einstein Activity Capture from being shared.",
+      "options": [
+        "Ensure the options are enabled in Einstein Activity Capture settings",
+        "Contact Salesforce support",
+        "Ask reps to disable 'Sensitive Email Sharing'",
+        "Enable the options on the Email Settings page"
+      ],
+      "answer": [
+        "Ensure the options are enabled in Einstein Activity Capture settings"
+      ],
+      "why": "This tests Einstein Activity Capture (EAC: syncs reps' email and calendar activity into Salesforce). In Setup > Einstein Activity Capture > Settings, there are options to exclude automated emails and to keep sensitive emails from being shared. Both are on by default, so the admin just confirms they're still enabled. Rule of thumb: EAC behavior is controlled in EAC settings.",
+      "tags": [
+        "EAC"
+      ],
+      "wrong": {
+        "Contact Salesforce support": "These are admin-controlled settings; support isn't needed.",
+        "Ask reps to disable 'Sensitive Email Sharing'": "There's no rep-level setting by that name; it's controlled in EAC settings by the admin.",
+        "Enable the options on the Email Settings page": "Email settings control deliverability and email features, not what EAC shares."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/outlook_integration/outlook_integration_unit_3",
+        "https://trailhead.salesforce.com/content/learn/modules/email-and-calendar-integrations-quick-look"
+      ]
+    },
+    {
+      "id": "exam3-q38",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "True about sharing files in Lightning? (3)",
+      "options": [
+        "File owners and collaborators can change file permissions",
+        "Sharing can be accessed from Files home",
+        "Permission can be Viewer, Collaborator, or Administrator",
+        "A file can be shared privately with specific people",
+        "A file is shared with the company only when posted to a feed all users can see"
+      ],
+      "answer": [
+        "File owners and collaborators can change file permissions",
+        "Sharing can be accessed from Files home",
+        "A file can be shared privately with specific people"
+      ],
+      "why": "This tests Salesforce Files sharing. You can share from Files home (the Files tab) or from the file itself. A file can be shared privately with specific people. File owners and collaborators can change sharing permissions. Permission levels are Viewer, Collaborator, and Set by Record (access follows the record it's attached to), with no Administrator level. Rule of thumb: Files has Viewer, Collaborator, Set by Record.",
+      "tags": [
+        "files"
+      ],
+      "missed": true,
+      "wrong": {
+        "Permission can be Viewer, Collaborator, or Administrator": "There's no Administrator permission on files; the third level is Set by Record.",
+        "A file is shared with the company only when posted to a feed all users can see": "'Only' is false; a file also becomes visible company-wide through other paths, like being posted to a public group or a profile feed."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "exam3-q39",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "What can users do with the default 'To Do List' utility bar item? (3)",
+      "options": [
+        "Create tasks",
+        "Reorder tasks",
+        "Log a call",
+        "Create Salesforce meetings",
+        "Create labels"
+      ],
+      "answer": [
+        "Create tasks",
+        "Reorder tasks",
+        "Create labels"
+      ],
+      "why": "This tests the To Do List utility bar item (a small panel at the bottom of a Lightning app). It lets users create tasks, drag to reorder them, and organize them with labels, then view and act on them without leaving the page. It's not for logging calls or scheduling meetings. Rule of thumb: To Do List = quick personal task management.",
+      "tags": [
+        "utility bar",
+        "tasks"
+      ],
+      "wrong": {
+        "Log a call": "Logging a call is an action on a record's Activity timeline, not in To Do List.",
+        "Create Salesforce meetings": "Meetings are events created through the calendar or activity actions, not To Do List."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service-cloud-essentials-features/learn-about-macros-service-console-and-case-feed",
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-the-service-console"
+      ]
+    },
+    {
+      "id": "exam3-q40",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "True about editing feed posts and comments? (2)",
+      "options": [
+        "Edit isn't available on posts with file attachments",
+        "Salesforce admins can edit any post",
+        "Record owners can always edit any post on their records by default",
+        "Users editing their own posts is enabled by default"
+      ],
+      "answer": [
+        "Salesforce admins can edit any post",
+        "Users editing their own posts is enabled by default"
+      ],
+      "why": "This tests Chatter post editing. 'Allow users to edit posts and comments' is on by default in Chatter Settings, so people can edit their own posts. Admins (with Modify All Data) can edit any post. The 'Edit Posts on Records I Own' permission is off by default, so record owners can't always edit others' posts on their records. Rule of thumb: watch 'always' and 'by default' wording.",
+      "tags": [
+        "chatter"
+      ],
+      "wrong": {
+        "Edit isn't available on posts with file attachments": "Posts with attachments can still be edited.",
+        "Record owners can always edit any post on their records by default": "That needs the 'Edit Posts on Records I Own' permission, which is off by default."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "exam3-q41",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "When are dashboards refreshed? (2)",
+      "options": [
+        "Every home page visit",
+        "Refresh frequency can be set per dashboard",
+        "Every day",
+        "When a user clicks Refresh"
+      ],
+      "answer": [
+        "Refresh frequency can be set per dashboard",
+        "When a user clicks Refresh"
+      ],
+      "why": "This tests dashboard refresh. Dashboards only refresh when a user clicks Refresh or on a schedule. In Lightning, the schedule comes from subscribing to the dashboard, which refreshes it and emails it daily, weekly, or monthly, so frequency is set per dashboard. Viewing a dashboard just shows the last refreshed data. Rule of thumb: manual click or scheduled refresh, never automatic on view.",
+      "tags": [
+        "dashboards"
+      ],
+      "wrong": {
+        "Every home page visit": "Viewing a dashboard on the home page shows the last refresh; it doesn't trigger a new one.",
+        "Every day": "There's no automatic daily refresh; it only happens if someone schedules it."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q42",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Improve engagement with Chatter Questions.",
+      "options": [
+        "Only admins get Chatter Questions",
+        "Add the Question action to the global publisher layout",
+        "Increase the Question action's visibility in the publisher layout",
+        "Enable Chatter Questions per profile"
+      ],
+      "answer": [
+        "Increase the Question action's visibility in the publisher layout"
+      ],
+      "why": "This tests getting people to use Chatter Questions (the Question action in the Chatter publisher). Engagement goes up when the action is easy to find, so move the Question action to a more visible spot in the publisher layout (the global publisher layout, or the object's layout). Rule of thumb: to drive adoption, make the feature visible, not restricted.",
+      "tags": [
+        "chatter"
+      ],
+      "wrong": {
+        "Only admins get Chatter Questions": "Restricting it shrinks the audience and lowers engagement.",
+        "Add the Question action to the global publisher layout": "It's typically there already; the issue is how prominent it is, not whether it exists.",
+        "Enable Chatter Questions per profile": "Chatter Questions isn't enabled per profile; visibility in the publisher is what drives use."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "exam3-q43",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "What is true about the Data Export Service?",
+      "options": [
+        "Must request Salesforce to enable it",
+        "Can run daily",
+        "Data is exported in .csv format",
+        "Exports all records but not attachments"
+      ],
+      "answer": [
+        "Data is exported in .csv format"
+      ],
+      "why": "This tests the Data Export Service (Setup > Data Export). It exports data as CSV files bundled in zip files. You can export now or schedule it weekly or monthly (not daily), and you can choose to include attachments, files, and documents. It's built in, no request to Salesforce needed. Rule of thumb: Data Export = CSV in zips, weekly or monthly.",
+      "tags": [
+        "data export"
+      ],
+      "wrong": {
+        "Must request Salesforce to enable it": "Admins can use it directly in Setup.",
+        "Can run daily": "Scheduling is weekly or monthly (depending on edition); daily isn't an option.",
+        "Exports all records but not attachments": "There's a checkbox to include attachments, files, and documents."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management/lex_implementation_data_export",
+        "https://help.salesforce.com/s/articleView?id=admin_exportdata.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q44",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Which report format can't use field groupings?",
+      "options": [
+        "Joined",
+        "Summary",
+        "Matrix",
+        "Tabular"
+      ],
+      "answer": [
+        "Tabular"
+      ],
+      "why": "This tests report formats. Tabular reports are a simple list of rows and columns, with no groupings. Summary reports group by rows, matrix reports group by rows and columns, and joined reports contain multiple blocks that can be grouped. Rule of thumb: tabular = no groupings; add a row grouping and it becomes summary.",
+      "tags": [
+        "reports"
+      ],
+      "wrong": {
+        "Joined": "Joined report blocks can be grouped.",
+        "Summary": "Summary reports are defined by row groupings.",
+        "Matrix": "Matrix reports use both row and column groupings."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_report_formats",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder"
+      ]
+    },
+    {
+      "id": "exam3-q45",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Most efficient way to transfer 10 custom object records shown in an existing list view to a new owner?",
+      "options": [
+        "Data Loader",
+        "Mass Transfer tool",
+        "Change owner on each record",
+        "Select records in the list view and change owner"
+      ],
+      "answer": [
+        "Select records in the list view and change owner"
+      ],
+      "why": "This tests the most efficient way to change ownership of a few records. Since the 10 records already appear in a list view, select them with the checkboxes and click Change Owner (available in list views for custom objects and many standard ones). It takes seconds with no tools. Rule of thumb: small number and already in a list view = mass action from the list view.",
+      "tags": [
+        "ownership"
+      ],
+      "wrong": {
+        "Data Loader": "Works, but exporting and re-importing is overkill for 10 records already in a list view.",
+        "Mass Transfer tool": "Mass Transfer Records works for accounts, leads, and custom objects, but you set up search criteria first; for 10 records already in a list view it's slower.",
+        "Change owner on each record": "Opening 10 records one by one is slower than a single bulk change."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/essential-habits-for-salesforce-admins/delve-into-data-management"
+      ]
+    },
+    {
+      "id": "exam3-q46",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Blank out a picklist status of 'New' on many records.",
+      "options": [
+        "Export, blank the value, import with Data Loader",
+        "Export, blank the value, upload with Data Loader using 'Insert Null Values'",
+        "Import Wizard with 'Insert Blanks'",
+        "Data Loader with External IDs"
+      ],
+      "answer": [
+        "Export, blank the value, upload with Data Loader using 'Insert Null Values'"
+      ],
+      "why": "This tests clearing values with Data Loader. By default, Data Loader ignores blank cells in your CSV, so blanking a column and updating changes nothing. In Data Loader Settings, select 'Insert Null Values', then run an Update with the blank column and the fields will be cleared. Rule of thumb: to blank fields with Data Loader, turn on Insert Null Values.",
+      "tags": [
+        "data loader"
+      ],
+      "wrong": {
+        "Export, blank the value, import with Data Loader": "Without Insert Null Values, Data Loader skips the empty cells and leaves the old value.",
+        "Import Wizard with 'Insert Blanks'": "The Data Import Wizard has no 'Insert Blanks' option.",
+        "Data Loader with External IDs": "External IDs help match records; they don't make Data Loader write blanks."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/import-and-export-with-data-management-tools",
+        "https://help.salesforce.com/s/articleView?id=data_loader.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q47",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Weekly automatic backup of Accounts, Contacts, Opportunities to a local Windows server.",
+      "options": [
+        "Data Loader command-line interface with a weekly scheduled job",
+        "Data Export Service",
+        "Custom program using the API",
+        "Data Export Wizard scheduled weekly"
+      ],
+      "answer": [
+        "Data Loader command-line interface with a weekly scheduled job"
+      ],
+      "why": "This tests automated backups to a local server. The Data Loader command-line interface (CLI) runs on Windows and can be scripted, so you schedule it with Windows Task Scheduler to export Accounts, Contacts, and Opportunities weekly straight to the local server. The Data Export Service only emails a download link that someone must manually save. Rule of thumb: automated export to a local Windows machine = Data Loader CLI plus a scheduler.",
+      "tags": [
+        "backup",
+        "data loader"
+      ],
+      "wrong": {
+        "Data Export Service": "It produces zip files you have to download manually; it can't write to your server automatically.",
+        "Custom program using the API": "Possible, but writing custom code is more work than the existing Data Loader CLI.",
+        "Data Export Wizard scheduled weekly": "There's no feature by that name; the scheduled option is the Data Export Service."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management/lex_implementation_data_export",
+        "https://help.salesforce.com/s/articleView?id=admin_exportdata.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q48",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "True about the Flow 'Variable' resource? (2)",
+      "options": [
+        "Holds only a single field value for a single record",
+        "Holds multiple values of multiple data types",
+        "Can hold multiple field values for multiple records if configured",
+        "Values can change at any point in the flow"
+      ],
+      "answer": [
+        "Can hold multiple field values for multiple records if configured",
+        "Values can change at any point in the flow"
+      ],
+      "why": "This tests the Flow Variable resource (a container that stores a value while the flow runs). A variable can be set to a record data type and marked to allow multiple values, making it a record collection variable that holds many records, each with many fields. Variables can be changed at any step, for example with an Assignment element. Each variable has one data type. Rule of thumb: variables change; collections hold many of the same type.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "Holds only a single field value for a single record": "A record variable holds all the fields of a record, and a collection holds many records.",
+        "Holds multiple values of multiple data types": "Each variable has one data type; a collection holds many values of that same type."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q49",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "Count related Survey Results on Account (lookup relationship) when they're created or deleted.",
+      "options": [
+        "Apex Trigger",
+        "Flow Builder",
+        "Roll-Up Summary Field",
+        "Report Subscription"
+      ],
+      "answer": [
+        "Flow Builder"
+      ],
+      "why": "This tests counting child records over a lookup relationship. Roll-up summary fields only work on master-detail relationships (plus a few special standard ones), so with a lookup you build a record-triggered flow on Survey Result that runs on create and delete, counts the related records, and updates the parent account's count field. Rule of thumb: roll-up over a lookup = Flow.",
+      "tags": [
+        "flow",
+        "roll-up"
+      ],
+      "wrong": {
+        "Apex Trigger": "Would work, but it's code; Flow solves this declaratively.",
+        "Roll-Up Summary Field": "Requires a master-detail relationship; this is a lookup.",
+        "Report Subscription": "Emails report results; it doesn't update fields on records."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q50",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "Processing order of validation, escalation, assignment, and workflow rules?",
+      "options": [
+        "Escalation, Validation, Workflow, Assignment",
+        "Assignment, Workflow, Validation, Escalation",
+        "Validation, Assignment, Workflow, Escalation",
+        "Escalation, Assignment, Workflow, Validation"
+      ],
+      "answer": [
+        "Validation, Assignment, Workflow, Escalation"
+      ],
+      "why": "This tests the order of execution (the fixed sequence Salesforce follows when a record is saved). Validation rules run first, then assignment rules, then auto-response rules, then workflow rules, and escalation rules come after. Workflow Rules are retired for new automation in favor of Flow, but existing ones still run in this order, and the question still appears. Rule of thumb: validate, assign, respond, workflow, escalate.",
+      "tags": [
+        "order of execution"
+      ],
+      "wrong": {
+        "Escalation, Validation, Workflow, Assignment": "Escalation is near the end, and validation must come first so bad data never saves.",
+        "Assignment, Workflow, Validation, Escalation": "Validation runs before any assignment or workflow.",
+        "Escalation, Assignment, Workflow, Validation": "Backwards: validation is first and escalation is last."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-escalation-rule",
+        "https://help.salesforce.com/s/articleView?id=rules_escalation_create.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q51",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "Notify users to perform a credit check by a date for loan opportunities over $10,000.",
+      "options": [
+        "Prebuilt 'Create a Task' flow",
+        "Apex trigger creating a task",
+        "Approval process with the credit user as approver",
+        "Flow Builder creating a task for the credit check user"
+      ],
+      "answer": [
+        "Flow Builder creating a task for the credit check user"
+      ],
+      "why": "This tests choosing declarative automation. A record-triggered flow on Opportunity with criteria (loan type and amount over $10,000) can create a task assigned to the credit check user with a due date. The task shows up in that person's to-do list and notifies them. Rule of thumb: create a to-do with a deadline when criteria are met = Flow creating a task.",
+      "tags": [
+        "flow",
+        "tasks"
+      ],
+      "wrong": {
+        "Prebuilt 'Create a Task' flow": "There's no prebuilt flow that matches these specific criteria; you build the flow yourself.",
+        "Apex trigger creating a task": "Code isn't needed; Flow handles it declaratively.",
+        "Approval process with the credit user as approver": "Approvals are for sign-off on a record, not for assigning work by a due date."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q52",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "What can launch a Flow Builder flow? (2)",
+      "options": [
+        "Validation Rule",
+        "Custom Button",
+        "A created or updated record",
+        "Report Builder"
+      ],
+      "answer": [
+        "Custom Button",
+        "A created or updated record"
+      ],
+      "why": "This tests flow triggers. A screen flow can be launched from a custom button or link on a record page, among other places. A record-triggered flow runs automatically when a record is created, updated, or deleted. Rule of thumb: flows start from user actions (buttons, pages), record changes, schedules, or platform events.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "Validation Rule": "Validation rules block saves with an error; they can't launch anything.",
+        "Report Builder": "Report Builder builds reports; it doesn't launch flows."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q53",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "Form launched from a record button to enter event details, then create a record and tasks.",
+      "options": [
+        "Record-Triggered Flow",
+        "Schedule-Triggered Flow",
+        "Screen Flow",
+        "Platform Event-Triggered Flow"
+      ],
+      "answer": [
+        "Screen Flow"
+      ],
+      "why": "This tests the flow type. A screen flow shows screens where users enter information, so it fits a form launched from a record button that then creates a record and tasks. Record-triggered, schedule-triggered, and platform event-triggered flows run in the background with no screens. Rule of thumb: user input = screen flow.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "Record-Triggered Flow": "Runs automatically on save with no user interface.",
+        "Schedule-Triggered Flow": "Runs on a timer with no user interface.",
+        "Platform Event-Triggered Flow": "Runs when a platform event message arrives, with no screens."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/screen-flows/build-a-screen-flow",
+        "https://trailhead.salesforce.com/content/learn/modules/screen-flows"
+      ]
+    },
+    {
+      "id": "exam3-q54",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "In a flow, how do you relate new Order Products to the Order you just created?",
+      "options": [
+        "Copy and paste the Order ID",
+        "Use the automatically generated Order ID variable from the Create Records element",
+        "Manually assign an output variable",
+        "Connect the two Create Records elements"
+      ],
+      "answer": [
+        "Use the automatically generated Order ID variable from the Create Records element"
+      ],
+      "why": "This tests passing data between flow elements. When a Create Records element creates a single record, Flow automatically stores the new record's ID in a resource you can use later (in Flow Builder it shows as the element's ID). Use that ID in the Order Products' OrderId field in the next Create Records element. Rule of thumb: Create Records hands you the new ID for free.",
+      "traps": "Connectors set step order; they don't pass data.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "Copy and paste the Order ID": "The ID doesn't exist until the flow runs, so you can't paste it in.",
+        "Manually assign an output variable": "Optional and extra work; Flow already stores the new ID automatically.",
+        "Connect the two Create Records elements": "Connectors only set the order steps run in; they don't pass data."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q55",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "John's edit triggers a flow that updates the same record. Who is Last Modified By?",
+      "options": [
+        "System Administrator",
+        "John",
+        "The flow's creator",
+        "The previous modifier"
+      ],
+      "answer": [
+        "John"
+      ],
+      "why": "This tests who gets credit for automated changes. A record-triggered flow runs in the context of the user whose action triggered it, so when it updates the same record, Last Modified By stays as John. Rule of thumb: triggered automation acts as the user who triggered it.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "System Administrator": "The flow doesn't run as an admin; it runs as the triggering user.",
+        "The flow's creator": "Who built the flow doesn't matter; the triggering user is recorded.",
+        "The previous modifier": "John's edit replaced the previous modifier."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q56",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "Agent to engage inbound leads 24/7, answer product questions, and book meetings.",
+      "options": [
+        "Agentforce Sales Coach",
+        "Agentforce SDR",
+        "Agentforce Employee Agent",
+        "Agentforce Service Agent"
+      ],
+      "answer": [
+        "Agentforce SDR"
+      ],
+      "why": "This tests Agentforce agent types. Agentforce SDR (Sales Development Representative) engages inbound leads around the clock, answers product questions using your company data, handles objections, and books meetings for sales reps. Rule of thumb: inbound leads and meeting booking = SDR.",
+      "tags": [
+        "agentforce"
+      ],
+      "wrong": {
+        "Agentforce Sales Coach": "Helps reps practice and get feedback through role-play; it doesn't engage leads.",
+        "Agentforce Employee Agent": "Helps internal employees with tasks like HR or IT questions.",
+        "Agentforce Service Agent": "Handles customer support cases, not lead engagement."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "exam3-q57",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "How does Flow Trigger Explorer help when building a 'closed won' automation?",
+      "options": [
+        "Shows which record-triggered flows run for an object's create, update, or delete",
+        "Combines flows for different objects into one",
+        "Finds slow flows",
+        "Calculates commissions automatically"
+      ],
+      "answer": [
+        "Shows which record-triggered flows run for an object's create, update, or delete"
+      ],
+      "why": "This tests Flow Trigger Explorer, a tool in Flow Builder that shows all record-triggered flows for one object, grouped by create, update, or delete and by timing. Before building a new 'closed won' flow, you can see what already runs on Opportunity and set the run order. Rule of thumb: Trigger Explorer is a viewer and organizer for what fires on an object.",
+      "tags": [
+        "flow"
+      ],
+      "wrong": {
+        "Combines flows for different objects into one": "It doesn't merge flows; it shows them.",
+        "Finds slow flows": "It's not a performance tool; debugging and logs serve that purpose.",
+        "Calculates commissions automatically": "It doesn't run business logic; it's a view of existing flows."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam3-q58",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "Internal agent for benefits questions, time-off balances, and IT tickets.",
+      "options": [
+        "Agentforce Service Agent",
+        "Agentforce Employee Agent",
+        "Agentforce Sales Coach",
+        "Agentforce SDR"
+      ],
+      "answer": [
+        "Agentforce Employee Agent"
+      ],
+      "why": "This tests Agentforce agent types. Agentforce Employee Agent helps internal staff with tasks like HR benefits questions, time-off balances, and IT tickets, working in tools like Slack or Salesforce. Rule of thumb: internal staff help = Employee Agent; customers = Service Agent.",
+      "tags": [
+        "agentforce"
+      ],
+      "wrong": {
+        "Agentforce Service Agent": "Faces customers to resolve support cases, not internal employee requests.",
+        "Agentforce Sales Coach": "Coaches sales reps through practice and feedback.",
+        "Agentforce SDR": "Engages inbound sales leads and books meetings."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "exam3-q59",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "Test a large volume of utterances efficiently before production.",
+      "options": [
+        "Test in the LLM's own UI",
+        "Conversation Preview in Agent Builder",
+        "UAT after deploying to production",
+        "Agentforce Testing Center with an uploaded CSV"
+      ],
+      "answer": [
+        "Agentforce Testing Center with an uploaded CSV"
+      ],
+      "why": "This tests testing agents at scale. Agentforce Testing Center lets you upload a CSV of many test utterances (sample things users might say) with expected results and run them in batch, before deploying to production. Conversation Preview in Agent Builder is for quick, one-at-a-time manual checks. Rule of thumb: large volume of tests = Testing Center with a CSV.",
+      "tags": [
+        "agentforce",
+        "testing"
+      ],
+      "wrong": {
+        "Test in the LLM's own UI": "That bypasses your agent's topics, actions, and data, so it doesn't test the agent.",
+        "Conversation Preview in Agent Builder": "Good for light manual testing, but one conversation at a time.",
+        "UAT after deploying to production": "Testing should happen before production, not after."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder",
+        "https://help.salesforce.com/s/articleView?id=ai.agent_testing_center.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam3-q60",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "Assurance that the external LLM provider won't keep prompts/responses or train on them.",
+      "options": [
+        "Zero-data retention policy",
+        "Toxicity scoring",
+        "Audit trail",
+        "Data masking"
+      ],
+      "answer": [
+        "Zero-data retention policy"
+      ],
+      "why": "This tests the Einstein Trust Layer (Salesforce's security wrapper around AI calls). Its zero data retention agreements with external LLM providers mean prompts and responses aren't stored by the provider or used to train their models. Rule of thumb: 'won't keep or train on our data' = zero data retention.",
+      "tags": [
+        "agentforce",
+        "trust layer"
+      ],
+      "wrong": {
+        "Toxicity scoring": "Checks responses for harmful language; it says nothing about data storage.",
+        "Audit trail": "Records what happened for review; it doesn't stop the provider from keeping data.",
+        "Data masking": "Hides sensitive data before sending it; it doesn't govern what the provider retains."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/the-einstein-trust-layer/meet-the-einstein-trust-layer",
+        "https://trailhead.salesforce.com/content/learn/modules/trusted-agentic-ai/explore-agentforce-guardrails-and-trust-patterns"
+      ]
+    }
   ]
 }

@@ -2,37 +2,978 @@
   "source": "exam-1",
   "title": "K2U Platform Administrator Practice Exam 1 (32-question retake set)",
   "cards": [
-    {"id": "exam1-q01", "type": "question", "objective": "object-manager", "prompt": "What modification can be made to standard fields?", "options": ["Change the field type", "Change the field label", "Delete the field", "Change the field length"], "answer": ["Change the field label"], "why": "Standard fields are built into the platform. You can relabel them (Rename Tabs and Labels), edit help text, edit standard picklist values, set FLS, and place them on layouts.", "traps": "Type, length, and deletion are only possible for custom fields.", "tags": ["fields"], "missed": true},
-    {"id": "exam1-q02", "type": "question", "objective": "object-manager", "prompt": "Support reps retype Account Owner, Owner Email, and Address on every Case. How do you automate this?", "options": ["Validation rule", "Screen flow", "Formula fields to retrieve the Account information", "Case assignment rule"], "answer": ["Formula fields to retrieve the Account information"], "why": "Cross-object formula fields on Case display parent Account data, always current, with no automation to maintain.", "traps": "Validation rules only block; screen flows need clicks; assignment rules only set owners.", "strip": "Display parent data → cross-object formula. Frozen copy → Flow. Summarize children → roll-up.", "tags": ["formulas"], "missed": true},
-    {"id": "exam1-q03", "type": "question", "objective": "service", "prompt": "Send a survey when a web-origin Case with Reason 'Product Inquiry' is closed. Which 3 are best practice?", "options": ["Enable Surveys and create a Survey", "Distribute invitations via Flow", "Send from the record page with 'Send Survey'", "Build it in Content Builder", "Nightly batch Apex"], "answer": ["Enable Surveys and create a Survey", "Distribute invitations via Flow", "Send from the record page with 'Send Survey'"], "why": "Salesforce Surveys + a record-triggered flow automates it; the Send Survey action covers manual sends.", "traps": "Content Builder is Marketing Cloud; batch Apex is code and delayed.", "tags": ["surveys", "flow"], "missed": true},
-    {"id": "exam1-q04", "type": "question", "objective": "object-manager", "prompt": "Which field types can be the DEPENDENT field in a field dependency? (2)", "options": ["Custom Checkbox", "Standard Picklist", "Multi-Select Picklist", "Custom Picklist"], "answer": ["Multi-Select Picklist", "Custom Picklist"], "why": "Dependent: custom picklists and custom multi-selects only.", "traps": "Checkboxes and standard picklists can only control.", "tags": ["picklists"], "missed": true},
-    {"id": "exam1-q05", "type": "question", "objective": "productivity", "prompt": "How many users can be added to a group task in Lightning Experience?", "options": ["100", "200", "25", "10"], "answer": ["200"], "why": "Lightning group tasks allow up to 200 users; each gets a separate copy. Older material says 100.", "tags": ["activities"], "missed": true},
-    {"id": "exam1-q06", "type": "question", "objective": "data-analytics", "prompt": "Which report formats does Salesforce support? (3)", "options": ["Joined", "Tabular", "Matrix", "Custom", "Standard"], "answer": ["Joined", "Tabular", "Matrix"], "why": "Formats are TSMJ: Tabular, Summary, Matrix, Joined.", "traps": "Custom and Standard are report types, not formats.", "tags": ["reports"], "missed": true},
-    {"id": "exam1-q07", "type": "question", "objective": "object-manager", "prompt": "Which field types can be the CONTROLLING field in a field dependency? (2)", "options": ["Standard Checkbox", "Formula Field", "Custom Picklist", "Custom Multi-Select Picklist"], "answer": ["Standard Checkbox", "Custom Picklist"], "why": "Controlling: picklists (standard or custom) and checkboxes.", "traps": "Multi-selects can't control; formulas can't be on either side.", "tags": ["picklists"], "missed": true},
-    {"id": "exam1-q08", "type": "question", "objective": "productivity", "prompt": "In Lightning with Einstein Activity Capture, a user creates a task on a Contact. Where is it visible? (3)", "answer": ["Assigned user's My Tasks list", "Contact's Activity Timeline", "Related Account's Activity Timeline"], "why": "Activities roll up to the parent Account; Lightning uses the Activity Timeline. EAC-captured emails/events aren't stored as records, so they don't appear in standard reports.", "tags": ["activities", "EAC"], "missed": true},
-    {"id": "exam1-q09", "type": "question", "objective": "object-manager", "prompt": "After restoring a custom field deleted 5 days ago, what should the admin do? (2)", "options": ["Make the field required if necessary", "Convert lookup to master-detail if required", "Automatically restore the unique attribute", "Set the data type"], "answer": ["Make the field required if necessary", "Convert lookup to master-detail if required"], "why": "Restored fields come back without Required, Unique, External ID; master-detail returns as lookup. Data, type, and name are restored. Restore window is 15 days.", "traps": "'If necessary' isn't hedging. 'Automatically' is the trap.", "tags": ["fields"], "missed": true},
-    {"id": "exam1-q10", "type": "question", "objective": "data-analytics", "prompt": "Load 7 million records in one batch. How?", "options": ["Not possible", "Data Loader", "Third-party tool", "Data Import Wizard"], "answer": ["Data Loader"], "why": "5 million is Data Loader's recommended threshold, not a hard cap; with the Bulk API it can handle more. This test bank expects Data Loader.", "traps": "Import Wizard caps at 50,000.", "tags": ["data"], "missed": true},
-    {"id": "exam1-q11", "type": "question", "objective": "productivity", "prompt": "Managers create Chatter groups; only members and the director should see group details; the director manages all; no outsider can delete content. (2)", "options": ["Enable Unlisted Groups", "Give the director 'Manage Unlisted Groups'", "Give the director Modify All Data", "Use private groups with the director added"], "answer": ["Enable Unlisted Groups", "Give the director 'Manage Unlisted Groups'"], "why": "Unlisted groups are hidden from non-members entirely; private groups still show name and description.", "traps": "Modify All Data violates least privilege.", "tags": ["chatter"], "missed": true},
-    {"id": "exam1-q12", "type": "question", "objective": "automation", "prompt": "What validation checks field formats and maximum length on save?", "options": ["Custom validation", "Required validation", "System validation", "Page layout validation"], "answer": ["System validation"], "why": "Order of execution: system validation first, then before-save flows, then custom validation rules, duplicate rules, save, assignment/auto-response/escalation, after-save flows, roll-ups, commit.", "tags": ["order of execution"], "missed": true},
-    {"id": "exam1-q13", "type": "question", "objective": "automation", "prompt": "Record-triggered flow: Rating → Hot sends email + ERP call; → Cold sends email. Without 'Is Changed', how should Decision outcomes run?", "answer": ["Only if the record that triggered the flow is updated to meet the condition requirements"], "why": "Fires once when the record BECOMES Hot, not on every save while Hot. $Record__Prior holds old values; $CHANGED doesn't exist.", "tags": ["flow"], "missed": true},
-    {"id": "exam1-q14", "type": "question", "objective": "data-analytics", "prompt": "Which tab gives a unified place to create reports and dashboards and organize them into collections?", "options": ["Data Studio", "Analysis", "Analytics", "Reports and Dashboards"], "answer": ["Analytics"], "why": "The Analytics tab uses collections. Reports and Dashboards are two separate tabs using folders.", "tags": ["reports", "dashboards"], "missed": true},
-    {"id": "exam1-q15", "type": "question", "objective": "object-manager", "prompt": "How do record types relate to business processes?", "answer": ["A business process can be associated with multiple record types"], "why": "Each record type uses one business process; one process can serve many record types.", "tags": ["record types"], "missed": true},
-    {"id": "exam1-q16", "type": "question", "objective": "service", "prompt": "Which capabilities does the Lightning email publisher in Case Feed have? (3)", "answer": ["Drafts auto-save every few seconds", "Preview the email and its merge fields", "Insert tables and style them from the actions menu"], "why": "Confirmed by the retake.", "traps": "Lookup with 'filter by field values' overpromises; static-resource images are a developer feature.", "tags": ["email"], "missed": true},
-    {"id": "exam1-q17", "type": "question", "objective": "automation", "prompt": "High-value deal hits 80% probability: notify the Sales Director AND create a task. Which tool?", "options": ["Big Deal Alert", "Flow Builder", "Assignment Rule", "Validation Rule"], "answer": ["Flow Builder"], "why": "Two actions. Big Deal Alert only emails.", "strip": "Count the actions.", "tags": ["flow"], "missed": true},
-    {"id": "exam1-q18", "type": "question", "objective": "service", "prompt": "Which features are used to manage cases? (2)", "options": ["Case Teams", "Phone-to-Case", "Web-to-Lead", "Email-to-Case"], "answer": ["Case Teams", "Email-to-Case"], "why": "Web-to-Case allows 5,000/day; Web-to-Lead 500/day.", "traps": "Phone-to-Case is made up; Web-to-Lead makes leads.", "tags": ["cases"], "missed": true},
-    {"id": "exam1-q19", "type": "question", "objective": "automation", "prompt": "What's true of the Automation Lightning app?", "answer": ["View, search, filter, and create flows with a categorized creation experience"], "why": "Editing still happens in Flow Builder; errors arrive as fault emails.", "traps": "'All editions', 'automatically fixes', 'without Flow Builder' overpromise.", "tags": ["flow"], "missed": true},
-    {"id": "exam1-q20", "type": "question", "objective": "automation", "prompt": "A screen flow can't show all Expense records: OWD is Private and the user's role limits visibility. Fix?", "answer": ["Run the flow in system context without sharing"], "why": "'With sharing' still respects record sharing. Only 'without sharing' sees all records.", "traps": "Apex is code; Grant Access Using Hierarchies only works downward.", "tags": ["flow", "sharing"], "missed": true},
-    {"id": "exam1-q21", "type": "question", "objective": "agentforce", "prompt": "Agentforce can't find a case owned by another team, and the user can't find it in global search either. Most likely reason?", "answer": ["Case OWD is Private and no sharing rule grants the agent access"], "why": "Agentforce works with the user's access. The human failing too points to sharing.", "traps": "Trust Layer masks data, it doesn't hide records; View All Data is too broad.", "strip": "Defining condition: the human can't find it either.", "tags": ["agentforce", "sharing"], "missed": true},
-    {"id": "exam1-q22", "type": "question", "objective": "config-setup", "prompt": "A user can't log in. Possible reasons? (2)", "answer": ["Logging in from an IP outside their profile's range", "Logging in outside their profile's login hours"], "why": "Profile settings block.", "traps": "Org-wide login hours don't exist; org trusted IPs only trigger verification.", "tags": ["login"], "missed": true},
-    {"id": "exam1-q23", "type": "question", "objective": "config-setup", "prompt": "What can profiles be used for? (3)", "answer": ["Control Apex class and Visualforce page access", "Make fields read-only", "Make a record type available"], "why": "Profiles control what you can DO.", "traps": "Role-based record visibility and manual sharing belong to the sharing model.", "tags": ["profiles"], "missed": true},
-    {"id": "exam1-q24", "type": "question", "objective": "config-setup", "prompt": "Users should only see campaign members tied to leads or contacts they can access. What should the admin do?", "answer": ["Change the Campaign Member OWD to 'Controlled by Lead or Contact'"], "why": "Restricting visibility = OWD. Sharing rules only open access.", "strip": "'Only view' = restrict = OWD.", "tags": ["campaigns", "sharing"], "missed": true},
-    {"id": "exam1-q25", "type": "question", "objective": "config-setup", "prompt": "What's true about resetting passwords for locked-out users (no SSO)?", "answer": ["The account is automatically unlocked after the password is reset"], "why": "A real absolute. Lockout periods: 15 min, 30 min, 1 hour, or Forever.", "traps": "'Any user can reset their own password' and the admin 5-per-day limit are false.", "tags": ["users"], "missed": true},
-    {"id": "exam1-q26", "type": "question", "objective": "config-setup", "prompt": "Block all users on Sunday for maintenance. Best way?", "answer": ["Login Hours on all profiles except System Administrator"], "why": "Time-based block = Login Hours. Freeze blocks per user; users are never deleted.", "tags": ["login"], "missed": true},
-    {"id": "exam1-q27", "type": "question", "objective": "sales-marketing", "prompt": "Track which leads and contacts participate in this year's trade show.", "answer": ["Associate the lead or contact with a campaign when they register"], "why": "Campaign Members with Member Status. Standard feature beats custom build.", "tags": ["campaigns"], "missed": true},
-    {"id": "exam1-q28", "type": "question", "objective": "sales-marketing", "prompt": "Show Opportunities with ARR > 100k on the Forecasts page and calculate gap-to-quota there. (2)", "answer": ["Add a forecast filter within the forecast type", "Create a custom calculated column in Forecasts Settings"], "why": "The question never mentions reports, so report answers are distractors.", "tags": ["forecasting"], "missed": true},
-    {"id": "exam1-q29", "type": "question", "objective": "sales-marketing", "prompt": "What's true about lead conversion? (3)", "answer": ["A Contact is created if a match isn't found and selected", "An Account is created if a match isn't found and selected", "With Person Accounts enabled and no Company, a Person Account is created"], "why": "Opportunity is optional.", "traps": "'Always creates an opportunity'; custom lead fields map only to custom fields.", "tags": ["leads"], "missed": true},
-    {"id": "exam1-q30", "type": "question", "objective": "data-analytics", "prompt": "A unique text field still has what look like duplicates. Why?", "answer": ["The case-insensitive option wasn't selected"], "why": "Case sensitive lets 'ACME' and 'Acme' coexist.", "traps": "'Only', 'only', 'always'.", "tags": ["data quality"], "missed": true},
-    {"id": "exam1-q31", "type": "question", "objective": "automation", "prompt": "Which final approval actions are available? (3)", "options": ["Task", "Email alert", "Field Update", "Call Apex", "Record Creation"], "answer": ["Task", "Email alert", "Field Update"], "why": "TEFO: Task, Email alert, Field update, Outbound message.", "tags": ["approvals"], "missed": true},
-    {"id": "exam1-q32", "type": "question", "objective": "agentforce", "prompt": "One Agentforce action summarizes claims and rejects them 'without exception' when Policy Active is unchecked. Why is that bad practice?", "answer": ["Strict, deterministic compliance decisions belong in Flow, not AI reasoning"], "why": "AI for language; Flow for rules.", "traps": "Three invented limitations.", "tags": ["agentforce"], "missed": true}
+    {
+      "id": "exam1-q01",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "What modification can be made to standard fields?",
+      "options": [
+        "Change the field type",
+        "Change the field label",
+        "Delete the field",
+        "Change the field length"
+      ],
+      "answer": [
+        "Change the field label"
+      ],
+      "why": "This tests the difference between standard fields (built into Salesforce, like Account Name) and custom fields (ones you create, ending in __c). Salesforce owns the structure of a standard field, so you cannot change its data type, change its length, or delete it. What you can do is change how it is presented: rename its label (Setup > Rename Tabs and Labels, or the field's edit page in Object Manager), add help text, edit its picklist values, control field-level security, and place it on page layouts. Rule of thumb: standard fields can be relabeled and configured, never restructured or removed.",
+      "traps": "Type, length, and deletion are only possible for custom fields.",
+      "tags": [
+        "fields"
+      ],
+      "missed": true,
+      "wrong": {
+        "Change the field type": "Data type changes are only allowed on custom fields; a standard field's type is fixed by Salesforce.",
+        "Delete the field": "Standard fields can never be deleted; you can only hide them from layouts or remove access with field-level security.",
+        "Change the field length": "Length is part of the field's structure, which you can only edit on custom text and number fields."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q02",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Support reps retype Account Owner, Owner Email, and Address on every Case. How do you automate this?",
+      "options": [
+        "Validation rule",
+        "Screen flow",
+        "Formula fields to retrieve the Account information",
+        "Case assignment rule"
+      ],
+      "answer": [
+        "Formula fields to retrieve the Account information"
+      ],
+      "why": "The question is really about showing data that already lives on a parent record (the Account) on a child record (the Case) without retyping it. A cross-object formula field on Case, like Account.Owner.Email, reads the parent's value through the lookup relationship and displays it live, so it is always current and needs no automation. You build it in Object Manager > Case > Fields & Relationships > New > Formula, then use Insert Field to walk through the Account relationship. Rule of thumb: to display parent data use a cross-object formula; to save a frozen copy use Flow; to summarize child records use a roll-up summary.",
+      "traps": "Validation rules only block; screen flows need clicks; assignment rules only set owners.",
+      "strip": "Display parent data → cross-object formula. Frozen copy → Flow. Summarize children → roll-up.",
+      "tags": [
+        "formulas"
+      ],
+      "missed": true,
+      "wrong": {
+        "Validation rule": "Validation rules only block a save when data is bad; they never fill in or display values.",
+        "Screen flow": "A screen flow could copy values, but it needs a user to launch it and click through, which is more work than a formula that displays the data automatically.",
+        "Case assignment rule": "Assignment rules only decide who owns a new case (a user or queue); they do not copy Account details."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields"
+      ]
+    },
+    {
+      "id": "exam1-q03",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Send a survey when a web-origin Case with Reason 'Product Inquiry' is closed. Which 3 are best practice?",
+      "options": [
+        "Enable Surveys and create a Survey",
+        "Distribute invitations via Flow",
+        "Send from the record page with 'Send Survey'",
+        "Build it in Content Builder",
+        "Nightly batch Apex"
+      ],
+      "answer": [
+        "Enable Surveys and create a Survey",
+        "Distribute invitations via Flow",
+        "Send from the record page with 'Send Survey'"
+      ],
+      "why": "This tests the native Salesforce Surveys feature and how surveys get sent. First you enable Surveys (Setup > Survey Settings) and build the survey in Survey Builder. To send it automatically when a case closes, a record-triggered flow with the criteria Origin = Web, Reason = Product Inquiry, Status = Closed creates and emails the survey invitation. For one-off sends, an agent can use the Send Survey action on the case record page. Rule of thumb: native Surveys plus Flow for automation, plus the record action for manual sends.",
+      "traps": "Content Builder is Marketing Cloud; batch Apex is code and delayed.",
+      "tags": [
+        "surveys",
+        "flow"
+      ],
+      "missed": true,
+      "wrong": {
+        "Build it in Content Builder": "Content Builder is a Marketing Cloud email/content tool, not part of core Salesforce Surveys or Service Cloud.",
+        "Nightly batch Apex": "Batch Apex is custom code that runs on a schedule, so it is slower to build, harder to maintain, and the customer would wait until night; Flow handles this declaratively and immediately."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam1-q04",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Which field types can be the DEPENDENT field in a field dependency? (2)",
+      "options": [
+        "Custom Checkbox",
+        "Standard Picklist",
+        "Multi-Select Picklist",
+        "Custom Picklist"
+      ],
+      "answer": [
+        "Multi-Select Picklist",
+        "Custom Picklist"
+      ],
+      "why": "A field dependency makes one field's available values depend on another field's value, like Country controlling State. The controlling field drives; the dependent field is filtered. Only custom picklists and custom multi-select picklists can be dependent fields. Standard picklists and checkboxes can only be controlling fields. Rule of thumb: dependent = custom picklist or custom multi-select only; controlling = any picklist or checkbox (except multi-select).",
+      "traps": "Checkboxes and standard picklists can only control.",
+      "tags": [
+        "picklists"
+      ],
+      "missed": true,
+      "wrong": {
+        "Custom Checkbox": "Checkboxes only have true/false, so they can control a dependency but can never be the dependent field.",
+        "Standard Picklist": "Standard picklists can be controlling fields, but Salesforce does not allow them to be dependent fields."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_global"
+      ]
+    },
+    {
+      "id": "exam1-q05",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "How many users can be added to a group task in Lightning Experience?",
+      "options": [
+        "100",
+        "200",
+        "25",
+        "10"
+      ],
+      "answer": [
+        "200"
+      ],
+      "why": "A group task is one task assigned to many users at once; Salesforce creates a separate copy for each assignee so each person can complete their own. In Lightning Experience you pick multiple users in the Assigned To field on the New Task form, and the limit is 200 users. Older Salesforce Classic documentation says 100, which is why that number shows up as a distractor. Rule of thumb for this test bank: Lightning group task = up to 200 users, each with their own copy.",
+      "tags": [
+        "activities"
+      ],
+      "missed": true,
+      "wrong": {
+        "10": "10 is not a group task limit in either Classic or Lightning.",
+        "25": "25 is not a group task limit; it is too low and does not match any documented value.",
+        "100": "100 is the older Salesforce Classic limit for creating multiple tasks; the Lightning answer this exam expects is 200."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q06",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Which report formats does Salesforce support? (3)",
+      "options": [
+        "Joined",
+        "Tabular",
+        "Matrix",
+        "Custom",
+        "Standard"
+      ],
+      "answer": [
+        "Joined",
+        "Tabular",
+        "Matrix"
+      ],
+      "why": "Report format is how the results are laid out on screen. Salesforce has four formats: Tabular (a simple list), Summary (rows grouped with subtotals), Matrix (grouped by rows AND columns, like a pivot table), and Joined (several report blocks side by side). Summary is the fourth format but isn't listed here, so the three listed formats are correct. Rule of thumb: format = layout (TSMJ); report type = which objects and fields the report can use.",
+      "traps": "Custom and Standard are report types, not formats.",
+      "tags": [
+        "reports"
+      ],
+      "missed": true,
+      "wrong": {
+        "Custom": "Custom is a kind of report type (a template you build to choose objects and fields), not a report format.",
+        "Standard": "Standard report types are the built-in templates Salesforce provides, which is a report type concept, not a format."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_report_formats",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder"
+      ]
+    },
+    {
+      "id": "exam1-q07",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "Which field types can be the CONTROLLING field in a field dependency? (2)",
+      "options": [
+        "Standard Checkbox",
+        "Formula Field",
+        "Custom Picklist",
+        "Custom Multi-Select Picklist"
+      ],
+      "answer": [
+        "Standard Checkbox",
+        "Custom Picklist"
+      ],
+      "why": "The controlling field is the one whose value filters the other field's choices. Both standard and custom picklists can control, and so can checkboxes (standard or custom), since checked/unchecked are two clear values. Multi-select picklists cannot control because a record can hold several values at once, so there is no single value to filter by. Rule of thumb: controlling = picklist or checkbox; dependent = custom picklist or custom multi-select.",
+      "traps": "Multi-selects can't control; formulas can't be on either side.",
+      "tags": [
+        "picklists"
+      ],
+      "missed": true,
+      "wrong": {
+        "Formula Field": "Formula fields are calculated and read-only, so they cannot participate in a field dependency on either side.",
+        "Custom Multi-Select Picklist": "Multi-selects can be dependent fields but never controlling, because they can hold several values at once."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_global"
+      ]
+    },
+    {
+      "id": "exam1-q08",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "A sales rep at a company using Lightning Experience and Einstein Activity Capture creates a follow-up task on a Contact who belongs to an Account. Where will that task be visible? (Choose 3)",
+      "answer": [
+        "Assigned user's My Tasks list",
+        "Contact's Activity Timeline",
+        "Related Account's Activity Timeline"
+      ],
+      "why": "This tests where a manually created task shows up. A task is a real Salesforce record, so it appears in the assigned user's task list (My Tasks), on the Activity Timeline of the record it is related to (the Contact), and it also rolls up to the Contact's parent Account's Activity Timeline. Einstein Activity Capture (EAC) is a feature that automatically pulls emails and events from Gmail or Outlook, but those captured items are stored outside the normal activity tables. Rule of thumb: manually created tasks behave like normal records and roll up to the Account; EAC-captured emails and events are the ones that don't appear in standard reports.",
+      "tags": [
+        "activities",
+        "EAC"
+      ],
+      "missed": true,
+      "options": [
+        "Assigned user's My Tasks list",
+        "Contact's Activity Timeline",
+        "Related Account's Activity Timeline",
+        "Standard activity reports alongside captured emails",
+        "The Contact's Chatter feed as a post"
+      ],
+      "wrong": {
+        "Standard activity reports alongside captured emails": "EAC-captured emails are not stored as standard activity records, so they don't show up in standard activity reports.",
+        "The Contact's Chatter feed as a post": "Creating a task does not post to Chatter; tasks appear on the Activity Timeline, not as feed posts."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/outlook_integration/outlook_integration_unit_3",
+        "https://trailhead.salesforce.com/content/learn/modules/email-and-calendar-integrations-quick-look"
+      ]
+    },
+    {
+      "id": "exam1-q09",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "After restoring a custom field deleted 5 days ago, what should the admin do? (2)",
+      "options": [
+        "Make the field required if necessary",
+        "Convert lookup to master-detail if required",
+        "Automatically restore the unique attribute",
+        "Set the data type"
+      ],
+      "answer": [
+        "Make the field required if necessary",
+        "Convert lookup to master-detail if required"
+      ],
+      "why": "When you delete a custom field, Salesforce keeps it in Deleted Fields for 15 days, and you can undelete it with its data, name, and type. Some attributes are not restored automatically: Required, Unique, and External ID settings are dropped, and a master-detail field comes back as a lookup. So after restoring, the admin should re-mark the field as required if it was required, and convert the lookup back to master-detail if that relationship is needed. Rule of thumb: restore brings back data and type, but you must re-apply Required, Unique, External ID, and master-detail yourself.",
+      "traps": "'If necessary' isn't hedging. 'Automatically' is the trap.",
+      "tags": [
+        "fields"
+      ],
+      "missed": true,
+      "wrong": {
+        "Automatically restore the unique attribute": "The unique attribute is NOT restored automatically; the word 'automatically' is the trap, because you must re-apply it manually.",
+        "Set the data type": "The data type comes back with the field, so there is nothing to set."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://help.salesforce.com/s/articleView?id=notes_on_changing_custom_field_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q10",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Load 7 million records in one batch. How?",
+      "options": [
+        "Not possible",
+        "Data Loader",
+        "Third-party tool",
+        "Data Import Wizard"
+      ],
+      "answer": [
+        "Data Loader"
+      ],
+      "why": "This tests which data tool handles very large loads. Data Loader is a desktop app that uses the Salesforce APIs, including the Bulk API, which processes records in large batches in the background. Salesforce documents Data Loader as supported for up to 5 million records, and this test bank treats 7 million as still a Data Loader job. The Data Import Wizard (the in-browser import tool) is limited to 50,000 records, so it is out. Rule of thumb: under 50,000 and a supported object = Import Wizard; over 50,000 = Data Loader.",
+      "traps": "Import Wizard caps at 50,000.",
+      "tags": [
+        "data"
+      ],
+      "missed": true,
+      "wrong": {
+        "Not possible": "Loading millions of records is routine with the Bulk API, so it is definitely possible.",
+        "Third-party tool": "Salesforce suggests partners/AppExchange tools above 5 million records, but this exam's key expects Data Loader for this load.",
+        "Data Import Wizard": "The Import Wizard caps at 50,000 records per import, far below 7 million."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/import-and-export-with-data-management-tools",
+        "https://help.salesforce.com/s/articleView?id=data_loader.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q11",
+      "type": "question",
+      "objective": "productivity",
+      "prompt": "Managers create Chatter groups; only members and the director should see group details; the director manages all; no outsider can delete content. (2)",
+      "options": [
+        "Enable Unlisted Groups",
+        "Give the director 'Manage Unlisted Groups'",
+        "Give the director Modify All Data",
+        "Use private groups with the director added"
+      ],
+      "answer": [
+        "Enable Unlisted Groups",
+        "Give the director 'Manage Unlisted Groups'"
+      ],
+      "why": "Chatter groups come in public, private, and unlisted types. A private group still shows its name and description to everyone; only members see posts. An unlisted group is invisible to non-members, so nobody outside it even knows it exists, which matches 'only members and the director should see group details.' First enable Unlisted Groups in Chatter Settings, then give the director the 'Manage Unlisted Groups' permission (via a permission set) so they can see and manage every unlisted group without being in all of them. Rule of thumb: 'hidden from outsiders' = unlisted; give admins the narrow Manage Unlisted Groups permission, not Modify All Data.",
+      "traps": "Modify All Data violates least privilege.",
+      "tags": [
+        "chatter"
+      ],
+      "missed": true,
+      "wrong": {
+        "Give the director Modify All Data": "Modify All Data opens edit and delete access to every record in the org, which breaks least privilege for a narrow need.",
+        "Use private groups with the director added": "Private groups still display their name and description to non-members, and adding the director to every group doesn't scale."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/chatter_basics_for_users",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_chatter/lex_implementation_chatter_groups"
+      ]
+    },
+    {
+      "id": "exam1-q12",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "What validation checks field formats and maximum length on save?",
+      "options": [
+        "Custom validation",
+        "Required validation",
+        "System validation",
+        "Page layout validation"
+      ],
+      "answer": [
+        "System validation"
+      ],
+      "why": "When a record is saved, Salesforce runs steps in a fixed order of execution. The first step is system validation: built-in checks that require no setup, such as the right data format (a valid date or number) and staying within the field's maximum length. Only after that do before-save flows, custom validation rules, duplicate rules, the actual save, assignment and auto-response rules, after-save flows, and roll-ups run. Rule of thumb: format and length checks are automatic system validation; rules you write are custom validation.",
+      "tags": [
+        "order of execution"
+      ],
+      "missed": true,
+      "wrong": {
+        "Custom validation": "Custom validation means validation rules an admin writes with formulas; format and length checks don't need any setup.",
+        "Required validation": "Required checks are about blank fields, not formats or length, and there is no separate step by this name in the order of execution.",
+        "Page layout validation": "Page layouts can make a field required in the UI, but they don't validate format or length, and this isn't a named validation step."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/validation_rules"
+      ]
+    },
+    {
+      "id": "exam1-q13",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "A record-triggered flow on Lead runs when a record is updated. When Rating becomes Hot, it sends an email and calls the ERP system; when Rating becomes Cold, it sends an email. The admin doesn't want to use an 'Is Changed' condition, but the actions must not repeat on every save while Rating stays Hot. How should the Decision outcomes be configured to execute?",
+      "answer": [
+        "Only if the record that triggered the flow is updated to meet the condition requirements"
+      ],
+      "why": "In a record-triggered flow, each Decision outcome has a 'When to Execute Outcome' setting. 'Only if the record that triggered the flow is updated to meet the condition requirements' runs the outcome only when the record goes from not matching to matching, for example the moment Rating changes to Hot. That prevents duplicate emails and ERP calls every time someone edits a Hot lead. Flow compares the new values with the prior values ($Record__Prior) behind the scenes. Rule of thumb: 'only when it becomes true' = the 'is updated to meet the condition requirements' option.",
+      "tags": [
+        "flow"
+      ],
+      "missed": true,
+      "options": [
+        "Only if the record that triggered the flow is updated to meet the condition requirements",
+        "If the condition requirements are met",
+        "Every time the record is saved and the condition requirements are met",
+        "Only when the record is created"
+      ],
+      "wrong": {
+        "If the condition requirements are met": "This runs the outcome on every save where Rating is Hot, so the email and ERP call would repeat.",
+        "Every time the record is saved and the condition requirements are met": "This is the same repeat-firing behavior described differently; it doesn't limit the outcome to the moment the value changes.",
+        "Only when the record is created": "The flow must react to updates (Rating changing later), so limiting to creation would miss the scenario."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam1-q14",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "Which tab gives a unified place to create reports and dashboards and organize them into collections?",
+      "options": [
+        "Data Studio",
+        "Analysis",
+        "Analytics",
+        "Reports and Dashboards"
+      ],
+      "answer": [
+        "Analytics"
+      ],
+      "why": "This tests the newer Lightning Analytics tab, sometimes called the Analytics Home. It is one place to create, find, and browse reports and dashboards together, and it lets you group items into collections (a lighter, shareable way to organize than folders). You add it to your app's navigation like any other tab. Rule of thumb: 'unified place' + 'collections' = Analytics tab; separate Reports and Dashboards tabs use folders.",
+      "tags": [
+        "reports",
+        "dashboards"
+      ],
+      "missed": true,
+      "wrong": {
+        "Data Studio": "Data Studio is a Marketing Cloud data tool, not a reports and dashboards home in core Salesforce.",
+        "Analysis": "There is no standard Salesforce tab called Analysis.",
+        "Reports and Dashboards": "These are two separate tabs that organize content with folders, not one unified tab with collections."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_visualizing_data",
+        "https://help.salesforce.com/s/articleView?id=sf.dashboards_subscribe_lex.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q15",
+      "type": "question",
+      "objective": "object-manager",
+      "prompt": "An admin at a manufacturing company creates two Opportunity record types, Hardware and Services, that need the same set of sales stages. How do record types relate to business processes?",
+      "answer": [
+        "A business process can be associated with multiple record types"
+      ],
+      "why": "A business process is the set of stage or status values a record moves through: a sales process for Opportunity Stage, a support process for Case Status, a lead process for Lead Status. Each record type on those objects points to exactly one business process, but the same process can be reused by many record types. So Hardware and Services can both use one sales process. You create processes in Object Manager (e.g. Opportunity > Sales Processes) and pick one when creating the record type. Rule of thumb: one record type to one process, one process to many record types.",
+      "tags": [
+        "record types"
+      ],
+      "missed": true,
+      "options": [
+        "A business process can be associated with multiple record types",
+        "Each record type requires its own unique business process",
+        "A record type can be associated with multiple business processes",
+        "Business processes are assigned to profiles, not record types"
+      ],
+      "wrong": {
+        "Each record type requires its own unique business process": "Record types can share a business process; you don't need to duplicate one for each.",
+        "A record type can be associated with multiple business processes": "It is the other way around: a record type uses exactly one business process.",
+        "Business processes are assigned to profiles, not record types": "Profiles get record types assigned; the business process is chosen on the record type itself."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/customize-a-salesforce-object/create-record-types",
+        "https://help.salesforce.com/s/articleView?id=sf.creating_record_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q16",
+      "type": "question",
+      "objective": "service",
+      "prompt": "A support manager wants to know what agents can do when writing customer emails from the email publisher in the Lightning Case Feed. Which capabilities does it offer? (Choose 3)",
+      "answer": [
+        "Drafts auto-save every few seconds",
+        "Preview the email and its merge fields",
+        "Insert tables and style them from the actions menu"
+      ],
+      "why": "The Lightning email publisher is the Email action in a case's feed that agents use to reply to customers. It auto-saves drafts every few seconds so an agent doesn't lose work, it lets the agent preview the message with merge fields (placeholders like {!Contact.FirstName}) filled in, and the rich text editor supports inserting and styling tables. Rule of thumb: the publisher helps agents write and check emails; it isn't a developer tool or a query builder.",
+      "traps": "Watch for options that sound technical (static resources, filtered lookups); the publisher's features are everyday writing aids.",
+      "tags": [
+        "email"
+      ],
+      "missed": true,
+      "options": [
+        "Drafts auto-save every few seconds",
+        "Preview the email and its merge fields",
+        "Insert tables and style them from the actions menu",
+        "Add a lookup filtered by any field value in the email body",
+        "Insert images stored as static resources"
+      ],
+      "wrong": {
+        "Add a lookup filtered by any field value in the email body": "This overpromises; the publisher has no feature for building field-filtered lookups inside an email.",
+        "Insert images stored as static resources": "Static resources are developer-managed files for Visualforce and Lightning components, not something agents insert from the email publisher."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service-cloud-essentials-features/learn-about-macros-service-console-and-case-feed",
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-the-service-console"
+      ]
+    },
+    {
+      "id": "exam1-q17",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "High-value deal hits 80% probability: notify the Sales Director AND create a task. Which tool?",
+      "options": [
+        "Big Deal Alert",
+        "Flow Builder",
+        "Assignment Rule",
+        "Validation Rule"
+      ],
+      "answer": [
+        "Flow Builder"
+      ],
+      "why": "The scenario asks for two different actions when a condition is met: send a notification AND create a task. Flow Builder can do both in one record-triggered flow on Opportunity: when Amount is high and Probability reaches 80%, send an email or custom notification and use a Create Records element to make the task. Flow is Salesforce's main tool for new automation. Rule of thumb: count the actions; if a single-purpose feature only covers one of them, use Flow.",
+      "strip": "Count the actions.",
+      "tags": [
+        "flow"
+      ],
+      "missed": true,
+      "wrong": {
+        "Big Deal Alert": "Big Deal Alert (Opportunity Settings) only sends an email when a big opportunity hits a threshold; it can't create a task.",
+        "Assignment Rule": "Assignment rules only set the owner of new leads or cases and don't exist for opportunities.",
+        "Validation Rule": "Validation rules only block bad saves; they can't notify anyone or create records."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam1-q18",
+      "type": "question",
+      "objective": "service",
+      "prompt": "Which features are used to manage cases? (2)",
+      "options": [
+        "Case Teams",
+        "Phone-to-Case",
+        "Web-to-Lead",
+        "Email-to-Case"
+      ],
+      "answer": [
+        "Case Teams",
+        "Email-to-Case"
+      ],
+      "why": "This tests which features belong to Service Cloud case management. Case Teams let you add a group of people, each with a role and access level, to work one case together. Email-to-Case turns emails sent to a support address into cases automatically. Both are standard tools for managing cases. Rule of thumb: the case channels are Email-to-Case, Web-to-Case, and phone through Service Cloud Voice or CTI, not something called 'Phone-to-Case'.",
+      "traps": "Phone-to-Case is made up; Web-to-Lead makes leads.",
+      "tags": [
+        "cases"
+      ],
+      "missed": true,
+      "wrong": {
+        "Phone-to-Case": "There is no Salesforce feature by this name; phone support uses Service Cloud Voice or CTI integrations.",
+        "Web-to-Lead": "Web-to-Lead creates leads from a website form for sales, not cases (Web-to-Case is the support equivalent)."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex"
+      ]
+    },
+    {
+      "id": "exam1-q19",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "An admin wants one place to view, search, and filter all of the org's flows and to start new ones from a guided list of flow types. What is true about the Automation Lightning app?",
+      "answer": [
+        "View, search, filter, and create flows with a categorized creation experience"
+      ],
+      "why": "The Automation Lightning app is a home base for automation: it lists flows with search and filters and offers a categorized 'new flow' experience to help you pick the right flow type. When you open a flow to edit, it still opens in Flow Builder. Errors from failed flows still arrive as fault emails or in the Flow error logs. Rule of thumb: the Automation app helps you find and start flows; Flow Builder is still where you build them.",
+      "traps": "Reject options that overpromise: 'automatically fixes', 'all editions', 'without Flow Builder'.",
+      "tags": [
+        "flow"
+      ],
+      "missed": true,
+      "options": [
+        "View, search, filter, and create flows with a categorized creation experience",
+        "Edit flows directly without opening Flow Builder",
+        "Automatically fixes failed flow interviews",
+        "Available in all Salesforce editions, including Essentials, at no cost"
+      ],
+      "wrong": {
+        "Edit flows directly without opening Flow Builder": "Editing still happens in Flow Builder; the app is a launcher and list view.",
+        "Automatically fixes failed flow interviews": "Nothing in Salesforce automatically fixes failed flows; the admin gets an error email and must fix the cause.",
+        "Available in all Salesforce editions, including Essentials, at no cost": "This 'all editions' claim overpromises; feature availability always depends on edition."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "exam1-q20",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "A screen flow displays Expense records, but users only see some of them. The Expense org-wide default is Private, and each user's role limits what they can see. The flow must show all Expense records without changing the sharing model. What should the admin do?",
+      "answer": [
+        "Run the flow in system context without sharing"
+      ],
+      "why": "Flows have a 'How to Run the Flow' setting in Advanced properties. 'User or system context' respects the running user's access. 'System context with sharing' ignores object and field permissions but still respects record sharing, so private records stay hidden. 'System context without sharing' ignores both, so the flow can read every Expense record. Rule of thumb: if sharing is what hides the records, only 'without sharing' gets past it; use it carefully since it bypasses security.",
+      "traps": "Apex is code; Grant Access Using Hierarchies only works downward.",
+      "tags": [
+        "flow",
+        "sharing"
+      ],
+      "missed": true,
+      "options": [
+        "Run the flow in system context without sharing",
+        "Run the flow in system context with sharing",
+        "Enable Grant Access Using Hierarchies on the Expense object",
+        "Rewrite the query as an Apex class"
+      ],
+      "wrong": {
+        "Run the flow in system context with sharing": "'With sharing' still enforces record-level sharing, so the Private OWD keeps hiding records.",
+        "Enable Grant Access Using Hierarchies on the Expense object": "This only opens records upward to managers in the role hierarchy, so users still can't see their peers' records.",
+        "Rewrite the query as an Apex class": "Apex is custom code; the flow already has a declarative setting that solves this."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+        "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q21",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "A service rep asks Agentforce to summarize a case owned by another team, and the agent says it can't find it. The rep searches for the case in global search and can't find it either. What is the most likely reason?",
+      "answer": [
+        "Case OWD is Private and no sharing rule grants the agent access"
+      ],
+      "why": "Agentforce is Salesforce's AI agent platform, and an employee-facing agent works with the running user's access, never more. The key clue is that the human user can't find the case either, which points to record-level sharing. If the Case org-wide default (OWD, the baseline record access) is Private and no sharing rule, team, or hierarchy grants access to the other team's cases, neither the user nor the agent can see it. Rule of thumb: if the person fails too, it's sharing, not the AI.",
+      "traps": "Trust Layer masks data, it doesn't hide records; View All Data is too broad.",
+      "strip": "Agentforce · can't find record · user can't find it either → sharing (Private OWD, no rule).",
+      "tags": [
+        "agentforce",
+        "sharing"
+      ],
+      "missed": true,
+      "options": [
+        "Case OWD is Private and no sharing rule grants the agent access",
+        "The Einstein Trust Layer is masking the case data",
+        "The agent user needs the View All Data permission",
+        "Global search hasn't indexed the case yet"
+      ],
+      "wrong": {
+        "The Einstein Trust Layer is masking the case data": "The Trust Layer masks sensitive data sent to the language model; it doesn't hide records from search.",
+        "The agent user needs the View All Data permission": "View All Data would work but opens every record in the org, which is far too broad.",
+        "Global search hasn't indexed the case yet": "Indexing delays are brief and rare; the fact that it's another team's case points to sharing."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "exam1-q22",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A user reports that they can't log in to Salesforce, even though their username and password are correct and their account isn't frozen. What could be causing this? (Choose 2)",
+      "answer": [
+        "Logging in from an IP outside their profile's range",
+        "Logging in outside their profile's login hours"
+      ],
+      "why": "Profiles can restrict when and where users log in. Login IP Ranges on a profile block logins from any IP address outside the range. Login Hours on a profile block logins outside the set times (and log out users already logged in). Both are configured on the profile in Setup. Rule of thumb: the profile blocks; the org-level trusted IP list only skips or triggers identity verification.",
+      "traps": "Org-wide login hours don't exist; org trusted IPs only trigger verification.",
+      "tags": [
+        "login"
+      ],
+      "missed": true,
+      "options": [
+        "Logging in from an IP outside their profile's range",
+        "Logging in outside their profile's login hours",
+        "Logging in outside the org-wide login hours",
+        "Logging in from an IP outside the org's trusted IP range"
+      ],
+      "wrong": {
+        "Logging in outside the org-wide login hours": "Login hours exist only on profiles; there is no org-wide login hours setting.",
+        "Logging in from an IP outside the org's trusted IP range": "Org trusted IP ranges (Network Access) don't block logins; outside them, users just have to verify their identity."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q23",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A new admin is reviewing what can be configured on a profile for a group of support agents. What can profiles be used for? (Choose 3)",
+      "answer": [
+        "Control Apex class and Visualforce page access",
+        "Make fields read-only",
+        "Make a record type available"
+      ],
+      "why": "A profile is the baseline set of permissions every user must have, controlling what users can DO: object permissions, field-level security (e.g. making a field read-only), which record types they can use, which apps and tabs they see, and access to Apex classes and Visualforce pages. Which specific records users can SEE is controlled by the sharing model (OWD, role hierarchy, sharing rules, manual sharing). Rule of thumb: profiles and permission sets = what you can do; sharing = which records you can see.",
+      "traps": "Role-based record visibility and manual sharing belong to the sharing model.",
+      "tags": [
+        "profiles"
+      ],
+      "missed": true,
+      "options": [
+        "Control Apex class and Visualforce page access",
+        "Make fields read-only",
+        "Make a record type available",
+        "Grant access to records owned by users below them in the role hierarchy",
+        "Manually share a specific record with another user"
+      ],
+      "wrong": {
+        "Grant access to records owned by users below them in the role hierarchy": "That access comes from the role hierarchy, part of the sharing model, not the profile.",
+        "Manually share a specific record with another user": "Manual sharing is done on the record by its owner or an admin, not configured on a profile."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q24",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "Marketing users should only see campaign members tied to leads or contacts that they already have access to. What should the admin do?",
+      "answer": [
+        "Change the Campaign Member OWD to 'Controlled by Lead or Contact'"
+      ],
+      "why": "Campaign Member has its own org-wide default (OWD), the baseline record access set in Setup > Sharing Settings. Setting it to 'Controlled by Lead or Contact' means a user can see a campaign member only if they can see the underlying lead or contact. This restricts access, and only OWD can restrict. Rule of thumb: 'only see' = restrict = OWD; sharing rules only open access.",
+      "strip": "'Only view' = restrict = OWD.",
+      "tags": [
+        "campaigns",
+        "sharing"
+      ],
+      "missed": true,
+      "options": [
+        "Change the Campaign Member OWD to 'Controlled by Lead or Contact'",
+        "Create a sharing rule on Campaign Members",
+        "Set the Campaign OWD to Private",
+        "Remove Read access to Campaign Members from the marketing profile"
+      ],
+      "traps": "'Only view' means restricting, and only the OWD restricts; sharing rules can't.",
+      "wrong": {
+        "Create a sharing rule on Campaign Members": "Sharing rules only grant extra access; they can't reduce what users see.",
+        "Set the Campaign OWD to Private": "This changes access to campaigns, not to individual campaign member records.",
+        "Remove Read access to Campaign Members from the marketing profile": "This would hide all campaign members, not just those linked to inaccessible leads or contacts."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_1",
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_3"
+      ]
+    },
+    {
+      "id": "exam1-q25",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "A user got locked out after too many failed login attempts. The org doesn't use single sign-on. What is true about resetting passwords for locked-out users?",
+      "answer": [
+        "The account is automatically unlocked after the password is reset"
+      ],
+      "why": "When an admin resets a locked-out user's password (Setup > Users > Reset Password), Salesforce also unlocks the account, and the user gets an email to set a new password. Admins can also click Unlock on the user record without resetting. The lockout length is set in Password Policies: 15 minutes, 30 minutes, 1 hour, or Forever (until an admin unlocks). Rule of thumb: resetting a password unlocks the account.",
+      "traps": "Not every absolute is wrong: 'automatically unlocked' is a real absolute.",
+      "tags": [
+        "users"
+      ],
+      "missed": true,
+      "options": [
+        "The account is automatically unlocked after the password is reset",
+        "Any user can reset their own password even when locked out",
+        "Admins can only reset five passwords per day",
+        "The user stays locked until the lockout period expires, even after a reset"
+      ],
+      "wrong": {
+        "Any user can reset their own password even when locked out": "Locked-out users can't use 'Forgot Password' until the lockout ends or an admin resets or unlocks them.",
+        "Admins can only reset five passwords per day": "There is no such limit on admin password resets.",
+        "The user stays locked until the lockout period expires, even after a reset": "Resetting the password unlocks the account immediately."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q26",
+      "type": "question",
+      "objective": "config-setup",
+      "prompt": "The company will do system maintenance every Sunday and needs to block all users except administrators from logging in to Salesforce on that day. What is the best way to do this?",
+      "answer": [
+        "Login Hours on all profiles except System Administrator"
+      ],
+      "why": "Login Hours on a profile define the days and times users with that profile can log in. Setting Sunday as unavailable on every non-admin profile blocks those users automatically every week with no manual work, while admins keep access. Rule of thumb: a recurring time-based block = Login Hours on profiles.",
+      "tags": [
+        "login"
+      ],
+      "missed": true,
+      "options": [
+        "Login Hours on all profiles except System Administrator",
+        "Freeze all users every Sunday",
+        "Set org-wide trusted IP ranges to exclude all addresses",
+        "Deactivate all non-admin users before maintenance"
+      ],
+      "wrong": {
+        "Freeze all users every Sunday": "Freezing is done one user at a time, is manual, and would have to be undone every week.",
+        "Set org-wide trusted IP ranges to exclude all addresses": "Trusted IP ranges don't block logins; they only control when identity verification is required.",
+        "Deactivate all non-admin users before maintenance": "Deactivation is heavy and messes with licenses and ownership; it's not a scheduling tool."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "exam1-q27",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Marketing is running this year's trade show and wants to track which leads and contacts register for and attend it, using standard functionality. What should the admin recommend?",
+      "answer": [
+        "Associate the lead or contact with a campaign when they register"
+      ],
+      "why": "A Campaign represents a marketing effort like a trade show. Adding a lead or contact to it creates a Campaign Member record, and its Member Status (e.g. Registered, Attended) tracks how far each person got. You get built-in campaign reports and ROI tracking for free. Rule of thumb: tracking people's participation in a marketing event = Campaign Members; standard features beat custom builds.",
+      "tags": [
+        "campaigns"
+      ],
+      "missed": true,
+      "options": [
+        "Associate the lead or contact with a campaign when they register",
+        "Create a custom object to track trade show registrations",
+        "Add a checkbox field 'Attended Trade Show' to Lead and Contact",
+        "Log a task on each lead or contact when they register"
+      ],
+      "wrong": {
+        "Create a custom object to track trade show registrations": "Campaigns already do this out of the box, so a custom object duplicates standard functionality.",
+        "Add a checkbox field 'Attended Trade Show' to Lead and Contact": "A checkbox only works for one event and doesn't scale to next year's show or track statuses.",
+        "Log a task on each lead or contact when they register": "Tasks are to-do items; they're hard to report on as participation and don't give campaign metrics."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_1",
+        "https://trailhead.salesforce.com/content/learn/modules/campaign_basics/campaigns_basics_unit_3"
+      ]
+    },
+    {
+      "id": "exam1-q28",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "Sales leadership wants the Forecasts page to show only opportunities with ARR over $100,000, and wants the gap to quota calculated right on that page. What should the admin do? (Choose 2)",
+      "answer": [
+        "Add a forecast filter within the forecast type",
+        "Create a custom calculated column in Forecasts Settings"
+      ],
+      "why": "Collaborative Forecasts is Salesforce's sales forecasting feature, configured in Setup > Forecasts Settings. Each forecast type can have a filter so it only includes opportunities that meet criteria, such as ARR over $100,000. Forecasts Settings also lets you add custom calculated columns, like gap to quota (quota minus closed and committed amounts). Rule of thumb: the question says 'on the Forecasts page', so the answer lives in Forecasts settings, not reports or dashboards.",
+      "tags": [
+        "forecasting"
+      ],
+      "missed": true,
+      "options": [
+        "Add a forecast filter within the forecast type",
+        "Create a custom calculated column in Forecasts Settings",
+        "Create a report filtered to ARR over $100,000",
+        "Build a dashboard showing gap to quota",
+        "Create a roll-up summary field on the User object"
+      ],
+      "wrong": {
+        "Create a report filtered to ARR over $100,000": "A report shows data on the Reports tab, not on the Forecasts page the question requires.",
+        "Build a dashboard showing gap to quota": "Dashboards are separate from the Forecasts page.",
+        "Create a roll-up summary field on the User object": "User can't have roll-up summary fields, and this wouldn't change what appears on the Forecasts page."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/work-your-opportunities",
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience"
+      ]
+    },
+    {
+      "id": "exam1-q29",
+      "type": "question",
+      "objective": "sales-marketing",
+      "prompt": "An admin is training reps on converting qualified leads. What is true about lead conversion? (Choose 3)",
+      "answer": [
+        "A Contact is created if a match isn't found and selected",
+        "An Account is created if a match isn't found and selected",
+        "With Person Accounts enabled and no Company, a Person Account is created"
+      ],
+      "why": "Converting a lead turns it into an Account, a Contact, and optionally an Opportunity. During conversion, Salesforce looks for existing matching accounts and contacts; if the rep doesn't pick an existing one, new records are created. If Person Accounts (accounts that represent individual consumers) are enabled and the lead has no Company, it converts into a Person Account. Rule of thumb: Account and Contact are always the result (new or existing); Opportunity is optional.",
+      "traps": "'Always creates an opportunity'; custom lead fields map only to custom fields.",
+      "tags": [
+        "leads"
+      ],
+      "missed": true,
+      "options": [
+        "A Contact is created if a match isn't found and selected",
+        "An Account is created if a match isn't found and selected",
+        "With Person Accounts enabled and no Company, a Person Account is created",
+        "An Opportunity is always created",
+        "Custom lead fields can be mapped to standard fields on the target object"
+      ],
+      "wrong": {
+        "An Opportunity is always created": "Reps can check 'Don't create an opportunity upon conversion', so it's optional.",
+        "Custom lead fields can be mapped to standard fields on the target object": "Custom lead fields can only map to custom fields on Account, Contact, or Opportunity."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/create-and-convert-leads-lightning",
+        "https://trailhead.salesforce.com/content/learn/modules/prospect-tracking-with-salesforce-leads-quick-look"
+      ]
+    },
+    {
+      "id": "exam1-q30",
+      "type": "question",
+      "objective": "data-analytics",
+      "prompt": "An admin created a custom text field marked Unique, but users can still save records with values like 'ACME' and 'Acme'. Why are these apparent duplicates allowed?",
+      "answer": [
+        "The case-insensitive option wasn't selected"
+      ],
+      "why": "When you mark a text field as Unique, Salesforce asks whether uniqueness is case sensitive or case insensitive. With 'case sensitive' selected, 'ACME' and 'Acme' are treated as different values, so both are allowed. Choosing 'Treat ABC and abc as duplicate values (case insensitive)' blocks them. Rule of thumb: duplicates that differ only in capitalization point to the case-sensitivity choice.",
+      "traps": "Watch for 'only', 'only', 'always' in the distractors.",
+      "tags": [
+        "data quality"
+      ],
+      "missed": true,
+      "options": [
+        "The case-insensitive option wasn't selected",
+        "Unique fields only apply to new records",
+        "Unique only works on External ID fields",
+        "Duplicate rules always override unique field settings"
+      ],
+      "wrong": {
+        "Unique fields only apply to new records": "Uniqueness applies on every save, including edits.",
+        "Unique only works on External ID fields": "Any custom text, number, or email field can be unique; External ID is a separate attribute.",
+        "Duplicate rules always override unique field settings": "Duplicate rules are separate matching logic; they don't override the field's unique setting."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_2",
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_1"
+      ]
+    },
+    {
+      "id": "exam1-q31",
+      "type": "question",
+      "objective": "automation",
+      "prompt": "Which final approval actions are available? (3)",
+      "options": [
+        "Task",
+        "Email alert",
+        "Field Update",
+        "Call Apex",
+        "Record Creation"
+      ],
+      "answer": [
+        "Task",
+        "Email alert",
+        "Field Update"
+      ],
+      "why": "Approval processes route records to approvers. At each stage (initial submission, approval, rejection, recall, and final approval/rejection) you can add actions. The standard action types are Task, Email Alert, Field Update, and Outbound Message (an XML message to an external system). Rule of thumb: TEFO, Task, Email alert, Field update, Outbound message; for anything else, trigger a flow.",
+      "tags": [
+        "approvals"
+      ],
+      "missed": true,
+      "wrong": {
+        "Call Apex": "Approval process actions can't call Apex directly; you'd use a field update that triggers a flow or Apex instead.",
+        "Record Creation": "Approval actions can't create records (other than tasks); a flow would handle that."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/approvals",
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/build-an-approval-process"
+      ]
+    },
+    {
+      "id": "exam1-q32",
+      "type": "question",
+      "objective": "agentforce",
+      "prompt": "An Agentforce action summarizes insurance claims and is also instructed to reject any claim 'without exception' when the Policy Active checkbox is unchecked. Why is this considered bad practice?",
+      "answer": [
+        "Strict, deterministic compliance decisions belong in Flow, not AI reasoning"
+      ],
+      "why": "Large language models are probabilistic: they usually follow instructions, but not with 100% guarantee. A compliance rule such as 'reject if Policy Active is false' must give the same result every time, which is called deterministic. That logic belongs in a Flow (or Apex) action the agent calls, while the AI handles language tasks like summarizing. Rule of thumb: AI for language and judgment; Flow for hard rules.",
+      "traps": "The distractors are invented platform limitations; the real issue is deterministic vs. probabilistic logic.",
+      "tags": [
+        "agentforce"
+      ],
+      "missed": true,
+      "options": [
+        "Strict, deterministic compliance decisions belong in Flow, not AI reasoning",
+        "Agentforce actions can't read checkbox fields",
+        "Agentforce can only run one instruction per action",
+        "Agent instructions can't contain the words 'without exception'"
+      ],
+      "wrong": {
+        "Agentforce actions can't read checkbox fields": "Agents can read checkbox fields; this is an invented limitation.",
+        "Agentforce can only run one instruction per action": "Topics and actions can have multiple instructions; this is made up.",
+        "Agent instructions can't contain the words 'without exception'": "There is no banned-phrase rule; the problem is relying on AI for a strict rule."
+      },
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/agent-customization-with-flows/add-a-flow-as-an-agent-action",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    }
   ]
 }

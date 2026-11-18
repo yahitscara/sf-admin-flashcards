@@ -7,81 +7,152 @@
       "type": "objective",
       "objective": "config-setup",
       "prompt": "What is the format of the Salesforce Platform Administrator exam?",
-      "answer": ["60 scored multiple-choice/multiple-select questions + 5 unscored, 105 minutes, 68% to pass"],
+      "answer": [
+        "60 scored multiple-choice/multiple-select questions + 5 unscored, 105 minutes, 68% to pass"
+      ],
       "why": "From the instructor's notes. The real exam is proctored and closed book; practice exams need 95%+.",
-      "tags": ["exam"]
+      "tags": [
+        "exam"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+      ]
     },
     {
       "id": "obj-config-setup",
       "type": "objective",
       "objective": "config-setup",
       "prompt": "Configuration and Setup (15%, ~9 Qs): what does it cover?",
-      "answer": ["Company settings (fiscal year, business hours, currency, defaults); UI config (app menu, list views, global actions, Lightning App Builder); user setup (unique username, locales, licenses, never delete, inactive, feature licenses, login methods); security controls (identity verification, Setup Audit Trail, login hours, session settings, agent access); sharing model (teams, hierarchy, public groups, OWD, roles, report/dashboard folders); profiles vs. permission sets (permission set groups, muting)"],
+      "answer": [
+        "Company settings (fiscal year, business hours, currency, defaults); UI config (app menu, list views, global actions, Lightning App Builder); user setup (unique username, locales, licenses, never delete, inactive, feature licenses, login methods); security controls (identity verification, Setup Audit Trail, login hours, session settings, agent access); sharing model (teams, hierarchy, public groups, OWD, roles, report/dashboard folders); profiles vs. permission sets (permission set groups, muting)"
+      ],
       "why": "Exam 2 score here: 100%. Core rule: profiles/permission sets = what you can DO; sharing = which RECORDS you can SEE.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/company_wide_org_settings/org_settings_regional"
+      ]
     },
     {
       "id": "obj-data-analytics",
       "type": "objective",
       "objective": "data-analytics",
       "prompt": "Data and Analytics Management (17%, ~10-11 Qs): what does it cover?",
-      "answer": ["Importing, updating, transferring, mass deleting, exporting, backing up (archival, Data Loader, Import Wizard); validation tools (duplicate and matching rules, validation rules); reports (report types, with/without, formulas, buckets, joined reports, charts, grouping); sharing impact on reports (folders); dashboards (components, sources, subscribing, dynamic dashboards, view as, scheduled refresh, filters)"],
+      "answer": [
+        "Importing, updating, transferring, mass deleting, exporting, backing up (archival, Data Loader, Import Wizard); validation tools (duplicate and matching rules, validation rules); reports (report types, with/without, formulas, buckets, joined reports, charts, grouping); sharing impact on reports (folders); dashboards (components, sources, subscribing, dynamic dashboards, view as, scheduled refresh, filters)"
+      ],
       "why": "The heaviest objective. Exam 2 score: 70%.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_report_formats",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder"
+      ]
     },
     {
       "id": "obj-productivity",
       "type": "objective",
       "objective": "productivity",
       "prompt": "Productivity and Collaboration (10%, ~6 Qs): what does it cover?",
-      "answer": ["Activity management (tasks, events); Chatter (groups, group access, internal/external users); Salesforce mobile app (Lightning pages, app menu, visibility, branding, launchpad); AppExchange (managed vs. unmanaged packages, who can publish, AgentExchange, flows)"],
+      "answer": [
+        "Activity management (tasks, events); Chatter (groups, group access, internal/external users); Salesforce mobile app (Lightning pages, app menu, visibility, branding, launchpad); AppExchange (managed vs. unmanaged packages, who can publish, AgentExchange, flows)"
+      ],
       "why": "Weakest area on Exam 2 (17%). Study first.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_maximize_productivity/sales_admin_maximize_productivity_unit_1",
+        "https://help.salesforce.com/s/articleView?id=tracking_activities_for_custom_objects.htm&type=5"
+      ]
     },
     {
       "id": "obj-service",
       "type": "objective",
       "objective": "service",
       "prompt": "Service and Support Applications (10%, ~6 Qs): what does it cover?",
-      "answer": ["Case management (cases, case assignment rules, queues); automating case management (support process, auto-response rules, escalation, Einstein for Service)"],
+      "answer": [
+        "Case management (cases, case assignment rules, queues); automating case management (support process, auto-response rules, escalation, Einstein for Service)"
+      ],
       "why": "Exam 2 score: 83%.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex/service_lex_case_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/service_lex"
+      ]
     },
     {
       "id": "obj-object-manager",
       "type": "objective",
       "objective": "object-manager",
       "prompt": "Object Manager and Lightning App Builder (15%, ~9 Qs): what does it cover?",
-      "answer": ["Standard object architecture and relationships (parent/child, master-detail, lookup, junction, record types, Schema Builder); creating, deleting, customizing fields and layouts (roll-ups, cross-object formulas, picklist dependencies, relationship fields); page layouts, Lightning page visibility, record types, business processes, quick and global actions"],
+      "answer": [
+        "Standard object architecture and relationships (parent/child, master-detail, lookup, junction, record types, Schema Builder); creating, deleting, customizing fields and layouts (roll-ups, cross-object formulas, picklist dependencies, relationship fields); page layouts, Lightning page visibility, record types, business processes, quick and global actions"
+      ],
       "why": "Exam 2 score: 78%.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_customization/lex_customization_custom_objects"
+      ]
     },
     {
       "id": "obj-sales-marketing",
       "type": "objective",
       "objective": "sales-marketing",
       "prompt": "Sales and Marketing Applications (10%, ~6 Qs): what does it cover?",
-      "answer": ["Sales process (leads, opportunities, path); opportunity tools (dashboards, lead scoring, Einstein for Sales, opportunity scoring, forecasting, territory management); lead automation and campaigns (lead convert, lead assignment rules, campaigns, campaign members)"],
+      "answer": [
+        "Sales process (leads, opportunities, path); opportunity tools (dashboards, lead scoring, Einstein for Sales, opportunity scoring, forecasting, territory management); lead automation and campaigns (lead convert, lead assignment rules, campaigns, campaign members)"
+      ],
       "why": "Exam 2 score: 83%.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience/work-your-opportunities",
+        "https://trailhead.salesforce.com/content/learn/modules/leads_opportunities_lightning_experience"
+      ]
     },
     {
       "id": "obj-automation",
       "type": "objective",
       "objective": "automation",
       "prompt": "Automation (15%, ~9 Qs): what does it cover?",
-      "answer": ["Choosing the right tool (escalation rules, case/lead assignment rules, default automation user, AI); Flow (screen, record-triggered, autolaunched, order of execution); approval processes (approver criteria, approvals, rejections)"],
+      "answer": [
+        "Choosing the right tool (escalation rules, case/lead assignment rules, default automation user, AI); Flow (screen, record-triggered, autolaunched, order of execution); approval processes (approver criteria, approvals, rejections)"
+      ],
       "why": "Exam 2 score: 67%.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
     },
     {
       "id": "obj-agentforce",
       "type": "objective",
       "objective": "agentforce",
       "prompt": "Agentforce (8%, ~5 Qs): what does it cover?",
-      "answer": ["Capabilities and use cases (when AI is appropriate, security, troubleshooting agent permissions); maintaining and installing prompts and instructions in Agent Builder (light testing, Conversation Preview)"],
+      "answer": [
+        "Capabilities and use cases (when AI is appropriate, security, troubleshooting agent permissions); maintaining and installing prompts and instructions in Agent Builder (light testing, Conversation Preview)"
+      ],
       "why": "Exam 2 score: 60%. Rule: language and judgment → AI; strict rules and compliance → Flow.",
-      "tags": ["objective"]
+      "tags": [
+        "objective"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
     }
   ]
 }

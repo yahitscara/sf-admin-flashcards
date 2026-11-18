@@ -29,6 +29,8 @@ export interface Card {
   tags: string[];
   missed: boolean;
   links?: string[];
+  screenshots?: string[]; // image URLs from the source explanation
+  wrong?: Record<string, string>; // option text -> why that option is wrong
   translate?: Translate; // "plain English" breakdown, written for missed questions
   source: string; // which deck it came from
 }
@@ -60,6 +62,16 @@ function readTranslate(v: unknown): Translate | undefined {
   const t = v as Record<string, unknown>;
   const out: Translate = {};
   for (const k of ['situation', 'feature', 'see', 'notOther'] as const) if (isStr(t[k])) out[k] = t[k] as string;
+  return Object.keys(out).length ? out : undefined;
+}
+
+/** Per-option "why it's wrong" notes; keys must match an option exactly. */
+function readWrong(v: unknown, options: string[] | undefined): Record<string, string> | undefined {
+  if (!v || typeof v !== 'object' || !options) return undefined;
+  const out: Record<string, string> = {};
+  for (const [k, note] of Object.entries(v as Record<string, unknown>)) {
+    if (options.includes(k) && isStr(note)) out[k] = note;
+  }
   return Object.keys(out).length ? out : undefined;
 }
 
@@ -100,6 +112,8 @@ function validateCard(raw: unknown, source: string): Card | string {
     tags: isStrArr(c.tags) ? c.tags : [],
     missed: c.missed === true,
     links: isStrArr(c.links) && c.links.length ? c.links : undefined,
+    screenshots: isStrArr(c.screenshots) && c.screenshots.length ? c.screenshots : undefined,
+    wrong: readWrong(c.wrong, options),
     translate: readTranslate(c.translate),
     source,
   };
@@ -181,6 +195,8 @@ export function deckToJson(d: Deck): object {
       if (!(out.tags as string[]).length) delete out.tags;
       if (!out.missed) delete out.missed;
       if (!out.links) delete out.links;
+      if (!out.screenshots) delete out.screenshots;
+      if (!out.wrong) delete out.wrong;
       if (!out.translate) delete out.translate;
       return out;
     }),

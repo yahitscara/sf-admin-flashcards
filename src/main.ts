@@ -47,10 +47,46 @@ function linkHost(u: string): string {
   try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; }
 }
 
-function cardBack(c: Card): string {
+/** Readable label for a reference link: "Trailhead: point click business logic", "Salesforce Help: …". */
+function linkLabel(u: string): string {
+  try {
+    const url = new URL(u);
+    const tidy = (s: string) => decodeURIComponent(s).replace(/\.htm$/, '').replace(/^sf\./, '').replace(/[-_]+/g, ' ').trim();
+    if (url.hostname === 'trailhead.salesforce.com') {
+      const parts = url.pathname.split('/').filter(Boolean);
+      return `Trailhead: ${tidy(parts[parts.length - 1] ?? 'Trailhead')}`;
+    }
+    if (url.hostname === 'help.salesforce.com') {
+      const id = url.searchParams.get('id');
+      return `Salesforce Help${id ? `: ${tidy(id)}` : ''}`;
+    }
+    return linkHost(u);
+  } catch { return u; }
+}
+
+/** Short search phrase for the Trailhead fallback link: the card's first tag, else its objective. */
+function searchTerms(c: Card): string {
+  const tag = c.tags.find((t) => t !== 'objective' && t.length > 2);
+  return tag ?? objectiveLabel(c.objective);
+}
+
+/** Every option with ✓/✗ and, for wrong ones, why it's wrong. `chosen` marks the user's picks. */
+function optionBreakdown(c: Card, order: string[], chosen?: string[]): string {
+  return `<ul class="breakdown">${order.map((o) => {
+    const ok = c.answer.includes(o);
+    const picked = chosen?.includes(o);
+    const note = ok ? '' : c.wrong?.[o];
+    return `<li class="${ok ? 'ok' : 'no'}${picked ? ' picked' : ''}"><span class="mk">${ok ? '✓' : '✗'}</span><div>
+      <span class="otext">${esc(o)}</span>${picked ? '<span class="you">your pick</span>' : ''}
+      ${note ? `<p class="onote">${esc(note)}</p>` : ''}</div></li>`;
+  }).join('')}</ul>`;
+}
+
+function cardBack(c: Card, order?: string[], chosen?: string[]): string {
   return `<div class="back">
-    <div class="answer"><h4>Answer</h4>
-      ${c.answer.length > 1 ? `<ul>${c.answer.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>` : `<p>${esc(c.answer[0])}</p>`}
+    <div class="answer"><h4>${c.options ? 'Answers' : 'Answer'}</h4>
+      ${c.options ? optionBreakdown(c, order ?? c.options, chosen)
+        : c.answer.length > 1 ? `<ul>${c.answer.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>` : `<p>${esc(c.answer[0])}</p>`}
     </div>
     <div class="why"><h4>Why</h4><p>${esc(c.why)}</p></div>
     ${c.traps ? `<div class="traps"><h4>Trap</h4><p>${esc(c.traps)}</p></div>` : ''}
@@ -59,7 +95,12 @@ function cardBack(c: Card): string {
       ['Situation', c.translate.situation], ['Salesforce calls it', c.translate.feature],
       ["What you'd see", c.translate.see], ['Not the other one', c.translate.notOther],
     ] as const).filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v!)}</dd>`).join('')}</dl></div>` : ''}
-    ${c.links ? `<div class="links"><h4>Sources</h4>${c.links.map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(linkHost(u))}</a>`).join(' · ')}</div>` : ''}
+    ${c.screenshots ? `<div class="shots"><h4>Screenshot${c.screenshots.length > 1 ? 's' : ''}</h4>${c.screenshots.map((u) =>
+      `<a href="${esc(u)}" target="_blank" rel="noopener"><img loading="lazy" referrerpolicy="no-referrer" src="${esc(u)}" alt="Screenshot for this question"></a>`).join('')}</div>` : ''}
+    <div class="links"><h4>Learn more</h4><ul>
+      ${(c.links ?? []).map((u) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(linkLabel(u))}</a></li>`).join('')}
+      <li><a href="https://trailhead.salesforce.com/search?keywords=${encodeURIComponent(searchTerms(c))}" target="_blank" rel="noopener">Search Trailhead for “${esc(searchTerms(c))}”</a></li>
+    </ul></div>
     <div class="src">${esc(c.source)} · ${esc(c.id)}${c.tags.length ? ' · ' + c.tags.map(esc).join(', ') : ''}</div>
   </div>`;
 }
@@ -262,18 +303,41 @@ function markAndNext(m: Mark): void {
 // ---------- quiz ----------
 
 interface QuizAnswer { id: string; chosen: string[]; correct: boolean; }
-interface QuizSession { ids: string[]; i: number; options: string[]; answers: QuizAnswer[]; submitted: boolean; }
+interface QuizSession { ids: string[]; i: number; options: string[]; answers: QuizAnswer[]; submitted: boolean; endless: boolean; }
 let quiz: QuizSession | null = null;
-let quizLen = 20;
+let quizLen = -1; // -1 = endless
+
+/** Endless mode: weighted pick that leans toward missed/unsure/unseen cards and avoids recent repeats. */
+function pickNext(q: QuizSession): string {
+  const pool = quizPool();
+  const recent = new Set(q.ids.slice(-Math.min(25, Math.floor(pool.length / 2))));
+  const fresh = pool.filter((c) => !recent.has(c.id));
+  const list = fresh.length ? fresh : pool;
+  const weight = (c: Card): number => {
+    const m = getMark(c.id);
+    if (m === 'missed') return 6;
+    if (m === 'unsure') return 4;
+    if (!m) return c.missed ? 4 : 3;
+    return 1;
+  };
+  let r = Math.random() * list.reduce((t, c) => t + weight(c), 0);
+  for (const c of list) { r -= weight(c); if (r <= 0) return c.id; }
+  return list[list.length - 1].id;
+}
 
 function quizPool(): Card[] {
   return applyFilters(lib.cards).filter((c) => c.options);
 }
 
 function startQuiz(): void {
-  const pool = shuffle(quizPool());
-  const ids = (quizLen > 0 ? pool.slice(0, quizLen) : pool).map((c) => c.id);
-  quiz = { ids, i: 0, options: [], answers: [], submitted: false };
+  if (quizLen === -1) {
+    quiz = { ids: [], i: 0, options: [], answers: [], submitted: false, endless: true };
+    quiz.ids.push(pickNext(quiz));
+  } else {
+    const pool = shuffle(quizPool());
+    const ids = (quizLen > 0 ? pool.slice(0, quizLen) : pool).map((c) => c.id);
+    quiz = { ids, i: 0, options: [], answers: [], submitted: false, endless: false };
+  }
   loadQuizOptions();
 }
 
@@ -286,12 +350,12 @@ function loadQuizOptions(): void {
 function viewQuiz(): string {
   if (!quiz) {
     const pool = quizPool();
-    const lens = [10, 20, 30, 60, 0];
+    const lens = [-1, 10, 20, 30, 60, 0];
     return `<h1>Quiz</h1>${filterBar(pool.length)}
       <div class="panel">
         <p>${pool.length} multiple-choice questions match your filters.</p>
-        <p class="hint">Only cards with answer options can be quizzed. Wrong answers mark the card Missed; right ones mark it Got it.</p>
-        <div class="seg">${lens.map((n) => `<button class="${quizLen === n ? 'on' : ''}" data-len="${n}">${n || 'All'}</button>`).join('')}</div>
+        <p class="hint"><b>Endless</b> keeps going until you stop, leaning toward cards you've missed or haven't seen. After each answer you get the full explanation, including why every wrong option is wrong. Wrong answers mark the card Missed; right ones mark it Got it.</p>
+        <div class="seg">${lens.map((n) => `<button class="${quizLen === n ? 'on' : ''}" data-len="${n}">${n === -1 ? 'Endless' : n || 'All'}</button>`).join('')}</div>
         <button class="primary" data-act="start" ${pool.length ? '' : 'disabled'}>Start quiz</button>
       </div>`;
   }
@@ -300,36 +364,37 @@ function viewQuiz(): string {
   const n = c.answer.length;
   const multi = n > 1;
   const last = quiz.answers[quiz.i];
-  const optHtml = quiz.options.map((o, k) => {
-    let cls = '';
-    if (quiz!.submitted) {
-      const isAns = c.answer.includes(o);
-      const chosen = last?.chosen.includes(o);
-      cls = isAns ? 'right' : chosen ? 'wrong' : '';
-    }
-    return `<label class="opt ${cls}">
-      <input type="${multi ? 'checkbox' : 'radio'}" name="q" value="${k}" ${quiz!.submitted ? 'disabled' : ''} ${last?.chosen.includes(o) ? 'checked' : ''}>
-      <span>${esc(o)}</span></label>`;
-  }).join('');
+  const optHtml = quiz.options.map((o, k) => `<label class="opt">
+      <input type="${multi ? 'checkbox' : 'radio'}" name="q" value="${k}">
+      <span>${esc(o)}</span></label>`).join('');
+  const answered = quiz.answers.filter(Boolean);
+  const right = answered.filter((a) => a.correct).length;
+  let streak = 0;
+  for (let k = answered.length - 1; k >= 0 && answered[k].correct; k--) streak++;
+  const progress = quiz.endless
+    ? `Endless · ${answered.length} answered · ${right} right (${pct(right, answered.length)}%)${streak > 1 ? ` · 🔥 ${streak} in a row` : ''}`
+    : `Question ${quiz.i + 1} / ${quiz.ids.length} · ${right} right so far`;
   return `<h1>Quiz</h1>
-    <div class="progress-line">Question ${quiz.i + 1} / ${quiz.ids.length} · ${quiz.answers.filter((a) => a.correct).length} right so far</div>
+    <div class="progress-line">${progress}</div>
     <article class="card">
       ${cardMeta(c)}
       <p class="prompt">${esc(c.prompt)}</p>
       ${multi ? `<p class="choose">Choose ${n}</p>` : ''}
-      <form class="opts">${optHtml}</form>
-      ${quiz.submitted ? `<div class="verdict ${last.correct ? 'right' : 'wrong'}">${last.correct ? 'Correct' : 'Not quite'}</div>${cardBack(c)}` : ''}
+      ${quiz.submitted
+        ? `<div class="verdict ${last.correct ? 'right' : 'wrong'}">${last.correct ? 'Correct' : 'Not quite'}</div>${cardBack(c, quiz.options, last.chosen)}`
+        : `<form class="opts">${optHtml}</form>`}
     </article>
     <div class="nav-row">
-      <button class="ghost" data-act="quit">End quiz</button>
+      <button class="ghost" data-act="quit">${quiz.endless ? 'Stop & see score' : 'End quiz'}</button>
       ${quiz.submitted
-        ? `<button class="primary" data-act="qnext">${quiz.i + 1 < quiz.ids.length ? 'Next →' : 'See score'}</button>`
+        ? `<button class="primary" data-act="qnext">${quiz.endless || quiz.i + 1 < quiz.ids.length ? 'Next →' : 'See score'}</button>`
         : '<button class="primary" data-act="submit">Submit</button>'}
     </div>`;
 }
 
 function viewQuizResults(): string {
   const q = quiz!;
+  q.answers = q.answers.filter(Boolean);
   const total = q.answers.length;
   const right = q.answers.filter((a) => a.correct).length;
   // Weighted like the real exam: each objective's % correct counts by its exam weight,
@@ -355,7 +420,7 @@ function viewQuizResults(): string {
     <table class="results"><thead><tr><th>Objective</th><th>Weight</th><th>Score</th><th>%</th></tr></thead><tbody>${rows}</tbody></table>
     ${missed.length ? `<h2>Missed (${missed.length})</h2><div class="review">${missed.map((a) => {
       const c = byId(a.id)!;
-      return `<details class="card"><summary>${esc(c.prompt)}</summary><p class="muted">You chose: ${a.chosen.map(esc).join('; ') || '(nothing)'}</p>${cardBack(c)}</details>`;
+      return `<details class="card"><summary>${esc(c.prompt)}</summary>${cardBack(c, undefined, a.chosen)}</details>`;
     }).join('')}</div>` : ''}
     <div class="nav-row"><button class="primary" data-act="again">New quiz</button><a class="btn ghost" href="#/weak">Weak spots</a></div>`;
 }
@@ -377,6 +442,7 @@ function wireQuiz(): void {
   });
   app.querySelector('[data-act="submit"]')?.addEventListener('click', submitQuiz);
   app.querySelector('[data-act="qnext"]')?.addEventListener('click', () => {
+    if (quiz!.endless) quiz!.ids.push(pickNext(quiz!));
     quiz!.i++;
     loadQuizOptions();
     render();
@@ -617,6 +683,17 @@ document.addEventListener('keydown', (e) => {
   else if (e.key === 'ArrowRight') go(1);
   else if (e.key === 'ArrowLeft') go(-1);
 });
+
+// Some sources block images shown off their own site. Swap a failed screenshot for a short note.
+document.addEventListener('error', (e) => {
+  const img = e.target as HTMLElement;
+  if (!(img instanceof HTMLImageElement) || !img.closest('.shots')) return;
+  const box = img.closest('.shots')!;
+  img.closest('a')?.remove();
+  if (!box.querySelector('img') && !box.querySelector('.shot-note')) {
+    box.insertAdjacentHTML('beforeend', '<p class="shot-note muted small">The source site blocks this screenshot outside its own pages. The links under Learn more cover the same topic.</p>');
+  }
+}, true);
 
 window.addEventListener('hashchange', () => { confirmReset = false; render(); window.scrollTo(0, 0); });
 

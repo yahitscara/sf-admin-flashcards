@@ -213,3 +213,26 @@ article.card.flipped { border-color: var(--accent); }
 .file { cursor: pointer; }
 .panel { margin-top: 12px; }
 .panel ul { padding-left: 20px; }
+
+/* Per-option breakdown on the back of a card / after a quiz answer */
+.breakdown { list-style: none; padding: 0 !important; margin: 0; display: grid; gap: 6px; }
+.breakdown li { display: flex; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.breakdown .mk { font-weight: 800; width: 1em; flex: none; text-align: center; }
+.breakdown .ok { background: var(--got-bg); border-color: var(--got); }
+.breakdown .ok .mk { color: var(--got); }
+.breakdown .ok .otext { font-weight: 600; }
+.breakdown .no .mk { color: var(--missed); }
+.breakdown .no .otext { color: var(--muted); }
+.breakdown .no.picked { background: var(--missed-bg); border-color: var(--missed); }
+.breakdown .no.picked .otext { color: var(--text); }
+.breakdown .you { margin-left: 8px; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; background: var(--line); color: var(--muted); border-radius: 99px; padding: 1px 7px; white-space: nowrap; }
+.breakdown .onote { margin: 4px 0 0; font-size: .9rem; color: var(--text); }
+.why p { line-height: 1.55; }
+
+/* Screenshots from the source explanation */
+.shots { display: grid; gap: 8px; }
+.shots a { display: block; }
+.shots img { display: block; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.links ul { list-style: none; padding: 0 !important; margin: 0; display: grid; gap: 4px; }
+.links li a { text-decoration: none; }
+.links li a::before { content: '↗ '; color: var(--muted); }

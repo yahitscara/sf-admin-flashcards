@@ -2,22 +2,307 @@
   "source": "concepts",
   "title": "Study Map Rules and the Strip Method",
   "cards": [
-    {"id": "concept-do-vs-see", "type": "concept", "objective": "config-setup", "prompt": "Profiles and permission sets vs. the sharing model: what does each control?", "answer": ["Profiles/permission sets = what you can DO (object CRUD, FLS, apps, tabs, record type access, Apex/Visualforce access, login hours/IPs). Sharing = which RECORDS you can SEE (OWD, role hierarchy, sharing rules, teams, manual sharing)."], "why": "Settles a large share of security questions.", "strip": "Answer mentions role, sharing, or which records → not a profile answer.", "tags": ["security", "sharing", "profiles"]},
-    {"id": "concept-owd-floor", "type": "concept", "objective": "config-setup", "prompt": "What is the role of OWD vs. everything else in the sharing model?", "answer": ["OWD is the most restrictive floor. Roles, sharing rules, teams, and manual sharing only OPEN access; they never restrict."], "why": "To restrict visibility → change OWD. To grant more → sharing rules, roles, teams.", "strip": "'Only' / 'restrict' → OWD. 'Give access' → sharing rule, team, or manual share.", "tags": ["sharing"]},
-    {"id": "concept-role-hierarchy", "type": "concept", "objective": "config-setup", "prompt": "Which direction does the role hierarchy grant access?", "answer": ["Upward only: managers see subordinates' records. Peers at the same level see nothing of each other's under Private OWD; use a sharing rule."], "why": "Exam 2 Q11.", "tags": ["sharing", "roles"]},
-    {"id": "concept-login-controls", "type": "concept", "objective": "config-setup", "prompt": "Which login settings block users and which only verify them?", "answer": ["Profile Login IP Ranges and profile Login Hours BLOCK. Org-wide Trusted IP Ranges only decide whether identity verification is required."], "why": "Profile = bouncer; org trusted IPs = ID check. Org-wide login hours don't exist.", "tags": ["security", "login"]},
-    {"id": "concept-profile-vs-permset", "type": "concept", "objective": "config-setup", "prompt": "When do you use a permission set instead of a profile?", "answer": ["When only SOME users on a profile need extra access. Profile = baseline for a job; permission set = extra access layered on top. Users have one profile, many permission sets; muting in permission set groups removes access."], "why": "Exam 2 Q4.", "strip": "'Some users on a profile need X' → permission set.", "tags": ["profiles", "permission sets"]},
-    {"id": "concept-data-tools", "type": "concept", "objective": "data-analytics", "prompt": "Data Import Wizard vs. Data Loader vs. third-party tools: limits and uses?", "answer": ["Import Wizard: up to 50,000; Accounts, Contacts, Leads, Solutions, Campaign Members, custom objects; duplicate matching; no export or delete. Data Loader: all objects, insert/update/upsert/delete/export; 5 million is the recommended threshold, not a hard cap. Third-party: very large volumes. Basic Data Import: Setup toggle giving reps a guided contact/lead CSV import."], "why": "Exam 1 Q10, Exam 2 Q40.", "tags": ["data"]},
-    {"id": "concept-report-formats", "type": "concept", "objective": "data-analytics", "prompt": "What are the 4 report formats?", "answer": ["TSMJ: Tabular, Summary, Matrix, Joined."], "why": "'Custom' and 'Standard' are report TYPES (which data), not formats (layout).", "tags": ["reports"]},
-    {"id": "concept-data-validation", "type": "concept", "objective": "data-analytics", "prompt": "Unique field vs. validation rule vs. matching rule vs. duplicate rule?", "answer": ["Unique field: blocks exact duplicates in one field (case sensitive or insensitive). Validation rule: blocks saves failing a formula ('required IF...'). Matching rule: defines what counts as a duplicate, incl. fuzzy. Duplicate rule: uses a matching rule to alert or block."], "why": "Exam 1 Q30, Exam 2 Q10.", "tags": ["data quality"]},
-    {"id": "concept-field-dependencies", "type": "concept", "objective": "object-manager", "prompt": "Which field types can be controlling vs. dependent in a field dependency?", "answer": ["Controlling: standard picklist, custom picklist, checkbox. Dependent: custom picklist, custom multi-select picklist. Formula fields: neither."], "why": "Exam 1 Q4 and Q7.", "tags": ["fields", "picklists"]},
-    {"id": "concept-lookup-vs-md", "type": "concept", "objective": "object-manager", "prompt": "Lookup vs. master-detail: key differences?", "answer": ["Lookup: optional, child keeps its own owner and sharing, no roll-ups, child survives parent delete. Master-detail: required, child inherits owner and sharing, roll-up summaries on parent, cascade delete, max 2 per object. Junction object = two master-details for many-to-many."], "why": "Exam 2 Q23. Master-detail child = dependent; lookup child = roommate.", "tags": ["relationships"]},
-    {"id": "concept-record-types", "type": "concept", "objective": "object-manager", "prompt": "What do record types control, and how do they relate to business processes?", "answer": ["Record types control picklist values, page layout assignment (with profile), Lightning page assignment, and business process. One business process can serve many record types; each record type uses one. Record types never control which records users see."], "why": "Business processes: Sales (Opportunity Stage), Support (Case Status), Lead (Lead Status), Solution (Status).", "tags": ["record types"]},
-    {"id": "concept-flow-vs-builtin", "type": "concept", "objective": "automation", "prompt": "When does Flow beat a built-in automation feature?", "answer": ["When the built-in feature covers only PART of the requirements. If the built-in feature covers everything, it wins. Code (Apex) is the last resort."], "why": "Big Deal Alert (email only) + task needed → Flow. Auto-response with entries covers everything → auto-response. Prospect email + manager alert → auto-response + Flow.", "strip": "Count the requirements; check each tool against all of them.", "tags": ["flow", "automation"]},
-    {"id": "concept-case-rules", "type": "concept", "objective": "service", "prompt": "Assignment vs. auto-response vs. escalation rules?", "answer": ["Assignment: who owns it when created (cases, leads). Auto-response: one email to the submitter (cases, leads; no tasks, no CC). Escalation: time-based reassign/notify (cases only). Each: one active rule, many entries, first match wins."], "why": "Exam 2 Q6, Q8, Q25, Q26, Q30.", "tags": ["cases", "leads", "rules"]},
-    {"id": "concept-approval-tefo", "type": "concept", "objective": "automation", "prompt": "What actions can an approval process take?", "answer": ["TEFO: Task, Email alert, Field update, Outbound message. Stages: initial submission (locks record), final approval, final rejection, recall."], "why": "No Apex, no record creation. Exam 1 Q31.", "tags": ["approvals"]},
-    {"id": "concept-ai-vs-flow", "type": "concept", "objective": "agentforce", "prompt": "When should a task go to Agentforce vs. Flow?", "answer": ["Language and judgment (summarizing, drafting) → AI. Strict, deterministic rules and compliance ('without exception') → Flow, which an agent can call as an action. Agentforce has the same access as its user."], "why": "Exam 1 Q21 and Q32.", "tags": ["agentforce"]},
-    {"id": "concept-strip-method", "type": "concept", "objective": "config-setup", "prompt": "What are the 6 steps of the Strip Method?", "answer": ["1) Subject: which exact object or feature. 2) Verb: restrict/grant, display/store, block/verify. 3) Defining condition: the detail that rules out the rest. 4) Count the requirements. 5) Strip the traps. 6) Then use Salesforce knowledge."], "why": "Also check what's MISSING from the question, and WHO is acting (admin vs. user).", "tags": ["strategy"]},
-    {"id": "concept-trap-patterns", "type": "concept", "objective": "config-setup", "prompt": "What trap patterns show up in wrong answers?", "answer": ["Absolute words (always, only, any); made-up names (Phone-to-Case, $CHANGED, 'Run All Reports'); wrong object in the name (Web-to-Lead for cases); code when clicks work; too much permission (Modify/View All Data); sharing rules used to restrict; extra overpromising clause; partial solutions; other products (Content Builder); real feature in the wrong place (Default Account Team in 'Administrator Settings')."], "why": "Red flags, not automatic eliminations: real absolutes exist. Specific conditional answers usually describe real behavior.", "tags": ["strategy"]}
+    {
+      "id": "concept-do-vs-see",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "Profiles and permission sets vs. the sharing model: what does each control?",
+      "answer": [
+        "Profiles/permission sets = what you can DO (object CRUD, FLS, apps, tabs, record type access, Apex/Visualforce access, login hours/IPs). Sharing = which RECORDS you can SEE (OWD, role hierarchy, sharing rules, teams, manual sharing)."
+      ],
+      "why": "Settles a large share of security questions.",
+      "strip": "Answer mentions role, sharing, or which records → not a profile answer.",
+      "tags": [
+        "security",
+        "sharing",
+        "profiles"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "concept-owd-floor",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "What is the role of OWD vs. everything else in the sharing model?",
+      "answer": [
+        "OWD is the most restrictive floor. Roles, sharing rules, teams, and manual sharing only OPEN access; they never restrict."
+      ],
+      "why": "To restrict visibility → change OWD. To grant more → sharing rules, roles, teams.",
+      "strip": "'Only' / 'restrict' → OWD. 'Give access' → sharing rule, team, or manual share.",
+      "tags": [
+        "sharing"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+        "https://help.salesforce.com/s/articleView?id=sf.granting_access_to_records&type=5"
+      ]
+    },
+    {
+      "id": "concept-role-hierarchy",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "Which direction does the role hierarchy grant access?",
+      "answer": [
+        "Upward only: managers see subordinates' records. Peers at the same level see nothing of each other's under Private OWD; use a sharing rule."
+      ],
+      "why": "Exam 2 Q11.",
+      "tags": [
+        "sharing",
+        "roles"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_roles",
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_overview"
+      ]
+    },
+    {
+      "id": "concept-login-controls",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "Which login settings block users and which only verify them?",
+      "answer": [
+        "Profile Login IP Ranges and profile Login Hours BLOCK. Org-wide Trusted IP Ranges only decide whether identity verification is required."
+      ],
+      "why": "Profile = bouncer; org trusted IPs = ID check. Org-wide login hours don't exist.",
+      "tags": [
+        "security",
+        "login"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_org",
+        "https://help.salesforce.com/s/articleView?id=sf.admin_sessions.htm&type=5"
+      ]
+    },
+    {
+      "id": "concept-profile-vs-permset",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "When do you use a permission set instead of a profile?",
+      "answer": [
+        "When only SOME users on a profile need extra access. Profile = baseline for a job; permission set = extra access layered on top. Users have one profile, many permission sets; muting in permission set groups removes access."
+      ],
+      "why": "Exam 2 Q4.",
+      "strip": "'Some users on a profile need X' → permission set.",
+      "tags": [
+        "profiles",
+        "permission sets"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+        "https://help.salesforce.com/s/articleView?id=sf.permissions_assign_expire_how&type=5"
+      ]
+    },
+    {
+      "id": "concept-data-tools",
+      "type": "concept",
+      "objective": "data-analytics",
+      "prompt": "Data Import Wizard vs. Data Loader vs. third-party tools: limits and uses?",
+      "answer": [
+        "Import Wizard: up to 50,000; Accounts, Contacts, Leads, Solutions, Campaign Members, custom objects; duplicate matching; no export or delete. Data Loader: all objects, insert/update/upsert/delete/export; 5 million is the recommended threshold, not a hard cap. Third-party: very large volumes. Basic Data Import: Setup toggle giving reps a guided contact/lead CSV import."
+      ],
+      "why": "Exam 1 Q10, Exam 2 Q40.",
+      "tags": [
+        "data"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management/lex_implementation_data_import",
+        "https://help.salesforce.com/s/articleView?id=sf.data_import_wizard.htm&type=5"
+      ]
+    },
+    {
+      "id": "concept-report-formats",
+      "type": "concept",
+      "objective": "data-analytics",
+      "prompt": "What are the 4 report formats?",
+      "answer": [
+        "TSMJ: Tabular, Summary, Matrix, Joined."
+      ],
+      "why": "'Custom' and 'Standard' are report TYPES (which data), not formats (layout).",
+      "tags": [
+        "reports"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_report_formats",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder"
+      ]
+    },
+    {
+      "id": "concept-data-validation",
+      "type": "concept",
+      "objective": "data-analytics",
+      "prompt": "Unique field vs. validation rule vs. matching rule vs. duplicate rule?",
+      "answer": [
+        "Unique field: blocks exact duplicates in one field (case sensitive or insensitive). Validation rule: blocks saves failing a formula ('required IF...'). Matching rule: defines what counts as a duplicate, incl. fuzzy. Duplicate rule: uses a matching rule to alert or block."
+      ],
+      "why": "Exam 1 Q30, Exam 2 Q10.",
+      "tags": [
+        "data quality"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_2",
+        "https://trailhead.salesforce.com/content/learn/modules/sales_admin_duplicate_management/sales_admin_duplicate_management_unit_1"
+      ]
+    },
+    {
+      "id": "concept-field-dependencies",
+      "type": "concept",
+      "objective": "object-manager",
+      "prompt": "Which field types can be controlling vs. dependent in a field dependency?",
+      "answer": [
+        "Controlling: standard picklist, custom picklist, checkbox. Dependent: custom picklist, custom multi-select picklist. Formula fields: neither."
+      ],
+      "why": "Exam 1 Q4 and Q7.",
+      "tags": [
+        "fields",
+        "picklists"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_manage",
+        "https://trailhead.salesforce.com/content/learn/modules/picklist_admin/picklist_admin_global"
+      ]
+    },
+    {
+      "id": "concept-lookup-vs-md",
+      "type": "concept",
+      "objective": "object-manager",
+      "prompt": "Lookup vs. master-detail: key differences?",
+      "answer": [
+        "Lookup: optional, child keeps its own owner and sharing, no roll-ups, child survives parent delete. Master-detail: required, child inherits owner and sharing, roll-up summaries on parent, cascade delete, max 2 per object. Junction object = two master-details for many-to-many."
+      ],
+      "why": "Exam 2 Q23. Master-detail child = dependent; lookup child = roommate.",
+      "tags": [
+        "relationships"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+        "https://help.salesforce.com/s/articleView?id=overview_of_custom_object_relationships.htm&type=5"
+      ]
+    },
+    {
+      "id": "concept-record-types",
+      "type": "concept",
+      "objective": "object-manager",
+      "prompt": "What do record types control, and how do they relate to business processes?",
+      "answer": [
+        "Record types control picklist values, page layout assignment (with profile), Lightning page assignment, and business process. One business process can serve many record types; each record type uses one. Record types never control which records users see."
+      ],
+      "why": "Business processes: Sales (Opportunity Stage), Support (Case Status), Lead (Lead Status), Solution (Status).",
+      "tags": [
+        "record types"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/customize-a-salesforce-object/create-record-types",
+        "https://help.salesforce.com/s/articleView?id=sf.creating_record_types.htm&type=5"
+      ]
+    },
+    {
+      "id": "concept-flow-vs-builtin",
+      "type": "concept",
+      "objective": "automation",
+      "prompt": "When does Flow beat a built-in automation feature?",
+      "answer": [
+        "When the built-in feature covers only PART of the requirements. If the built-in feature covers everything, it wins. Code (Apex) is the last resort."
+      ],
+      "why": "Big Deal Alert (email only) + task needed → Flow. Auto-response with entries covers everything → auto-response. Prospect email + manager alert → auto-response + Flow.",
+      "strip": "Count the requirements; check each tool against all of them.",
+      "tags": [
+        "flow",
+        "automation"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics/get-started-with-flows",
+        "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+      ]
+    },
+    {
+      "id": "concept-case-rules",
+      "type": "concept",
+      "objective": "service",
+      "prompt": "Assignment vs. auto-response vs. escalation rules?",
+      "answer": [
+        "Assignment: who owns it when created (cases, leads). Auto-response: one email to the submitter (cases, leads; no tasks, no CC). Escalation: time-based reassign/notify (cases only). Each: one active rule, many entries, first match wins."
+      ],
+      "why": "Exam 2 Q6, Q8, Q25, Q26, Q30.",
+      "tags": [
+        "cases",
+        "leads",
+        "rules"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/projects/set-up-case-escalation-entitlements/create-case-queues-assignment-rule",
+        "https://help.salesforce.com/s/articleView?id=creating_assignment_rules.htm&type=5"
+      ]
+    },
+    {
+      "id": "concept-approval-tefo",
+      "type": "concept",
+      "objective": "automation",
+      "prompt": "What actions can an approval process take?",
+      "answer": [
+        "TEFO: Task, Email alert, Field update, Outbound message. Stages: initial submission (locks record), final approval, final rejection, recall."
+      ],
+      "why": "No Apex, no record creation. Exam 1 Q31.",
+      "tags": [
+        "approvals"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/approvals",
+        "https://trailhead.salesforce.com/content/learn/modules/business_process_automation/build-an-approval-process"
+      ]
+    },
+    {
+      "id": "concept-ai-vs-flow",
+      "type": "concept",
+      "objective": "agentforce",
+      "prompt": "When should a task go to Agentforce vs. Flow?",
+      "answer": [
+        "Language and judgment (summarizing, drafting) → AI. Strict, deterministic rules and compliance ('without exception') → Flow, which an agent can call as an action. Agentforce has the same access as its user."
+      ],
+      "why": "Exam 1 Q21 and Q32.",
+      "tags": [
+        "agentforce"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+        "https://trailhead.salesforce.com/content/learn/modules/quick-start-assemble-a-service-agent-with-agentforce-builder/learn-about-agentforce-builder"
+      ]
+    },
+    {
+      "id": "concept-strip-method",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "What are the 6 steps of the Strip Method?",
+      "answer": [
+        "1) Subject: which exact object or feature. 2) Verb: restrict/grant, display/store, block/verify. 3) Defining condition: the detail that rules out the rest. 4) Count the requirements. 5) Strip the traps. 6) Then use Salesforce knowledge."
+      ],
+      "why": "Also check what's MISSING from the question, and WHO is acting (admin vs. user).",
+      "tags": [
+        "strategy"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+      ]
+    },
+    {
+      "id": "concept-trap-patterns",
+      "type": "concept",
+      "objective": "config-setup",
+      "prompt": "What trap patterns show up in wrong answers?",
+      "answer": [
+        "Absolute words (always, only, any); made-up names (Phone-to-Case, $CHANGED, 'Run All Reports'); wrong object in the name (Web-to-Lead for cases); code when clicks work; too much permission (Modify/View All Data); sharing rules used to restrict; extra overpromising clause; partial solutions; other products (Content Builder); real feature in the wrong place (Default Account Team in 'Administrator Settings')."
+      ],
+      "why": "Red flags, not automatic eliminations: real absolutes exist. Specific conditional answers usually describe real behavior.",
+      "tags": [
+        "strategy"
+      ],
+      "links": [
+        "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started",
+        "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+      ]
+    }
   ]
 }

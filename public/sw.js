@@ -1,6 +1,6 @@
 // Network-first service worker: always try for fresh cards/code, fall back to
 // the last cached copy when offline. Keeps new exam files showing up after a deploy.
-const CACHE = 'sfa-v1';
+const CACHE = 'sfa-v2';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./', 'index.html', 'data/manifest.json'])).catch(() => {}));
